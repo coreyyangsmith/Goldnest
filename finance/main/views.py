@@ -10,6 +10,16 @@ from .serializers import *
 def MainView(request):
     return render(request, 'home/index.html')
 
+from rest_framework import viewsets
+from .serializers import EntitySerializer
+from .models import Entity
+
+# Create your views here.
+
+class Entity(viewsets.ModelViewSet):
+    serializer_class = EntitySerializer
+    queryset = Entity.objects.all()
+
 @api_view(['GET', 'POST'])
 def entrys_list(request):
     if request.method == 'GET':

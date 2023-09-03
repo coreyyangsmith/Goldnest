@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+// React
+import React, { useEffect, useState } from "react"
 
-function App() {
+// MUI Dependencies
+import { Container } from "@mui/material"
+
+// Axios
+import axios from "axios";
+
+// Components
+import './App.css';
+import NavBar from './components/NavBar';
+
+
+const entityItems = [
+  {
+    "pk": 1,
+    "name": "Steam",
+    "created_at": "2023-09-03T18:02:06.450637Z",
+    "updated_at": "2023-09-03T18:02:06.451033Z"
+},
+{
+    "pk": 2,
+    "name": "EB Games",
+    "created_at": "2023-09-03T18:02:06.451590Z",
+    "updated_at": "2023-09-03T18:02:06.451906Z"
+}];
+
+const App = () => {
+  const [users, setUsers] = useState([])
+
+  const fetchUserData = () => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setUsers(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Container>
+        <NavBar/>
+      </Container>
     </div>
-  );
-}
+  )
+}    
 
 export default App;
