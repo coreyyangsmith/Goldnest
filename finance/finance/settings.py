@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'landing.apps.LandingConfig',    
     'django_extensions', 
+    'rest_framework',
+    'corsheaders',    
 ]
 
 MIDDLEWARE = [
@@ -50,7 +52,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',      
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True #disables CORS as we're running in localhost for the time being
+
 
 ROOT_URLCONF = 'finance.urls'
 

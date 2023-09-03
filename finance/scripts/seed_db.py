@@ -23,3 +23,4 @@ def run():
     main_category.run()
     sub_category.run()
     subsub_category.run()
+    entry.run()
