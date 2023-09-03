@@ -18,15 +18,6 @@ def run():
     with open(DATA_PATH) as f:
         reader = csv.reader(f)
         for row in reader:
-            _, created = Entity.objects.get_or_create(
-                name=row[5],
-                created_at=timezone.now(),
-                updated_at=timezone.now(),
-            )
-            _.save()
-        print("'Entity' loaded successfully.")            
-            
-        for row in reader:
             _, created = Entry.objects.get_or_create(
                 name=row[0],
                 income=row[1],
@@ -39,5 +30,6 @@ def run():
                 created_at=timezone.now(),
                 updated_at=timezone.now(),
             )
-            _.save()
+        _.save()
+    print("'Entity' loaded successfully.")              
     print("'Entry' loaded successfully.")

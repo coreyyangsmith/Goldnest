@@ -20,7 +20,8 @@ def run():
         for row in reader:
             _, created = Entity.objects.get_or_create(
                 name=row[0],
-                description=row[1],            
+                created_at=timezone.now(),
+                updated_at=timezone.now(),
             )
-            _.save()
+            _.save()   
     print("'Entity' loaded successfully.")

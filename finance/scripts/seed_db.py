@@ -17,10 +17,9 @@ def run():
     Entry.objects.all().delete()
 
     # Step 2: Populate
-    #entity.run()
-    #entry.run()
-
     main_category.run()
     sub_category.run()
     subsub_category.run()
+    entity.run()
     entry.run()
+    
