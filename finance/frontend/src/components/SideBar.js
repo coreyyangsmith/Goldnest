@@ -17,6 +17,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
+// Routing
+import { Link } from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
 
 // Icons
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard'; //Dashboard
@@ -30,6 +33,21 @@ import AddIcon from '@mui/icons-material/Add'; //Add new
 import AccountBoxIcon from '@mui/icons-material/AccountBox'; // Profile
 import SettingsIcon from '@mui/icons-material/Settings'; //Settings
 import LogoutIcon from '@mui/icons-material/Logout'; // Logout
+
+// Pages
+import Landing from '../pages/Landing/Landing.jsx'
+
+import Dashboard from '../pages/Dashboard/Dashboard.jsx'
+import Accounts from '../pages/Accounts/Accounts.jsx'
+import Budget from '../pages/Budget/Budget.jsx'
+import Reports from '../pages/Reports/Reports.jsx'
+
+import Database from '../pages/Database/Database.jsx'
+
+import Register from '../pages/Register/Register.jsx'
+import Login from '../pages/Login/Login.jsx'
+import Profile from '../pages/Profile/Profile.jsx'
+import Settings from '../pages/Settings/Settings.jsx'
 
 
 
@@ -64,6 +82,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
+
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -143,115 +162,115 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['My Dashboard', 'My Accounts', 'My Budget', 'Reports'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                {
-                    {
-                    '0': <SpaceDashboardIcon />,
-                    '1': <AccountBalanceIcon />,                        
-                    '2': <PaidIcon />,
-                    '3': <AssessmentIcon />,
-                    }[index]
-                }
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+
+          <ListItem key="My Dashboard" component={Link} to="/dashboard" disablePadding sx={{ display: 'block'}}>
+            <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+              <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                <SpaceDashboardIcon/>                            
+              </ListItemIcon>
+              <ListItemText secondary="My Dashboard" sx={{ opacity: open ? 1 : 0 }}/>                 
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem key="My Accounts" component={Link} to="/accounts" disablePadding sx={{ display: 'block'}}>
+            <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+              <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                <AccountBalanceIcon/>                            
+              </ListItemIcon>
+              <ListItemText secondary="My Accounts" sx={{ opacity: open ? 1 : 0 }}/>                 
+            </ListItemButton>
+          </ListItem>
+          
+          <ListItem key="My Budget" component={Link} to="/budget" disablePadding sx={{ display: 'block'}}>
+            <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+              <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                <PaidIcon/>                            
+              </ListItemIcon>
+              <ListItemText secondary="My Budget" sx={{ opacity: open ? 1 : 0 }}/>                 
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem key="My Reports" component={Link} to="/reports" disablePadding sx={{ display: 'block'}}>
+            <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+              <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                <AssessmentIcon/>                            
+              </ListItemIcon>
+              <ListItemText secondary="My Reports" sx={{ opacity: open ? 1 : 0 }}/>                 
+            </ListItemButton>
+          </ListItem>                              
         </List>
         <Divider />
         <List>
-          {['Database', 'Add New Data'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                {
-                    {
-                    '0': <StorageIcon />,
-                    '1': <AddIcon />,
-                    }[index]
-                }
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+
+        <ListItem key="Database" component={Link} to="/data" disablePadding sx={{ display: 'block'}}>
+            <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+              <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                <StorageIcon/>                            
+              </ListItemIcon>
+              <ListItemText secondary="Database" sx={{ opacity: open ? 1 : 0 }}/>                 
+            </ListItemButton>
+          </ListItem>    
+
+          <ListItem key="Add New Data" component={Link} to="/data" disablePadding sx={{ display: 'block'}}>
+            <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+              <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                <AddIcon/>                            
+              </ListItemIcon>
+              <ListItemText secondary="Add New Data" sx={{ opacity: open ? 1 : 0 }}/>                 
+            </ListItemButton>
+          </ListItem>                        
         </List>
         <Divider />
 
         <List>
-          {['Profile', 'Settings', 'Log Out'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                {
-                    {
-                    '0': <AccountBoxIcon />,
-                    '1': <SettingsIcon />,
-                    '2': <LogoutIcon />,                    
-                    }[index]
-                }                    
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem key="Profile" component={Link} to="/profile" disablePadding sx={{ display: 'block'}}>
+            <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+              <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                <AccountBoxIcon/>                            
+              </ListItemIcon>
+              <ListItemText secondary="My Reports" sx={{ opacity: open ? 1 : 0 }}/>                 
+            </ListItemButton>
+          </ListItem>    
+
+          <ListItem key="Settings" component={Link} to="/profile/settings" disablePadding sx={{ display: 'block'}}>
+            <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+              <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                <SettingsIcon/>                            
+              </ListItemIcon>
+              <ListItemText secondary="My Reports" sx={{ opacity: open ? 1 : 0 }}/>                 
+            </ListItemButton>
+          </ListItem>       
+
+          <ListItem key="Logout" component={Link} to="/logout" disablePadding sx={{ display: 'block'}}>
+            <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+              <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                <LogoutIcon/>                            
+              </ListItemIcon>
+              <ListItemText secondary="Logout" sx={{ opacity: open ? 1 : 0 }}/>                 
+            </ListItemButton>
+          </ListItem>                     
+
+
         </List>
       </Drawer>
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.
-        </Typography>
+          <Routes>
+                <Route path="/" element={<Landing />} />           
+
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/accounts" element={<Accounts />} />
+                <Route path="/budget" element={<Budget />} />
+                <Route path="/reports" element={<Reports />} />             
+
+                <Route path="/data" element={<Database />} />
+
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/settings" element={<Settings />} />            
+            </Routes>  
       </Box>
     </Box>
   );

@@ -9,10 +9,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 // Axios
 import axios from "axios";
 
+
+
 // Components
 import './App.css';
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
+
+
 
 // Theme Definition
 const darkTheme = createTheme({
@@ -76,6 +80,7 @@ const App = () => {
 
   return (
     <div>
+
       <ThemeProvider theme={darkTheme}>
         <CssBaseline/>
 
@@ -83,12 +88,14 @@ const App = () => {
           <Container>
 
             <SideBar/>
-            <NavBar/>
-            <main>This app is using the dark mode</main>
+            
+
+
           </Container>
 
           
       </ThemeProvider>
+  
     </div>
   )
 }    
