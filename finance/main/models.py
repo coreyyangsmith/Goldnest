@@ -68,10 +68,17 @@ class Entry(models.Model):
 # ################################################################# #
 # ------------------------- MACRO FINANCE ------------------------- #
 # ################################################################# #
+ACCOUNT_TYPE_CHOICES = [
+    ("CEQ", "Chequings"),
+    ("SAV", "Savings"),
+    ("INV", "Investment"),
+    ("AST", "Asset"),    
+    ("DBT", "Debt"),
+]
 
 class Account(models.Model):
     name = models.CharField(max_length=50)
-    account_type = models.CharField(max_length=50) #TODO Switch Options, future FK?, maybe add subcategory
+    account_type = models.CharField(max_length=3, choices=ACCOUNT_TYPE_CHOICES)
     current_balance = models.FloatField()
     rate = models.FloatField(null=True)
     start_term = models.DateField(null=True, blank=True)
