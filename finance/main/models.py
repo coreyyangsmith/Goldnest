@@ -1,5 +1,9 @@
 from django.db import models
 
+# ################################################################# #
+# ------------------------- MICRO FINANCE ------------------------- #
+# ################################################################# #
+
 # Expenses
 class MainCategory(models.Model):
     name = models.CharField(max_length=15, blank=False, null=False)
@@ -60,3 +64,25 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.name
+    
+# ################################################################# #
+# ------------------------- MACRO FINANCE ------------------------- #
+# ################################################################# #
+
+class Account(models.Model):
+    name = models.CharField(max_length=50)
+    account_type = models.CharField(max_length=50) #TODO Switch Options, future FK?, maybe add subcategory
+    current_balance = models.FloatField()
+    rate = models.FloatField(null=True)
+    start_term = models.DateField(null=True, blank=True)
+    end_term = models.DateField(null=True, blank=True)    
+
+    entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
