@@ -228,7 +228,7 @@ export default function MiniDrawer() {
               <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
                 <AccountBoxIcon/>                            
               </ListItemIcon>
-              <ListItemText secondary="My Reports" sx={{ opacity: open ? 1 : 0 }}/>                 
+              <ListItemText secondary="Profile" sx={{ opacity: open ? 1 : 0 }}/>                 
             </ListItemButton>
           </ListItem>    
 
@@ -237,7 +237,7 @@ export default function MiniDrawer() {
               <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
                 <SettingsIcon/>                            
               </ListItemIcon>
-              <ListItemText secondary="My Reports" sx={{ opacity: open ? 1 : 0 }}/>                 
+              <ListItemText secondary="Settings" sx={{ opacity: open ? 1 : 0 }}/>                 
             </ListItemButton>
           </ListItem>       
 
