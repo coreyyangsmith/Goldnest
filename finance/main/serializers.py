@@ -2,13 +2,6 @@ from rest_framework import serializers
 from .models import *
 
 # Micro Finance
-class EntrySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Entry 
-        fields = ('pk', 'name', 'income', 'expense',
-                  'notes', 'date', 'routing', 'main_category',
-                  'sub_category', 'created_at', 'updated_at')
-
 class EntitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Entity
@@ -23,6 +16,7 @@ class MainCategorySerializer(serializers.ModelSerializer):
 class SubCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = SubCategory
+        main_category = MainCategorySerializer()
         fields = ('pk', 'name', 'description',
                   'main_category', 'created_at', 'updated_at')
 
@@ -31,6 +25,18 @@ class SubSubCategorySerializer(serializers.ModelSerializer):
         model = SubSubCategory
         fields = ('pk', 'name', 'description',
                   'sub_category', 'created_at', 'updated_at')
+        
+class EntrySerializer(serializers.ModelSerializer):
+    main_category = MainCategorySerializer() 
+    sub_category = SubCategorySerializer()    
+    routing = EntitySerializer()       
+    class Meta:
+        model = Entry 
+        fields = ('pk', 'name', 'income', 'expense',
+                  'notes', 'date', 'routing', 'main_category',
+                  'sub_category', 'created_at', 'updated_at')
+        
+                  
         
 # Macro Finance
 class AccountSerializer(serializers.ModelSerializer):
