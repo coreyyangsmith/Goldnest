@@ -1,9 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
 
+// Component Imports
+import DateComponent from '../../components/DateComponent.jsx'
+
+// MUI Imports
+import { Autocomplete } from '@mui/material'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+
 //Axios Import
 import axios from "axios"
 import useForm from '../../components/UseForm.jsx'
+
 
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/entrys/"
 
@@ -11,13 +20,13 @@ const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
 const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
 const ROUTING_API = "http://127.0.0.1:8000/api/entitys/"
 
-let mainCat = await axios.get(MAIN_CATEGORY_API);
-let subCat = await axios.get(SUB_CATEGORY_API);
-let routing = await axios.get(ROUTING_API);
+let mainCatData = await axios.get(MAIN_CATEGORY_API);
+let subCatData = await axios.get(SUB_CATEGORY_API);
+let routingData = await axios.get(ROUTING_API);
 
-mainCat = mainCat.data
-subCat = subCat.data
-routing = routing.data
+mainCatData = mainCatData.data
+subCatData = subCatData.data
+routingData = routingData.data
 
 const AddNewForm = () => {
     // Use State to Manage variables for form submission
@@ -40,14 +49,79 @@ const AddNewForm = () => {
   return (
     <>
     <form action={FORM_ENDPOINT}
-                onSubmit={handleSubmit}
-                method="POST"
-                autoComplete='on'>
+                  onSubmit={handleSubmit}
+                  method="POST"
+                  autoComplete='on'>
 
+      {/* Date */}
+      <DateComponent/>
 
+      {/* Company (Router) */}
+      <Autocomplete
+              options={routingData} 
+              value={routing}
+              name="routing"
+              getOptionLabel={(option) => option.name}
+              onChange={(e) => setRouting(e.target.value.pk)}       
+              renderInput={(params) => (
+                  <TextField
+                      {...params}
+                      variant="standard"
+                      label="Company"
+                      placeholder=""
+                  />)}
+      />             
 
+      {/* Name */}
+      <TextField id="name-input" label="Item Name" variant="standard" />
 
-    </form>
+      {/* Notes (show on hover?) */}
+      <TextField multiline 
+                  id="notes-input" 
+                  label="Notes" 
+                  variant="standard"
+                  maxRows={4} />    
+
+      {/* Main Category */}
+      <Autocomplete
+                  options={mainCatData} 
+                  value={mainCat}
+                  name="main_category"
+                  getOptionLabel={(option) => option.name}
+                  onChange={(e) => setMainCat(e.target.value.pk)}       
+                  renderInput={(params) => (
+                      <TextField
+                          {...params}
+                          variant="standard"
+                          label="Main Category"
+                          placeholder=""
+                      />)}
+      />      
+
+      {/* Sub Category */}
+      <Autocomplete
+              options={subCatData} 
+              value={subCat}
+              name="subCat"
+              getOptionLabel={(option) => option.name}
+              onChange={(e) => setSubCat(e.target.value.pk)}       
+              renderInput={(params) => (
+                  <TextField
+                      {...params}
+                      variant="standard"
+                      label="Sub Category"
+                      placeholder=""
+                  />)}
+      /> 
+
+      {/* Income */}
+      <TextField id="income-input" label="Income" variant="standard" />    
+
+      {/* Expense */}
+      <TextField id="expense-input" label="Expense" variant="standard" />        
+
+      <Button type="submit">Submit</Button>
+      </form>
     
     
     </>

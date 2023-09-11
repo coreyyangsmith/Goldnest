@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 // MUI Dependencies
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
+import { Tooltip } from '@mui/material';
 
 // Axios Import
 import axios from "axios"
@@ -22,63 +23,7 @@ mainCat = mainCat.data
 subCat = subCat.data
 routing = routing.data
 
-const columns = [
-  {
-    field: 'date',
-    headerName: 'Date',
-    width: 125,
-    editable: true,
-  },
-  {
-    field: 'routing',
-    headerName: 'Company',
-    type: 'number',
-    width: 100,
-    editable: true,
-  },  
-  {
-    field: 'name',
-    headerName: 'Item Name',
-    width: 300,
-    editable: true,
-  },
-  {
-    field: 'main_category',
-    headerName: 'Main Category',
-    description: 'This column has a value getter and is not sortable.',
-    width: 150,
-  },
-  {
-    field: 'sub_category',
-    headerName: 'Sub Category',
-    description: 'This column has a value getter and is not sortable.',
-    width: 150,
-  },  
-  {
-    field: 'income',
-    headerName: 'Income',
-    description: 'This column has a value getter and is not sortable.',
-    width: 150,
-    valueFormatter: (params) => {
-      if (params.value == null) {
-        return '$0.00';
-      }
-      return `$${params.value.toLocaleString()}`;
-    },    
-  },  
-  {
-    field: 'expense',
-    headerName: 'Expense',
-    description: 'This column has a value getter and is not sortable.',
-    width: 150,
-    valueFormatter: (params) => {
-      if (params.value == null) {
-        return '$0.00';
-      }
-      return `$${params.value.toLocaleString()}`;
-    },        
-  },      
-];
+
 
 export default function MyDataGrid() {
   
@@ -120,6 +65,69 @@ export default function MyDataGrid() {
 
   // Assign Data
   const rows = entries;
+  const columns = [
+    {
+      field: 'date',
+      headerName: 'Date',
+      width: 125,
+      editable: true,
+    },
+    {
+      field: 'routing',
+      headerName: 'Company',
+      type: 'number',
+      width: 100,
+      editable: true,
+    },  
+    {
+      field: 'name',
+      headerName: 'Item Name',
+      width: 300,
+      editable: true,
+      renderCell: (params) =>  (
+        <Tooltip title={params.value} > {/* TODO - Pull notes attribute to populate toolip */}
+          <span className="table-cell-trucate">{params.value.toString()}</span>
+        </Tooltip>
+       ),
+    },   
+    {
+      field: 'main_category',
+      headerName: 'Main Category',
+      description: 'This column has a value getter and is not sortable.',
+      width: 150,
+    },
+    {
+      field: 'sub_category',
+      headerName: 'Sub Category',
+      description: 'This column has a value getter and is not sortable.',
+      width: 150,
+    },  
+    {
+      field: 'income',
+      headerName: 'Income',
+      description: 'This column has a value getter and is not sortable.',
+      width: 150,
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return '$0.00';
+        }
+        return `$${params.value.toLocaleString()}`;
+      },    
+    },  
+    {
+      field: 'expense',
+      headerName: 'Expense',
+      description: 'This column has a value getter and is not sortable.',
+      width: 150,
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return '$0.00';
+        }
+        return `$${params.value.toLocaleString()}`;
+      },        
+    },      
+  ];  
+
 
   return (
     <Box sx={{ height: 575 + 57, width: '100%' }}>
