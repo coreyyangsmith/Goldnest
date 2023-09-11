@@ -54,7 +54,8 @@ const AddNewForm = () => {
                   autoComplete='on'>
 
       {/* Date */}
-      <DateComponent/>
+      <DateComponent value={date}
+                      onChange={(e) => (e.target.value)}/>
 
       {/* Company (Router) */}
       <Autocomplete
@@ -73,14 +74,20 @@ const AddNewForm = () => {
       />             
 
       {/* Name */}
-      <TextField id="name-input" label="Item Name" variant="standard" />
+      <TextField id="name-input" 
+                  label="Item Name" 
+                  variant="standard" 
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}/>
 
       {/* Notes (show on hover?) */}
       <TextField multiline 
                   id="notes-input" 
                   label="Notes" 
                   variant="standard"
-                  maxRows={4} />    
+                  maxRows={4}
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)} />    
 
       {/* Main Category */}
       <Autocomplete
@@ -115,10 +122,18 @@ const AddNewForm = () => {
       /> 
 
       {/* Income */}
-      <TextField id="income-input" label="Income" variant="standard" />    
+      <TextField id="income-input" 
+                  label="Income" 
+                  variant="standard"
+                  value={income}
+                  onChange={(e) => setIncome(e.target.value)} />    
 
       {/* Expense */}
-      <TextField id="expense-input" label="Expense" variant="standard" />        
+      <TextField id="expense-input" 
+                  label="Expense" 
+                  variant="standard"
+                  value={expense}
+                  onChange={(e) => setExpense(e.target.value)} />        
 
       <Button type="submit">Submit</Button>
       </form>
