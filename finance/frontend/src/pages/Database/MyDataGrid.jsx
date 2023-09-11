@@ -91,30 +91,32 @@ export default function MyDataGrid() {
               return response.json()
               })
           .then(data => {
-              setEntries(data);
+            const nextEntries = data.map((data) => {
+              return {
+                id: data.pk,
+                date: data.date,
+                name: data.name,
+                routing: data.routing.name,
+                notes: data.notes,
+                main_category: data.main_category.name,
+                sub_category: data.sub_category.name,
+                income: data.income,
+                expense: data.expense,
+                created_at: data.created_at,
+                updated_at: data.updated_at
+              }})
+              setEntries(nextEntries);
           })
   }
-    
+
   useEffect(() => {
-    fetchUserData()
-  }, [])
+    fetchUserData();
+    }, [])
 
   //Process Data
-  let temp = entries.map((entries) => {
-    return {
-      date: entries.date,
-      name: entries.name,
-      routing: entries.routing.name,
-      notes: entries.notes,
-      main_category: entries.main_category.name,
-      sub_category: entries.sub_category.name,
-      income: entries.income,
-      expense: entries.expense,
-      created_at: entries.created_at,
-      updated_at: entries.updated_at
-    }
-  })
-  console.log(temp)
+
+
+
 
   // Assign Data
   const rows = entries;
@@ -122,7 +124,7 @@ export default function MyDataGrid() {
   return (
     <Box sx={{ height: 575 + 57, width: '100%' }}>
       <DataGrid
-        getRowId={(row) => row.pk}
+        getRowId={(row) => row.id}
         rows={rows}
         columns={columns}
         initialState={{

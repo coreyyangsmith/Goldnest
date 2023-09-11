@@ -27,7 +27,7 @@ class SubSubCategorySerializer(serializers.ModelSerializer):
                   'sub_category', 'created_at', 'updated_at')
         
 class EntrySerializer(serializers.ModelSerializer):
-    main_category = MainCategorySerializer() 
+    main_category = MainCategorySerializer()
     sub_category = SubCategorySerializer()    
     routing = EntitySerializer()       
     class Meta:

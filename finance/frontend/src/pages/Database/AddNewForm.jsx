@@ -19,12 +19,6 @@ mainCat = mainCat.data
 subCat = subCat.data
 routing = routing.data
 
-console.log(mainCat)
-console.log(subCat)
-console.log(routing)
-
-
-
 const AddNewForm = () => {
     // Use State to Manage variables for form submission
     const [date, setDate] = useState("")
