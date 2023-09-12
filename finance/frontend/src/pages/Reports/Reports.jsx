@@ -7,6 +7,7 @@ import { Box, Grid } from '@mui/material/';
 // My Components
 import DoughnutReport from "./DoughnutReport";
 import ExpensesByMainCategory from './ExpensesByMainCategory';
+import NetWorthLineChart from './NetWorthLineChart';
 
 const Reports = () => {
     return <>
@@ -29,7 +30,16 @@ const Reports = () => {
             }}>
                 <ExpensesByMainCategory/>
             </Box>      
-        </Grid>          
+        </Grid>     
+
+        <Grid item spacing={6}>
+            <Box sx={{
+                width: 300,
+                height: 300
+            }}>
+                <NetWorthLineChart />
+            </Box>      
+        </Grid>                  
 
     </Grid>
 
