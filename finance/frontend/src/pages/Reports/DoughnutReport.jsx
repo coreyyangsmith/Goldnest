@@ -5,6 +5,9 @@ import React from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
+// Faker
+import { faker } from '@faker-js/faker';
+
 // Import Data
 const data = {
     labels: [
@@ -14,7 +17,9 @@ const data = {
     ],
     datasets: [{
       label: 'My First Dataset',
-      data: [300, 50, 100],
+      data: [faker.datatype.number({ min: 0, max: 1000 }), 
+            faker.datatype.number({ min: 0, max: 1000 }), 
+            faker.datatype.number({ min: 0, max: 1000 })],
       backgroundColor: [
         'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',
@@ -23,7 +28,6 @@ const data = {
       hoverOffset: 4
     }]
   };
-
 
 const DoughnutReport = () => {
     ChartJS.register(ArcElement, Tooltip, Legend);
