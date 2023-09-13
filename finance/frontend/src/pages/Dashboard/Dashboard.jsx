@@ -5,10 +5,13 @@ const Dashboard = () => {
     let year = date.getFullYear();
     let today = date.getDate();
 
+    let daysInMonth =  new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();    
+    let timeLeft = daysInMonth - today
+
     return <>
     <h1>Welcome to My Dashboard.</h1>
     <h2>{month} {today} {year}</h2>
-    <h2>Days left in the month: </h2>    
+    <h2>Days remaining: {timeLeft}</h2>    
     </>
 }
 

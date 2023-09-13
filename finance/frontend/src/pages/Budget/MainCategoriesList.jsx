@@ -3,7 +3,7 @@ import React from 'react'
 
 
 // MUI Imports
-import { Paper, Stack } from '@mui/material/'
+import { Button, Stack } from '@mui/material/'
 
 const MainCategoriesList = (props) => {
 
@@ -14,10 +14,17 @@ const MainCategoriesList = (props) => {
     },
   };
 
+  const handleClick = (mainCat) => {
+    props.setSelectedMain(mainCat.name)
+    console.log(mainCat)
+  }
+
   const myMainCategories = props.mainCategory.map(mainCat => {
-    return  <Paper sx={paperSX}>
+    return  <Button color="secondary" 
+                    sx={paperSX}
+                    onClick={() => {handleClick(mainCat)}}>
               {mainCat.name}
-        </Paper>
+            </Button>
   })
 
   return (

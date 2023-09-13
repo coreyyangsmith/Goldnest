@@ -25,22 +25,26 @@ let subCatList = await axios.get(SUB_CATEGORY_API);
 subCatList = subCatList.data
 
 const Budget = () => {
-    const [mainCategory, setMainCategories] = useState(mainCatList)
+    const [mainCategory, setMainCategories] = useState(mainCatList) //used for live update
     const [subCategory, setSubCategories] = useState(subCatList)
+
+    const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
+    const [selectedSub, setSelectedSub] = useState([])        
 
     return (
     <>
         <h1>Welcome to My Budget</h1>
-        <Grid container spacing={4}>
-            <Grid item xs={6}>
+        <Grid container spacing={2}>
+            <Grid item xs={4}>
                 <h2>Main Categories</h2>
                 <Box sx={{
                 }}>
-                    <MainCategoriesList mainCategory={mainCategory}/>
-                    <MainCategoryForm setMainCategories={setMainCategories}/>
+                    <MainCategoriesList mainCategory={mainCategory} setSelectedMain={setSelectedMain}/>
+                    <MainCategoryForm setMainCategories={setMainCategories} selectedMain={selectedMain}/>
                 </Box>
             </Grid>
-            <Grid item xs={6}>
+
+            <Grid item xs={4}>
                 <h2>Sub Categories</h2>
                 <Box sx={{
                 }}>
@@ -48,6 +52,15 @@ const Budget = () => {
                     <SubCategoryForm setSubCategories={setSubCategories}/>
                 </Box>
             </Grid>
+
+            <Grid item xs={4}>
+            <h2>Month Selection</h2>
+
+            </Grid>              
+
+          
+
+
         </Grid>
     </>
 

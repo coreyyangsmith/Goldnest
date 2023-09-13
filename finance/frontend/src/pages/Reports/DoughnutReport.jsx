@@ -17,9 +17,9 @@ const data = {
     ],
     datasets: [{
       label: 'My First Dataset',
-      data: [faker.datatype.number({ min: 0, max: 1000 }), 
-            faker.datatype.number({ min: 0, max: 1000 }), 
-            faker.datatype.number({ min: 0, max: 1000 })],
+      data: [faker.number.int({ min: 0, max: 1000 }), 
+            faker.number.int({ min: 0, max: 1000 }), 
+            faker.number.int({ min: 0, max: 1000 })],
       backgroundColor: [
         'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',
