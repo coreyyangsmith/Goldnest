@@ -8,13 +8,15 @@ import { Box, Grid } from '@mui/material/';
 import DoughnutReport from "./DoughnutReport";
 import ExpensesByMainCategory from './ExpensesByMainCategory';
 import NetWorthLineChart from './NetWorthLineChart';
+import MyD3Component from './MyD3Chart';
 
 const Reports = () => {
     return <>
     <h2>Welcome to My Reports</h2>
     
     <Grid container spacing={2}>
-        <Grid item spacing={6}>
+
+        <Grid item xs={6}>
             <Box sx={{
                 width: 300,
                 height: 300
@@ -23,7 +25,7 @@ const Reports = () => {
             </Box>
         </Grid>
 
-        <Grid item spacing={6}>
+        <Grid item xs={6}>
             <Box sx={{
                 width: 300,
                 height: 300
@@ -32,14 +34,27 @@ const Reports = () => {
             </Box>      
         </Grid>     
 
-        <Grid item spacing={6}>
+        <Grid item xs={6}>
             <Box sx={{
                 width: 300,
                 height: 300
             }}>
                 <NetWorthLineChart />
             </Box>      
-        </Grid>                  
+        </Grid>          
+
+        <Grid item xs={6}>
+            <Box sx={{
+                width: 300,
+                height: 300
+            }}>
+                <MyD3Component data = {[10, 20, 30]}/>
+            </Box>      
+        </Grid>                 
+
+                
+
+
 
     </Grid>
 
