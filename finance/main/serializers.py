@@ -45,3 +45,10 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = ('pk', 'name', 'account_type', 'current_balance',
                   'rate', 'start_term', 'end_term', 'entity',
                   'created_at', 'updated_at')
+        
+class BudgetSerializer(serializers.ModelSerializer):
+    sub_category = SubCategorySerializer()       
+    class Meta:
+        model = Budget
+        fields = ('pk', 'amount', 'year', 'month',
+                  'sub_category', 'created_at', 'updated_at')
