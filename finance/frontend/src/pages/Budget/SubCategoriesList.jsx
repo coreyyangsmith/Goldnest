@@ -3,29 +3,38 @@ import React from 'react'
 import { useState } from 'react';
 
 
+// MUI Imports
+import { Stack, Button, Paper } from '@mui/material/';
+
 // Axios Import
 import axios from "axios"
 
 const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
 let subCatList = await axios.get(SUB_CATEGORY_API);
-
-
 subCatList = subCatList.data
-let filteredSubCat = subCatList.filter((data) => data.main_category === 26);
-console.log(filteredSubCat);
+
+
 
 
 
 const SubCategoriesList = (props) => {
+  let filteredSubCat = subCatList.filter((data) => data.main_category === props.selectedMain);
 
-  const mySubCategories = subCatList.map(subCat => {
-    return <li>{subCat.name}</li>
-})
+  const handleClick = (subCat) => {
+    console.log(subCat);
+  }
+
+  const mySubCategories = filteredSubCat.map(subCat => {
+    return <Button color="secondary" 
+                    onClick={() => {handleClick(subCat)}}>
+            {subCat.name}
+          </Button>
+  })
 
   return (
-    <ul>
+    <Stack spacing={2}>
         {mySubCategories}
-    </ul> 
+    </Stack>
   )
 }
 

@@ -40,7 +40,7 @@ const Budget = () => {
                 <Box sx={{
                 }}>
                     <MainCategoriesList mainCategory={mainCategory} setSelectedMain={setSelectedMain}/>
-                    <MainCategoryForm setMainCategories={setMainCategories} selectedMain={selectedMain}/>
+                    <MainCategoryForm setMainCategories={setMainCategories}/>
                 </Box>
             </Grid>
 
@@ -48,7 +48,7 @@ const Budget = () => {
                 <h2>Sub Categories</h2>
                 <Box sx={{
                 }}>
-                    <SubCategoriesList subCategory={subCategory}/>
+                    <SubCategoriesList subCategory={subCategory} selectedMain={selectedMain}/>
                     <SubCategoryForm setSubCategories={setSubCategories}/>
                 </Box>
             </Grid>
