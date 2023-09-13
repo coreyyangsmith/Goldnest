@@ -29,7 +29,7 @@ const Budget = () => {
     const [subCategory, setSubCategories] = useState(subCatList)
 
     const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
-    const [selectedSub, setSelectedSub] = useState([])        
+    const [selectedSub, setSelectedSub] = useState("")        
 
     return (
     <>
@@ -48,13 +48,16 @@ const Budget = () => {
                 <h2>Sub Categories</h2>
                 <Box sx={{
                 }}>
-                    <SubCategoriesList subCategory={subCategory} selectedMain={selectedMain}/>
+                    <SubCategoriesList subCategory={subCategory} selectedMain={selectedMain} setSelectedSub={setSelectedSub}/>
                     <SubCategoryForm setSubCategories={setSubCategories}/>
                 </Box>
             </Grid>
 
             <Grid item xs={4}>
-            <h2>Month Selection</h2>
+                <h2>Month Selection</h2>
+                <Box>
+                    <BudgetList selectedSub={selectedSub}/>
+                </Box>
 
             </Grid>              
 

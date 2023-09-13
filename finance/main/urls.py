@@ -23,5 +23,8 @@ urlpatterns = [
     re_path(r'^api/subcategories/$', views.subcategories_list),  
     re_path(r'^api/subcategories/([0-9])$', views.subcategories_detail),       
 
+    re_path(r'^api/budgets/$', views.budgets_list),  
+    re_path(r'^api/budgets/([0-9])$', views.budgets_detail),       
+
     path('api/', include(router.urls)),
 ]

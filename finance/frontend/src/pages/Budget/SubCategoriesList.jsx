@@ -14,9 +14,6 @@ let subCatList = await axios.get(SUB_CATEGORY_API);
 subCatList = subCatList.data
 
 
-
-
-
 const SubCategoriesList = (props) => {
   let filteredSubCat = subCatList.filter((data) => data.main_category === props.selectedMain);
 

@@ -1,0 +1,58 @@
+Income,Salary,100000,2023,1
+Income,TFSA Matching,4000,2023,2
+Income,Bonus,2000,2023,3
+Income,Overtime,3000,2023,4
+Income,Reimbursement,1500,2023,5
+Income,Benefits,1000,2023,6
+Income,Business,500,2023,7
+Income,Gifts,1000,2023,8
+Income,Interest,500,2023,9
+Income,Other,123,2023,10
+Investments,Emergency Fund,100000,2023,11
+Investments,TFSA,4000,2023,12
+Investments,RRSP,2000,2023,1
+Investments,FSHA,3000,2023,2
+Investments,Margin,1500,2023,3
+Investments,Crypto,1000,2023,4
+Investments,Masters,500,2023,5
+Investments,Business,1000,2023,6
+Investments,Vacation,500,2023,7
+Investments,Other,123,2023,8
+Fixed_Expenses,Rent,100000,2023,9
+Fixed_Expenses,Utilities,4000,2023,10
+Fixed_Expenses,Phone Plan,2000,2023,11
+Fixed_Expenses,Internet,3000,2023,12
+Fixed_Expenses,Gym Membership,1500,2023,1
+Fixed_Expenses,Parking,1000,2023,2
+Fixed_Expenses,Fees,500,2023,3
+Fixed_Expenses,Other,1000,2023,4
+Variable_Expenses,Groceries,500,2023,5
+Variable_Expenses,Gas,123,2023,6
+Variable_Expenses,Self Care,100000,2023,7
+Variable_Expenses,Clothing,4000,2023,8
+Variable_Expenses,Learning,2000,2023,9
+Variable_Expenses,Other,3000,2023,10
+Optional_Expenses,Vices,1500,2023,11
+Optional_Expenses,Entertainment,1000,2023,12
+Optional_Expenses,Video Games,500,2023,1
+Optional_Expenses,Eating Out,1000,2023,2
+Optional_Expenses,Guilt-Free,500,2023,3
+Optional_Expenses,Snacks,123,2023,4
+Optional_Expenses,Other,100000,2023,5
+True_Expenses,Auto Maintenance,4000,2023,6
+True_Expenses,Auto Insurance,2000,2023,7
+True_Expenses,Medical,3000,2023,8
+True_Expenses,Gifts,1500,2023,9
+True_Expenses,Other,1000,2023,10
+Reimbursements,Work Reimbursements,500,2023,11
+Reimbursements,Benefits,1000,2023,12
+Reimbursements,Friends,500,2023,1
+Reimbursements,Other,123,2023,2
+Deductions,Tax,100000,2023,3
+Deductions,CPP,4000,2023,4
+Deductions,EI,2000,2023,5
+Deductions,Deductions,3000,2023,6
+Deductions,Other,1500,2023,7
+Other,Unexpected Expenses,1000,2023,8
+Other,Vacation,500,2023,9
+Other,Other,1000,2023,10
