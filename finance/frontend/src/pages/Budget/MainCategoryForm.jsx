@@ -23,12 +23,11 @@ const MainCategoryForm = (props) => {
     } = useForm();
 
     
-    const onSubmit = async(FieldValues) => {
+    const onSubmit = async(FieldValues) => { // TODO if description is "" axios fails, to fix
         axios.post(FORM_ENDPOINT, FieldValues);
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
         console.log(FieldValues);
-        console.log(props.mainCategory);
 
         let mainCatList = await axios.get(MAIN_CATEGORY_API);
         mainCatList = mainCatList.data

@@ -21,9 +21,9 @@ def run():
         for row in reader:
             _, created = Budget.objects.get_or_create(
                 sub_category=SubCategory.objects.get(name=row[1], main_category = MainCategory.objects.get(name=row[0])),
-                amount=row[2],   
-                year=row[3],
-                month=row[4],
+                amount=row[4],   
+                year=row[2],
+                month=row[3],
                 created_at=timezone.now(),
                 updated_at=timezone.now(),                
             )

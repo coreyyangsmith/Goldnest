@@ -9,8 +9,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 // Axios
 import axios from "axios";
 
-
-
 // Components
 import './App.css';
 import NavBar from './components/NavBar';

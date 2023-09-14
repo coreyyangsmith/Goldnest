@@ -22,7 +22,9 @@ const SubCategoriesList = (props) => {
   }
 
   const mySubCategories = filteredSubCat.map(subCat => {
-    return <Button color="secondary" 
+    return <Button color="secondary"
+                    variant="outlined" 
+                    className={`Category-Button ${props.selectedSub === subCat.pk && "active"}`}                    
                     onClick={() => {handleClick(subCat)}}>
             {subCat.name}
           </Button>
