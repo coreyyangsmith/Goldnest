@@ -29,10 +29,11 @@ const MainCategoryForm = (props) => {
 
         console.log(FieldValues);
 
+        // Regen Page
         let mainCatList = await axios.get(MAIN_CATEGORY_API);
         mainCatList = mainCatList.data
-
         props.setMainCategories(mainCatList);
+        
         reset();
     }
 
@@ -43,11 +44,11 @@ const MainCategoryForm = (props) => {
             onSubmit(data);
         })}>
 
-            <Stack spacing={2} fullwidth>
-                <FormLabel>Main Category</FormLabel>
+            <Stack spacing={2} marginTop={2} fullwidth>
+                <FormLabel>Add Main Category</FormLabel>
 
                 <TextField {...register("name", {
-                    required: "Category name is required"
+                    required: "Name is required"
                 })} 
                     placeholder='Enter Category Name'
                 />
@@ -55,10 +56,15 @@ const MainCategoryForm = (props) => {
                     <p>{`${errors.name.message}`}</p>
                 )}      
 
-                <TextField {...register("description")} 
+                <TextField {...register("description", {
+                    required: "Description is required"
+                })}
                             placeholder='Enter Category Description'
                             multiline
-                            minRows={4}/>            
+                            minRows={4}/>    
+                {errors.description && (
+                    <p>{`${errors.description.message}`}</p>
+                )}                                      
 
                 <Button type="submit"
                         disabled={isSubmitting}>

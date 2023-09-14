@@ -9,7 +9,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Expenses
 class MainCategory(models.Model):
     name = models.CharField(max_length=15, blank=False, null=False)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=500, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    
@@ -101,7 +101,7 @@ class Budget(models.Model):
     def current_month():
         return datetime.date.today().month    
 
-    amount = models.FloatField()
+    amount = models.FloatField(default=0)
     year = models.PositiveIntegerField(default=current_year(), 
                                        validators=[MinValueValidator(1984), MaxValueValidator(current_year())])
     month = models.PositiveSmallIntegerField(default=current_month(),

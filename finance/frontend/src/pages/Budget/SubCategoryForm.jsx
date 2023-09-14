@@ -3,39 +3,70 @@ import React, { useState } from 'react'
 
 // MUI Import
 import TextField from '@mui/material/TextField'
-import { Button, Stack, FormLabel, Autocomplete } from "@mui/material";
+import { Button, Stack, FormLabel } from "@mui/material";
 
 // React Hook Form
-import { useForm, control, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 //Axios Import
 import axios from "axios"
-const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/maincategories/"
+const BUDGET_ENDPOINT = "http://127.0.0.1:8000/api/budgets/"
+const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
+const FORM_ENDPOINT = "http://127.0.0.1:8000/api/subcategories/"
 
-let mainCatList = await axios.get(MAIN_CATEGORY_API);
-const options = mainCatList.data
+const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
+
 
 const SubCategoryForm = (props) => {
+
+    const generateBudgetData = (myNewCategory) => {
+        let budget_data = {amount: 10.0,
+                            year: 2023, 
+                            month: 0,
+                            sub_category: myNewCategory,
+                            created_at: "",
+                            updated_at: ""}
+ 
+        for (let i = 1; i <= 12; i++){
+            budget_data.month = i;
+            console.log(budget_data);
+            axios.post(BUDGET_ENDPOINT, budget_data);
+        }
+    }
 
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
         reset,
-        control,
     } = useForm();
-
-    const getOpObj = option => {
-        if (!option._id) option = options.find(op => op._id === option);
-        return option;
-      };
     
     const onSubmit = async(FieldValues) => {
+        // Post to Server
         axios.post(FORM_ENDPOINT, FieldValues);
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        console.log(FieldValues);
+        //Obtain reference to recent submission
+        let subCatList = await axios.get(SUB_CATEGORY_API);
+        subCatList = subCatList.data;
+        let myNewCat = subCatList[subCatList.length - 1];
+
+        // Regen Page
+        props.setSubCategories(subCatList);
+
+        // Generate Budget Numbers
+        generateBudgetData(myNewCat);
+
+        // Obtain reference for budget generation
+        let budgetList = await axios.get(BUDGET_API);
+        budgetList = budgetList.data
+        let filteredBudgets = budgetList.filter((data) => data.sub_category.pk === myNewCat.pk);
+        let sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
+        
+        // Regen page for budget
+        props.setSelectedSub(myNewCat.pk);
+        props.setBudget(sortedBudgets);
+     
 
         reset();
     }
@@ -43,59 +74,19 @@ const SubCategoryForm = (props) => {
     return (
         <form onSubmit={handleSubmit((data) => {
             console.log("handling submission");
+            data.main_category = props.selectedMain;
             data.created_at = "";
             data.updated_at = "";
             onSubmit(data);
         })}>
 
-            <Stack spacing={2} fullwidth>
-                <FormLabel>Sub Category</FormLabel>
+            <Stack marginTop={2} spacing={2} fullwidth>
+                <h3>Add Sub Category</h3>
 
-
-                
-                <Controller
-                name="Main Category"
-                control={control}
-                rules={{
-                    required: "this field is requried"
-                }}
-                render={({ field, fieldState: { error } }) => {
-                    const { onChange, value, ref } = field;
-                    return (
-                    <>
-                        <Autocomplete
-                        value={
-                            value ? options.find((option) => {
-                                return value === option.id;
-                                }) ?? null : null
-                        }
-                        getOptionLabel={(option) => {
-                            return option.name;
-                        }}
-                        onChange={(event, newValue) => {
-                            onChange(newValue ? newValue.id : null);
-                        }}
-                        id="controllable-states-demo"
-                        options={options}
-                        renderInput={(params) => (
-                            <TextField
-                            {...params}
-                            label="Main Category"
-                            inputRef={ref}
-                            />
-                        )}
-                        />
-                        {error ? (
-                        <span style={{ color: "red" }}>{error.message}</span>
-                        ) : null}
-                    </>
-                    );
-                    }}
-                />
-
+                <FormLabel>Selected Main Category: {props.selectedMain}</FormLabel>
 
                 <TextField {...register("name", {
-                    required: "Category name is required"
+                    required: "Name is required"
                 })} 
                     placeholder='Enter Category Name'
                 />
@@ -103,12 +94,15 @@ const SubCategoryForm = (props) => {
                     <p>{`${errors.name.message}`}</p>
                 )}      
 
-                <TextField {...register("description")} 
+                <TextField {...register("description", {
+                    required: "Description is required"
+                })}  
                             placeholder='Enter Category Description'
                             multiline
                             minRows={4}/>
-
-                                  
+                {errors.description && (
+                    <p>{`${errors.description.message}`}</p>
+                )}                                       
 
                 <Button type="submit"
                         disabled={isSubmitting}>

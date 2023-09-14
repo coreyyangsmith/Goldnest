@@ -52,3 +52,8 @@ class BudgetSerializer(serializers.ModelSerializer):
         model = Budget
         fields = ('pk', 'amount', 'year', 'month',
                   'sub_category', 'created_at', 'updated_at')
+        
+    def create(self, validated_data):
+        validated_data["sub_category"] = SubCategory.objects.get(name=validated_data["sub_category"]["name"],
+                                                                 description=validated_data["sub_category"]["description"])
+        return Budget.objects.create(**validated_data)

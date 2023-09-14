@@ -28,6 +28,7 @@ subCatList = subCatList.data
 const Budget = () => {
     const [mainCategory, setMainCategories] = useState(mainCatList) //used for live update
     const [subCategory, setSubCategories] = useState(subCatList)
+    const [budget, setBudget] = useState([])
 
     const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
     const [selectedSub, setSelectedSub] = useState("")        
@@ -54,15 +55,22 @@ const Budget = () => {
                     <SubCategoriesList subCategory={subCategory} 
                                         selectedMain={selectedMain}
                                         selectedSub={selectedSub} 
-                                        setSelectedSub={setSelectedSub}/>
-                    <SubCategoryForm setSubCategories={setSubCategories}/>
+                                        setSelectedSub={setSelectedSub}
+                                        setBudget={setBudget}
+                                        budget={budget}/>
+                    <SubCategoryForm setSubCategories={setSubCategories}
+                                        selectedMain={selectedMain}
+                                        setSelectedSub={setSelectedSub}
+                                        setBudget={setBudget}
+                                        budget={budget}/>
                 </Box>
             </Grid>
 
             <Grid item xs={4}>
                 <h2>Month Selection</h2>
                 <Box>
-                    <BudgetList selectedSub={selectedSub}/>
+                    <BudgetList selectedSub={selectedSub}
+                                budget={budget}/>
                 </Box>
 
             </Grid>              
