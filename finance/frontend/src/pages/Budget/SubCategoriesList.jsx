@@ -2,7 +2,7 @@
 import React from 'react'
 
 // MUI Imports
-import { Stack, Button, Paper } from '@mui/material/';
+import { Stack, Button, Tooltip } from '@mui/material/';
 
 
 
@@ -17,13 +17,16 @@ const SubCategoriesList = (props) => {
   }
 
   const mySubCategories = filteredSubCat.map(subCat => {
-    return <Button color="secondary"
-                    key={subCat.pk}
-                    variant="outlined" 
-                    className={`Category-Button ${props.selectedSub === subCat.pk && "active"}`}                    
-                    onClick={() => {handleClick(subCat)}}>
-            {subCat.name}
-          </Button>
+    return <Tooltip title={subCat.description}
+                    key={subCat.pk}>   
+              <Button color="secondary"
+                        key={subCat.pk}
+                        variant="outlined" 
+                        className={`Category-Button ${props.selectedSub === subCat.pk && "active"}`}                    
+                        onClick={() => {handleClick(subCat)}}>
+                {subCat.name}
+              </Button>
+            </Tooltip>            
   })
 
   return (

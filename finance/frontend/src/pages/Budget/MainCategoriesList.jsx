@@ -5,7 +5,7 @@ import React from 'react'
 import "../../components/css/UIStyles.css";
 
 // MUI Imports
-import { Button, Stack } from '@mui/material/'
+import { Button, Stack, Tooltip } from '@mui/material/'
 
 const MainCategoriesList = (props) => {
 
@@ -14,13 +14,15 @@ const MainCategoriesList = (props) => {
   }
 
   const myMainCategories = props.mainCategory.map(mainCat => {
-    return  <Button color="secondary"
-                    variant="outlined" 
-                    key={mainCat.pk}
-                    className={`Category-Button ${props.selectedMain === mainCat.pk && "active"}`} 
-                    onClick={() => {handleClick(mainCat)}}>
-              {mainCat.name}
-            </Button>
+    return  <Tooltip title={mainCat.description}
+                      key={mainCat.pk}>
+              <Button color="secondary"
+                              variant="outlined" 
+                              className={`Category-Button ${props.selectedMain === mainCat.pk && "active"}`} 
+                              onClick={() => {handleClick(mainCat)}}>
+                {mainCat.name}
+              </Button>
+            </Tooltip>
   })
 
   return (

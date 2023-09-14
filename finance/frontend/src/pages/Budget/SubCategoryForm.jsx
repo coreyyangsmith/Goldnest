@@ -11,13 +11,23 @@ import { useForm } from "react-hook-form";
 //Axios Import
 import axios from "axios"
 const BUDGET_ENDPOINT = "http://127.0.0.1:8000/api/budgets/"
-const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/subcategories/"
 
 const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
+const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
+const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
 
+let mainCatList = await axios.get(MAIN_CATEGORY_API);
+mainCatList = mainCatList.data;
 
 const SubCategoryForm = (props) => {
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        reset,
+    } = useForm();
 
     const generateBudgetData = (myNewCategory) => {
         let budget_data = {amount: 0,
@@ -33,16 +43,7 @@ const SubCategoryForm = (props) => {
         }
     }
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, isSubmitting },
-        reset,
-    } = useForm();
-    
     const onSubmit = async(FieldValues) => {
-        console.log(FieldValues);
-
         // Post to Server
         axios.post(FORM_ENDPOINT, FieldValues);
         await new Promise((resolve) => setTimeout(resolve, 1000));
