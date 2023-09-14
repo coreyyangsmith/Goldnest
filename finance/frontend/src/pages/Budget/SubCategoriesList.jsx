@@ -4,12 +4,6 @@ import React from 'react'
 // MUI Imports
 import { Stack, Button, Paper } from '@mui/material/';
 
-// Axios Import
-import axios from "axios"
-
-
-const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
-
 
 
 const SubCategoriesList = (props) => {
@@ -19,13 +13,7 @@ const SubCategoriesList = (props) => {
   const handleClick = async(subCat) => {
     props.setSelectedSub(subCat.pk);
 
-    let budgetList = await axios.get(BUDGET_API);
-    budgetList = budgetList.data
 
-    let filteredBudgets = budgetList.filter((data) => data.sub_category.pk === subCat.pk);
-    let sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
-        
-    props.setBudget(sortedBudgets);
   }
 
   const mySubCategories = filteredSubCat.map(subCat => {

@@ -84,6 +84,7 @@ const Budget = () => {
                     <h2>Month Selection</h2>
                     <Box>
                         <BudgetList selectedSub={selectedSub}
+                                    setBudget={setBudget}
                                     budget={budget}/>
                     </Box>
 
