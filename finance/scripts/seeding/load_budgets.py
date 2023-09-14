@@ -20,7 +20,7 @@ def run():
         reader = csv.reader(f)
         for row in reader:
             _, created = Budget.objects.get_or_create(
-                sub_category=MainCategory.objects.get(name=row[1], main_category = MainCategory.objects.get(name=row[0])),
+                sub_category=SubCategory.objects.get(name=row[1], main_category = MainCategory.objects.get(name=row[0])),
                 amount=row[2],   
                 year=row[3],
                 month=row[4],
@@ -28,4 +28,4 @@ def run():
                 updated_at=timezone.now(),                
             )
             _.save()
-    print("'SubCategory' loaded successfully.")
+    print("'Budget' loaded successfully.")

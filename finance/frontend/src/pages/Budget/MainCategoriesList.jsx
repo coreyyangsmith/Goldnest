@@ -16,7 +16,6 @@ const MainCategoriesList = (props) => {
 
   const handleClick = (mainCat) => {
     props.setSelectedMain(mainCat.pk)
-    console.log(mainCat)
   }
 
   const myMainCategories = props.mainCategory.map(mainCat => {

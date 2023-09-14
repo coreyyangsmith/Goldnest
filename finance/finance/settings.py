@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'landing.apps.LandingConfig',  
-    'Faker',
     'django_extensions', 
     'rest_framework',
     'corsheaders',    

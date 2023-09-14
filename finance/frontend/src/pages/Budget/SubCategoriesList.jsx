@@ -18,7 +18,7 @@ const SubCategoriesList = (props) => {
   let filteredSubCat = subCatList.filter((data) => data.main_category === props.selectedMain);
 
   const handleClick = (subCat) => {
-    console.log(subCat);
+    props.setSelectedSub(subCat.pk)
   }
 
   const mySubCategories = filteredSubCat.map(subCat => {
