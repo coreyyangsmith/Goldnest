@@ -2,10 +2,8 @@
 import React, { useState } from 'react'
 
 // MUI Imports
-import { Box } from "@mui/material";
-import Container from "@mui/material/Container";
+import { Box, Stack } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import Item from "@mui/material/ListItem";
 
 // My Components Import
 import MainCategoriesList from "./MainCategoriesList";
@@ -13,6 +11,7 @@ import MainCategoryForm from "./MainCategoryForm";
 import SubCategoriesList from "./SubCategoriesList";
 import SubCategoryForm from "./SubCategoryForm";
 import BudgetList from './BudgetList';
+import YearSelection from './YearSelection';
 
 // Axios Import
 import axios from 'axios'
@@ -31,54 +30,70 @@ const Budget = () => {
     const [budget, setBudget] = useState([])
 
     const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
-    const [selectedSub, setSelectedSub] = useState("")        
+    const [selectedSub, setSelectedSub] = useState("")      
+    const [selectedYear, setSelectedYear] = useState("")  
 
     return (
     <>
         <h1>Welcome to My Budget</h1>
-        <Grid container spacing={2}>
-            <Grid item xs={4}>
-                <h2>Main Categories</h2>
-                <Box sx={{
-                }}>
-                    <MainCategoriesList mainCategory={mainCategory} 
-                                        setSelectedMain={setSelectedMain}
-                                        selectedMain={selectedMain}/>
-                    <MainCategoryForm setMainCategories={setMainCategories}/>
-                </Box>
+        <Stack>
+            {/* 
+            <Grid container spacing={2}>
+                <Grid item xs={8}>
+                    <YearSelection selectedYear={selectedYear}
+                                    setSelectedYear={setSelectedYear}/>
+                </Grid>
+                <Grid item xs={4}>
+                    <p>current empty space!</p>
+                </Grid>
             </Grid>
+    */}
 
-            <Grid item xs={4}>
-                <h2>Sub Categories</h2>
-                <Box sx={{
-                }}>
-                    <SubCategoriesList subCategory={subCategory} 
-                                        selectedMain={selectedMain}
-                                        selectedSub={selectedSub} 
-                                        setSelectedSub={setSelectedSub}
-                                        setBudget={setBudget}
-                                        budget={budget}/>
-                    <SubCategoryForm setSubCategories={setSubCategories}
-                                        selectedMain={selectedMain}
-                                        setSelectedSub={setSelectedSub}
-                                        setBudget={setBudget}
-                                        budget={budget}/>
-                </Box>
+
+            <Grid container spacing={2}>
+                <Grid item xs={4}>
+                    <h2>Main Categories</h2>
+                    <Box sx={{
+                    }}>
+                        <MainCategoriesList mainCategory={mainCategory} 
+                                            setSelectedMain={setSelectedMain}
+                                            selectedMain={selectedMain}/>
+                        <MainCategoryForm setMainCategories={setMainCategories}/>
+                    </Box>
+                </Grid>
+
+                <Grid item xs={4}>
+                    <h2>Sub Categories</h2>
+                    <Box sx={{
+                    }}>
+                        <SubCategoriesList subCategory={subCategory} 
+                                            selectedMain={selectedMain}
+                                            selectedSub={selectedSub} 
+                                            setSelectedSub={setSelectedSub}
+                                            setBudget={setBudget}
+                                            budget={budget}/>
+                        <SubCategoryForm setSubCategories={setSubCategories}
+                                            selectedMain={selectedMain}
+                                            setSelectedSub={setSelectedSub}
+                                            setBudget={setBudget}
+                                            budget={budget}/>
+                    </Box>
+                </Grid>
+
+                <Grid item xs={4}>
+                    <h2>Month Selection</h2>
+                    <Box>
+                        <BudgetList selectedSub={selectedSub}
+                                    budget={budget}/>
+                    </Box>
+
+                </Grid>              
+
+            
+
+
             </Grid>
-
-            <Grid item xs={4}>
-                <h2>Month Selection</h2>
-                <Box>
-                    <BudgetList selectedSub={selectedSub}
-                                budget={budget}/>
-                </Box>
-
-            </Grid>              
-
-          
-
-
-        </Grid>
+        </Stack>
     </>
 
 )}

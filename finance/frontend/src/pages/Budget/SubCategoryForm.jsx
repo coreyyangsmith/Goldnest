@@ -20,7 +20,7 @@ const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
 const SubCategoryForm = (props) => {
 
     const generateBudgetData = (myNewCategory) => {
-        let budget_data = {amount: 10.0,
+        let budget_data = {amount: 0,
                             year: 2023, 
                             month: 0,
                             sub_category: myNewCategory,
@@ -29,7 +29,6 @@ const SubCategoryForm = (props) => {
  
         for (let i = 1; i <= 12; i++){
             budget_data.month = i;
-            console.log(budget_data);
             axios.post(BUDGET_ENDPOINT, budget_data);
         }
     }
@@ -42,6 +41,8 @@ const SubCategoryForm = (props) => {
     } = useForm();
     
     const onSubmit = async(FieldValues) => {
+        console.log(FieldValues);
+
         // Post to Server
         axios.post(FORM_ENDPOINT, FieldValues);
         await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -51,7 +52,7 @@ const SubCategoryForm = (props) => {
         subCatList = subCatList.data;
         let myNewCat = subCatList[subCatList.length - 1];
 
-        // Regen Page
+        // Regen Page for SubCategory Update
         props.setSubCategories(subCatList);
 
         // Generate Budget Numbers
@@ -67,7 +68,6 @@ const SubCategoryForm = (props) => {
         props.setSelectedSub(myNewCat.pk);
         props.setBudget(sortedBudgets);
      
-
         reset();
     }
 
@@ -80,7 +80,9 @@ const SubCategoryForm = (props) => {
             onSubmit(data);
         })}>
 
-            <Stack marginTop={2} spacing={2} fullwidth>
+            <Stack marginTop={2}
+                    spacing={2} 
+                    fullwidth="true">
                 <h3>Add Sub Category</h3>
 
                 <FormLabel>Selected Main Category: {props.selectedMain}</FormLabel>

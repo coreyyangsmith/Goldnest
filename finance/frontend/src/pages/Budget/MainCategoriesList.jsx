@@ -16,6 +16,7 @@ const MainCategoriesList = (props) => {
   const myMainCategories = props.mainCategory.map(mainCat => {
     return  <Button color="secondary"
                     variant="outlined" 
+                    key={mainCat.pk}
                     className={`Category-Button ${props.selectedMain === mainCat.pk && "active"}`} 
                     onClick={() => {handleClick(mainCat)}}>
               {mainCat.name}

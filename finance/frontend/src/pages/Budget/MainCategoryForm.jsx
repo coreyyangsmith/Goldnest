@@ -44,7 +44,9 @@ const MainCategoryForm = (props) => {
             onSubmit(data);
         })}>
 
-            <Stack spacing={2} marginTop={2} fullwidth>
+            <Stack spacing={2} 
+                    marginTop={2} 
+                    fullwidth="true">
                 <FormLabel>Add Main Category</FormLabel>
 
                 <TextField {...register("name", {
