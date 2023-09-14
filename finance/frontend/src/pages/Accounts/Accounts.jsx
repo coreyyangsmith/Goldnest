@@ -73,29 +73,63 @@ const Accounts = () => {
     })         
 
     return <>
-    <Stack>
+    <h1>Account Summary</h1>
+    <Stack spacing={1}>
+        <h1>Spending Accounts</h1>
+        {/* CHEQUINGS */}
+        <Grid container xs={12}>
+            <Grid item xs={12}>
+                <h3>My Chequings Accounts</h3>
+            </Grid>
+            <Grid item xs={12}>
+                <ul>{myChequings}</ul>
+            </Grid>
+        </Grid>
+        {/* SAVINGS */}
+        <Grid container xs={12}>
+            <Grid item xs={12}>
+                <h3>My Savings Accounts</h3>
+            </Grid>
+            <Grid item xs={12}>
+                <ul>{mySavings}</ul>
+            </Grid>
+        </Grid>        
+
+        <h1>Assets</h1>
+        {/* ASSETS */}
+        <Grid container xs={12}>
+            <Grid item xs={12}>
+                <h3>My Assets</h3>
+            </Grid>
+            <Grid item xs={12}>
+                <ul>{myAssets}</ul>
+            </Grid>
+        </Grid>   
+
+        {/* INVESTMENTS */}
+        <Grid container xs={12}>
+            <Grid item xs={12}>
+                <h3>My Investments</h3>
+            </Grid>
+            <Grid item xs={12}>
+                <ul>{myInvestments}</ul>
+            </Grid>
+        </Grid>   
+
+        <h1>Debts</h1>
+        {/* DEBTS */}
+        <Grid container xs={12}>
+            <Grid item xs={12}>
+                <h3>My Debts</h3>
+            </Grid>
+            <Grid item xs={12}>
+                <ul>{myDebts}</ul>
+            </Grid>
+        </Grid>                            
+
+
 
     </Stack>
-
-    <h1>Account Summary</h1>
-    {/* name, account_type, curr_bal, rate
-        start_term, end_term, entity, created_at, updated_at */}
-    <ul>{myAccounts}</ul>
-
-    <h2>My Chequings Accounts</h2>
-    <ul>{myChequings}</ul>
-
-    <h2>My Savings Account</h2>
-    <ul>{mySavings}</ul>
-
-    <h2>My Investments</h2>
-    <ul>{myInvestments}</ul>
-
-    <h2>Other Assets</h2>
-    <ul>{myAssets}</ul>
-
-    <h2>Debts</h2>
-    <ul>{myDebts}</ul>
 
     <p>Last Updated:</p>
     {/* Investments */}
