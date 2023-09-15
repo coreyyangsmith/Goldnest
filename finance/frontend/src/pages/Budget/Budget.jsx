@@ -1,5 +1,5 @@
 // React Imports
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // MUI Imports
 import { Box, Stack } from "@mui/material";
@@ -12,9 +12,11 @@ import SubCategoriesList from "./SubCategoriesList";
 import SubCategoryForm from "./SubCategoryForm";
 import BudgetList from './BudgetList';
 import YearSelection from './YearSelection';
+import SaveButton from '../../components/SaveButton';
 
 // Axios Import
 import axios from 'axios'
+import { getRequest } from '../../api/posts'
 
 const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
 let mainCatList = await axios.get(MAIN_CATEGORY_API);
@@ -24,14 +26,38 @@ const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
 let subCatList = await axios.get(SUB_CATEGORY_API);
 subCatList = subCatList.data
 
+const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
+
 const Budget = () => {
-    const [mainCategory, setMainCategories] = useState(mainCatList) //used for live update
+    const [mainCategory, setMainCategories] = useState([]) //used for live update
     const [subCategory, setSubCategories] = useState(subCatList)
     const [budget, setBudget] = useState([])
 
     const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
     const [selectedSub, setSelectedSub] = useState("")      
     const [selectedYear, setSelectedYear] = useState("")  
+
+
+    useEffect(() => {
+        const fetchMainCategories = async() => {
+            try {
+                const response = await getRequest('maincategories/', "");
+                setMainCategories(response.data);         
+            } catch (err) {
+                if (err.response) {
+                    // Not in 200 response range
+                    console.log(err.response.data);
+                    console.log(err.response.status);
+                    console.log(err.response.headers);   
+                }
+                else {
+                    console.log(`Error: ${err.message}`);
+                }                             
+            }
+        }
+        fetchMainCategories();
+    }
+    ,[])
 
     return (
     <>
@@ -86,13 +112,11 @@ const Budget = () => {
                         <BudgetList selectedSub={selectedSub}
                                     setBudget={setBudget}
                                     budget={budget}/>
+                        <SaveButton itemToSave={budget}
+                                    locationToSave={BUDGET_API}/>
                     </Box>
 
                 </Grid>              
-
-            
-
-
             </Grid>
         </Stack>
     </>

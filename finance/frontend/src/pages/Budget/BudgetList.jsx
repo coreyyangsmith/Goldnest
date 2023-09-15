@@ -9,6 +9,7 @@ const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
 
 const BudgetList = (props) => {
 
+
   {/* Upon sub_category selection, retrives relevant budget data and forces budgetList re-render */}
   useEffect(
     () => {
@@ -24,18 +25,28 @@ const BudgetList = (props) => {
     },
     [props.selectedSub])
 
-  const myBudgets = props.budget.map(budget => {
+  function updateValues(newVal, pk) {
+      const arr = [...props.budget];
+      const index = arr.findIndex(p => p.pk == pk);
+      arr[index].amount = newVal;
+      props.setBudget(arr)
+  }
+
+  const myBudgets = props.budget.map(item => {
     function monthName(month) {
       return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month - 1];
-   }
+  }
 
     return (
-    <Box margin={2}
-          key={budget.pk}>
+    <Box marginTop={2} 
+          marginBottom={2}
+          key={item.pk}>
         <TextField id="outlined-basic" 
                     variant="outlined"
-                    value={budget.amount}
-                    label={monthName(budget.month)}/>
+                    value={item.amount}
+                    onChange={(e) => updateValues(e.target.value, item.pk)}
+                    label={monthName(item.month)}
+                    fullWidth/>
     </Box>  
   )})
 

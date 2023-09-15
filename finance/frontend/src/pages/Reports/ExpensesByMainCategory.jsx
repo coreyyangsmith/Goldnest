@@ -46,10 +46,7 @@ export const data = {
 };
 
 const ExpensesByMainCategory = () => {
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
+  ChartJS.register(CategoryScale, LinearScale, BarElement,
     Title,
     Tooltip,
     Legend

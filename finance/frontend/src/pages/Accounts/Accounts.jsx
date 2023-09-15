@@ -77,7 +77,7 @@ const Accounts = () => {
     <Stack spacing={1}>
         <h1>Spending Accounts</h1>
         {/* CHEQUINGS */}
-        <Grid container xs={12}>
+        <Grid container>
             <Grid item xs={12}>
                 <h3>My Chequings Accounts</h3>
             </Grid>
@@ -86,7 +86,7 @@ const Accounts = () => {
             </Grid>
         </Grid>
         {/* SAVINGS */}
-        <Grid container xs={12}>
+        <Grid container>
             <Grid item xs={12}>
                 <h3>My Savings Accounts</h3>
             </Grid>
@@ -97,7 +97,7 @@ const Accounts = () => {
 
         <h1>Assets</h1>
         {/* ASSETS */}
-        <Grid container xs={12}>
+        <Grid container>
             <Grid item xs={12}>
                 <h3>My Assets</h3>
             </Grid>
@@ -107,7 +107,7 @@ const Accounts = () => {
         </Grid>   
 
         {/* INVESTMENTS */}
-        <Grid container xs={12}>
+        <Grid container>
             <Grid item xs={12}>
                 <h3>My Investments</h3>
             </Grid>
@@ -118,7 +118,7 @@ const Accounts = () => {
 
         <h1>Debts</h1>
         {/* DEBTS */}
-        <Grid container xs={12}>
+        <Grid container>
             <Grid item xs={12}>
                 <h3>My Debts</h3>
             </Grid>
