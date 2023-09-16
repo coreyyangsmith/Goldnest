@@ -212,12 +212,16 @@ def budgets_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def budgets_detail(request, pk):
     try:
         budget = Budget.objects.get(pk=pk)
     except Budget.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET': 
+        serializer = BudgetSerializer(budget) 
+        return Response(serializer.data)    
 
     if request.method == 'PUT':
         serializer = BudgetSerializer(budget, data=request.data,context={'request': request})
@@ -229,3 +233,6 @@ def budgets_detail(request, pk):
     elif request.method == 'DELETE':
         budget.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)        
+    
+# Resource
+# https://www.bezkoder.com/django-rest-api/#6_Configure_CORS_for_a_Rest_Api_Resource

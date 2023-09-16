@@ -5,21 +5,20 @@ import React from 'react'
 import { Stack, Button, Tooltip } from '@mui/material/';
 
 // Axios import
-import axios from 'axios';
-const BUDGET_API = "http://127.0.0.1:8000/api/budgets/";
+import { getRequest } from '../../api/posts'
 
 const SubCategoriesList = (props) => {
   let filteredSubCat = props.subCategory.filter((data) => data.main_category === props.selectedMain);
 
 
   const handleClick = async(subCat) => {
+    // Regenerate SubCategories List
     props.setSelectedSub(subCat.pk);
 
-    let budgetList = await axios.get(BUDGET_API);
-    budgetList = budgetList.data
-    let filteredBudgets = budgetList.filter((data) => data.sub_category.pk === subCat.pk);
+    // Regenerate Budget List
+    const response = await getRequest('budgets/', "");
+    let filteredBudgets = response.data.filter((data) => data.sub_category.pk === subCat.pk);
     let sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
-    
     props.setBudget(sortedBudgets)
   }
 

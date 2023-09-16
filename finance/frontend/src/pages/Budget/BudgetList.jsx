@@ -28,7 +28,7 @@ const BudgetList = (props) => {
   function updateValues(newVal, pk) {
       const arr = [...props.budget];
       const index = arr.findIndex(p => p.pk == pk);
-      arr[index].amount = newVal;
+      arr[index].amount = parseInt(newVal);
       props.setBudget(arr)
   }
 

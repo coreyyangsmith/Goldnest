@@ -57,3 +57,20 @@ class BudgetSerializer(serializers.ModelSerializer):
         validated_data["sub_category"] = SubCategory.objects.get(name=validated_data["sub_category"]["name"],
                                                                  description=validated_data["sub_category"]["description"])
         return Budget.objects.create(**validated_data)
+    
+    def update(self, instance, validated_data):
+        subcategory_data = validated_data.pop('sub_category')
+        sub_category = instance.sub_category
+
+        instance.amount = validated_data.get('amount', instance.amount)
+        instance.year = validated_data.get('year', instance.year)
+        instance.month = validated_data.get('month', instance.month)
+        instance.created_at = validated_data.get('created_at', instance.created_at)
+        instance.updated_at = validated_data.get('updated_at', instance.updated_at)   
+        instance.save()       
+
+        sub_category.save()
+
+        return instance                
+
+    

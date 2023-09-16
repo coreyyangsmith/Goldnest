@@ -14,3 +14,11 @@ const axiosClient = axios.create({
 export function getRequest(URL, payload) {
     return axiosClient.get(`/${URL}`, payload).then(response => response);
 }
+
+export function postRequest(URL, payload) {
+    return axiosClient.post(`/${URL}`, payload).then(response => response);
+}
+
+export function putRequest(URL, payload) {
+    return axiosClient.put(`/${URL}`, payload).then(response => response);
+}
