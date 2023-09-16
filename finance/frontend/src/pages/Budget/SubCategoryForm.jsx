@@ -1,5 +1,5 @@
 // React Import
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // MUI Import
 import TextField from '@mui/material/TextField'
@@ -10,17 +10,46 @@ import { useForm } from "react-hook-form";
 
 //Axios Import
 import axios from "axios"
+import { getRequest } from '../../api/posts';
 const BUDGET_ENDPOINT = "http://127.0.0.1:8000/api/budgets/"
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/subcategories/"
 
 const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
 const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
-const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
-
-let mainCatList = await axios.get(MAIN_CATEGORY_API);
-mainCatList = mainCatList.data;
 
 const SubCategoryForm = (props) => {
+
+    const [mainCatName, setMainCatName] = useState("");
+    const [mainCatList, setMainCatList] = useState([]);
+
+    //useEffect to get selected main_category (id), and find the corresponding name to update.
+    useEffect(() => {
+        const fetchMainCategories = async() => {
+            try {
+                const response = await getRequest('maincategories/', "");
+                setMainCatList(response.data);                      
+            } catch (err) {
+                if (err.response) {
+                    // Not in 200 response range
+                    console.log(err.response.data);
+                    console.log(err.response.status);
+                    console.log(err.response.headers);   
+                }
+                else {
+                    console.log(`Error: ${err.message}`);
+                }                             
+            }
+        }
+        fetchMainCategories();
+        if (props.selectedMain === undefined || mainCatList === undefined){
+            console.log("Error");
+        }
+        else {
+            var match = mainCatList.filter(obj => obj.pk === props.selectedMain);          
+            setMainCatName(match[0].name);
+        }
+    }
+    ,[props.selectedMain])
 
     const {
         register,
@@ -86,7 +115,7 @@ const SubCategoryForm = (props) => {
                     fullwidth="true">
                 <h3>Add Sub Category</h3>
 
-                <FormLabel>Selected Main Category: {props.selectedMain}</FormLabel>
+                <FormLabel>Selected Main Category: {mainCatName}</FormLabel>
 
                 <TextField {...register("name", {
                     required: "Name is required"

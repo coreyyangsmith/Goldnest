@@ -1,0 +1,11 @@
+### Report Types to Consider ###
+
+# Yearly Reports
+- Sankey Diagram (D3)
+
+# Monthly Reports
+- Main Categories vs Budget
+- (For Selected Main Category), Sub Category vs Budget
+
+# Weekly Reports
+

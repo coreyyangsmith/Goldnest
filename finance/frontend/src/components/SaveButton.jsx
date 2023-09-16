@@ -18,17 +18,16 @@ const SaveButton = (props) => {
           for (var i = 0; i < props.itemToSave.length; i++){
             await putRequest(props.locationToSave + props.itemToSave[i].pk + "/", props.itemToSave[i]); 
           }
-          toast.success('Budget successfully saved!', {
+          toast.success('Budget saved successfully!', {
             position: "top-right",
-            autoClose: 3000,
+            autoClose: 2500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
             theme: "dark",
-            });
-           
+            });           
         } catch (err) {
             if (err.response) {
                 // Not in 200 response range
@@ -38,7 +37,17 @@ const SaveButton = (props) => {
             }
             else {
                 console.log(`Error: ${err.message}`);
-            }                             
+            }      
+            toast.error('Unknown error occured.', {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              });                                      
         }
     }      
 

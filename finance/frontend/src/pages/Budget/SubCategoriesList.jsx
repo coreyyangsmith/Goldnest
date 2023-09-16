@@ -10,7 +10,6 @@ import { getRequest } from '../../api/posts'
 const SubCategoriesList = (props) => {
   let filteredSubCat = props.subCategory.filter((data) => data.main_category === props.selectedMain);
 
-
   const handleClick = async(subCat) => {
     // Regenerate SubCategories List
     props.setSelectedSub(subCat.pk);
