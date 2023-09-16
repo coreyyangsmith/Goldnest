@@ -43,7 +43,7 @@ const BudgetList = (props) => {
           key={item.pk}>
         <TextField id="outlined-basic" 
                     variant="outlined"
-                    value={item.amount}
+                    value={isNaN(item.amount) ? '' : item.amount}
                     onChange={(e) => updateValues(e.target.value, item.pk)}
                     label={monthName(item.month)}
                     fullWidth/>

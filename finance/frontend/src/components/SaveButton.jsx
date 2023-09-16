@@ -5,8 +5,11 @@ import React from 'react'
 import { Button } from '@mui/material'
 
 // Axios Import
-import axios from 'axios';
 import { putRequest } from '../api/posts'
+
+// Toast Notifications
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SaveButton = (props) => {
 
@@ -15,6 +18,16 @@ const SaveButton = (props) => {
           for (var i = 0; i < props.itemToSave.length; i++){
             await putRequest(props.locationToSave + props.itemToSave[i].pk + "/", props.itemToSave[i]); 
           }
+          toast.success('Budget successfully saved!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
            
         } catch (err) {
             if (err.response) {
@@ -40,6 +53,7 @@ const SaveButton = (props) => {
             variant="outlined"
             fullWidth
             onClick={handleClick}>Save</Button>
+    <ToastContainer />            
     </>
   )
 }
