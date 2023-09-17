@@ -32,8 +32,6 @@ const data = {
   }]
 };
 
-
-
 const DoughnutReport = (props) => {
   const [isReady, setIsReady] = useState(null);
   const [mainCategories, setMainCategories] = useState([]);
@@ -62,6 +60,23 @@ const DoughnutReport = (props) => {
           }                             
       }
     }
+
+    const fetchSubCategories = async() => {
+      try {
+          const response = await getRequest('subcategories/', "");
+          setSubCategories(response.data);       
+      } catch (err) {
+          if (err.response) {
+              // Not in 200 response range
+              console.log(err.response.data);
+              console.log(err.response.status);
+              console.log(err.response.headers);   
+          }
+          else {
+              console.log(`Error: ${err.message}`);
+          }                             
+      }
+    }    
 
     const fetchBudgetNumbers = async() => {
       try {
@@ -104,7 +119,7 @@ const DoughnutReport = (props) => {
     const summedValues = Object.values(sumByMain);    
     setMyData(summedValues);
 
-    //Based on array length, randomly generate array of rgb colors.a
+    //Based on array length, randomly generate array of rgb colors.
     var rgb = [];
 
     for(var i = 0; i < myLabels.length; i++)
@@ -112,11 +127,7 @@ const DoughnutReport = (props) => {
                       + Math.floor(Math.random() * 255) + ","
                       + Math.floor(Math.random() * 255) + ")");
     setMyColors(rgb);
-
-    console.log(myLabels);
-    console.log(myData);
-    console.log(myColors);
-
+    
   }, [isReady, props])
 
   const data = {

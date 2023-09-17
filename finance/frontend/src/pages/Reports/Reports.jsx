@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 
 // MUI Import
-import { Box, Grid } from '@mui/material/';
+import { Box, Divider, Grid } from '@mui/material/';
 import { Select, MenuItem } from '@mui/material';
 
 
@@ -14,6 +14,8 @@ import NetWorthLineChart from './NetWorthLineChart';
 import MyD3Component from './MyD3Chart';
 
 const Reports = () => {
+    const [selectedTimeSpan, setSelecedTimeSpan] = useState("");
+    const [selectedReportType, setSelectedReportType] = useState("");
 
     const [selectedYear, setSelectedYear] = useState("");
     const [selectedMonth, setSelectedMonth] = useState("");
@@ -22,18 +24,49 @@ const Reports = () => {
     return <>
     <h2>Welcome to My Reports</h2>
 
-    <h3>Selected Year</h3>
+    <h3>Step 1) Select Time Span</h3>
     <Select
-        value={selectedYear}
-        onChange={(e) => setSelectedYear(e.target.value)}
+        value={selectedTimeSpan}
+        onChange={(e) => setSelecedTimeSpan(e.target.value)}
         fullWidth
         variant='outlined'
         color='primary'
     >
-        <MenuItem value={2022}>2022</MenuItem>
-        <MenuItem value={2023}>2023</MenuItem>
-        <MenuItem value={2024}>2024</MenuItem>
+        <MenuItem value={"year"}>Yearly Report</MenuItem>
+        <MenuItem value={"month"}>Monthly Report</MenuItem>
+        <MenuItem value={"week"}>Weekly Report</MenuItem>
     </Select>
+
+    <h3>Step 2) Specify Time Range</h3>
+    {/* TODO - Dynamically generated select year/month/weekly range based on step 1*/}  
+
+    <h3>Step 3) Select Report Type</h3>
+    <Select
+        value={selectedReportType}
+        onChange={(e) => setSelectedReportType(e.target.value)}
+        fullWidth
+        variant='outlined'
+        color='primary'
+    >
+        <MenuItem value={"full"}>Full Report</MenuItem>
+        <MenuItem value={"general"}>General Report</MenuItem>
+        <MenuItem value={"detailed"}>Detailed Report</MenuItem>
+        <MenuItem value={"custom"}>Custom Report</MenuItem>        
+    </Select>
+
+    <h3>Selected Year</h3>
+            <Select
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+                fullWidth
+                variant='outlined'
+                color='primary'
+            >
+                <MenuItem value={2022}>2022</MenuItem>
+                <MenuItem value={2023}>2023</MenuItem>
+                <MenuItem value={2024}>2024</MenuItem>
+            </Select>
+
 
     <h3>Selected Month</h3>
     <Select

@@ -15,3 +15,25 @@
 # Weekly Reports
 - Distribution of Weekly Spending (MainCat) - Doughnut
 - Distribution of Weekly Spending (SubCat) - Doughnut
+
+
+# # # # # #
+# User Experience...
+
+1. Select Time Span
+    - Yearly
+        - Select Year
+    - Monthly
+        - Select Year and Month
+    - Weekly (?)
+        - Select Year, Month, and Week (?)
+
+2. Specify Time Range
+
+3. Select Report Type
+    - Full (Template, All Charts Inclusive)
+    - General (Template, High Level)
+    - Detailed (Template, Low Level)
+    - Custom (User Selects Desired Reports)
+
+4. Generate Report!
