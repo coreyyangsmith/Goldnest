@@ -11,7 +11,6 @@ import MainCategoryForm from "./MainCategoryForm";
 import SubCategoriesList from "./SubCategoriesList";
 import SubCategoryForm from "./SubCategoryForm";
 import BudgetList from './BudgetList';
-import YearSelection from './YearSelection';
 import SaveButton from '../../components/SaveButton';
 
 // Axios Import
@@ -24,8 +23,6 @@ const Budget = () => {
 
     const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
     const [selectedSub, setSelectedSub] = useState("")      
-    const [selectedYear, setSelectedYear] = useState("")  
-
 
     useEffect(() => {
         const fetchMainCategories = async() => {
@@ -114,7 +111,7 @@ const Budget = () => {
                 </Grid>
 
                 <Grid item xs={4}>
-                    <h2>Month Selection</h2>
+                    <h2>Monthly Budget</h2>
                     <Box>
                         <BudgetList selectedSub={selectedSub}
                                     setBudget={setBudget}

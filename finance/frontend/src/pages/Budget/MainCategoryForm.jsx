@@ -1,9 +1,9 @@
 // React Import
-import React, { useState } from 'react'
+import React from 'react'
 
 // MUI Import
 import TextField from '@mui/material/TextField'
-import { Button, Stack, FormLabel, Autocomplete } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 
 // React Hook Form
 import { useForm } from "react-hook-form";
@@ -47,7 +47,7 @@ const MainCategoryForm = (props) => {
             <Stack spacing={2} 
                     marginTop={2} 
                     fullwidth="true">
-                <FormLabel>Add Main Category</FormLabel>
+                <h3>Add Main Category</h3>
 
                 <TextField {...register("name", {
                     required: "Name is required"

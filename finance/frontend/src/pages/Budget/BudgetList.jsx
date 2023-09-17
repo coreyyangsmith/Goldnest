@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 // MUI Imports
 import { Box, TextField } from '@mui/material';
@@ -11,6 +11,7 @@ const BudgetList = (props) => {
 
 
   {/* Upon sub_category selection, retrives relevant budget data and forces budgetList re-render */}
+  
   useEffect(
     () => {
       const myFunc = async() => {
@@ -27,7 +28,7 @@ const BudgetList = (props) => {
 
   function updateValues(newVal, pk) {
       const arr = [...props.budget];
-      const index = arr.findIndex(p => p.pk == pk);
+      const index = arr.findIndex(p => p.pk === pk);
       arr[index].amount = parseInt(newVal);
       props.setBudget(arr)
   }

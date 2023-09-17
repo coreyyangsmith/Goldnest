@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 // MUI Import
 import TextField from '@mui/material/TextField'
-import { Button, Stack, FormLabel } from "@mui/material";
+import { Button, Stack, Input } from "@mui/material";
 
 // React Hook Form
 import { useForm } from "react-hook-form";
@@ -41,15 +41,18 @@ const SubCategoryForm = (props) => {
             }
         }
         fetchMainCategories();
-        if (props.selectedMain === undefined || mainCatList === undefined){
+        console.log(props.selectedMain);
+        console.log(mainCatList);
+        if (props.selectedMain === undefined || props.selectedMain === "" || mainCatList === undefined || mainCatList === ""){
             console.log("Error");
         }
         else {
+            console.log("running!)");
             var match = mainCatList.filter(obj => obj.pk === props.selectedMain);          
             setMainCatName(match[0].name);
         }
     }
-    ,[props.selectedMain])
+    ,[props.selectedMain, mainCatList])
 
     const {
         register,
@@ -115,7 +118,15 @@ const SubCategoryForm = (props) => {
                     fullwidth="true">
                 <h3>Add Sub Category</h3>
 
-                <FormLabel>Selected Main Category: {mainCatName}</FormLabel>
+                <Input 
+                    readOnly
+                    required
+                    label="Main Category"
+                    value={mainCatName}
+                    variant="filled"
+                    size='small'
+                />              
+              
 
                 <TextField {...register("name", {
                     required: "Name is required"
@@ -140,7 +151,6 @@ const SubCategoryForm = (props) => {
                         disabled={isSubmitting}>
                             Submit
                 </Button>    
-
             </Stack>            
         </form>
   )

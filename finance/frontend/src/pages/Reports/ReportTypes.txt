@@ -1,11 +1,17 @@
 ### Report Types to Consider ###
 
 # Yearly Reports
-- Sankey Diagram (D3)
+- Yearly Sankey Diagram (D3)
+- Distribution of Yearly Spending (MainCat) - Doughnut
+- Distribution of Yearly Spending (SubCat) - Doughnut
 
 # Monthly Reports
 - Main Categories vs Budget
+- Monthly Sankey Diagram (D3)
 - (For Selected Main Category), Sub Category vs Budget
+- Distribution of Monthly Spending (MainCat) - Doughnut
+- Distribution of Monthly Spending (SubCat) - Doughnut
 
 # Weekly Reports
-
+- Distribution of Weekly Spending (MainCat) - Doughnut
+- Distribution of Weekly Spending (SubCat) - Doughnut
