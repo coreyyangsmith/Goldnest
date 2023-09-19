@@ -22,6 +22,22 @@ class Entity(viewsets.ModelViewSet): #TODO Find out what this is? lol
     serializer_class = EntitySerializer
     queryset = Entity.objects.all()
 
+#-- User --#   
+@api_view(['GET', 'POST'])
+def users_list(request):
+    if request.method == 'GET':
+        data = UserProfile.objects.all()
+        serializer = UserProfileSerializer(data, context={'request': request}, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = UserProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 #-- Entry --#
 @api_view(['GET', 'POST'])
 def entrys_list(request):

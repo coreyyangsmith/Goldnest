@@ -57,7 +57,7 @@ const Login = () => {
                  <Button variant="outlined" color="secondary" type="submit">Login</Button>
              
         </form>
-        <small>Need an account? <Link to="/">Register here</Link></small>
+        <small>Need an account? <Link to="/register">Register here</Link></small>
         </React.Fragment>
      );
 }

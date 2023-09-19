@@ -82,16 +82,12 @@ const App = () => {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline/>
 
-
           <Container>
 
             <SideBar/>
             
 
-
-          </Container>
-
-          
+          </Container>          
       </ThemeProvider>
   
     </div>

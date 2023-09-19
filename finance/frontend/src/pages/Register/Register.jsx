@@ -1,32 +1,52 @@
+// React Import
 import React, {useState} from 'react';
-import { TextField, Button, Stack, FormLabel, Divider } from '@mui/material';
 import { Link } from "react-router-dom"
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+
+// MUI Import
+import { TextField, Button, Stack, FormLabel, RadioGroup, 
+FormControlLabel, Radio } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
- 
+
+// Day JS/Date Picker
+import dayjs from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+ {/* TODO - Refactor Login and Register forms to user RHF */}
+
 const RegisterForm = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
+    const [username, setUsername] = useState('')
+    const [firstName, setFirstName] = useState('') 
+    const [lastName, setLastName] = useState('') 
     const [email, setEmail] = useState('')
-    const [height, setHeight] = useState('')
-    const [weight, setWeight] = useState('')
-    const [gender, setGender] = useState('')
-    const [dateOfBirth, setDateOfBirth] = useState('')
+    const [dateOfBirth, setDateOfBirth] = useState(new Date())
     const [password, setPassword] = useState('')
+    const [gender, setGender] = useState('')
  
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(firstName, lastName, email, 
-            height, weight, gender,
-            dateOfBirth, password) 
+        console.log(username, email, password,
+            firstName, lastName,
+            gender, dateOfBirth)
     }
  
     return (
         <React.Fragment>
             <h2>Register Form</h2>
             <form onSubmit={handleSubmit} action={<Link to="/login" />}>
+                <Stack>
+                <TextField
+                    type="text"
+                    variant='outlined'
+                    color='secondary'
+                    label="Username"
+                    onChange={e => setUsername(e.target.value)}
+                    value={username}
+                    fullwidth="true"
+                    required
+                    sx={{mb: 4}}                    
+                />
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
                     <TextField
                         type="text"
@@ -56,7 +76,7 @@ const RegisterForm = () => {
                     label="Email"
                     onChange={e => setEmail(e.target.value)}
                     value={email}
-                    fullWidth
+                    fullwidth="true"
                     required
                     sx={{mb: 4}}
                 />
@@ -68,98 +88,47 @@ const RegisterForm = () => {
                     onChange={e => setPassword(e.target.value)}
                     value={password}
                     required
-                    fullWidth
+                    fullwidth="true"
                     sx={{mb: 4}}
                 />
-                <Divider/>
-                <FormLabel>Date of Birth</FormLabel>
+
                 <TextField
-                    type="date"
+                    type="password"
                     variant='outlined'
                     color='secondary'
-                    label=""
-                    onChange={e => setDateOfBirth(e.target.value)}
-                    value={dateOfBirth}
-                    fullWidth
+                    label="Confirm Password"
+                    onChange={e => setPassword(e.target.value)}
+                    value={password}
                     required
+                    fullwidth="true"
                     sx={{mb: 4}}
-                />
-                <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Height</InputLabel>
-                    <Select
-                        required
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={height}
-                        label="Height"
-                        onChange={e => setHeight(e.target.value)}
-                        >
-                        <MenuItem value={122}>4'</MenuItem>
-                        <MenuItem value={124}>4'1"</MenuItem>
-                        <MenuItem value={127}>4'2"</MenuItem>
-                        <MenuItem value={130}>4'3"</MenuItem>
-                        <MenuItem value={132}>4'4"</MenuItem>
-                        <MenuItem value={135}>4'5"</MenuItem>
-                        <MenuItem value={137}>4'6"</MenuItem>
-                        <MenuItem value={140}>4'7"</MenuItem>
-                        <MenuItem value={142}>4'8"</MenuItem>
-                        <MenuItem value={145}>4'9"</MenuItem>                                                                                                     
-                        <MenuItem value={147}>4'10"</MenuItem>
-                        <MenuItem value={150}>4'11"</MenuItem>
-                        <MenuItem value={152}>5'</MenuItem>
-                        <MenuItem value={155}>5'1"</MenuItem>
-                        <MenuItem value={157}>5'2"</MenuItem>
-                        <MenuItem value={160}>5'3"</MenuItem>
-                        <MenuItem value={163}>5'4"</MenuItem>
-                        <MenuItem value={165}>5'5"</MenuItem>
-                        <MenuItem value={168}>5'6"</MenuItem>
-                        <MenuItem value={170}>5'7"</MenuItem>
-                        <MenuItem value={173}>5'8"</MenuItem>
-                        <MenuItem value={175}>5'9"</MenuItem>        
-                        <MenuItem value={178}>5'10"</MenuItem>     
-                        <MenuItem value={180}>5'11"</MenuItem>     
-                        <MenuItem value={183}>6'"</MenuItem>     
-                        <MenuItem value={185}>6'1"</MenuItem>   
-                        <MenuItem value={188}>6'2"</MenuItem>     
-                        <MenuItem value={191}>6'3"</MenuItem>     
-                        <MenuItem value={193}>6'4"</MenuItem>     
-                        <MenuItem value={196}>6'5"</MenuItem>      
-                        <MenuItem value={198}>6'6"</MenuItem>  
-                        <MenuItem value={201}>6'7"</MenuItem>  
-                        <MenuItem value={203}>6'8"</MenuItem>  
-                        <MenuItem value={206}>6'9"</MenuItem>   
-                        <MenuItem value={208}>6'10"</MenuItem>      
-                        <MenuItem value={211}>6'11"</MenuItem>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-                    </Select>
+                />                
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker label="Date of Birth" 
+                                sx={{mb: 4}}
+                                required
+                                animateYearScrolling
+                                size="small"                              
+                                onChange={(e) => setDateOfBirth(dayjs(e.$d).format('YYYY-MM-DD'))}/>
+                </LocalizationProvider>
+
+                <FormControl>
+                <FormLabel>Gender</FormLabel>
+                <RadioGroup
+                    defaultValue=""
+                    name="radio-buttons-group"
+                    fullwidth="true"
+                    required                  
+                    onChange={e => setGender(e.target.value)}
+                    sx={{mb: 4}}
+                >
+                    <FormControlLabel value="male" control={<Radio />} label="Male" />                        
+                    <FormControlLabel value="female" control={<Radio />} label="Female" />
+                    <FormControlLabel value="other" control={<Radio />} label="Other" />
+                </RadioGroup>
                 </FormControl>
-                   <TextField
-                        type="text"
-                        variant='outlined'
-                        color='secondary'
-                        label="Weight"
-                        onChange={e => setWeight(e.target.value)}
-                        value={weight}
-                        fullWidth
-                        required
-                    />
-                    <TextField
-                        type="text"
-                        variant='outlined'
-                        color='secondary'
-                        label="Gender"
-                        onChange={e => setGender(e.target.value)}
-                        value={gender}
-                        fullWidth
-                        required
-                    />
-
-                </Stack>
-
-
-
-
                 <Button variant="outlined" color="secondary" type="submit">Register</Button>
+                </Stack>
             </form>
             <small>Already have an account? <Link to="/login">Login Here</Link></small>
      
