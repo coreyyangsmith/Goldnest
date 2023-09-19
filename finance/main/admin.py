@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import *
 
 # Admin
-admin.site.register(UserProfile)
+admin.site.register(Profile)
 
 # Micro
 admin.site.register(MainCategory)

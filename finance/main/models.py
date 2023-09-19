@@ -11,7 +11,7 @@ GENDER = {
     ('other','X')              
 }
 
-class UserProfile(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     dob = models.DateField()
     gender = models.CharField(max_length=6, choices=GENDER, default='M')

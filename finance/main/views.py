@@ -26,12 +26,12 @@ class Entity(viewsets.ModelViewSet): #TODO Find out what this is? lol
 @api_view(['GET', 'POST'])
 def users_list(request):
     if request.method == 'GET':
-        data = UserProfile.objects.all()
-        serializer = UserProfileSerializer(data, context={'request': request}, many=True)
+        data = Profile.objects.all()
+        serializer = ProfileSerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = UserProfileSerializer(data=request.data)
+        serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)

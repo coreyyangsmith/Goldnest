@@ -23,13 +23,12 @@ def run():
                 income=row[1],
                 expense=row[2],
                 notes=row[3],
-                date=row[4],
+                date=row[4], ## TODO fix warning error for this import - maybe have to fix data?
                 routing=Entity.objects.get(name=row[5]),
                 main_category=MainCategory.objects.get(name=row[6]),
                 sub_category=SubCategory.objects.get(name=row[7]),      
                 created_at=timezone.now(),
                 updated_at=timezone.now(),
             )
-        _.save()
-    print("'Entity' loaded successfully.")              
+        _.save()          
     print("'Entry' loaded successfully.")

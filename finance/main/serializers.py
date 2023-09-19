@@ -10,9 +10,9 @@ from rest_framework.validators import UniqueValidator
 
 
 # Admin
-class UserProfileSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserProfile
+        model = Profile
         fields = ('user', 'dob', 'gender')
 
     def validate(self, attrs):
@@ -22,7 +22,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        user = UserProfile.objects.create(
+        user = Profile.objects.create(
             user=User.validated_data['user'],
             dob=validated_data['dob'],
             gender=validated_data['gender']
