@@ -21,17 +21,27 @@ const SubCategoriesList = (props) => {
     props.setBudget(sortedBudgets)
   }
 
+  const handleDelete = async(subCat) => {
+    console.log("Deleting: " + subCat.name);
+  }
+
   const mySubCategories = filteredSubCat.map(subCat => {
-    return <Tooltip title={subCat.description}
-                    key={subCat.pk}>   
+    return <React.Fragment key={subCat.pk}>
+    <Stack direction="row" spacing={0.5}>
+      <Tooltip title={subCat.description}>   
               <Button color="secondary"
-                        key={subCat.pk}
+                        fullWidth={true}
                         variant="outlined" 
                         className={`Category-Button ${props.selectedSub === subCat.pk && "active"}`}                    
                         onClick={() => {handleClick(subCat)}}>
                 {subCat.name}
               </Button>
-            </Tooltip>            
+            </Tooltip>   
+            <Button color="error"
+              variant='outlined'
+              onClick={() => handleDelete(subCat)}>X</Button>
+    </Stack>         
+            </React.Fragment>                    
   })
 
   return (

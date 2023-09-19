@@ -52,7 +52,7 @@ const SubCategoryForm = (props) => {
             setMainCatName(match[0].name);
         }
     }
-    ,[props.selectedMain, mainCatList])
+    ,[props.selectedMain])
 
     const {
         register,

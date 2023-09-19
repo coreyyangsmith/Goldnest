@@ -87,7 +87,8 @@ const Budget = () => {
                     }}>
                         <MainCategoriesList mainCategory={mainCategory} 
                                             setSelectedMain={setSelectedMain}
-                                            selectedMain={selectedMain}/>
+                                            selectedMain={selectedMain}
+                                            setMainCategories={setMainCategories}/>
                         <MainCategoryForm setMainCategories={setMainCategories}/>
                     </Box>
                 </Grid>

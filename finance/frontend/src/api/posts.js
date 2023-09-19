@@ -22,3 +22,7 @@ export function postRequest(URL, payload) {
 export function putRequest(URL, payload) {
     return axiosClient.put(`/${URL}`, payload).then(response => response);
 }
+
+export function deleteRequest(URL, payload) {
+    return axiosClient.delete(`/${URL}`, payload).then(response => response);
+}

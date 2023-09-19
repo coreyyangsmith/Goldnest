@@ -38,7 +38,7 @@ class SubCategory(models.Model):
     name = models.CharField(max_length=15)
     description = models.CharField(max_length=500)
 
-    main_category = models.ForeignKey(MainCategory, on_delete=models.DO_NOTHING)
+    main_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    
@@ -50,7 +50,7 @@ class SubSubCategory(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
 
-    sub_category = models.ForeignKey(SubCategory, on_delete=models.DO_NOTHING)
+    sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    
