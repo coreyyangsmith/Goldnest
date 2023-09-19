@@ -4,6 +4,8 @@
 - Yearly Sankey Diagram (D3)
 - Distribution of Yearly Spending (MainCat) - Doughnut
 - Distribution of Yearly Spending (SubCat) - Doughnut
+(x) Distribution of Yearly Budget (MainCat) - Doughnut
+- Distribution of Yearly Budget (SubCat) - Doughnut
 
 # Monthly Reports
 - Main Categories vs Budget
@@ -11,6 +13,8 @@
 - (For Selected Main Category), Sub Category vs Budget
 - Distribution of Monthly Spending (MainCat) - Doughnut
 - Distribution of Monthly Spending (SubCat) - Doughnut
+- Distribution of Monthly Budget (MainCat) - Doughnut
+- Distribution of Monthly Budget (SubCat) - Doughnut
 
 # Weekly Reports
 - Distribution of Weekly Spending (MainCat) - Doughnut
