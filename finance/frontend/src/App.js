@@ -1,5 +1,6 @@
 // React
 import React, { useEffect, useState } from "react"
+import useToken from "./components/useToken";
 
 // MUI Dependencies
 import { Container } from "@mui/material"
@@ -13,6 +14,7 @@ import axios from "axios";
 import './App.css';
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
+import Login from "./pages/Login/Login";
 
 
 
@@ -59,22 +61,28 @@ const entityItems = [
     "updated_at": "2023-09-03T18:02:06.451906Z"
 }];
 
+
 const App = () => {
   const [users, setUsers] = useState([])
-
-  const fetchUserData = () => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setUsers(data)
-      })
-  }
+  const { token, setToken } = useToken();
 
   useEffect(() => {
+    const fetchUserData = () => {
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setUsers(data)
+        })
+    }
+
     fetchUserData()
   }, [])
+
+  if (!token) {
+    return <Login setToken={setToken}/>
+  }  
 
   return (
     <div>

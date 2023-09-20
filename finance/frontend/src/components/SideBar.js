@@ -1,6 +1,7 @@
 // React Import 
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import useToken from './useToken';
 
 // MUI Import
 import { styled, useTheme } from '@mui/material/styles';
@@ -127,6 +128,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function MiniDrawer() {
+  const { token, setToken } = useToken();  
+
+  
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = useState();
@@ -183,7 +187,7 @@ export default function MiniDrawer() {
             GOLDNEST
           </Typography>
           <Typography>
-            Current User: {currentUser}
+            Current User: {token}
           </Typography>
         </Toolbar>
       </AppBar>

@@ -1,32 +1,50 @@
+// React Import 
 import React, {useState} from "react";
+import useToken from "../../components/useToken";
+
+// MUI Imports
 import { TextField, Button } from "@mui/material";
 import { Link } from "react-router-dom"
+import { PropTypes } from 'prop-types';
+
+async function loginUser(credentials) {
+    return fetch('http://127.0.0.1:8000/api/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      })
+        .then(data => data.json())
+}
  
-const Login = () => {
-    const [email, setEmail] = useState("")
+export default function Login() {
+    const { token, setToken } = useToken();
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [emailError, setEmailError] = useState(false)
+
+    const [usernameError, setUsernameError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
  
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log("Loggin in");
+    const handleSubmit = async e => {
+        e.preventDefault();
  
-        setEmailError(false)
+        setUsernameError(false)
         setPasswordError(false)
  
-        if (email === '') {
-            setEmailError(true)
+        if (username === '') {
+            setUsernameError(true)
         }
         if (password === '') {
             setPasswordError(true)
         }
- 
-        if (email && password) {
-            console.log(email, password)
-        }
 
-        
+        const token = await loginUser({
+            username,
+            password
+        });
+        console.log(token);
+        setToken(token);    
     }
      
     return ( 
@@ -34,16 +52,16 @@ const Login = () => {
         <form autoComplete="off" onSubmit={handleSubmit}>
             <h2>Login Form</h2>
                 <TextField 
-                    label="Email"
-                    onChange={e => setEmail(e.target.value)}
+                    label="Username"
+                    onChange={e => setUsername(e.target.value)}
                     required
                     variant="outlined"
                     color="secondary"
-                    type="email"
+                    type="text"
                     sx={{mb: 3}}
                     fullWidth
-                    value={email}
-                    error={emailError}
+                    value={username}
+                    error={usernameError}
                  />
                  <TextField 
                     label="Password"
@@ -66,5 +84,7 @@ const Login = () => {
         </React.Fragment>
      );
 }
- 
-export default Login;
+
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
+}

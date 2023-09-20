@@ -1,4 +1,4 @@
-
+# Project Imports
 from .models import *
 from .serializers import *
 
@@ -15,14 +15,14 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework import viewsets
 
 # Create your views here.
 def MainView(request):
     return render(request, 'home/index.html')
 
-from rest_framework import viewsets
-from .serializers import *
-from .models import *
+
+
 
 #######################
 #### MICRO FINANCE ####
@@ -56,7 +56,6 @@ def login(request):
     token, created = Token.objects.get_or_create(user=user)
     serializer = UserSerializer(instance=user)
     return Response({'token': token.key, 'user': serializer.data})
-    
 
 @api_view(['POST'])
 def signup(request):
@@ -78,11 +77,9 @@ def test_token(request):
 
 @api_view(['GET'])
 def current_user(request):
-    user = request.user
+    user = User.objects.get(username=request.user.username)
     return Response({
       'username' : user.username,
-      'first_name' : user.first_name,
-      'last_name' : user.last_name
     })    
 
 class HomeView(APIView):
