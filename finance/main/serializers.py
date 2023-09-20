@@ -32,6 +32,11 @@ class ProfileSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+    
+class UserSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = User
+        fields = ['id', 'username', 'password', 'email']
 
 # Micro Finance
 class EntitySerializer(serializers.ModelSerializer):
