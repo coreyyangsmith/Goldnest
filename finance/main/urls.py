@@ -1,5 +1,6 @@
 from django.urls import path, re_path, include
 from rest_framework import routers
+from rest_framework_simplejwt import views as jwt_views
 from main import views
 from . import views
 
@@ -26,7 +27,16 @@ urlpatterns = [
     re_path(r'^api/budgets/$', views.budgets_list),  
     re_path(r'^api/budgets/(?P<pk>\d+)/$', views.budgets_detail),    
 
-    re_path(r'^api/users/$', views.users_list),         
+    re_path(r'^api/users/$', views.users_list),    
+    re_path(r'^api/users/currrent/$', views.current_user),            
 
     path('api/', include(router.urls)),
+
+     path('token/', 
+         jwt_views.TokenObtainPairView.as_view(), 
+         name ='token_obtain_pair'),
+     path('token/refresh/', 
+          jwt_views.TokenRefreshView.as_view(), 
+          name ='token_refresh'),   
+     path('home/', views.HomeView.as_view(), name ='home')          
 ]

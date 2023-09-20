@@ -1,4 +1,3 @@
-import os 
 import django
 django.setup()
 
@@ -34,11 +33,13 @@ def run():
 
     # Generate Known (non-admin) User
     test_user = "coreyyangsmith"
+    test_email = "coreyyangsmith@ucalgary.ca"
     test_password = "pass"
 
     test_user = User.objects.get_or_create(username = test_user,
-                            is_staff=True,
-                            is_superuser=True)[0]
+                                            email = test_email,
+                                            is_staff=True,
+                                            is_superuser=True)[0]
     test_user.set_password(test_password);
     test_user.save()
 

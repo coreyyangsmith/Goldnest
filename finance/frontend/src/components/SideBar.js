@@ -1,4 +1,8 @@
+// React Import 
 import * as React from 'react';
+import { useState, useEffect } from 'react';
+
+// MUI Import
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -16,6 +20,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+
+// API
+import { getRequest } from '../api/posts'
 
 // Routing
 import { Link } from "react-router-dom"
@@ -122,6 +129,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [currentUser, setCurrentUser] = useState();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -130,6 +138,28 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    const fetchCurrentUser = async() => {
+      try {
+          const response = await getRequest('users/current/', "");
+          console.log(response.data);
+          setCurrentUser(response.data);         
+      } catch (err) {
+          if (err.response) {
+              // Not in 200 response range
+              console.log(err.response.data);
+              console.log(err.response.status);
+              console.log(err.response.headers);   
+          }
+          else {
+              console.log(`Error: ${err.message}`);
+          }                             
+      }
+  }
+  fetchCurrentUser();
+  }, [])
+
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -151,6 +181,9 @@ export default function MiniDrawer() {
           <PaidIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />          
           <Typography variant="h6" noWrap component="div">
             GOLDNEST
+          </Typography>
+          <Typography>
+            Current User: {currentUser}
           </Typography>
         </Toolbar>
       </AppBar>

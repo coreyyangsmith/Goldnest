@@ -5,6 +5,8 @@ from rest_framework import status
 from .models import *
 from .serializers import *
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 def MainView(request):
@@ -22,6 +24,8 @@ class Entity(viewsets.ModelViewSet): #TODO Find out what this is? lol
     serializer_class = EntitySerializer
     queryset = Entity.objects.all()
 
+    
+
 #-- User --#   
 @api_view(['GET', 'POST'])
 def users_list(request):
@@ -37,6 +41,34 @@ def users_list(request):
             return Response(status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET'])
+def current_user(request):
+    user = request.user
+    return Response({
+      'username' : user.username,
+      'first_name' : user.first_name,
+      'last_name' : user.last_name
+    })    
+
+class HomeView(APIView):
+   permission_classes = (IsAuthenticated, )
+   def get(self, request):
+        content = {'message': 'Welcome to the JWT Authentication page using React Js and Django!'}
+        return Response(content)
+   
+class LogoutView(APIView):
+     permission_classes = (IsAuthenticated,)
+     def post(self, request):
+          
+            try:
+                refresh_token = request.data["refresh_token"]
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+                return Response(status=status.HTTP_205_RESET_CONTENT)
+            except Exception as e:
+                return Response(status=status.HTTP_400_BAD_REQUEST)   
+
     
 #-- Entry --#
 @api_view(['GET', 'POST'])

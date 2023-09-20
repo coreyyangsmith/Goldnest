@@ -10,6 +10,7 @@ const Login = () => {
  
     const handleSubmit = (event) => {
         event.preventDefault()
+        console.log("Loggin in");
  
         setEmailError(false)
         setPasswordError(false)
@@ -24,6 +25,8 @@ const Login = () => {
         if (email && password) {
             console.log(email, password)
         }
+
+        
     }
      
     return ( 
@@ -54,7 +57,9 @@ const Login = () => {
                     fullWidth
                     sx={{mb: 3}}
                  />
-                 <Button variant="outlined" color="secondary" type="submit">Login</Button>
+                 <Button variant="outlined" 
+                            color="secondary" 
+                            type="submit">Login</Button>
              
         </form>
         <small>Need an account? <Link to="/register">Register here</Link></small>
