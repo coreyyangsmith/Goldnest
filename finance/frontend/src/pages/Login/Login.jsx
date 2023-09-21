@@ -1,11 +1,18 @@
 // React Import 
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../../App";
 import useToken from "../../components/useToken";
 
 // MUI Imports
 import { TextField, Button } from "@mui/material";
 import { Link } from "react-router-dom"
 import { PropTypes } from 'prop-types';
+
+// Router
+import { useNavigate } from 'react-router-dom';
+
+// API
+import { getRequest } from '../../api/posts'
 
 async function loginUser(credentials) {
     return fetch('http://127.0.0.1:8000/api/login/', {
@@ -20,11 +27,36 @@ async function loginUser(credentials) {
  
 export default function Login() {
     const { token, setToken } = useToken();
+    const [user, setUser] = useContext(UserContext);
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
     const [usernameError, setUsernameError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
+
+    const navigate = useNavigate();
+
+    const setCurrentUser = async() => {
+        try {
+            const response = await getRequest('users/current/', {
+              params: {
+                token: token
+              }
+            })
+            setUser(response.data.username);        
+        } catch (err) {
+            if (err.response) {
+                // Not in 200 response range
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);   
+            }
+            else {
+                console.log(`Error: ${err.message}`);
+            }
+            setUser("");                             
+        }
+    }    
  
     const handleSubmit = async e => {
         e.preventDefault();
@@ -43,8 +75,17 @@ export default function Login() {
             username,
             password
         });
-        console.log(token);
-        setToken(token);    
+
+        if (token.detail != "Not found."){
+
+            console.log("successful login!")
+            setToken(token);
+            setCurrentUser();
+            navigate('/');    
+            window.location.reload(false);  //Trigger Refresh            
+        }
+
+        
     }
      
     return ( 

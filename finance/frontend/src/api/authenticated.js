@@ -13,7 +13,7 @@ Responsible for setting up Axios' baseURL to be utilized throughout the project.
 */}
 // headers: { Authorization: `Bearer ${token}` },
 const axiosClient = axios.create({
-
+    // TODO Get authentication working on pages
     baseURL : `http://127.0.0.1:8000/api/`
 });
 

@@ -1,5 +1,5 @@
 // React
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, createContext } from "react"
 import useToken from "./components/useToken";
 
 // MUI Dependencies
@@ -8,15 +8,15 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 // Axios
-import axios from "axios";
+import { getRequest } from './api/posts'
 
 // Components
 import './App.css';
-import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
 import Login from "./pages/Login/Login";
 
-
+// Current User
+export const UserContext = createContext();
 
 // Theme Definition
 const darkTheme = createTheme({
@@ -63,21 +63,32 @@ const entityItems = [
 
 
 const App = () => {
-  const [users, setUsers] = useState([])
+  const [user, setUser] = useState("");
   const { token, setToken } = useToken();
 
   useEffect(() => {
-    const fetchUserData = () => {
-      fetch("https://jsonplaceholder.typicode.com/users")
-        .then(response => {
-          return response.json()
-        })
-        .then(data => {
-          setUsers(data)
-        })
-    }
-
-    fetchUserData()
+    const fetchCurrentUser = async() => {
+      try {
+          const response = await getRequest('users/current/', {
+            params: {
+              token: token
+            }
+          })
+          setUser(response.data.username);         
+      } catch (err) {
+          if (err.response) {
+              // Not in 200 response range
+              console.log(err.response.data);
+              console.log(err.response.status);
+              console.log(err.response.headers);   
+          }
+          else {
+              console.log(`Error: ${err.message}`);
+          }
+          setUser("");                             
+      }
+  }
+  fetchCurrentUser();
   }, [])
 
   if (!token) {
@@ -86,18 +97,14 @@ const App = () => {
 
   return (
     <div>
-
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline/>
-
-          <Container>
-
-            <SideBar/>
-            
-
-          </Container>          
-      </ThemeProvider>
-  
+      <UserContext.Provider value={[user, setUser]}>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline/>
+            <Container>
+              <SideBar/>
+            </Container>          
+        </ThemeProvider>
+      </UserContext.Provider>
     </div>
   )
 }    

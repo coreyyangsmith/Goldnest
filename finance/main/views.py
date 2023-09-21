@@ -73,12 +73,13 @@ def signup(request):
 def test_token(request):
     return Response({"passed for {}".format(request.user.email)})
 
-@api_view(['GET'])
-@authentication_classes([SessionAuthentication, TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def logout(request):
-    logout(request)
-    return Response({"passed for {}".format(request.user.email)})
+class Logout(APIView):
+    def get(self, request, format=None):
+        token = request.GET.get('token', '')
+        user = Token.objects.get(key=token).user
+        user.auth_token.delete()
+        return Response(status=status.HTTP_200_OK)
+
 
 @api_view(['GET'])
 def current_user(request):

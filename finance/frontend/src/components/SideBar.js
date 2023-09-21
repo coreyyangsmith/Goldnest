@@ -1,6 +1,7 @@
 // React Import 
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { UserContext } from '../App';
 import useToken from './useToken';
 
 // MUI Import
@@ -34,10 +35,8 @@ import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard'; //Dashboard
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance'; //Accounts
 import PaidIcon from '@mui/icons-material/Paid'; //Budget
 import AssessmentIcon from '@mui/icons-material/Assessment'; //Reports
-
 import StorageIcon from '@mui/icons-material/Storage'; //Database
 import AddIcon from '@mui/icons-material/Add'; //Add new
-
 import AccountBoxIcon from '@mui/icons-material/AccountBox'; // Profile
 import SettingsIcon from '@mui/icons-material/Settings'; //Settings
 import LogoutIcon from '@mui/icons-material/Logout'; // Logout
@@ -58,8 +57,7 @@ import Profile from '../pages/Profile/Profile.jsx'
 import Settings from '../pages/Settings/Settings.jsx'
 import Logout from '../pages/Login/Logout.jsx'
 
-
-
+// My Imports
 const drawerWidth = 220;
 
 const openedMixin = (theme) => ({
@@ -129,12 +127,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function MiniDrawer() {
+  const [user, setUser] = useContext(UserContext);
   const { token, setToken } = useToken();  
+  
+  useEffect(() => {
+    console.log("regen sidebar");
+  },[user])
+
 
   
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [currentUser, setCurrentUser] = useState('');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -144,29 +147,8 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  useEffect(() => {
-    const fetchCurrentUser = async() => {
-      try {
-          const response = await getRequest('users/current/', {
-            params: {
-              token: token
-            }
-          })
-          setCurrentUser(response.data.username);         
-      } catch (err) {
-          if (err.response) {
-              // Not in 200 response range
-              console.log(err.response.data);
-              console.log(err.response.status);
-              console.log(err.response.headers);   
-          }
-          else {
-              console.log(`Error: ${err.message}`);
-          }                             
-      }
-  }
-  fetchCurrentUser();
-  }, [])
+
+
 
 
   return (
@@ -191,7 +173,7 @@ export default function MiniDrawer() {
             GOLDNEST
           </Typography>
           <Typography>
-            Current User: {currentUser}
+            Current User: {user}
           </Typography>
         </Toolbar>
       </AppBar>

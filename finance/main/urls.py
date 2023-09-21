@@ -2,7 +2,6 @@ from django.urls import path, re_path, include
 from rest_framework import routers
 from main import views
 
-
 from . import views
 
 router = routers.DefaultRouter()
@@ -37,5 +36,5 @@ urlpatterns = [
     re_path(r'^api/login', views.login),   
     re_path(r'^api/signup', views.signup),   
     re_path(r'^api/test_token', views.test_token),           
-    re_path(r'^api/logout', views.logout),    
+    re_path(r'^api/logout', views.Logout.as_view()),    
 ]
