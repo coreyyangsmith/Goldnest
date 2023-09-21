@@ -1,6 +1,5 @@
 // React Import 
-import React, { useState, useContext } from "react";
-import { UserContext } from "../../App";
+import React, { useState, useEffect, useContext } from "react";
 import useToken from "../../components/useToken";
 
 // MUI Imports
@@ -13,6 +12,10 @@ import { useNavigate } from 'react-router-dom';
 
 // API
 import { getRequest } from '../../api/posts'
+
+// Context - Current User
+import { useAuth } from "../../context/AuthContext"
+
 
 async function loginUser(credentials) {
     return fetch('http://127.0.0.1:8000/api/login/', {
@@ -27,7 +30,11 @@ async function loginUser(credentials) {
  
 export default function Login() {
     const { token, setToken } = useToken();
-    const [user, setUser] = useContext(UserContext);
+    const { authUser, 
+            setAuthUser, 
+            isLoggedIn, 
+            setIsLoggedIn } = useAuth()
+
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -36,6 +43,7 @@ export default function Login() {
 
     const navigate = useNavigate();
 
+    // Obtain Current User
     const setCurrentUser = async() => {
         try {
             const response = await getRequest('users/current/', {
@@ -43,7 +51,8 @@ export default function Login() {
                 token: token
               }
             })
-            setUser(response.data.username);        
+            setAuthUser(response.data.username);      
+            setIsLoggedIn(true);  
         } catch (err) {
             if (err.response) {
                 // Not in 200 response range
@@ -54,7 +63,8 @@ export default function Login() {
             else {
                 console.log(`Error: ${err.message}`);
             }
-            setUser("");                             
+            setAuthUser(null);
+            setIsLoggedIn(false);                               
         }
     }    
  
@@ -76,6 +86,7 @@ export default function Login() {
             password
         });
 
+        // if successful login
         if (token.detail != "Not found."){
 
             console.log("successful login!")
@@ -84,9 +95,18 @@ export default function Login() {
             navigate('/');    
             window.location.reload(false);  //Trigger Refresh            
         }
-
-        
     }
+
+    console.log(authUser);
+
+    // If user is already logged in, do not let them fill form, simply redirect"
+    // TODO
+    {if (authUser != null)
+    {
+        navigate('/')
+    }}
+
+
      
     return ( 
         <React.Fragment>
@@ -124,8 +144,4 @@ export default function Login() {
         <small>Need an account? <Link to="/register">Register here</Link></small>
         </React.Fragment>
      );
-}
-
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
 }

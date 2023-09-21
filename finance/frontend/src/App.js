@@ -1,5 +1,5 @@
 // React
-import React, { useEffect, useState, createContext } from "react"
+import React, { useEffect, useState } from "react"
 import useToken from "./components/useToken";
 
 // MUI Dependencies
@@ -15,8 +15,8 @@ import './App.css';
 import SideBar from './components/SideBar';
 import Login from "./pages/Login/Login";
 
-// Current User
-export const UserContext = createContext();
+// Context - Current User
+import { AuthProvider } from "./context/AuthContext"
 
 // Theme Definition
 const darkTheme = createTheme({
@@ -46,50 +46,8 @@ const darkTheme = createTheme({
   },  
 });
 
-
-const entityItems = [
-  {
-    "pk": 1,
-    "name": "Steam",
-    "created_at": "2023-09-03T18:02:06.450637Z",
-    "updated_at": "2023-09-03T18:02:06.451033Z"
-},
-{
-    "pk": 2,
-    "name": "EB Games",
-    "created_at": "2023-09-03T18:02:06.451590Z",
-    "updated_at": "2023-09-03T18:02:06.451906Z"
-}];
-
-
 const App = () => {
-  const [user, setUser] = useState("");
   const { token, setToken } = useToken();
-
-  useEffect(() => {
-    const fetchCurrentUser = async() => {
-      try {
-          const response = await getRequest('users/current/', {
-            params: {
-              token: token
-            }
-          })
-          setUser(response.data.username);         
-      } catch (err) {
-          if (err.response) {
-              // Not in 200 response range
-              console.log(err.response.data);
-              console.log(err.response.status);
-              console.log(err.response.headers);   
-          }
-          else {
-              console.log(`Error: ${err.message}`);
-          }
-          setUser("");                             
-      }
-  }
-  fetchCurrentUser();
-  }, [])
 
   if (!token) {
     return <Login setToken={setToken}/>
@@ -97,14 +55,14 @@ const App = () => {
 
   return (
     <div>
-      <UserContext.Provider value={[user, setUser]}>
         <ThemeProvider theme={darkTheme}>
+          <AuthProvider>
           <CssBaseline/>
             <Container>
               <SideBar/>
-            </Container>          
+            </Container>       
+          </AuthProvider>               
         </ThemeProvider>
-      </UserContext.Provider>
     </div>
   )
 }    

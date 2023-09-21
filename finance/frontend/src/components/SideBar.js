@@ -1,7 +1,6 @@
 // React Import 
 import * as React from 'react';
 import { useContext, useEffect } from 'react';
-import { UserContext } from '../App';
 import useToken from './useToken';
 
 // MUI Import
@@ -57,7 +56,10 @@ import Profile from '../pages/Profile/Profile.jsx'
 import Settings from '../pages/Settings/Settings.jsx'
 import Logout from '../pages/Login/Logout.jsx'
 
-// My Imports
+// Context
+import { useAuth } from '../context/AuthContext';
+
+
 const drawerWidth = 220;
 
 const openedMixin = (theme) => ({
@@ -126,13 +128,50 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const currentUserSx = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center', 
+  border: 1,
+}
+
+const testSX = {
+  border: 1,
+}
+
 export default function MiniDrawer() {
-  const [user, setUser] = useContext(UserContext);
   const { token, setToken } = useToken();  
-  
+  const { authUser, 
+          setAuthUser, 
+          isLoggedIn, 
+          setIsLoggedIn } = useAuth()
+
   useEffect(() => {
-    console.log("regen sidebar");
-  },[user])
+    const fetchCurrentUser = async() => {
+      try {
+          const response = await getRequest('users/current/', {
+            params: {
+              token: token
+            }
+          })
+          setAuthUser(response.data.username);
+          setIsLoggedIn(true);
+      } catch (err) {
+          if (err.response) {
+              // Not in 200 response range
+              console.log(err.response.data);
+              console.log(err.response.status);
+              console.log(err.response.headers);   
+          }
+          else {
+              console.log(`Error: ${err.message}`);
+          }
+          setAuthUser(null);    
+          setIsLoggedIn(false);                               
+      }
+  }
+  fetchCurrentUser();
+  }, [authUser])
 
 
   
@@ -172,8 +211,8 @@ export default function MiniDrawer() {
           <Typography variant="h6" noWrap component="div">
             GOLDNEST
           </Typography>
-          <Typography>
-            Current User: {user}
+          <Typography padding={3}>
+            Current User: {authUser}
           </Typography>
         </Toolbar>
       </AppBar>
