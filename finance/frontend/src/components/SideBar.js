@@ -58,6 +58,7 @@ import Logout from '../pages/Login/Logout.jsx'
 
 // Context
 import { useAuth } from '../context/AuthContext';
+import axios from 'axios';
 
 
 const drawerWidth = 220;
@@ -149,9 +150,9 @@ export default function MiniDrawer() {
   useEffect(() => {
     const fetchCurrentUser = async() => {
       try {
-          const response = await getRequest('users/current/', {
-            params: {
-              token: token
+          const response = await axios.get('http://127.0.0.1:8000/api/users/current/',{
+            headers: {
+              'Authorization': `token ${token}`
             }
           })
           setAuthUser(response.data.username);
@@ -212,7 +213,7 @@ export default function MiniDrawer() {
             GOLDNEST
           </Typography>
           <Typography padding={3}>
-            Current User: {authUser}
+            Current User: {authUser} | {token} | {isLoggedIn.toString()}
           </Typography>
         </Toolbar>
       </AppBar>

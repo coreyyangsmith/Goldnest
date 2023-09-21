@@ -16,11 +16,14 @@ const Logout = () => {
         const logout = async() => {
             console.log("logging user out");
             try {
+              setToken(null);              
                 const response = await getRequest('logout/', {
                     params: {
                       token: token
                     }})
+                setToken(null);
                 console.log("logged out!")
+                console.log(response.data);
             } catch (err) {
                 if (err.response) {
                     // Not in 200 response range

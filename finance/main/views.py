@@ -82,10 +82,16 @@ class Logout(APIView):
 
 
 @api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def current_user(request):
-    token = request.GET.get('token', '')
-    user = Token.objects.get(key=token).user
-    return Response({'username' : user.username})    
+    if 'HTTP_AUTHORIZATION' in request.META:
+        token = request.META['HTTP_AUTHORIZATION'][6::]
+        user = Token.objects.get(key=token).user
+        return Response({"username": user.username})    
+        
+
+    return Response({})    
 
 class HomeView(APIView):
     permission_classes = (IsAuthenticated, )

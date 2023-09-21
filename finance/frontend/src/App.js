@@ -15,8 +15,7 @@ import './App.css';
 import SideBar from './components/SideBar';
 import Login from "./pages/Login/Login";
 
-// Context - Current User
-import { AuthProvider } from "./context/AuthContext"
+
 
 // Theme Definition
 const darkTheme = createTheme({
@@ -56,12 +55,11 @@ const App = () => {
   return (
     <div>
         <ThemeProvider theme={darkTheme}>
-          <AuthProvider>
           <CssBaseline/>
             <Container>
               <SideBar/>
             </Container>       
-          </AuthProvider>               
+           
         </ThemeProvider>
     </div>
   )

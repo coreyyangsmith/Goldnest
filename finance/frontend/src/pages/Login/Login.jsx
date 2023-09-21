@@ -5,7 +5,6 @@ import useToken from "../../components/useToken";
 // MUI Imports
 import { TextField, Button } from "@mui/material";
 import { Link } from "react-router-dom"
-import { PropTypes } from 'prop-types';
 
 // Router
 import { useNavigate } from 'react-router-dom';
@@ -30,11 +29,9 @@ async function loginUser(credentials) {
  
 export default function Login() {
     const { token, setToken } = useToken();
-    const { authUser, 
-            setAuthUser, 
-            isLoggedIn, 
-            setIsLoggedIn } = useAuth()
+    const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
 
+    
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -42,31 +39,6 @@ export default function Login() {
     const [passwordError, setPasswordError] = useState(false)
 
     const navigate = useNavigate();
-
-    // Obtain Current User
-    const setCurrentUser = async() => {
-        try {
-            const response = await getRequest('users/current/', {
-              params: {
-                token: token
-              }
-            })
-            setAuthUser(response.data.username);      
-            setIsLoggedIn(true);  
-        } catch (err) {
-            if (err.response) {
-                // Not in 200 response range
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers);   
-            }
-            else {
-                console.log(`Error: ${err.message}`);
-            }
-            setAuthUser(null);
-            setIsLoggedIn(false);                               
-        }
-    }    
  
     const handleSubmit = async e => {
         e.preventDefault();
@@ -91,20 +63,18 @@ export default function Login() {
 
             console.log("successful login!")
             setToken(token);
-            setCurrentUser();
+            setAuthUser(username);
+            setIsLoggedIn(true);
+
+
             navigate('/');    
             window.location.reload(false);  //Trigger Refresh            
         }
     }
 
-    console.log(authUser);
 
     // If user is already logged in, do not let them fill form, simply redirect"
     // TODO
-    {if (authUser != null)
-    {
-        navigate('/')
-    }}
 
 
      
