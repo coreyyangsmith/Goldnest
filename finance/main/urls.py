@@ -37,5 +37,5 @@ urlpatterns = [
     re_path(r'^api/login', views.login),   
     re_path(r'^api/signup', views.signup),   
     re_path(r'^api/test_token', views.test_token),           
- 
+    re_path(r'^api/logout', views.logout),    
 ]

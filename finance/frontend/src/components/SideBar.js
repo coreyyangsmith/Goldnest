@@ -56,6 +56,7 @@ import Register from '../pages/Register/Register.jsx'
 import Login from '../pages/Login/Login.jsx'
 import Profile from '../pages/Profile/Profile.jsx'
 import Settings from '../pages/Settings/Settings.jsx'
+import Logout from '../pages/Login/Logout.jsx'
 
 
 
@@ -133,7 +134,7 @@ export default function MiniDrawer() {
   
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState('');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -146,9 +147,12 @@ export default function MiniDrawer() {
   useEffect(() => {
     const fetchCurrentUser = async() => {
       try {
-          const response = await getRequest('users/current/', "");
-          console.log(response.data);
-          setCurrentUser(response.data);         
+          const response = await getRequest('users/current/', {
+            params: {
+              token: token
+            }
+          })
+          setCurrentUser(response.data.username);         
       } catch (err) {
           if (err.response) {
               // Not in 200 response range
@@ -187,7 +191,7 @@ export default function MiniDrawer() {
             GOLDNEST
           </Typography>
           <Typography>
-            Current User: {token}
+            Current User: {currentUser}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -307,6 +311,8 @@ export default function MiniDrawer() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile/settings" element={<Settings />} />            
+
+                <Route path="/logout" element={<Logout />} />                         
             </Routes>  
       </Box>
     </Box>

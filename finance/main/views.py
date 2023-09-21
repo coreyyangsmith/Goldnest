@@ -5,6 +5,7 @@ from .serializers import *
 # Django Shortcuts
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import logout
 
 # DRF
 from rest_framework.permissions import IsAuthenticated
@@ -20,9 +21,6 @@ from rest_framework import viewsets
 # Create your views here.
 def MainView(request):
     return render(request, 'home/index.html')
-
-
-
 
 #######################
 #### MICRO FINANCE ####
@@ -76,11 +74,17 @@ def test_token(request):
     return Response({"passed for {}".format(request.user.email)})
 
 @api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def logout(request):
+    logout(request)
+    return Response({"passed for {}".format(request.user.email)})
+
+@api_view(['GET'])
 def current_user(request):
-    user = User.objects.get(username=request.user.username)
-    return Response({
-      'username' : user.username,
-    })    
+    token = request.GET.get('token', '')
+    user = Token.objects.get(key=token).user
+    return Response({'username' : user.username})    
 
 class HomeView(APIView):
     permission_classes = (IsAuthenticated, )
@@ -88,8 +92,6 @@ class HomeView(APIView):
     def get(self, request):
         content = {'message': 'Hello, World!'}
         return Response(content)
-
-
     
 #-- Entry --#
 @api_view(['GET', 'POST'])
