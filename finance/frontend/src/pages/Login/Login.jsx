@@ -74,10 +74,7 @@ export default function Login() {
 
 
     // If user is already logged in, do not let them fill form, simply redirect"
-    // TODO
-
-
-     
+    // TODO     
     return ( 
         <React.Fragment>
         <form autoComplete="off" onSubmit={handleSubmit}>

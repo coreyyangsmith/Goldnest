@@ -7,28 +7,126 @@ import { TextField, Button, Stack, FormLabel, RadioGroup,
 FormControlLabel, Radio } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 
+// Router
+import { useNavigate } from 'react-router-dom';
+
 // Day JS/Date Picker
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+// Context
+import useToken from "../../hooks/useToken"
+import { useAuth } from "../../context/AuthContext"
+
  {/* TODO - Refactor Login and Register forms to user RHF */}
 
+ async function signupUser(credentials) {
+    return fetch('http://127.0.0.1:8000/api/signup/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      })
+        .then(data => data.json())
+}
+
 const RegisterForm = () => {
+    // User Context
+    const { token, setToken } = useToken();
+    const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
+
+    // Form
     const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')    
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
     const [firstName, setFirstName] = useState('') 
     const [lastName, setLastName] = useState('') 
-    const [email, setEmail] = useState('')
     const [dateOfBirth, setDateOfBirth] = useState(new Date())
-    const [password, setPassword] = useState('')
     const [gender, setGender] = useState('')
- 
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log(username, email, password,
-            firstName, lastName,
-            gender, dateOfBirth)
+
+    const [usernameError, setUsernameError] = useState(false)
+    const [emailError, setEmailError] = useState(false)    
+    const [passwordError, setPasswordError] = useState(false)
+    const [confirmPasswordError, setConfirmPasswordError] = useState(false)
+
+    const [firstNameError, setFirstNameError] = useState(false) 
+    const [lastNameError, setLastNameError] = useState(false) 
+    const [dateOfBirthError, setDateOfBirthError] = useState(false)
+    const [genderError, setGenderError] = useState(false)    
+    
+    // Navigation
+    const navigate = useNavigate();
+
+    //--------------------------------//
+
+    function validateSubmit() {
+        if (username === '') {
+            setUsernameError(true)
+        }
+    
+        if (email === '') {
+            setEmailError(true)
+        }
+        
+        if (password === '') {
+            setPasswordError(true)
+        }     
+        
+        if (confirmPassword === '' || confirmPassword != password) {
+            setConfirmPasswordError(true)
+        }   
+        
+        if (firstName === '') {
+            setFirstNameError(true)
+        }    
+        
+        if (lastName === '') {
+            setLastNameError(true)
+        }            
+    
+        if (dateOfBirth === '') {
+            setDateOfBirthError(true)
+        }   
+        
+        if (gender === '') {
+            setGenderError(true)
+        }           
+    }    
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+
+        setUsernameError(false);
+        setEmailError(false);
+        setPasswordError(false);
+        setFirstNameError(false);
+        setLastNameError(false);
+        setDateOfBirthError(false);
+        setGenderError(false);
+
+        // Validation
+        validateSubmit();
+
+        const token = await signupUser({
+            username,
+            email,
+            password
+        });
+
+        if (token.detail != "Not found."){
+            console.log("signup successful")
+            setToken(token);
+            setAuthUser(username);
+            setIsLoggedIn(true);
+
+            navigate("/")
+            window.location.reload(false);  //Trigger Refresh               
+        }
     }
  
     return (
