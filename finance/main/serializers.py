@@ -1,6 +1,6 @@
 # Django Imports
 from .models import *
-
+import datetime
 # Django Authentication
 from django.contrib.auth.password_validation import validate_password
 
@@ -8,35 +8,34 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
-
 # Admin
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = ('user', 'dob', 'gender')
-
-    def validate(self, attrs):
-        if attrs['password'] != attrs['password2']:
-            raise serializers.ValidationError({"password": "Password fields didn't match."})
-
-        return attrs
-
-    def create(self, validated_data):
-        user = Profile.objects.create(
-            user=User.validated_data['user'],
-            dob=validated_data['dob'],
-            gender=validated_data['gender']
-        )
-
-        user.set_password(validated_data['password'])
-        user.save()
-
-        return user
-    
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):    
     class Meta(object):
         model = User
-        fields = ['id', 'username', 'password', 'email']
+        fields = ['id', 'username', 'password', 'email', 
+                  'first_name', 'last_name']
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    class Meta:
+        model = Profile
+        fields = ['user', 'dateOfBirth', 'gender']
+
+    def create (self, validated_data):
+        print(validated_data)
+        user = User.objects.create(username=validated_data['user']['username'],
+                                    email=validated_data['user']['email'],
+                                    first_name=validated_data['user']['first_name'],
+                                    last_name=validated_data['user']['last_name'])
+        user.set_password(User.objects.make_random_password())
+        user.save()
+
+        profile = Profile.objects.create(user = user,
+                                         dateOfBirth=validated_data['dateOfBirth'],
+                                         gender=validated_data['gender'])
+
+        return profile
+    
 
 # Micro Finance
 class EntitySerializer(serializers.ModelSerializer):

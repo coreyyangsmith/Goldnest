@@ -12,12 +12,12 @@ GENDER = {
 }
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    dob = models.DateField()
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    dateOfBirth = models.DateField(null=True, auto_now=False, auto_now_add=False)
     gender = models.CharField(max_length=6, choices=GENDER, default='M')
 
     def __str__(self):
-        return str(self.user)
+        return self.user.username
 
 # ################################################################# #
 # ------------------------- MICRO FINANCE ------------------------- #

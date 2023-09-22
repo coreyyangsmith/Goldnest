@@ -44,8 +44,8 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
-    const [firstName, setFirstName] = useState('') 
-    const [lastName, setLastName] = useState('') 
+    const [first_name, setFirstName] = useState('') 
+    const [last_name, setLastName] = useState('') 
     const [dateOfBirth, setDateOfBirth] = useState(new Date())
     const [gender, setGender] = useState('')
 
@@ -86,12 +86,12 @@ const RegisterForm = () => {
             passedChecks = false;
         }   
         
-        if (firstName === '') {
+        if (first_name === '') {
             setFirstNameError(true)
             passedChecks = false;
         }    
         
-        if (lastName === '') {
+        if (last_name === '') {
             setLastNameError(true)
             passedChecks = false;
         }            
@@ -123,9 +123,14 @@ const RegisterForm = () => {
         if (validateSubmit())
         {
             const token = await signupUser({
-                username,
-                email,
-                password
+                user: {
+                    username,
+                    email,
+                    password,
+                    first_name,
+                    last_name},
+                dateOfBirth,
+                gender
             });
     
             if (token.detail !== "Not found."){
@@ -135,7 +140,7 @@ const RegisterForm = () => {
                 setIsLoggedIn(true);
     
                 navigate("/")
-                window.location.reload(false);  //Trigger Refresh               
+                window.location.reload(false);  //Trigger Refresh                      
             }
         }
     }
@@ -164,7 +169,7 @@ const RegisterForm = () => {
                         color='secondary'
                         label="First Name"
                         onChange={e => setFirstName(e.target.value)}
-                        value={firstName}
+                        value={first_name}
                         error={firstNameError}                           
                         fullWidth
                         required
@@ -175,7 +180,7 @@ const RegisterForm = () => {
                         color='secondary'
                         label="Last Name"
                         onChange={e => setLastName(e.target.value)}
-                        value={lastName}
+                        value={last_name}
                         error={lastNameError}                           
                         fullWidth
                         required
