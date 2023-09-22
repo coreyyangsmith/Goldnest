@@ -1,6 +1,6 @@
 // React Import 
 import React, { useState, useEffect, useContext } from "react";
-import useToken from "../../components/useToken";
+import useToken from "../../hooks/useToken";
 
 // MUI Imports
 import { TextField, Button } from "@mui/material";

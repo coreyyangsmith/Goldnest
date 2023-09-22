@@ -1,9 +1,8 @@
 // React Import
 import React, { useState, useEffect, useContext } from 'react'
 
-const AuthContext = React.createContext()
+export const AuthContext = React.createContext()
 
-// Create Auth Hook
 export function useAuth(){
     return useContext(AuthContext);
 }

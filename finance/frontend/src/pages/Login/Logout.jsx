@@ -1,6 +1,6 @@
 // React
 import React, { useEffect } from 'react'
-import useToken from "../../components/useToken";
+import useToken from "../../hooks/useToken";
 
 // Router
 import { useNavigate } from 'react-router-dom';

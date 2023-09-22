@@ -1,7 +1,7 @@
 // React Import 
 import * as React from 'react';
 import { useContext, useEffect } from 'react';
-import useToken from './useToken';
+import useToken from '../hooks/useToken';
 
 // MUI Import
 import { styled, useTheme } from '@mui/material/styles';
@@ -41,8 +41,6 @@ import SettingsIcon from '@mui/icons-material/Settings'; //Settings
 import LogoutIcon from '@mui/icons-material/Logout'; // Logout
 
 // Pages
-import Landing from '../pages/Landing/Landing.jsx'
-
 import Dashboard from '../pages/Dashboard/Dashboard.jsx'
 import Accounts from '../pages/Accounts/Accounts.jsx'
 import Budget from '../pages/Budget/Budget.jsx'
@@ -50,8 +48,6 @@ import Reports from '../pages/Reports/Reports.jsx'
 
 import Database from '../pages/Database/Database.jsx'
 
-import Register from '../pages/Register/Register.jsx'
-import Login from '../pages/Login/Login.jsx'
 import Profile from '../pages/Profile/Profile.jsx'
 import Settings from '../pages/Settings/Settings.jsx'
 import Logout from '../pages/Login/Logout.jsx'
@@ -174,11 +170,6 @@ export default function MiniDrawer() {
   fetchCurrentUser();
   }, [authUser])
 
-
-  
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -187,9 +178,8 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-
-
-
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -319,18 +309,12 @@ export default function MiniDrawer() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-          <Routes>
-                <Route path="/" element={<Landing />} />           
-
-                <Route path="/dashboard" element={<Dashboard />} />
+          <Routes>        
+                <Route path="/" element={<Dashboard />} />
                 <Route path="/accounts" element={<Accounts />} />
                 <Route path="/budget" element={<Budget />} />
                 <Route path="/reports" element={<Reports />} />             
-
                 <Route path="/data" element={<Database />} />
-
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile/settings" element={<Settings />} />            
 

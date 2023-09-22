@@ -1,6 +1,6 @@
 // React
 import React, { useEffect, useState } from "react"
-import useToken from "./components/useToken";
+import useToken from "./hooks/useToken";
 
 // MUI Dependencies
 import { Container } from "@mui/material"
@@ -13,9 +13,7 @@ import { getRequest } from './api/posts'
 // Components
 import './App.css';
 import SideBar from './components/SideBar';
-import Login from "./pages/Login/Login";
-
-
+import Landing from "./pages/Landing/Landing";
 
 // Theme Definition
 const darkTheme = createTheme({
@@ -49,7 +47,14 @@ const App = () => {
   const { token, setToken } = useToken();
 
   if (!token) {
-    return <Login setToken={setToken}/>
+    return (
+    <>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline/>
+        <Landing setToken={setToken}/>
+      </ThemeProvider>        
+    </>
+    )
   }  
 
   return (
@@ -59,7 +64,6 @@ const App = () => {
             <Container>
               <SideBar/>
             </Container>       
-           
         </ThemeProvider>
     </div>
   )
