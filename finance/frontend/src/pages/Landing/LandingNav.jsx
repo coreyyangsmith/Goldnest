@@ -1,20 +1,14 @@
 // React Import
 import React from 'react'
 
-// My Page Imports
-import Register from '../Register/Register'
-import Login from '../Login/Login.jsx'
-
-// Component Imports
+// Routing
 import StyledLink from '../../components/StyledLink'
 
 // MUI Import
 import { AppBar, Toolbar } from '@mui/material'
 
-// Routing
-import { Link } from 'react-router-dom'
 
-const linkSX = {
+const toolbarSX = {
     display: 'flex',
     justifyContent: 'center',
     border: '1px solid #bbb'
@@ -26,7 +20,7 @@ const LandingNav = () => {
 
 
     <AppBar color="primary" position='sticky'>
-        <Toolbar variant="dense" sx={linkSX}>
+        <Toolbar variant="dense" sx={toolbarSX}>
 
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/contact">Contact</StyledLink>                

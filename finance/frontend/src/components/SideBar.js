@@ -1,6 +1,6 @@
 // React Import 
 import * as React from 'react';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import useToken from '../hooks/useToken';
 
 // MUI Import
@@ -21,9 +21,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
-// API
-import { getRequest } from '../api/posts'
 
 // Routing
 import { Link } from "react-router-dom"
@@ -55,7 +52,6 @@ import Logout from '../pages/Login/Logout.jsx'
 // Context
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
-
 
 const drawerWidth = 220;
 
@@ -125,19 +121,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const currentUserSx = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center', 
-  border: 1,
-}
-
-const testSX = {
-  border: 1,
-}
-
 export default function MiniDrawer() {
-  const { token, setToken } = useToken();  
+  const { token } = useToken();  
   const { authUser, 
           setAuthUser, 
           isLoggedIn, 
@@ -168,7 +153,7 @@ export default function MiniDrawer() {
       }
   }
   fetchCurrentUser();
-  }, [authUser])
+  }, [setAuthUser, setIsLoggedIn, token])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -216,7 +201,7 @@ export default function MiniDrawer() {
         <Divider />
         <List>
 
-          <ListItem key="My Dashboard" component={Link} to="/dashboard" disablePadding sx={{ display: 'block'}}>
+          <ListItem key="My Dashboard" component={Link} to="/" disablePadding sx={{ display: 'block'}}>
             <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
               <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
                 <SpaceDashboardIcon/>                            

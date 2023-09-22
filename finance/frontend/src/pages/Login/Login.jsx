@@ -1,5 +1,5 @@
 // React Import 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import useToken from "../../hooks/useToken";
 
 // MUI Imports
@@ -9,8 +9,6 @@ import { Link } from "react-router-dom"
 // Router
 import { useNavigate } from 'react-router-dom';
 
-// API
-import { getRequest } from '../../api/posts'
 
 // Context - Current User
 import { useAuth } from "../../context/AuthContext"
@@ -28,8 +26,8 @@ async function loginUser(credentials) {
 }
  
 export default function Login() {
-    const { token, setToken } = useToken();
-    const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
+    const { setToken } = useToken();
+    const { setAuthUser, setIsLoggedIn } = useAuth()
 
     
     const [username, setUsername] = useState("")
@@ -59,16 +57,16 @@ export default function Login() {
         });
 
         // if successful login
-        if (token.detail != "Not found."){
+        if (token.detail !== "Not found."){
 
             console.log("successful login!")
             setToken(token);
             setAuthUser(username);
             setIsLoggedIn(true);
 
-
-            navigate('/');    
-            window.location.reload(false);  //Trigger Refresh            
+            navigate('/');
+            window.location.reload(false);  //Trigger Refresh   
+     
         }
     }
 
