@@ -1,3 +1,16 @@
+//-------------------------------------------------------//
+//  File Name: Budget.jsx
+//  Description: TODO
+//
+//  Requirements:
+//      - TODO
+//
+//  Returns:
+//      - TODO
+//
+// Created By: Corey Yang-Smith
+// Date: September 23rd, 2023
+//-------------------------------------------------------//
 // React Imports
 import React, { useEffect, useState } from 'react'
 
@@ -16,32 +29,19 @@ import SaveButton from '../../components/SaveButton';
 // Axios Import
 import { getRequest } from '../../api/posts'
 
+// My Hooks
+import { useMainCategory } from '../../hooks/useMainCategory';
+
 const Budget = () => {
-    const [mainCategory, setMainCategories] = useState([]) //used for live update
     const [subCategory, setSubCategories] = useState([])
     const [budget, setBudget] = useState([])
 
     const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
     const [selectedSub, setSelectedSub] = useState("")      
 
-    useEffect(() => {
-        const fetchMainCategories = async() => {
-            try {
-                const response = await getRequest('maincategories/', "");
-                setMainCategories(response.data);         
-            } catch (err) {
-                if (err.response) {
-                    // Not in 200 response range
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);   
-                }
-                else {
-                    console.log(`Error: ${err.message}`);
-                }                             
-            }
-        }
 
+
+    useEffect(() => {
         const fetchSubCategories = async() => {
             try {
                 const response = await getRequest('subcategories/', "");
@@ -58,7 +58,7 @@ const Budget = () => {
                 }                             
             }
         }        
-        fetchMainCategories();
+
         fetchSubCategories();
     }
     ,[])
@@ -85,11 +85,9 @@ const Budget = () => {
                     <h2>Main Categories</h2>
                     <Box sx={{
                     }}>
-                        <MainCategoriesList mainCategory={mainCategory} 
-                                            setSelectedMain={setSelectedMain}
-                                            selectedMain={selectedMain}
-                                            setMainCategories={setMainCategories}/>
-                        <MainCategoryForm setMainCategories={setMainCategories}/>
+                        <MainCategoriesList setSelectedMain={setSelectedMain}
+                                            selectedMain={selectedMain}/>
+                        <MainCategoryForm/>
                     </Box>
                 </Grid>
 

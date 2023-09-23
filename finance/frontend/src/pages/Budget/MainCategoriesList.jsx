@@ -1,3 +1,20 @@
+//-------------------------------------------------------//
+//  File Name: MainCategorisList.jsx
+//  Description: TODO
+//
+//  Requirements:
+//    - TODO
+//
+//  Returns:
+//    - TODO
+//
+// Created By: Corey Yang-Smith
+// Date: September 23rd, 2023
+//-------------------------------------------------------//
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Imports
 import React from 'react'
 
@@ -8,12 +25,28 @@ import "../../components/css/UIStyles.css";
 import { Button, Stack, Tooltip } from '@mui/material/'
 import { getRequest, deleteRequest } from '../../api/posts'
 
+// My Hooks
+import { useMainCategory } from '../../hooks/useMainCategory';
+
+
+//  UTILITY
+//-------------------------------------------------------//
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
+
 const MainCategoriesList = (props) => {
 
+  //My Hooks
+  const { mainCategory, setMainCategories } = useMainCategory();  
+
+  // Handles Main Click - Sets Selected Main
   const handleClick = (mainCat) => {
     props.setSelectedMain(mainCat.pk)
   }
 
+  // Handles Delete Button - Delete Selected Main Category (and Children)
   const handleDelete = (mainCat) => {
     console.log("Deleting: " + mainCat.name); 
 
@@ -54,30 +87,39 @@ const MainCategoriesList = (props) => {
     fetchMainCategories();
   }
 
-  const myMainCategories = props.mainCategory.map(mainCat => {
-    return  <React.Fragment key={mainCat.pk}>
-    <Stack direction="row" spacing={0.5}>
-    <Tooltip title={mainCat.description}>
-      <Button color="secondary"
-                      variant="outlined" 
-                      fullWidth={true}
-                      className={`Category-Button ${props.selectedMain === mainCat.pk && "active"}`} 
-                      onClick={() => {handleClick(mainCat)}}>
-        {mainCat.name}
-      </Button>
-    </Tooltip>
-    <Button color="error"
-          variant='outlined'
-          onClick={() => handleDelete(mainCat)}>X</Button>
-    </Stack>
-    </React.Fragment>
-  })
+  
 
-  return (
-    <Stack spacing={2}>
-        {myMainCategories}
-    </Stack> 
-  )
-}
+  console.log(mainCategory);
+
+  if (mainCategory !== undefined){
+
+    const myMainCategories = mainCategory.map(mainCat => {
+      return  <React.Fragment key={mainCat.pk}>
+      <Stack direction="row" spacing={0.5}>
+      <Tooltip title={mainCat.description}>
+        <Button color="secondary"
+                        variant="outlined" 
+                        fullWidth={true}
+                        className={`Category-Button ${props.selectedMain === mainCat.pk && "active"}`} 
+                        onClick={() => {handleClick(mainCat)}}>
+          {mainCat.name}
+        </Button>
+      </Tooltip>
+      <Button color="error"
+            variant='outlined'
+            onClick={() => handleDelete(mainCat)}>X</Button>
+      </Stack>
+      </React.Fragment>
+    })
+  
+    return (
+      <Stack spacing={2}>
+          {myMainCategories}
+      </Stack> 
+    )
+  }    
+    
+  }
+
 
 export default MainCategoriesList

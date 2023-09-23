@@ -61,9 +61,9 @@ const App = () => {
     <div>
         <ThemeProvider theme={darkTheme}>
           <CssBaseline/>
-            <Container>
+
               <SideBar/>
-            </Container>       
+   
         </ThemeProvider>
     </div>
   )
