@@ -1,3 +1,24 @@
+//-------------------------------------------------------//
+//  File Name: DoughnutReport.jsx
+//  Description: Generates Charts.js Doughnut Report given data.
+//
+//  Parents:
+//      - Reports.jsx
+//
+//  Requirements:
+//      - Input Data
+//
+//  Returns:
+//      - Doughnut Report (given data)
+//
+// Created By: Corey Yang-Smith
+// Date: September 25th, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import
 import React, { useState, useEffect } from 'react'
 
@@ -10,6 +31,9 @@ import { faker } from '@faker-js/faker';
 
 // Axios Import
 import { getRequest } from '../../api/posts';
+
+//  GLOBALS & INITIALIZATION 
+//-------------------------------------------------------//
 
 // Dummy Data
 const data = {
@@ -31,6 +55,10 @@ const data = {
     hoverOffset: 4
   }]
 };
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const DoughnutReport = (props) => {
   const [isReady, setIsReady] = useState(null);
@@ -149,5 +177,9 @@ const DoughnutReport = (props) => {
 
   )
 }
+
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default DoughnutReport

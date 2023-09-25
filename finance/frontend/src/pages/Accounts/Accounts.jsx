@@ -1,7 +1,26 @@
-import { Grid, Stack } from "@mui/material/";
-import { useState, useEffect } from "react";
-// React Imports
+//-------------------------------------------------------//
+//  File Name: Accounts.jsx
+//  Description: Main Page for Accounts.
+//
+//  Requirements:
+//      - None
+//
+//  Returns:
+//      - Main Page for Accounts
+//
+// Created By: Corey Yang-Smith
+// Date: September 25th, 2023
+//-------------------------------------------------------//
 
+
+//  IMPORTS
+//-------------------------------------------------------//
+
+// React Import
+import { useState, useEffect } from "react";
+
+// MUI Imports
+import { Grid, Stack } from "@mui/material/";
 
 // Axios Import
 import axios from "axios";
@@ -17,13 +36,16 @@ import axios from "axios";
     - This being said, when you create new entries, they will not be tied to accounts, in fact
     entries will only be tied to your budget and serve as an I/O summary. They will essentially
     be two separate aspects of your finance (Macro vs Micro)
-    
-    */}
+*/}
+
+//  GLOBALS & INITIALIZATION
+//-------------------------------------------------------//
 
 const ACCOUNTS_API_URL = "http://127.0.0.1:8000/api/accounts/"
 
 
-
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const Accounts = () => {
 
@@ -135,5 +157,9 @@ const Accounts = () => {
     {/* Investments */}
     </>
 }
+
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default Accounts;

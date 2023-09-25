@@ -1,3 +1,24 @@
+//-------------------------------------------------------//
+//  File Name: ExpensesByMainCategory.jsx
+//  Description: Generates Charts.js Line Chart given data.
+//
+//  Parents:
+//      - Reports.jsx
+//
+//  Requirements:
+//      - Input Data
+//
+//  Returns:
+//      - Line Chart (given data)
+//
+// Created By: Corey Yang-Smith
+// Date: September 25th, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import
 import React from 'react'
 
@@ -8,7 +29,8 @@ import { Bar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
 
 
-
+//  UTILITY
+//-------------------------------------------------------//
 
 //Import Data
 // TODO
@@ -45,6 +67,9 @@ export const data = {
   ],
 };
 
+//  MAIN FUNCTION
+//-------------------------------------------------------//
+
 const ExpensesByMainCategory = () => {
   ChartJS.register(CategoryScale, LinearScale, BarElement,
     Title,
@@ -54,5 +79,9 @@ const ExpensesByMainCategory = () => {
   
   return <Bar options={options} data={data}/>
 }
+
+
+//  EXPORTS 
+//-------------------------------------------------------//
 
 export default ExpensesByMainCategory

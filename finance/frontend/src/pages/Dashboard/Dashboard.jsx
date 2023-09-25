@@ -1,3 +1,26 @@
+//-------------------------------------------------------//
+//  File Name: Dashboard.jsx
+//  Description: Main Page after Login
+//
+//  Requirements:
+//      - None
+//
+//  Returns:
+//      - Main Page for Dashboard
+//
+// Created By: Corey Yang-Smith
+// Date: September 25th, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+// NA
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
+
 const Dashboard = () => {
     const date = new Date();
 
@@ -14,5 +37,9 @@ const Dashboard = () => {
     <h2>Days remaining: {timeLeft}</h2>    
     </>
 }
+
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default Dashboard;

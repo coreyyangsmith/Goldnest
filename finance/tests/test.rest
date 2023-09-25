@@ -1,3 +1,17 @@
+#-------------------------------------------------------#
+#   File Name: test.rest
+#   Description: In-program REST debugger
+#
+#   Requirements:
+#       - REST requests formatted
+#
+#   Returns:
+#       - Responses from server
+#
+#   Created By: Corey Yang-Smith
+#   Date: September 25th, 2023
+#-------------------------------------------------------#
+
 POST http://127.0.0.1:8000/api/signup 
 Content-Type: application/json
 

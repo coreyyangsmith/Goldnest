@@ -1,3 +1,4 @@
+// DEPRECATED
 import { useState } from "react";
 
 function useForm({ additionalData }) {

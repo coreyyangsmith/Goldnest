@@ -1,3 +1,21 @@
+//-------------------------------------------------------//
+//  File Name: Reports.jsx
+//  Description: Main Page for Reports
+//
+//  Requirements:
+//      - None
+//
+//  Returns:
+//      - Main Page for Reports
+//
+// Created By: Corey Yang-Smith
+// Date: September 25th, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import
 import React from 'react'
 import { useState } from 'react';
@@ -6,12 +24,15 @@ import { useState } from 'react';
 import { Box, Divider, Grid } from '@mui/material/';
 import { Select, MenuItem } from '@mui/material';
 
-
 // My Components
 import DoughnutReport from "./DoughnutReport";
 import ExpensesByMainCategory from './ExpensesByMainCategory';
 import NetWorthLineChart from './NetWorthLineChart';
 import MyD3Component from './MyD3Chart';
+
+
+//  MAIN FUNCTION 
+//-------------------------------------------------------//
 
 const Reports = () => {
     const [selectedTimeSpan, setSelecedTimeSpan] = useState("");
@@ -141,15 +162,12 @@ const Reports = () => {
                 <MyD3Component data = {[10, 20, 30]}/>
             </Box>      
         </Grid>                 
-
-                
-
-
-
     </Grid>
-
-
     </>
 }
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 export default Reports;

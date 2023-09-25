@@ -1,3 +1,24 @@
+//-------------------------------------------------------//
+//  File Name: NetWorthLineChart.jsx
+//  Description: Generates Charts.js Line Chart given Data
+//
+//  Parent:
+//      - Reports.jsx
+//
+//  Requirements:
+//      - Input Data
+//
+//  Returns:
+//      - Main Page for Landing Site
+//
+// Created By: Corey Yang-Smith
+// Date: September 25th, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import
 import React from 'react'
 
@@ -13,7 +34,14 @@ import {Chart as ChartJS,
 } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
+
+// Faker Import
 import { faker } from '@faker-js/faker';
+
+
+//  GLOBALS & INITIALIZATION
+//-------------------------------------------------------//
+
 
 ChartJS.register(
   CategoryScale,
@@ -58,8 +86,16 @@ export const data = {
   ],
 };
 
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
+
 const NetWorthLineChart = () => {
     return <Line options={options} data={data} />;
 }
+
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default NetWorthLineChart

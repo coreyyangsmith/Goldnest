@@ -1,6 +1,32 @@
+//-------------------------------------------------------//
+//  File Name: StyledLink.jsx
+//  Description: Override of React Router Dom's { Link }
+//
+//  Requirements:
+//      - React Router Dom Link
+//
+//  Returns:
+//      - Styled Link (to Remove Hyperlink Default Style)
+//
+// Created By: Corey Yang-Smith
+// Date: September 25th, 2023
+//-------------------------------------------------------//
+
+//  IMPORTS
+//-------------------------------------------------------//
+
+// React Import
 import React from 'react';
+
+// React Router Import
 import { Link } from 'react-router-dom';
+
+// Styled-Components Import
 import styled from 'styled-components';
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const StyledLink = styled(Link)`
     text-decoration: none;
@@ -19,5 +45,8 @@ const StyledLink = styled(Link)`
         text-decoration: none;
     }
 `;
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default (props) => <StyledLink {...props} />;

@@ -1,5 +1,33 @@
-import * as d3 from "d3";
+//-------------------------------------------------------//
+//  File Name: MyD3Chart.jsx
+//  Description: Test for D3 Line Chart
+//
+//  Parents:
+//      - Reports.jsx
+//
+//  Requirements:
+//      - Input Data
+//
+//  Returns:
+//      - D3 Line Chart (given data)
+//
+// Created By: Corey Yang-Smith
+// Date: September 25th, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
+// React Import
 import {useRef, useEffect} from "react";
+
+// D3 Import
+import * as d3 from "d3";
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 export default function MyD3Chart({
   data,
