@@ -1,4 +1,27 @@
+//-------------------------------------------------------//
+//  File Name: Contact.jsx
+//  Description: Contact Page for Landing Site
+//
+//  Parents:
+//      - Landing.jsx
+//
+//  Returns:
+//      - Contact Page for Landing Site
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
+// React Import
 import React from 'react'
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const Contact = () => {
   return (
@@ -9,5 +32,9 @@ const Contact = () => {
 </>
   )
 }
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 export default Contact

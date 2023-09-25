@@ -1,3 +1,21 @@
+//-------------------------------------------------------//
+//  File Name: SideBar.jsx
+//  Description:
+//
+//  Requirements:
+//      - TODO
+//
+//  Returns:
+//      - TODO
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import 
 import * as React from 'react';
 import { useEffect } from 'react';
@@ -52,6 +70,10 @@ import Logout from '../pages/Login/Logout.jsx'
 // Context
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
+
+
+//  UTILITY
+//-------------------------------------------------------//
 
 const drawerWidth = 220;
 
@@ -120,6 +142,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   }),
 );
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 export default function MiniDrawer() {
   const { token } = useToken();  

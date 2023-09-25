@@ -1,3 +1,22 @@
+#-------------------------------------------------------#
+#   File Name: views/urls.py
+#   Description: View Functions for Main
+#
+#   Requirements:
+#       - urls
+#
+#   Renders:
+#       - Authentication Routes
+#       - Main Model REST
+#
+#   Created By: Corey Yang-Smith
+#   Date: September 24th, 2023
+#-------------------------------------------------------#
+
+
+#   IMPORTS
+#-------------------------------------------------------#
+
 # Project Imports
 from .models import *
 from .serializers import *
@@ -46,6 +65,7 @@ def users_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+# Authentication    
 @api_view(['POST'])
 def login(request):
     user = get_object_or_404(User, username=request.data['username'])
@@ -67,18 +87,20 @@ def signup(request):
         return Response({'token': token.key, 'user': serializer.data})
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET'])
-@authentication_classes([SessionAuthentication, TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def test_token(request):
-    return Response({"passed for {}".format(request.user.email)})
-
 class Logout(APIView):
     def get(self, request, format=None):
         token = request.GET.get('token', '')
         user = Token.objects.get(key=token).user
         user.auth_token.delete()
         return Response(status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def test_token(request):
+    return Response({"passed for {}".format(request.user.email)})
+
 
 
 @api_view(['GET'])
@@ -312,7 +334,11 @@ def budgets_detail(request, pk):
         budget.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)        
     
-# Resource
+
+#   RESOURCES
+#-------------------------------------------------------#
+
+# CORS Configuration
 # https://www.bezkoder.com/django-rest-api/#6_Configure_CORS_for_a_Rest_Api_Resource
 
 # Setting up Token-based Authentication with DRF

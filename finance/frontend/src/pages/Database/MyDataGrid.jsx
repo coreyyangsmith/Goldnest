@@ -1,4 +1,22 @@
-// React
+//-------------------------------------------------------//
+//  File Name: MyDataGrid.jsx
+//  Description: Displays Main Contact for Database
+//
+//  Parents:
+//      - Database.jsx
+//
+//  Returns:
+//      - Data Grid with User Entries
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
+// React Import
 import { useState, useEffect } from 'react';
 
 // MUI Dependencies
@@ -9,8 +27,11 @@ import { Tooltip } from '@mui/material';
 // Axios Import
 import axios from "axios"
 
-const ENTRIES_API_URL = "http://127.0.0.1:8000/api/entrys/"
 
+//  GLOBALS & INITIALIZATION
+//-------------------------------------------------------//
+
+const ENTRIES_API_URL = "http://127.0.0.1:8000/api/entrys/"
 const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
 const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
 const ROUTING_API = "http://127.0.0.1:8000/api/entitys/"
@@ -24,6 +45,8 @@ subCat = subCat.data
 routing = routing.data
 
 
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 export default function MyDataGrid() {
   
@@ -59,7 +82,7 @@ export default function MyDataGrid() {
     }, [])
 
   //Process Data
-
+  // TODO
 
 
 

@@ -1,3 +1,25 @@
+//-------------------------------------------------------//
+//  File Name: SubCategoriesList.jsx
+//  Description: Given selected main category, renders a list of subcateogry buttons
+//
+//  Requirements:
+//      - Selected Sub Cateogry Data for Main Category
+//      - Prop: Selected Main
+//      - Prop: Sub Category
+//      - Prop: Selected Sub State
+//      - Prop: Budget State (TODO ?)
+//
+//  Renders:
+//      - List of Sub Cateogry Buttons
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Imports
 import React from 'react'
 
@@ -6,6 +28,10 @@ import { Stack, Button, Tooltip } from '@mui/material/';
 
 // Axios import
 import { getRequest } from '../../api/posts'
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const SubCategoriesList = (props) => {
   let filteredSubCat = props.subCategory.filter((data) => data.main_category === props.selectedMain);
@@ -50,5 +76,8 @@ const SubCategoriesList = (props) => {
     </Stack>
   )
 }
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default SubCategoriesList

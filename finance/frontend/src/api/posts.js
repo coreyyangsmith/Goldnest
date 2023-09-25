@@ -1,10 +1,27 @@
+//-------------------------------------------------------//
+//  File Name: posts.js
+//  Description: Utilizes axios to connect to main back-end api.
+//
+//  Requirements:
+//      - None
+//
+//  Returns:
+//      - REST api to selected back-end
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // Import Axios
 import axios from 'axios'
 
-{/* 
-src/api/posts.js
-Responsible for setting up Axios' baseURL to be utilized throughout the project.
-*/}
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const axiosClient = axios.create({
     baseURL : `http://127.0.0.1:8000/api/`

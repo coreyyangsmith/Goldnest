@@ -1,4 +1,22 @@
-// React
+//-------------------------------------------------------//
+//  File Name: Logout.jsx
+//  Description: Logout current user and reset tracked parameters.
+//
+//  Requirements:
+//      - None
+//
+//  Returns:
+//      - TODO
+//
+// Created By: Corey Yang-Smith
+// Date: September 24th, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
+// React Import
 import React, { useEffect } from 'react'
 import useToken from "../../hooks/useToken";
 
@@ -7,6 +25,10 @@ import { useNavigate } from 'react-router-dom';
 
 // API
 import { getRequest } from "../../api/authenticated"
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const Logout = () => {
     const { token, setToken } = useToken();
@@ -48,5 +70,8 @@ const Logout = () => {
     </>
   )
 }
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default Logout

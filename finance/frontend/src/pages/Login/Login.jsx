@@ -1,3 +1,21 @@
+//-------------------------------------------------------//
+//  File Name: Login.jsx
+//  Description: Login form
+//
+//  Requirements:
+//      - None
+//
+//  Returns:
+//      - Submits user data to server and updates tracked parameters.
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import 
 import React, { useState } from "react";
 import useToken from "../../hooks/useToken";
@@ -9,9 +27,12 @@ import { Link } from "react-router-dom"
 // Router
 import { useNavigate } from 'react-router-dom';
 
-
 // Context - Current User
 import { useAuth } from "../../context/AuthContext"
+
+
+//  UTILITY
+//-------------------------------------------------------//
 
 
 async function loginUser(credentials) {
@@ -25,6 +46,10 @@ async function loginUser(credentials) {
         .then(data => data.json())
 }
  
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
+
 export default function Login() {
     const { setToken } = useToken();
     const { setAuthUser, setIsLoggedIn } = useAuth()

@@ -1,3 +1,21 @@
+//-------------------------------------------------------//
+//  File Name: Landing.jsx
+//  Description: Main Routing/Navigation Template for Landing Site.
+//
+//  Requirements:
+//      - None
+//
+//  Returns:
+//      - Main Page for Landing Site
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import
 import React from 'react'
 
@@ -15,17 +33,14 @@ import Login from '../Login/Login.jsx'
 import Home from './Home';
 
 
+//  MAIN FUNCTION
+//-------------------------------------------------------//
+
 const Landing = () => {
     return <>
     <LandingNav/>
     <Container>
         <h2>Welcome to The Landing Page!</h2>
-
-
-
-
-
-
     <Routes>      
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -36,5 +51,8 @@ const Landing = () => {
 
     </>
 }
+
+//  EXPORTS 
+//-------------------------------------------------------//
 
 export default Landing;

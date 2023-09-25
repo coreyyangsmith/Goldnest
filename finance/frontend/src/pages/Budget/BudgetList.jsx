@@ -1,3 +1,24 @@
+//-------------------------------------------------------//
+//  File Name: BudgetList.jsx
+//  Description: Given a selected sub category, returns a list of budget numbers.
+//
+//  Requirements:
+//      - Budget Data for Selected Sub Category
+//      - Prop: Selected Sub Category
+//      - prop: Budget State
+//
+//  Renders:
+//      - Sorted TextField inputs containing user set budget number.
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
+// React Import
 import React, { useEffect } from 'react'
 
 // MUI Imports
@@ -7,11 +28,12 @@ import { Box, TextField } from '@mui/material';
 import axios from "axios"
 const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
 
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
+
 const BudgetList = (props) => {
 
-
-  {/* Upon sub_category selection, retrives relevant budget data and forces budgetList re-render */}
-  
   useEffect(
     () => {
       const myFunc = async() => {
@@ -58,5 +80,9 @@ const BudgetList = (props) => {
 
   )
 }
+
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default BudgetList

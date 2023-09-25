@@ -1,3 +1,21 @@
+//-------------------------------------------------------//
+//  File Name: Register.jsx
+//  Description: Registration Form
+//
+//  Requirements:
+//      - TODO
+//
+//  Returns:
+//      - Registration Form
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import
 import React, {useState} from 'react';
 import { Link } from "react-router-dom"
@@ -22,6 +40,9 @@ import { useAuth } from "../../context/AuthContext"
 
  {/* TODO - Refactor Login and Register forms to user RHF */}
 
+//  UTILITY
+//-------------------------------------------------------//
+
  async function signupUser(credentials) {
     return fetch('http://127.0.0.1:8000/api/signup/', {
         method: 'POST',
@@ -32,6 +53,10 @@ import { useAuth } from "../../context/AuthContext"
       })
         .then(data => data.json())
 }
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const RegisterForm = () => {
     // User Context
@@ -260,5 +285,9 @@ const RegisterForm = () => {
         </React.Fragment>
     )
 }
+
+
+//  EXPORTS
+//-------------------------------------------------------//
  
 export default RegisterForm;

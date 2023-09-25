@@ -1,3 +1,22 @@
+//-------------------------------------------------------//
+//  File Name: AddNewForm.jsx
+//  Description: Form to Add New Database Item
+//
+//  Parents:
+//      - Database.jsx
+//
+//  Returns:
+//      - Add New Item Form
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
+// React Import
 import React from 'react'
 import { useState } from 'react'
 
@@ -14,8 +33,10 @@ import axios from "axios"
 import useForm from '../../components/UseForm.jsx'
 
 
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/entrys/"
+//  GLOBALS & INITIALIZATION
+//-------------------------------------------------------//
 
+const FORM_ENDPOINT = "http://127.0.0.1:8000/api/entrys/"
 const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
 const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
 const ROUTING_API = "http://127.0.0.1:8000/api/entitys/"
@@ -27,6 +48,9 @@ let routingData = await axios.get(ROUTING_API);
 mainCatData = mainCatData.data
 subCatData = subCatData.data
 routingData = routingData.data
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const AddNewForm = () => {
     // Use State to Manage variables for form submission
@@ -142,5 +166,9 @@ const AddNewForm = () => {
     </>
   )
 }
+
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default AddNewForm

@@ -1,3 +1,21 @@
+//-------------------------------------------------------//
+//  File Name: MainCateogryForm.jsx
+//  Description: 
+//
+//  Requirements:
+//      - None
+//
+//  Returns:
+//      - Logs new Main Cateogry to DB and re-renders List
+//
+// Created By: Corey Yang-Smith
+// Date: September 24rd, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import
 import React from 'react'
 
@@ -12,6 +30,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios"
 const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/maincategories/"
+
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const MainCategoryForm = (props) => {
 
@@ -77,5 +99,9 @@ const MainCategoryForm = (props) => {
         </form>
   )
 }
+
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default MainCategoryForm
