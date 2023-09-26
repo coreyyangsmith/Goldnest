@@ -21,7 +21,7 @@
 //-------------------------------------------------------//
 
 // React Imports
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // MUI Imports
 import { Stack, Button, Tooltip } from '@mui/material/';
@@ -29,13 +29,18 @@ import { Stack, Button, Tooltip } from '@mui/material/';
 // Axios import
 import { getRequest } from '../../api/posts'
 
+// My Imports
+import { useSubCategory } from '../../hooks/useSubCategory'
+
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const SubCategoriesList = (props) => {
-  let filteredSubCat = props.subCategory.filter((data) => data.main_category === props.selectedMain);
 
+  const subCategories = useSubCategory(props.selectedMain);
+
+  
   const handleClick = async(subCat) => {
     // Regenerate SubCategories List
     props.setSelectedSub(subCat.pk);
@@ -51,31 +56,35 @@ const SubCategoriesList = (props) => {
     console.log("Deleting: " + subCat.name);
   }
 
-  const mySubCategories = filteredSubCat.map(subCat => {
-    return <React.Fragment key={subCat.pk}>
-    <Stack direction="row" spacing={0.5}>
-      <Tooltip title={subCat.description}>   
-              <Button color="secondary"
-                        fullWidth={true}
-                        variant="outlined" 
-                        className={`Category-Button ${props.selectedSub === subCat.pk && "active"}`}                    
-                        onClick={() => {handleClick(subCat)}}>
-                {subCat.name}
-              </Button>
-            </Tooltip>   
-            <Button color="error"
-              variant='outlined'
-              onClick={() => handleDelete(subCat)}>X</Button>
-    </Stack>         
-            </React.Fragment>                    
-  })
+  if (subCategories.length > 0)
+  {
+    const mySubCategories = subCategories.map(subCat => {
+      return <React.Fragment key={subCat.pk}>
+      <Stack direction="row" spacing={0.5}>
+        <Tooltip title={subCat.description}>   
+                <Button color="secondary"
+                          fullWidth={true}
+                          variant="outlined" 
+                          className={`Category-Button ${props.selectedSub === subCat.pk && "active"}`}                    
+                          onClick={() => {handleClick(subCat)}}>
+                  {subCat.name}
+                </Button>
+              </Tooltip>   
+              <Button color="error"
+                variant='outlined'
+                onClick={() => handleDelete(subCat)}>X</Button>
+      </Stack>         
+              </React.Fragment>                    
+    })
+  
+    return (
+      <Stack spacing={2}>
+          {mySubCategories}
+      </Stack>
+    )
+  }
+  }
 
-  return (
-    <Stack spacing={2}>
-        {mySubCategories}
-    </Stack>
-  )
-}
 
 //  EXPORTS
 //-------------------------------------------------------//

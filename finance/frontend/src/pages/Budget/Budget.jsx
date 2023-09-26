@@ -34,39 +34,13 @@ import SaveButton from '../../components/SaveButton';
 // Axios Import
 import { getRequest } from '../../api/posts'
 
-// My Hooks
-import { useMainCategory } from '../../hooks/useMainCategory';
-
 const Budget = () => {
     const [subCategory, setSubCategories] = useState([])
     const [budget, setBudget] = useState([])
-
     const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
+    
     const [selectedSub, setSelectedSub] = useState("")      
 
-
-
-    useEffect(() => {
-        const fetchSubCategories = async() => {
-            try {
-                const response = await getRequest('subcategories/', "");
-                setSubCategories(response.data);         
-            } catch (err) {
-                if (err.response) {
-                    // Not in 200 response range
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);   
-                }
-                else {
-                    console.log(`Error: ${err.message}`);
-                }                             
-            }
-        }        
-
-        fetchSubCategories();
-    }
-    ,[])
 
     return (
     <>
@@ -100,13 +74,12 @@ const Budget = () => {
                     <h2>Sub Categories</h2>
                     <Box sx={{
                     }}>
-                        <SubCategoriesList subCategory={subCategory} 
-                                            selectedMain={selectedMain}
+                        <SubCategoriesList  selectedMain={selectedMain}
                                             selectedSub={selectedSub} 
                                             setSelectedSub={setSelectedSub}
                                             setBudget={setBudget}
                                             budget={budget}/>
-                        <SubCategoryForm setSubCategories={setSubCategories}
+                        <SubCategoryForm    setSubCategories={setSubCategories}
                                             selectedMain={selectedMain}
                                             setSelectedSub={setSelectedSub}
                                             setBudget={setBudget}

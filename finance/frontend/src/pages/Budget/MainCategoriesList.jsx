@@ -4,6 +4,8 @@
 //
 //  Requirements:
 //    - User Data (Main Categories)
+//    - setSelected Main (prop) for use in parent state
+//    - selectedMain (prop) for activating selected button
 //
 //  Returns:
 //    - Selects Main Category (updates state)

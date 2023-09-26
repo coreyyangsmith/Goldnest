@@ -1,15 +1,16 @@
 //-------------------------------------------------------//
-//  File Name: useMainCategory.js
-//  Description: Data Fetching Hook to obtain "MainCategory" model from the local database
+//  File Name: useSubCategory.js
+//  Description: Data Fetching Hook to obtain "SubCategory" model from the local database, based on selected Main
 //
 //  Requirements:
 //      - /api/posts (axios)
+//      - Selected Main Category
 //
 //  Returns:
-//      - List of Objects (Main Category)
+//      - List of Objects (Sub Category)
 //
 // Created By: Corey Yang-Smith
-// Date: September 23rd, 2023
+// Date: September 26th, 2023
 //-------------------------------------------------------//
 
 
@@ -26,13 +27,17 @@ import { getRequest } from "../api/posts"
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-export const useMainCategory = () => {
-    const [mainCategories, setMainCategories] = useState([]);
+export const useSubCategory = (selectedMain) => {
+    const [subCategories, setSubCategories] = useState([]);
 
-    const fetchMainCategories = async () => {
+    const fetchSubCategories = async () => {
         try {          
-            const response = await getRequest("maincategories/", '');
-            if (response && response.data) setMainCategories(response.data);            
+            const response = await getRequest("subcategories/", '');
+            if (response && response.data){
+                const allSubCategories = response.data
+                const filteredSubCat = allSubCategories.filter((data) => data.main_category == selectedMain);
+                setSubCategories(filteredSubCat);   
+            }         
         } catch (err) {
             if (err.response) { //Not in 200 Response Range
                     console.log(err.response.data);
@@ -45,8 +50,8 @@ export const useMainCategory = () => {
     }
 
     useEffect(() => {
-        fetchMainCategories();
-    }, []);
+        fetchSubCategories();
+    }, [selectedMain]);
 
-    return mainCategories;
+    return subCategories;
 };
