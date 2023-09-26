@@ -1,12 +1,12 @@
 //-------------------------------------------------------//
 //  File Name: MainCategorisList.jsx
-//  Description: TODO
+//  Description: Generates Clickable Buttons from Main Category Data
 //
 //  Requirements:
-//    - TODO
+//    - User Data (Main Categories)
 //
 //  Returns:
-//    - TODO
+//    - Selects Main Category (updates state)
 //
 // Created By: Corey Yang-Smith
 // Date: September 23rd, 2023
@@ -39,7 +39,7 @@ import { useMainCategory } from '../../hooks/useMainCategory';
 const MainCategoriesList = (props) => {
 
   //My Hooks
-  const { mainCategory, setMainCategories } = useMainCategory();  
+  const mainCategories = useMainCategory();  
 
   // Handles Main Click - Sets Selected Main
   const handleClick = (mainCat) => {
@@ -87,13 +87,8 @@ const MainCategoriesList = (props) => {
     fetchMainCategories();
   }
 
-  
-
-  console.log(mainCategory);
-
-  if (mainCategory !== undefined){
-
-    const myMainCategories = mainCategory.map(mainCat => {
+  if (mainCategories.length > 0){
+    const myMainCategories = mainCategories.map(mainCat => {
       return  <React.Fragment key={mainCat.pk}>
       <Stack direction="row" spacing={0.5}>
       <Tooltip title={mainCat.description}>
@@ -118,8 +113,6 @@ const MainCategoriesList = (props) => {
       </Stack> 
     )
   }    
-    
-  }
-
+}
 
 export default MainCategoriesList

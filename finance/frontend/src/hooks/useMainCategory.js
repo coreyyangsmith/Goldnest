@@ -29,7 +29,6 @@ import { getRequest } from "../api/posts"
 export const useMainCategory = () => {
     const [mainCategories, setMainCategories] = useState([]);
 
-    console.log("running useMainCategory Hook!")
 
     const fetchMainCategories = async () => {
         try {          
@@ -50,5 +49,5 @@ export const useMainCategory = () => {
         fetchMainCategories();
     }, []);
 
-    return (mainCategories);
+    return mainCategories;
 };
