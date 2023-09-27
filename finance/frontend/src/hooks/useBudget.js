@@ -1,16 +1,16 @@
 //-------------------------------------------------------//
-//  File Name: useSubCategory.js
-//  Description: Data Fetching Hook to obtain "SubCategory" model from the local database, based on selected Main Cateogry
+//  File Name: useBudget.js
+//  Description: Data Fetching Hook to obtain "Budget" model from the local database, based on selected Sub Category
 //
 //  Requirements:
 //      - /api/posts (axios)
-//      - Selected Main Category
+//      - Selected Sub Category
 //
 //  Returns:
-//      - List of Objects (Sub Category)
+//      - Sorted List of Budgets (Sub Category)
 //
 // Created By: Corey Yang-Smith
-// Date: September 26th, 2023
+// Date: September 27th, 2023
 //-------------------------------------------------------//
 
 
@@ -27,16 +27,17 @@ import { getRequest } from "../api/posts"
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-export const useSubCategory = (selectedMain) => {
-    const [subCategories, setSubCategories] = useState([]);
+export const useBudget = (selectedSub) => {
+    const [budgets, setBudgets] = useState([]);
 
-    const fetchSubCategories = async () => {
+    const fetchBudgets = async () => {
         try {          
-            const response = await getRequest("subcategories/", '');
+            const response = await getRequest("budgets/", '');
             if (response && response.data){
-                const allSubCategories = response.data
-                const filteredSubCat = allSubCategories.filter((data) => data.main_category == selectedMain);
-                setSubCategories(filteredSubCat);   
+                const allBudgets = response.data
+                const filteredBudgets = allBudgets.filter((data) => data.sub_category.pk === selectedSub);
+                const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
+                setBudgets(sortedBudgets);
             }         
         } catch (err) {
             if (err.response) { //Not in 200 Response Range
@@ -50,8 +51,8 @@ export const useSubCategory = (selectedMain) => {
     }
 
     useEffect(() => {
-        fetchSubCategories();
-    }, [selectedMain]);
+        fetchBudgets();
+    }, [selectedSub]);
 
-    return subCategories;
+    return { budgets, setBudgets};
 };

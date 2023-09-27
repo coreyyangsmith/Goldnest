@@ -19,14 +19,14 @@
 //-------------------------------------------------------//
 
 // React Import
-import React, { useEffect } from 'react'
+import React from 'react'
 
 // MUI Imports
 import { Box, TextField } from '@mui/material';
 
-// Axios Import
-import axios from "axios"
-const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
+// My Imports
+import { useBudget }  from '../../hooks/useBudget'
+import SaveBudgetButton from './SaveBudgetButton';
 
 
 //  MAIN FUNCTION
@@ -34,31 +34,22 @@ const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
 
 const BudgetList = (props) => {
 
-  useEffect(
-    () => {
-      const myFunc = async() => {
-        let budgetList = await axios.get(BUDGET_API);
-        budgetList = budgetList.data
-    
-        let filteredBudgets = budgetList.filter((data) => data.sub_category.pk === props.selectedSub);
-        let sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
-        props.setBudget(sortedBudgets);
-      }
-      myFunc();
-    },
-    [props.selectedSub])
+  // Hooks
+  const {budgets, setBudgets} = useBudget(props.selectedSub);
 
   function updateValues(newVal, pk) {
-      const arr = [...props.budget];
+      const arr = [...budgets];
       const index = arr.findIndex(p => p.pk === pk);
       arr[index].amount = parseInt(newVal);
-      props.setBudget(arr)
+      setBudgets(arr)
   }
 
-  const myBudgets = props.budget.map(item => {
-    function monthName(month) {
-      return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month - 1];
-  }
+  console.log(budgets);
+  if (budgets.length > 0){
+    const myBudgets = budgets.map(item => {
+      function monthName(month) {
+        return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month - 1];
+    }
 
     return (
     <Box marginTop={2} 
@@ -71,14 +62,15 @@ const BudgetList = (props) => {
                     label={monthName(item.month)}
                     fullWidth/>
     </Box>  
-  )})
+    )})
+    return (
+      <>
+          {myBudgets}
+          <SaveBudgetButton budgets={budgets}/>
+      </>
 
-  return (
-    <>
-        {myBudgets}
-    </>
-
-  )
+    )
+  }
 }
 
 

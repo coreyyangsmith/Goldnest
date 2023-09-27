@@ -42,7 +42,6 @@ import { faker } from '@faker-js/faker';
 //  GLOBALS & INITIALIZATION
 //-------------------------------------------------------//
 
-
 ChartJS.register(
   CategoryScale,
   LinearScale,

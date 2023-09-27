@@ -29,10 +29,11 @@ import MainCategoryForm from "./MainCategoryForm";
 import SubCategoriesList from "./SubCategoriesList";
 import SubCategoryForm from "./SubCategoryForm";
 import BudgetList from './BudgetList';
-import SaveButton from '../../components/SaveButton';
+import SaveBudgetButton from './SaveBudgetButton';
 
-// Axios Import
-import { getRequest } from '../../api/posts'
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const Budget = () => {
     const [subCategory, setSubCategories] = useState([])
@@ -76,9 +77,7 @@ const Budget = () => {
                     }}>
                         <SubCategoriesList  selectedMain={selectedMain}
                                             selectedSub={selectedSub} 
-                                            setSelectedSub={setSelectedSub}
-                                            setBudget={setBudget}
-                                            budget={budget}/>
+                                            setSelectedSub={setSelectedSub}/>
                         <SubCategoryForm    setSubCategories={setSubCategories}
                                             selectedMain={selectedMain}
                                             setSelectedSub={setSelectedSub}
@@ -90,11 +89,7 @@ const Budget = () => {
                 <Grid item xs={4}>
                     <h2>Monthly Budget</h2>
                     <Box>
-                        <BudgetList selectedSub={selectedSub}
-                                    setBudget={setBudget}
-                                    budget={budget}/>
-                        <SaveButton itemToSave={budget}
-                                    locationToSave={"budgets/"}/>
+                        <BudgetList selectedSub={selectedSub}/>
                     </Box>
 
                 </Grid>              
@@ -103,5 +98,9 @@ const Budget = () => {
     </>
 
 )}
+
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default Budget;

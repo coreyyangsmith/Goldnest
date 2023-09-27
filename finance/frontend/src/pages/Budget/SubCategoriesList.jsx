@@ -45,15 +45,16 @@ const SubCategoriesList = (props) => {
     // Regenerate SubCategories List
     props.setSelectedSub(subCat.pk);
 
-    // Regenerate Budget List
-    const response = await getRequest('budgets/', "");
-    let filteredBudgets = response.data.filter((data) => data.sub_category.pk === subCat.pk);
-    let sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
-    props.setBudget(sortedBudgets)
+    // // Regenerate Budget List
+    // const response = await getRequest('budgets/', "");
+    // let filteredBudgets = response.data.filter((data) => data.sub_category.pk === subCat.pk);
+    // let sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
+    // props.setBudget(sortedBudgets)
   }
 
   const handleDelete = async(subCat) => {
     console.log("Deleting: " + subCat.name);
+    //TODO
   }
 
   if (subCategories.length > 0)
@@ -74,7 +75,7 @@ const SubCategoriesList = (props) => {
                 variant='outlined'
                 onClick={() => handleDelete(subCat)}>X</Button>
       </Stack>         
-              </React.Fragment>                    
+      </React.Fragment>                    
     })
   
     return (
@@ -83,7 +84,7 @@ const SubCategoriesList = (props) => {
       </Stack>
     )
   }
-  }
+}
 
 
 //  EXPORTS
