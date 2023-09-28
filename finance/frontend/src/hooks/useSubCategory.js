@@ -23,18 +23,23 @@ import { useEffect, useState } from "react"
 // API Import
 import { getRequest } from "../api/posts"
 
+// Custom Hooks
+// import { useAuth } from "../context/AuthContext"
+
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 export const useSubCategory = (selectedMain) => {
+    // const { authUser } = useAuth();
     const [subCategories, setSubCategories] = useState([]);
 
     const fetchSubCategories = async () => {
         try {          
             const response = await getRequest("subcategories/", '');
             if (response && response.data){
-                const allSubCategories = response.data
+                const allSubCategories = response.data;
+                // const userSubCategories = allSubCategories.filter((data) => data.user == authUser);
                 const filteredSubCat = allSubCategories.filter((data) => data.main_category == selectedMain);
                 setSubCategories(filteredSubCat);   
             }         

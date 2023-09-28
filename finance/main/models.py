@@ -28,6 +28,8 @@ class MainCategory(models.Model):
     name = models.CharField(max_length=15, blank=False, null=False)
     description = models.CharField(max_length=500, null=True)
 
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    
 
@@ -39,6 +41,7 @@ class SubCategory(models.Model):
     description = models.CharField(max_length=500)
 
     main_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    
@@ -51,6 +54,7 @@ class SubSubCategory(models.Model):
     description = models.CharField(max_length=500)
 
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)    
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    
@@ -60,6 +64,8 @@ class SubSubCategory(models.Model):
     
 class Entity(models.Model):
     name = models.CharField(max_length=50)
+
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)    
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    
@@ -77,6 +83,7 @@ class Entry(models.Model):
     routing = models.ForeignKey(Entity, on_delete=models.DO_NOTHING)
     main_category = models.ForeignKey(MainCategory, on_delete=models.DO_NOTHING)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)    
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -104,6 +111,7 @@ class Account(models.Model):
     end_term = models.DateField(null=True, blank=True)    
 
     entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)    
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -125,6 +133,7 @@ class Budget(models.Model):
                                              validators=[MinValueValidator(1), MaxValueValidator(12)])
 
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)    
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

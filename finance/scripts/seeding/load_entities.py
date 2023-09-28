@@ -1,5 +1,5 @@
 import csv
-from main.models import Entity
+from main.models import Entity, User
 from django.utils import timezone
 '''
 load_entities.py
@@ -19,7 +19,8 @@ def run():
         reader = csv.reader(f)
         for row in reader:
             _, created = Entity.objects.get_or_create(
-                name=row[0],
+                user=User.objects.get(username=row[0]),
+                name=row[1],
                 created_at=timezone.now(),
                 updated_at=timezone.now(),
             )

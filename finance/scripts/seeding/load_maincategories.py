@@ -1,5 +1,5 @@
 import csv
-from main.models import MainCategory
+from main.models import MainCategory, User
 from django.utils import timezone
 '''
 load_maincategories.py
@@ -19,7 +19,8 @@ def run():
         reader = csv.reader(f)
         for row in reader:
             _, created = MainCategory.objects.get_or_create(
-                name=row[0],
+                user=User.objects.get(username=row[0]),
+                name=row[1],
                 description="test",       
                 created_at=timezone.now(),
                 updated_at=timezone.now(),                     

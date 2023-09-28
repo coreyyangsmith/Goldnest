@@ -1,5 +1,5 @@
 import csv
-from main.models import Entity, Account
+from main.models import Entity, Account, User
 from django.utils import timezone
 '''
 load_accounts.py
@@ -18,28 +18,30 @@ def run():
     with open(DATA_PATH) as f:
         reader = csv.reader(f)
         for row in reader:
-            if (row[4] == "" or row[5] == ""):
+            if (row[5] == "" or row[6] == ""):
                 _, created = Account.objects.get_or_create(
-                    name=row[0],
-                    account_type=row[1],
-                    current_balance=row[2],
-                    rate=row[3],
+                    user=User.objects.get(username=row[0]), 
+                    name=row[1],
+                    account_type=row[2],
+                    current_balance=row[3],
+                    rate=row[4],
                     start_term=None,
                     end_term=None,
-                    entity=Entity.objects.get(name=row[6]),
+                    entity=Entity.objects.get(name=row[7]),
     
                     created_at=timezone.now(),
                     updated_at=timezone.now(),
                 )
             else:
                     _, created = Account.objects.get_or_create(
-                    name=row[0],
-                    account_type=row[1],
-                    current_balance=row[2],
-                    rate=row[3],
-                    start_term=row[4],
-                    end_term=row[5],
-                    entity=Entity.objects.get(name=row[6]),
+                    user=User.objects.get(username=row[0]),                          
+                    name=row[1],
+                    account_type=row[2],
+                    current_balance=row[3],
+                    rate=row[4],
+                    start_term=row[5],
+                    end_term=row[6],
+                    entity=Entity.objects.get(name=row[7]),
     
                     created_at=timezone.now(),
                     updated_at=timezone.now(),

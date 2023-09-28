@@ -1,696 +1,696 @@
-Income,Salary,2023,1,3500
-Income,Salary,2023,2,3500
-Income,Salary,2023,3,3500
-Income,Salary,2023,4,3500
-Income,Salary,2023,5,3500
-Income,Salary,2023,6,3500
-Income,Salary,2023,7,3500
-Income,Salary,2023,8,3500
-Income,Salary,2023,9,3500
-Income,Salary,2023,10,3500
-Income,Salary,2023,11,3500
-Income,Salary,2023,12,3500
-Income,TFSA Matching,2023,1,400
-Income,TFSA Matching,2023,2,400
-Income,TFSA Matching,2023,3,400
-Income,TFSA Matching,2023,4,400
-Income,TFSA Matching,2023,5,400
-Income,TFSA Matching,2023,6,400
-Income,TFSA Matching,2023,7,400
-Income,TFSA Matching,2023,8,400
-Income,TFSA Matching,2023,9,400
-Income,TFSA Matching,2023,10,400
-Income,TFSA Matching,2023,11,400
-Income,TFSA Matching,2023,12,400
-Income,Bonus,2023,1,0
-Income,Bonus,2023,2,0
-Income,Bonus,2023,3,0
-Income,Bonus,2023,4,10000
-Income,Bonus,2023,5,0
-Income,Bonus,2023,6,0
-Income,Bonus,2023,7,0
-Income,Bonus,2023,8,0
-Income,Bonus,2023,9,0
-Income,Bonus,2023,10,0
-Income,Bonus,2023,11,0
-Income,Bonus,2023,12,0
-Income,Overtime,2023,1,0
-Income,Overtime,2023,2,0
-Income,Overtime,2023,3,0
-Income,Overtime,2023,4,0
-Income,Overtime,2023,5,1000
-Income,Overtime,2023,6,0
-Income,Overtime,2023,7,0
-Income,Overtime,2023,8,500
-Income,Overtime,2023,9,0
-Income,Overtime,2023,10,0
-Income,Overtime,2023,11,0
-Income,Overtime,2023,12,0
-Income,Reimbursement,2023,1,250
-Income,Reimbursement,2023,2,250
-Income,Reimbursement,2023,3,250
-Income,Reimbursement,2023,4,40
-Income,Reimbursement,2023,5,120
-Income,Reimbursement,2023,6,300
-Income,Reimbursement,2023,7,250
-Income,Reimbursement,2023,8,0
-Income,Reimbursement,2023,9,0
-Income,Reimbursement,2023,10,0
-Income,Reimbursement,2023,11,0
-Income,Reimbursement,2023,12,0
-Income,Benefits,2023,1,0
-Income,Benefits,2023,2,0
-Income,Benefits,2023,3,0
-Income,Benefits,2023,4,0
-Income,Benefits,2023,5,0
-Income,Benefits,2023,6,0
-Income,Benefits,2023,7,0
-Income,Benefits,2023,8,0
-Income,Benefits,2023,9,0
-Income,Benefits,2023,10,0
-Income,Benefits,2023,11,0
-Income,Benefits,2023,12,0
-Income,Business,2023,1,50
-Income,Business,2023,2,50
-Income,Business,2023,3,75
-Income,Business,2023,4,100
-Income,Business,2023,5,125
-Income,Business,2023,6,100
-Income,Business,2023,7,150
-Income,Business,2023,8,100
-Income,Business,2023,9,175
-Income,Business,2023,10,150
-Income,Business,2023,11,200
-Income,Business,2023,12,250
-Income,Gifts,2023,1,0
-Income,Gifts,2023,2,0
-Income,Gifts,2023,3,0
-Income,Gifts,2023,4,0
-Income,Gifts,2023,5,0
-Income,Gifts,2023,6,0
-Income,Gifts,2023,7,0
-Income,Gifts,2023,8,0
-Income,Gifts,2023,9,0
-Income,Gifts,2023,10,0
-Income,Gifts,2023,11,0
-Income,Gifts,2023,12,100
-Income,Interest,2023,1,5
-Income,Interest,2023,2,6
-Income,Interest,2023,3,7
-Income,Interest,2023,4,8
-Income,Interest,2023,5,9
-Income,Interest,2023,6,10
-Income,Interest,2023,7,11
-Income,Interest,2023,8,12
-Income,Interest,2023,9,13
-Income,Interest,2023,10,14
-Income,Interest,2023,11,15
-Income,Interest,2023,12,16
-Income,Other,2023,1,0
-Income,Other,2023,2,0
-Income,Other,2023,3,0
-Income,Other,2023,4,0
-Income,Other,2023,5,0
-Income,Other,2023,6,0
-Income,Other,2023,7,0
-Income,Other,2023,8,0
-Income,Other,2023,9,0
-Income,Other,2023,10,0
-Income,Other,2023,11,0
-Income,Other,2023,12,0
-Investments,Emergency Fund,2023,1,500
-Investments,Emergency Fund,2023,2,500
-Investments,Emergency Fund,2023,3,500
-Investments,Emergency Fund,2023,4,500
-Investments,Emergency Fund,2023,5,500
-Investments,Emergency Fund,2023,6,500
-Investments,Emergency Fund,2023,7,500
-Investments,Emergency Fund,2023,8,500
-Investments,Emergency Fund,2023,9,500
-Investments,Emergency Fund,2023,10,500
-Investments,Emergency Fund,2023,11,500
-Investments,Emergency Fund,2023,12,500
-Investments,TFSA,2023,1,1000
-Investments,TFSA,2023,2,1000
-Investments,TFSA,2023,3,1000
-Investments,TFSA,2023,4,1000
-Investments,TFSA,2023,5,1000
-Investments,TFSA,2023,6,1000
-Investments,TFSA,2023,7,1000
-Investments,TFSA,2023,8,1000
-Investments,TFSA,2023,9,1000
-Investments,TFSA,2023,10,1000
-Investments,TFSA,2023,11,1000
-Investments,TFSA,2023,12,1000
-Investments,RRSP,2023,1,500
-Investments,RRSP,2023,2,500
-Investments,RRSP,2023,3,500
-Investments,RRSP,2023,4,500
-Investments,RRSP,2023,5,500
-Investments,RRSP,2023,6,500
-Investments,RRSP,2023,7,500
-Investments,RRSP,2023,8,500
-Investments,RRSP,2023,9,500
-Investments,RRSP,2023,10,500
-Investments,RRSP,2023,11,500
-Investments,RRSP,2023,12,500
-Investments,FSHA,2023,1,300
-Investments,FSHA,2023,2,300
-Investments,FSHA,2023,3,300
-Investments,FSHA,2023,4,300
-Investments,FSHA,2023,5,300
-Investments,FSHA,2023,6,300
-Investments,FSHA,2023,7,300
-Investments,FSHA,2023,8,300
-Investments,FSHA,2023,9,300
-Investments,FSHA,2023,10,300
-Investments,FSHA,2023,11,300
-Investments,FSHA,2023,12,300
-Investments,Margin,2023,1,0
-Investments,Margin,2023,2,0
-Investments,Margin,2023,3,0
-Investments,Margin,2023,4,0
-Investments,Margin,2023,5,0
-Investments,Margin,2023,6,0
-Investments,Margin,2023,7,0
-Investments,Margin,2023,8,0
-Investments,Margin,2023,9,0
-Investments,Margin,2023,10,0
-Investments,Margin,2023,11,0
-Investments,Margin,2023,12,0
-Investments,Crypto,2023,1,0
-Investments,Crypto,2023,2,0
-Investments,Crypto,2023,3,0
-Investments,Crypto,2023,4,0
-Investments,Crypto,2023,5,0
-Investments,Crypto,2023,6,0
-Investments,Crypto,2023,7,0
-Investments,Crypto,2023,8,0
-Investments,Crypto,2023,9,0
-Investments,Crypto,2023,10,0
-Investments,Crypto,2023,11,0
-Investments,Crypto,2023,12,0
-Investments,Masters,2023,1,0
-Investments,Masters,2023,2,0
-Investments,Masters,2023,3,0
-Investments,Masters,2023,4,0
-Investments,Masters,2023,5,0
-Investments,Masters,2023,6,0
-Investments,Masters,2023,7,0
-Investments,Masters,2023,8,0
-Investments,Masters,2023,9,0
-Investments,Masters,2023,10,0
-Investments,Masters,2023,11,0
-Investments,Masters,2023,12,0
-Investments,Business,2023,1,0
-Investments,Business,2023,2,0
-Investments,Business,2023,3,0
-Investments,Business,2023,4,0
-Investments,Business,2023,5,0
-Investments,Business,2023,6,0
-Investments,Business,2023,7,0
-Investments,Business,2023,8,0
-Investments,Business,2023,9,0
-Investments,Business,2023,10,0
-Investments,Business,2023,11,0
-Investments,Business,2023,12,0
-Investments,Vacation,2023,1,0
-Investments,Vacation,2023,2,0
-Investments,Vacation,2023,3,0
-Investments,Vacation,2023,4,0
-Investments,Vacation,2023,5,0
-Investments,Vacation,2023,6,0
-Investments,Vacation,2023,7,0
-Investments,Vacation,2023,8,0
-Investments,Vacation,2023,9,0
-Investments,Vacation,2023,10,0
-Investments,Vacation,2023,11,0
-Investments,Vacation,2023,12,0
-Investments,Other,2023,1,0
-Investments,Other,2023,2,0
-Investments,Other,2023,3,0
-Investments,Other,2023,4,0
-Investments,Other,2023,5,0
-Investments,Other,2023,6,0
-Investments,Other,2023,7,0
-Investments,Other,2023,8,0
-Investments,Other,2023,9,0
-Investments,Other,2023,10,0
-Investments,Other,2023,11,0
-Investments,Other,2023,12,0
-Fixed_Expenses,Rent,2023,1,0
-Fixed_Expenses,Rent,2023,2,0
-Fixed_Expenses,Rent,2023,3,0
-Fixed_Expenses,Rent,2023,4,0
-Fixed_Expenses,Rent,2023,5,0
-Fixed_Expenses,Rent,2023,6,0
-Fixed_Expenses,Rent,2023,7,0
-Fixed_Expenses,Rent,2023,8,0
-Fixed_Expenses,Rent,2023,9,0
-Fixed_Expenses,Rent,2023,10,0
-Fixed_Expenses,Rent,2023,11,0
-Fixed_Expenses,Rent,2023,12,0
-Fixed_Expenses,Utilities,2023,1,0
-Fixed_Expenses,Utilities,2023,2,0
-Fixed_Expenses,Utilities,2023,3,0
-Fixed_Expenses,Utilities,2023,4,0
-Fixed_Expenses,Utilities,2023,5,0
-Fixed_Expenses,Utilities,2023,6,0
-Fixed_Expenses,Utilities,2023,7,0
-Fixed_Expenses,Utilities,2023,8,0
-Fixed_Expenses,Utilities,2023,9,0
-Fixed_Expenses,Utilities,2023,10,0
-Fixed_Expenses,Utilities,2023,11,0
-Fixed_Expenses,Utilities,2023,12,0
-Fixed_Expenses,Phone Plan,2023,1,0
-Fixed_Expenses,Phone Plan,2023,2,0
-Fixed_Expenses,Phone Plan,2023,3,0
-Fixed_Expenses,Phone Plan,2023,4,0
-Fixed_Expenses,Phone Plan,2023,5,0
-Fixed_Expenses,Phone Plan,2023,6,0
-Fixed_Expenses,Phone Plan,2023,7,0
-Fixed_Expenses,Phone Plan,2023,8,0
-Fixed_Expenses,Phone Plan,2023,9,0
-Fixed_Expenses,Phone Plan,2023,10,0
-Fixed_Expenses,Phone Plan,2023,11,0
-Fixed_Expenses,Phone Plan,2023,12,0
-Fixed_Expenses,Internet,2023,1,0
-Fixed_Expenses,Internet,2023,2,0
-Fixed_Expenses,Internet,2023,3,0
-Fixed_Expenses,Internet,2023,4,0
-Fixed_Expenses,Internet,2023,5,0
-Fixed_Expenses,Internet,2023,6,0
-Fixed_Expenses,Internet,2023,7,0
-Fixed_Expenses,Internet,2023,8,0
-Fixed_Expenses,Internet,2023,9,0
-Fixed_Expenses,Internet,2023,10,0
-Fixed_Expenses,Internet,2023,11,0
-Fixed_Expenses,Internet,2023,12,0
-Fixed_Expenses,Gym Membership,2023,1,0
-Fixed_Expenses,Gym Membership,2023,2,0
-Fixed_Expenses,Gym Membership,2023,3,0
-Fixed_Expenses,Gym Membership,2023,4,0
-Fixed_Expenses,Gym Membership,2023,5,0
-Fixed_Expenses,Gym Membership,2023,6,0
-Fixed_Expenses,Gym Membership,2023,7,0
-Fixed_Expenses,Gym Membership,2023,8,0
-Fixed_Expenses,Gym Membership,2023,9,0
-Fixed_Expenses,Gym Membership,2023,10,0
-Fixed_Expenses,Gym Membership,2023,11,0
-Fixed_Expenses,Gym Membership,2023,12,0
-Fixed_Expenses,Parking,2023,1,0
-Fixed_Expenses,Parking,2023,2,0
-Fixed_Expenses,Parking,2023,3,0
-Fixed_Expenses,Parking,2023,4,0
-Fixed_Expenses,Parking,2023,5,0
-Fixed_Expenses,Parking,2023,6,0
-Fixed_Expenses,Parking,2023,7,0
-Fixed_Expenses,Parking,2023,8,0
-Fixed_Expenses,Parking,2023,9,0
-Fixed_Expenses,Parking,2023,10,0
-Fixed_Expenses,Parking,2023,11,0
-Fixed_Expenses,Parking,2023,12,0
-Fixed_Expenses,Fees,2023,1,0
-Fixed_Expenses,Fees,2023,2,0
-Fixed_Expenses,Fees,2023,3,0
-Fixed_Expenses,Fees,2023,4,0
-Fixed_Expenses,Fees,2023,5,0
-Fixed_Expenses,Fees,2023,6,0
-Fixed_Expenses,Fees,2023,7,0
-Fixed_Expenses,Fees,2023,8,0
-Fixed_Expenses,Fees,2023,9,0
-Fixed_Expenses,Fees,2023,10,0
-Fixed_Expenses,Fees,2023,11,0
-Fixed_Expenses,Fees,2023,12,0
-Fixed_Expenses,Other,2023,1,0
-Fixed_Expenses,Other,2023,2,0
-Fixed_Expenses,Other,2023,3,0
-Fixed_Expenses,Other,2023,4,0
-Fixed_Expenses,Other,2023,5,0
-Fixed_Expenses,Other,2023,6,0
-Fixed_Expenses,Other,2023,7,0
-Fixed_Expenses,Other,2023,8,0
-Fixed_Expenses,Other,2023,9,0
-Fixed_Expenses,Other,2023,10,0
-Fixed_Expenses,Other,2023,11,0
-Fixed_Expenses,Other,2023,12,0
-Variable_Expenses,Groceries,2023,1,0
-Variable_Expenses,Groceries,2023,2,0
-Variable_Expenses,Groceries,2023,3,0
-Variable_Expenses,Groceries,2023,4,0
-Variable_Expenses,Groceries,2023,5,0
-Variable_Expenses,Groceries,2023,6,0
-Variable_Expenses,Groceries,2023,7,0
-Variable_Expenses,Groceries,2023,8,0
-Variable_Expenses,Groceries,2023,9,0
-Variable_Expenses,Groceries,2023,10,0
-Variable_Expenses,Groceries,2023,11,0
-Variable_Expenses,Groceries,2023,12,0
-Variable_Expenses,Gas,2023,1,0
-Variable_Expenses,Gas,2023,2,0
-Variable_Expenses,Gas,2023,3,0
-Variable_Expenses,Gas,2023,4,0
-Variable_Expenses,Gas,2023,5,0
-Variable_Expenses,Gas,2023,6,0
-Variable_Expenses,Gas,2023,7,0
-Variable_Expenses,Gas,2023,8,0
-Variable_Expenses,Gas,2023,9,0
-Variable_Expenses,Gas,2023,10,0
-Variable_Expenses,Gas,2023,11,0
-Variable_Expenses,Gas,2023,12,0
-Variable_Expenses,Self Care,2023,1,0
-Variable_Expenses,Self Care,2023,2,0
-Variable_Expenses,Self Care,2023,3,0
-Variable_Expenses,Self Care,2023,4,0
-Variable_Expenses,Self Care,2023,5,0
-Variable_Expenses,Self Care,2023,6,0
-Variable_Expenses,Self Care,2023,7,0
-Variable_Expenses,Self Care,2023,8,0
-Variable_Expenses,Self Care,2023,9,0
-Variable_Expenses,Self Care,2023,10,0
-Variable_Expenses,Self Care,2023,11,0
-Variable_Expenses,Self Care,2023,12,0
-Variable_Expenses,Clothing,2023,1,0
-Variable_Expenses,Clothing,2023,2,0
-Variable_Expenses,Clothing,2023,3,0
-Variable_Expenses,Clothing,2023,4,0
-Variable_Expenses,Clothing,2023,5,0
-Variable_Expenses,Clothing,2023,6,0
-Variable_Expenses,Clothing,2023,7,0
-Variable_Expenses,Clothing,2023,8,0
-Variable_Expenses,Clothing,2023,9,0
-Variable_Expenses,Clothing,2023,10,0
-Variable_Expenses,Clothing,2023,11,0
-Variable_Expenses,Clothing,2023,12,0
-Variable_Expenses,Learning,2023,1,0
-Variable_Expenses,Learning,2023,2,0
-Variable_Expenses,Learning,2023,3,0
-Variable_Expenses,Learning,2023,4,0
-Variable_Expenses,Learning,2023,5,0
-Variable_Expenses,Learning,2023,6,0
-Variable_Expenses,Learning,2023,7,0
-Variable_Expenses,Learning,2023,8,0
-Variable_Expenses,Learning,2023,9,0
-Variable_Expenses,Learning,2023,10,0
-Variable_Expenses,Learning,2023,11,0
-Variable_Expenses,Learning,2023,12,0
-Variable_Expenses,Other,2023,1,0
-Variable_Expenses,Other,2023,2,0
-Variable_Expenses,Other,2023,3,0
-Variable_Expenses,Other,2023,4,0
-Variable_Expenses,Other,2023,5,0
-Variable_Expenses,Other,2023,6,0
-Variable_Expenses,Other,2023,7,0
-Variable_Expenses,Other,2023,8,0
-Variable_Expenses,Other,2023,9,0
-Variable_Expenses,Other,2023,10,0
-Variable_Expenses,Other,2023,11,0
-Variable_Expenses,Other,2023,12,0
-Optional_Expenses,Vices,2023,1,0
-Optional_Expenses,Vices,2023,2,0
-Optional_Expenses,Vices,2023,3,0
-Optional_Expenses,Vices,2023,4,0
-Optional_Expenses,Vices,2023,5,0
-Optional_Expenses,Vices,2023,6,0
-Optional_Expenses,Vices,2023,7,0
-Optional_Expenses,Vices,2023,8,0
-Optional_Expenses,Vices,2023,9,0
-Optional_Expenses,Vices,2023,10,0
-Optional_Expenses,Vices,2023,11,0
-Optional_Expenses,Vices,2023,12,0
-Optional_Expenses,Entertainment,2023,1,0
-Optional_Expenses,Entertainment,2023,2,0
-Optional_Expenses,Entertainment,2023,3,0
-Optional_Expenses,Entertainment,2023,4,0
-Optional_Expenses,Entertainment,2023,5,0
-Optional_Expenses,Entertainment,2023,6,0
-Optional_Expenses,Entertainment,2023,7,0
-Optional_Expenses,Entertainment,2023,8,0
-Optional_Expenses,Entertainment,2023,9,0
-Optional_Expenses,Entertainment,2023,10,0
-Optional_Expenses,Entertainment,2023,11,0
-Optional_Expenses,Entertainment,2023,12,0
-Optional_Expenses,Video Games,2023,1,0
-Optional_Expenses,Video Games,2023,2,0
-Optional_Expenses,Video Games,2023,3,0
-Optional_Expenses,Video Games,2023,4,0
-Optional_Expenses,Video Games,2023,5,0
-Optional_Expenses,Video Games,2023,6,0
-Optional_Expenses,Video Games,2023,7,0
-Optional_Expenses,Video Games,2023,8,0
-Optional_Expenses,Video Games,2023,9,0
-Optional_Expenses,Video Games,2023,10,0
-Optional_Expenses,Video Games,2023,11,0
-Optional_Expenses,Video Games,2023,12,0
-Optional_Expenses,Eating Out,2023,1,0
-Optional_Expenses,Eating Out,2023,2,0
-Optional_Expenses,Eating Out,2023,3,0
-Optional_Expenses,Eating Out,2023,4,0
-Optional_Expenses,Eating Out,2023,5,0
-Optional_Expenses,Eating Out,2023,6,0
-Optional_Expenses,Eating Out,2023,7,0
-Optional_Expenses,Eating Out,2023,8,0
-Optional_Expenses,Eating Out,2023,9,0
-Optional_Expenses,Eating Out,2023,10,0
-Optional_Expenses,Eating Out,2023,11,0
-Optional_Expenses,Eating Out,2023,12,0
-Optional_Expenses,Guilt-Free,2023,1,0
-Optional_Expenses,Guilt-Free,2023,2,0
-Optional_Expenses,Guilt-Free,2023,3,0
-Optional_Expenses,Guilt-Free,2023,4,0
-Optional_Expenses,Guilt-Free,2023,5,0
-Optional_Expenses,Guilt-Free,2023,6,0
-Optional_Expenses,Guilt-Free,2023,7,0
-Optional_Expenses,Guilt-Free,2023,8,0
-Optional_Expenses,Guilt-Free,2023,9,0
-Optional_Expenses,Guilt-Free,2023,10,0
-Optional_Expenses,Guilt-Free,2023,11,0
-Optional_Expenses,Guilt-Free,2023,12,0
-Optional_Expenses,Snacks,2023,1,0
-Optional_Expenses,Snacks,2023,2,0
-Optional_Expenses,Snacks,2023,3,0
-Optional_Expenses,Snacks,2023,4,0
-Optional_Expenses,Snacks,2023,5,0
-Optional_Expenses,Snacks,2023,6,0
-Optional_Expenses,Snacks,2023,7,0
-Optional_Expenses,Snacks,2023,8,0
-Optional_Expenses,Snacks,2023,9,0
-Optional_Expenses,Snacks,2023,10,0
-Optional_Expenses,Snacks,2023,11,0
-Optional_Expenses,Snacks,2023,12,0
-Optional_Expenses,Other,2023,1,0
-Optional_Expenses,Other,2023,2,0
-Optional_Expenses,Other,2023,3,0
-Optional_Expenses,Other,2023,4,0
-Optional_Expenses,Other,2023,5,0
-Optional_Expenses,Other,2023,6,0
-Optional_Expenses,Other,2023,7,0
-Optional_Expenses,Other,2023,8,0
-Optional_Expenses,Other,2023,9,0
-Optional_Expenses,Other,2023,10,0
-Optional_Expenses,Other,2023,11,0
-Optional_Expenses,Other,2023,12,0
-True_Expenses,Auto Maintenance,2023,1,0
-True_Expenses,Auto Maintenance,2023,2,0
-True_Expenses,Auto Maintenance,2023,3,0
-True_Expenses,Auto Maintenance,2023,4,0
-True_Expenses,Auto Maintenance,2023,5,0
-True_Expenses,Auto Maintenance,2023,6,0
-True_Expenses,Auto Maintenance,2023,7,0
-True_Expenses,Auto Maintenance,2023,8,0
-True_Expenses,Auto Maintenance,2023,9,0
-True_Expenses,Auto Maintenance,2023,10,0
-True_Expenses,Auto Maintenance,2023,11,0
-True_Expenses,Auto Maintenance,2023,12,0
-True_Expenses,Auto Insurance,2023,1,0
-True_Expenses,Auto Insurance,2023,2,0
-True_Expenses,Auto Insurance,2023,3,0
-True_Expenses,Auto Insurance,2023,4,0
-True_Expenses,Auto Insurance,2023,5,0
-True_Expenses,Auto Insurance,2023,6,0
-True_Expenses,Auto Insurance,2023,7,0
-True_Expenses,Auto Insurance,2023,8,0
-True_Expenses,Auto Insurance,2023,9,0
-True_Expenses,Auto Insurance,2023,10,0
-True_Expenses,Auto Insurance,2023,11,0
-True_Expenses,Auto Insurance,2023,12,0
-True_Expenses,Medical,2023,1,0
-True_Expenses,Medical,2023,2,0
-True_Expenses,Medical,2023,3,0
-True_Expenses,Medical,2023,4,0
-True_Expenses,Medical,2023,5,0
-True_Expenses,Medical,2023,6,0
-True_Expenses,Medical,2023,7,0
-True_Expenses,Medical,2023,8,0
-True_Expenses,Medical,2023,9,0
-True_Expenses,Medical,2023,10,0
-True_Expenses,Medical,2023,11,0
-True_Expenses,Medical,2023,12,0
-True_Expenses,Gifts,2023,1,0
-True_Expenses,Gifts,2023,2,0
-True_Expenses,Gifts,2023,3,0
-True_Expenses,Gifts,2023,4,0
-True_Expenses,Gifts,2023,5,0
-True_Expenses,Gifts,2023,6,0
-True_Expenses,Gifts,2023,7,0
-True_Expenses,Gifts,2023,8,0
-True_Expenses,Gifts,2023,9,0
-True_Expenses,Gifts,2023,10,0
-True_Expenses,Gifts,2023,11,0
-True_Expenses,Gifts,2023,12,0
-True_Expenses,Other,2023,1,0
-True_Expenses,Other,2023,2,0
-True_Expenses,Other,2023,3,0
-True_Expenses,Other,2023,4,0
-True_Expenses,Other,2023,5,0
-True_Expenses,Other,2023,6,0
-True_Expenses,Other,2023,7,0
-True_Expenses,Other,2023,8,0
-True_Expenses,Other,2023,9,0
-True_Expenses,Other,2023,10,0
-True_Expenses,Other,2023,11,0
-True_Expenses,Other,2023,12,0
-Reimbursements,Work Reimbursements,2023,1,0
-Reimbursements,Work Reimbursements,2023,2,0
-Reimbursements,Work Reimbursements,2023,3,0
-Reimbursements,Work Reimbursements,2023,4,0
-Reimbursements,Work Reimbursements,2023,5,0
-Reimbursements,Work Reimbursements,2023,6,0
-Reimbursements,Work Reimbursements,2023,7,0
-Reimbursements,Work Reimbursements,2023,8,0
-Reimbursements,Work Reimbursements,2023,9,0
-Reimbursements,Work Reimbursements,2023,10,0
-Reimbursements,Work Reimbursements,2023,11,0
-Reimbursements,Work Reimbursements,2023,12,0
-Reimbursements,Benefits,2023,1,0
-Reimbursements,Benefits,2023,2,0
-Reimbursements,Benefits,2023,3,0
-Reimbursements,Benefits,2023,4,0
-Reimbursements,Benefits,2023,5,0
-Reimbursements,Benefits,2023,6,0
-Reimbursements,Benefits,2023,7,0
-Reimbursements,Benefits,2023,8,0
-Reimbursements,Benefits,2023,9,0
-Reimbursements,Benefits,2023,10,0
-Reimbursements,Benefits,2023,11,0
-Reimbursements,Benefits,2023,12,0
-Reimbursements,Friends,2023,1,0
-Reimbursements,Friends,2023,2,0
-Reimbursements,Friends,2023,3,0
-Reimbursements,Friends,2023,4,0
-Reimbursements,Friends,2023,5,0
-Reimbursements,Friends,2023,6,0
-Reimbursements,Friends,2023,7,0
-Reimbursements,Friends,2023,8,0
-Reimbursements,Friends,2023,9,0
-Reimbursements,Friends,2023,10,0
-Reimbursements,Friends,2023,11,0
-Reimbursements,Friends,2023,12,0
-Reimbursements,Other,2023,1,0
-Reimbursements,Other,2023,2,0
-Reimbursements,Other,2023,3,0
-Reimbursements,Other,2023,4,0
-Reimbursements,Other,2023,5,0
-Reimbursements,Other,2023,6,0
-Reimbursements,Other,2023,7,0
-Reimbursements,Other,2023,8,0
-Reimbursements,Other,2023,9,0
-Reimbursements,Other,2023,10,0
-Reimbursements,Other,2023,11,0
-Reimbursements,Other,2023,12,0
-Deductions,Tax,2023,1,0
-Deductions,Tax,2023,2,0
-Deductions,Tax,2023,3,0
-Deductions,Tax,2023,4,0
-Deductions,Tax,2023,5,0
-Deductions,Tax,2023,6,0
-Deductions,Tax,2023,7,0
-Deductions,Tax,2023,8,0
-Deductions,Tax,2023,9,0
-Deductions,Tax,2023,10,0
-Deductions,Tax,2023,11,0
-Deductions,Tax,2023,12,0
-Deductions,CPP,2023,1,0
-Deductions,CPP,2023,2,0
-Deductions,CPP,2023,3,0
-Deductions,CPP,2023,4,0
-Deductions,CPP,2023,5,0
-Deductions,CPP,2023,6,0
-Deductions,CPP,2023,7,0
-Deductions,CPP,2023,8,0
-Deductions,CPP,2023,9,0
-Deductions,CPP,2023,10,0
-Deductions,CPP,2023,11,0
-Deductions,CPP,2023,12,0
-Deductions,EI,2023,1,0
-Deductions,EI,2023,2,0
-Deductions,EI,2023,3,0
-Deductions,EI,2023,4,0
-Deductions,EI,2023,5,0
-Deductions,EI,2023,6,0
-Deductions,EI,2023,7,0
-Deductions,EI,2023,8,0
-Deductions,EI,2023,9,0
-Deductions,EI,2023,10,0
-Deductions,EI,2023,11,0
-Deductions,EI,2023,12,0
-Deductions,Deductions,2023,1,0
-Deductions,Deductions,2023,2,0
-Deductions,Deductions,2023,3,0
-Deductions,Deductions,2023,4,0
-Deductions,Deductions,2023,5,0
-Deductions,Deductions,2023,6,0
-Deductions,Deductions,2023,7,0
-Deductions,Deductions,2023,8,0
-Deductions,Deductions,2023,9,0
-Deductions,Deductions,2023,10,0
-Deductions,Deductions,2023,11,0
-Deductions,Deductions,2023,12,0
-Deductions,Other,2023,1,0
-Deductions,Other,2023,2,0
-Deductions,Other,2023,3,0
-Deductions,Other,2023,4,0
-Deductions,Other,2023,5,0
-Deductions,Other,2023,6,0
-Deductions,Other,2023,7,0
-Deductions,Other,2023,8,0
-Deductions,Other,2023,9,0
-Deductions,Other,2023,10,0
-Deductions,Other,2023,11,0
-Deductions,Other,2023,12,0
-Other,Unexpected Expenses,2023,1,0
-Other,Unexpected Expenses,2023,2,0
-Other,Unexpected Expenses,2023,3,0
-Other,Unexpected Expenses,2023,4,0
-Other,Unexpected Expenses,2023,5,0
-Other,Unexpected Expenses,2023,6,0
-Other,Unexpected Expenses,2023,7,0
-Other,Unexpected Expenses,2023,8,0
-Other,Unexpected Expenses,2023,9,0
-Other,Unexpected Expenses,2023,10,0
-Other,Unexpected Expenses,2023,11,0
-Other,Unexpected Expenses,2023,12,0
-Other,Vacation,2023,1,0
-Other,Vacation,2023,2,0
-Other,Vacation,2023,3,0
-Other,Vacation,2023,4,0
-Other,Vacation,2023,5,0
-Other,Vacation,2023,6,0
-Other,Vacation,2023,7,0
-Other,Vacation,2023,8,0
-Other,Vacation,2023,9,0
-Other,Vacation,2023,10,0
-Other,Vacation,2023,11,0
-Other,Vacation,2023,12,0
-Other,Other,2023,1,0
-Other,Other,2023,2,0
-Other,Other,2023,3,0
-Other,Other,2023,4,0
-Other,Other,2023,5,0
-Other,Other,2023,6,0
-Other,Other,2023,7,0
-Other,Other,2023,8,0
-Other,Other,2023,9,0
-Other,Other,2023,10,0
-Other,Other,2023,11,0
-Other,Other,2023,12,0
+admin,Income,Salary,2023,1,3500
+admin,Income,Salary,2023,2,3500
+admin,Income,Salary,2023,3,3500
+admin,Income,Salary,2023,4,3500
+admin,Income,Salary,2023,5,3500
+admin,Income,Salary,2023,6,3500
+admin,Income,Salary,2023,7,3500
+admin,Income,Salary,2023,8,3500
+admin,Income,Salary,2023,9,3500
+admin,Income,Salary,2023,10,3500
+admin,Income,Salary,2023,11,3500
+admin,Income,Salary,2023,12,3500
+admin,Income,TFSA Matching,2023,1,400
+admin,Income,TFSA Matching,2023,2,400
+admin,Income,TFSA Matching,2023,3,400
+admin,Income,TFSA Matching,2023,4,400
+admin,Income,TFSA Matching,2023,5,400
+admin,Income,TFSA Matching,2023,6,400
+admin,Income,TFSA Matching,2023,7,400
+admin,Income,TFSA Matching,2023,8,400
+admin,Income,TFSA Matching,2023,9,400
+admin,Income,TFSA Matching,2023,10,400
+admin,Income,TFSA Matching,2023,11,400
+admin,Income,TFSA Matching,2023,12,400
+admin,Income,Bonus,2023,1,0
+admin,Income,Bonus,2023,2,0
+admin,Income,Bonus,2023,3,0
+admin,Income,Bonus,2023,4,10000
+admin,Income,Bonus,2023,5,0
+admin,Income,Bonus,2023,6,0
+admin,Income,Bonus,2023,7,0
+admin,Income,Bonus,2023,8,0
+admin,Income,Bonus,2023,9,0
+admin,Income,Bonus,2023,10,0
+admin,Income,Bonus,2023,11,0
+admin,Income,Bonus,2023,12,0
+admin,Income,Overtime,2023,1,0
+admin,Income,Overtime,2023,2,0
+admin,Income,Overtime,2023,3,0
+admin,Income,Overtime,2023,4,0
+admin,Income,Overtime,2023,5,1000
+admin,Income,Overtime,2023,6,0
+admin,Income,Overtime,2023,7,0
+admin,Income,Overtime,2023,8,500
+admin,Income,Overtime,2023,9,0
+admin,Income,Overtime,2023,10,0
+admin,Income,Overtime,2023,11,0
+admin,Income,Overtime,2023,12,0
+admin,Income,Reimbursement,2023,1,250
+admin,Income,Reimbursement,2023,2,250
+admin,Income,Reimbursement,2023,3,250
+admin,Income,Reimbursement,2023,4,40
+admin,Income,Reimbursement,2023,5,120
+admin,Income,Reimbursement,2023,6,300
+admin,Income,Reimbursement,2023,7,250
+admin,Income,Reimbursement,2023,8,0
+admin,Income,Reimbursement,2023,9,0
+admin,Income,Reimbursement,2023,10,0
+admin,Income,Reimbursement,2023,11,0
+admin,Income,Reimbursement,2023,12,0
+admin,Income,Benefits,2023,1,0
+admin,Income,Benefits,2023,2,0
+admin,Income,Benefits,2023,3,0
+admin,Income,Benefits,2023,4,0
+admin,Income,Benefits,2023,5,0
+admin,Income,Benefits,2023,6,0
+admin,Income,Benefits,2023,7,0
+admin,Income,Benefits,2023,8,0
+admin,Income,Benefits,2023,9,0
+admin,Income,Benefits,2023,10,0
+admin,Income,Benefits,2023,11,0
+admin,Income,Benefits,2023,12,0
+admin,Income,Business,2023,1,50
+admin,Income,Business,2023,2,50
+admin,Income,Business,2023,3,75
+admin,Income,Business,2023,4,100
+admin,Income,Business,2023,5,125
+admin,Income,Business,2023,6,100
+admin,Income,Business,2023,7,150
+admin,Income,Business,2023,8,100
+admin,Income,Business,2023,9,175
+admin,Income,Business,2023,10,150
+admin,Income,Business,2023,11,200
+admin,Income,Business,2023,12,250
+admin,Income,Gifts,2023,1,0
+admin,Income,Gifts,2023,2,0
+admin,Income,Gifts,2023,3,0
+admin,Income,Gifts,2023,4,0
+admin,Income,Gifts,2023,5,0
+admin,Income,Gifts,2023,6,0
+admin,Income,Gifts,2023,7,0
+admin,Income,Gifts,2023,8,0
+admin,Income,Gifts,2023,9,0
+admin,Income,Gifts,2023,10,0
+admin,Income,Gifts,2023,11,0
+admin,Income,Gifts,2023,12,100
+admin,Income,Interest,2023,1,5
+admin,Income,Interest,2023,2,6
+admin,Income,Interest,2023,3,7
+admin,Income,Interest,2023,4,8
+admin,Income,Interest,2023,5,9
+admin,Income,Interest,2023,6,10
+admin,Income,Interest,2023,7,11
+admin,Income,Interest,2023,8,12
+admin,Income,Interest,2023,9,13
+admin,Income,Interest,2023,10,14
+admin,Income,Interest,2023,11,15
+admin,Income,Interest,2023,12,16
+admin,Income,Other,2023,1,0
+admin,Income,Other,2023,2,0
+admin,Income,Other,2023,3,0
+admin,Income,Other,2023,4,0
+admin,Income,Other,2023,5,0
+admin,Income,Other,2023,6,0
+admin,Income,Other,2023,7,0
+admin,Income,Other,2023,8,0
+admin,Income,Other,2023,9,0
+admin,Income,Other,2023,10,0
+admin,Income,Other,2023,11,0
+admin,Income,Other,2023,12,0
+admin,Investments,Emergency Fund,2023,1,500
+admin,Investments,Emergency Fund,2023,2,500
+admin,Investments,Emergency Fund,2023,3,500
+admin,Investments,Emergency Fund,2023,4,500
+admin,Investments,Emergency Fund,2023,5,500
+admin,Investments,Emergency Fund,2023,6,500
+admin,Investments,Emergency Fund,2023,7,500
+admin,Investments,Emergency Fund,2023,8,500
+admin,Investments,Emergency Fund,2023,9,500
+admin,Investments,Emergency Fund,2023,10,500
+admin,Investments,Emergency Fund,2023,11,500
+admin,Investments,Emergency Fund,2023,12,500
+admin,Investments,TFSA,2023,1,1000
+admin,Investments,TFSA,2023,2,1000
+admin,Investments,TFSA,2023,3,1000
+admin,Investments,TFSA,2023,4,1000
+admin,Investments,TFSA,2023,5,1000
+admin,Investments,TFSA,2023,6,1000
+admin,Investments,TFSA,2023,7,1000
+admin,Investments,TFSA,2023,8,1000
+admin,Investments,TFSA,2023,9,1000
+admin,Investments,TFSA,2023,10,1000
+admin,Investments,TFSA,2023,11,1000
+admin,Investments,TFSA,2023,12,1000
+admin,Investments,RRSP,2023,1,500
+admin,Investments,RRSP,2023,2,500
+admin,Investments,RRSP,2023,3,500
+admin,Investments,RRSP,2023,4,500
+admin,Investments,RRSP,2023,5,500
+admin,Investments,RRSP,2023,6,500
+admin,Investments,RRSP,2023,7,500
+admin,Investments,RRSP,2023,8,500
+admin,Investments,RRSP,2023,9,500
+admin,Investments,RRSP,2023,10,500
+admin,Investments,RRSP,2023,11,500
+admin,Investments,RRSP,2023,12,500
+admin,Investments,FSHA,2023,1,300
+admin,Investments,FSHA,2023,2,300
+admin,Investments,FSHA,2023,3,300
+admin,Investments,FSHA,2023,4,300
+admin,Investments,FSHA,2023,5,300
+admin,Investments,FSHA,2023,6,300
+admin,Investments,FSHA,2023,7,300
+admin,Investments,FSHA,2023,8,300
+admin,Investments,FSHA,2023,9,300
+admin,Investments,FSHA,2023,10,300
+admin,Investments,FSHA,2023,11,300
+admin,Investments,FSHA,2023,12,300
+admin,Investments,Margin,2023,1,0
+admin,Investments,Margin,2023,2,0
+admin,Investments,Margin,2023,3,0
+admin,Investments,Margin,2023,4,0
+admin,Investments,Margin,2023,5,0
+admin,Investments,Margin,2023,6,0
+admin,Investments,Margin,2023,7,0
+admin,Investments,Margin,2023,8,0
+admin,Investments,Margin,2023,9,0
+admin,Investments,Margin,2023,10,0
+admin,Investments,Margin,2023,11,0
+admin,Investments,Margin,2023,12,0
+admin,Investments,Crypto,2023,1,0
+admin,Investments,Crypto,2023,2,0
+admin,Investments,Crypto,2023,3,0
+admin,Investments,Crypto,2023,4,0
+admin,Investments,Crypto,2023,5,0
+admin,Investments,Crypto,2023,6,0
+admin,Investments,Crypto,2023,7,0
+admin,Investments,Crypto,2023,8,0
+admin,Investments,Crypto,2023,9,0
+admin,Investments,Crypto,2023,10,0
+admin,Investments,Crypto,2023,11,0
+admin,Investments,Crypto,2023,12,0
+admin,Investments,Masters,2023,1,0
+admin,Investments,Masters,2023,2,0
+admin,Investments,Masters,2023,3,0
+admin,Investments,Masters,2023,4,0
+admin,Investments,Masters,2023,5,0
+admin,Investments,Masters,2023,6,0
+admin,Investments,Masters,2023,7,0
+admin,Investments,Masters,2023,8,0
+admin,Investments,Masters,2023,9,0
+admin,Investments,Masters,2023,10,0
+admin,Investments,Masters,2023,11,0
+admin,Investments,Masters,2023,12,0
+admin,Investments,Business,2023,1,0
+admin,Investments,Business,2023,2,0
+admin,Investments,Business,2023,3,0
+admin,Investments,Business,2023,4,0
+admin,Investments,Business,2023,5,0
+admin,Investments,Business,2023,6,0
+admin,Investments,Business,2023,7,0
+admin,Investments,Business,2023,8,0
+admin,Investments,Business,2023,9,0
+admin,Investments,Business,2023,10,0
+admin,Investments,Business,2023,11,0
+admin,Investments,Business,2023,12,0
+admin,Investments,Vacation,2023,1,0
+admin,Investments,Vacation,2023,2,0
+admin,Investments,Vacation,2023,3,0
+admin,Investments,Vacation,2023,4,0
+admin,Investments,Vacation,2023,5,0
+admin,Investments,Vacation,2023,6,0
+admin,Investments,Vacation,2023,7,0
+admin,Investments,Vacation,2023,8,0
+admin,Investments,Vacation,2023,9,0
+admin,Investments,Vacation,2023,10,0
+admin,Investments,Vacation,2023,11,0
+admin,Investments,Vacation,2023,12,0
+admin,Investments,Other,2023,1,0
+admin,Investments,Other,2023,2,0
+admin,Investments,Other,2023,3,0
+admin,Investments,Other,2023,4,0
+admin,Investments,Other,2023,5,0
+admin,Investments,Other,2023,6,0
+admin,Investments,Other,2023,7,0
+admin,Investments,Other,2023,8,0
+admin,Investments,Other,2023,9,0
+admin,Investments,Other,2023,10,0
+admin,Investments,Other,2023,11,0
+admin,Investments,Other,2023,12,0
+admin,Fixed_Expenses,Rent,2023,1,0
+admin,Fixed_Expenses,Rent,2023,2,0
+admin,Fixed_Expenses,Rent,2023,3,0
+admin,Fixed_Expenses,Rent,2023,4,0
+admin,Fixed_Expenses,Rent,2023,5,0
+admin,Fixed_Expenses,Rent,2023,6,0
+admin,Fixed_Expenses,Rent,2023,7,0
+admin,Fixed_Expenses,Rent,2023,8,0
+admin,Fixed_Expenses,Rent,2023,9,0
+admin,Fixed_Expenses,Rent,2023,10,0
+admin,Fixed_Expenses,Rent,2023,11,0
+admin,Fixed_Expenses,Rent,2023,12,0
+admin,Fixed_Expenses,Utilities,2023,1,0
+admin,Fixed_Expenses,Utilities,2023,2,0
+admin,Fixed_Expenses,Utilities,2023,3,0
+admin,Fixed_Expenses,Utilities,2023,4,0
+admin,Fixed_Expenses,Utilities,2023,5,0
+admin,Fixed_Expenses,Utilities,2023,6,0
+admin,Fixed_Expenses,Utilities,2023,7,0
+admin,Fixed_Expenses,Utilities,2023,8,0
+admin,Fixed_Expenses,Utilities,2023,9,0
+admin,Fixed_Expenses,Utilities,2023,10,0
+admin,Fixed_Expenses,Utilities,2023,11,0
+admin,Fixed_Expenses,Utilities,2023,12,0
+admin,Fixed_Expenses,Phone Plan,2023,1,0
+admin,Fixed_Expenses,Phone Plan,2023,2,0
+admin,Fixed_Expenses,Phone Plan,2023,3,0
+admin,Fixed_Expenses,Phone Plan,2023,4,0
+admin,Fixed_Expenses,Phone Plan,2023,5,0
+admin,Fixed_Expenses,Phone Plan,2023,6,0
+admin,Fixed_Expenses,Phone Plan,2023,7,0
+admin,Fixed_Expenses,Phone Plan,2023,8,0
+admin,Fixed_Expenses,Phone Plan,2023,9,0
+admin,Fixed_Expenses,Phone Plan,2023,10,0
+admin,Fixed_Expenses,Phone Plan,2023,11,0
+admin,Fixed_Expenses,Phone Plan,2023,12,0
+admin,Fixed_Expenses,Internet,2023,1,0
+admin,Fixed_Expenses,Internet,2023,2,0
+admin,Fixed_Expenses,Internet,2023,3,0
+admin,Fixed_Expenses,Internet,2023,4,0
+admin,Fixed_Expenses,Internet,2023,5,0
+admin,Fixed_Expenses,Internet,2023,6,0
+admin,Fixed_Expenses,Internet,2023,7,0
+admin,Fixed_Expenses,Internet,2023,8,0
+admin,Fixed_Expenses,Internet,2023,9,0
+admin,Fixed_Expenses,Internet,2023,10,0
+admin,Fixed_Expenses,Internet,2023,11,0
+admin,Fixed_Expenses,Internet,2023,12,0
+admin,Fixed_Expenses,Gym Membership,2023,1,0
+admin,Fixed_Expenses,Gym Membership,2023,2,0
+admin,Fixed_Expenses,Gym Membership,2023,3,0
+admin,Fixed_Expenses,Gym Membership,2023,4,0
+admin,Fixed_Expenses,Gym Membership,2023,5,0
+admin,Fixed_Expenses,Gym Membership,2023,6,0
+admin,Fixed_Expenses,Gym Membership,2023,7,0
+admin,Fixed_Expenses,Gym Membership,2023,8,0
+admin,Fixed_Expenses,Gym Membership,2023,9,0
+admin,Fixed_Expenses,Gym Membership,2023,10,0
+admin,Fixed_Expenses,Gym Membership,2023,11,0
+admin,Fixed_Expenses,Gym Membership,2023,12,0
+admin,Fixed_Expenses,Parking,2023,1,0
+admin,Fixed_Expenses,Parking,2023,2,0
+admin,Fixed_Expenses,Parking,2023,3,0
+admin,Fixed_Expenses,Parking,2023,4,0
+admin,Fixed_Expenses,Parking,2023,5,0
+admin,Fixed_Expenses,Parking,2023,6,0
+admin,Fixed_Expenses,Parking,2023,7,0
+admin,Fixed_Expenses,Parking,2023,8,0
+admin,Fixed_Expenses,Parking,2023,9,0
+admin,Fixed_Expenses,Parking,2023,10,0
+admin,Fixed_Expenses,Parking,2023,11,0
+admin,Fixed_Expenses,Parking,2023,12,0
+admin,Fixed_Expenses,Fees,2023,1,0
+admin,Fixed_Expenses,Fees,2023,2,0
+admin,Fixed_Expenses,Fees,2023,3,0
+admin,Fixed_Expenses,Fees,2023,4,0
+admin,Fixed_Expenses,Fees,2023,5,0
+admin,Fixed_Expenses,Fees,2023,6,0
+admin,Fixed_Expenses,Fees,2023,7,0
+admin,Fixed_Expenses,Fees,2023,8,0
+admin,Fixed_Expenses,Fees,2023,9,0
+admin,Fixed_Expenses,Fees,2023,10,0
+admin,Fixed_Expenses,Fees,2023,11,0
+admin,Fixed_Expenses,Fees,2023,12,0
+admin,Fixed_Expenses,Other,2023,1,0
+admin,Fixed_Expenses,Other,2023,2,0
+admin,Fixed_Expenses,Other,2023,3,0
+admin,Fixed_Expenses,Other,2023,4,0
+admin,Fixed_Expenses,Other,2023,5,0
+admin,Fixed_Expenses,Other,2023,6,0
+admin,Fixed_Expenses,Other,2023,7,0
+admin,Fixed_Expenses,Other,2023,8,0
+admin,Fixed_Expenses,Other,2023,9,0
+admin,Fixed_Expenses,Other,2023,10,0
+admin,Fixed_Expenses,Other,2023,11,0
+admin,Fixed_Expenses,Other,2023,12,0
+admin,Variable_Expenses,Groceries,2023,1,0
+admin,Variable_Expenses,Groceries,2023,2,0
+admin,Variable_Expenses,Groceries,2023,3,0
+admin,Variable_Expenses,Groceries,2023,4,0
+admin,Variable_Expenses,Groceries,2023,5,0
+admin,Variable_Expenses,Groceries,2023,6,0
+admin,Variable_Expenses,Groceries,2023,7,0
+admin,Variable_Expenses,Groceries,2023,8,0
+admin,Variable_Expenses,Groceries,2023,9,0
+admin,Variable_Expenses,Groceries,2023,10,0
+admin,Variable_Expenses,Groceries,2023,11,0
+admin,Variable_Expenses,Groceries,2023,12,0
+admin,Variable_Expenses,Gas,2023,1,0
+admin,Variable_Expenses,Gas,2023,2,0
+admin,Variable_Expenses,Gas,2023,3,0
+admin,Variable_Expenses,Gas,2023,4,0
+admin,Variable_Expenses,Gas,2023,5,0
+admin,Variable_Expenses,Gas,2023,6,0
+admin,Variable_Expenses,Gas,2023,7,0
+admin,Variable_Expenses,Gas,2023,8,0
+admin,Variable_Expenses,Gas,2023,9,0
+admin,Variable_Expenses,Gas,2023,10,0
+admin,Variable_Expenses,Gas,2023,11,0
+admin,Variable_Expenses,Gas,2023,12,0
+admin,Variable_Expenses,Self Care,2023,1,0
+admin,Variable_Expenses,Self Care,2023,2,0
+admin,Variable_Expenses,Self Care,2023,3,0
+admin,Variable_Expenses,Self Care,2023,4,0
+admin,Variable_Expenses,Self Care,2023,5,0
+admin,Variable_Expenses,Self Care,2023,6,0
+admin,Variable_Expenses,Self Care,2023,7,0
+admin,Variable_Expenses,Self Care,2023,8,0
+admin,Variable_Expenses,Self Care,2023,9,0
+admin,Variable_Expenses,Self Care,2023,10,0
+admin,Variable_Expenses,Self Care,2023,11,0
+admin,Variable_Expenses,Self Care,2023,12,0
+admin,Variable_Expenses,Clothing,2023,1,0
+admin,Variable_Expenses,Clothing,2023,2,0
+admin,Variable_Expenses,Clothing,2023,3,0
+admin,Variable_Expenses,Clothing,2023,4,0
+admin,Variable_Expenses,Clothing,2023,5,0
+admin,Variable_Expenses,Clothing,2023,6,0
+admin,Variable_Expenses,Clothing,2023,7,0
+admin,Variable_Expenses,Clothing,2023,8,0
+admin,Variable_Expenses,Clothing,2023,9,0
+admin,Variable_Expenses,Clothing,2023,10,0
+admin,Variable_Expenses,Clothing,2023,11,0
+admin,Variable_Expenses,Clothing,2023,12,0
+admin,Variable_Expenses,Learning,2023,1,0
+admin,Variable_Expenses,Learning,2023,2,0
+admin,Variable_Expenses,Learning,2023,3,0
+admin,Variable_Expenses,Learning,2023,4,0
+admin,Variable_Expenses,Learning,2023,5,0
+admin,Variable_Expenses,Learning,2023,6,0
+admin,Variable_Expenses,Learning,2023,7,0
+admin,Variable_Expenses,Learning,2023,8,0
+admin,Variable_Expenses,Learning,2023,9,0
+admin,Variable_Expenses,Learning,2023,10,0
+admin,Variable_Expenses,Learning,2023,11,0
+admin,Variable_Expenses,Learning,2023,12,0
+admin,Variable_Expenses,Other,2023,1,0
+admin,Variable_Expenses,Other,2023,2,0
+admin,Variable_Expenses,Other,2023,3,0
+admin,Variable_Expenses,Other,2023,4,0
+admin,Variable_Expenses,Other,2023,5,0
+admin,Variable_Expenses,Other,2023,6,0
+admin,Variable_Expenses,Other,2023,7,0
+admin,Variable_Expenses,Other,2023,8,0
+admin,Variable_Expenses,Other,2023,9,0
+admin,Variable_Expenses,Other,2023,10,0
+admin,Variable_Expenses,Other,2023,11,0
+admin,Variable_Expenses,Other,2023,12,0
+admin,Optional_Expenses,Vices,2023,1,0
+admin,Optional_Expenses,Vices,2023,2,0
+admin,Optional_Expenses,Vices,2023,3,0
+admin,Optional_Expenses,Vices,2023,4,0
+admin,Optional_Expenses,Vices,2023,5,0
+admin,Optional_Expenses,Vices,2023,6,0
+admin,Optional_Expenses,Vices,2023,7,0
+admin,Optional_Expenses,Vices,2023,8,0
+admin,Optional_Expenses,Vices,2023,9,0
+admin,Optional_Expenses,Vices,2023,10,0
+admin,Optional_Expenses,Vices,2023,11,0
+admin,Optional_Expenses,Vices,2023,12,0
+admin,Optional_Expenses,Entertainment,2023,1,0
+admin,Optional_Expenses,Entertainment,2023,2,0
+admin,Optional_Expenses,Entertainment,2023,3,0
+admin,Optional_Expenses,Entertainment,2023,4,0
+admin,Optional_Expenses,Entertainment,2023,5,0
+admin,Optional_Expenses,Entertainment,2023,6,0
+admin,Optional_Expenses,Entertainment,2023,7,0
+admin,Optional_Expenses,Entertainment,2023,8,0
+admin,Optional_Expenses,Entertainment,2023,9,0
+admin,Optional_Expenses,Entertainment,2023,10,0
+admin,Optional_Expenses,Entertainment,2023,11,0
+admin,Optional_Expenses,Entertainment,2023,12,0
+admin,Optional_Expenses,Video Games,2023,1,0
+admin,Optional_Expenses,Video Games,2023,2,0
+admin,Optional_Expenses,Video Games,2023,3,0
+admin,Optional_Expenses,Video Games,2023,4,0
+admin,Optional_Expenses,Video Games,2023,5,0
+admin,Optional_Expenses,Video Games,2023,6,0
+admin,Optional_Expenses,Video Games,2023,7,0
+admin,Optional_Expenses,Video Games,2023,8,0
+admin,Optional_Expenses,Video Games,2023,9,0
+admin,Optional_Expenses,Video Games,2023,10,0
+admin,Optional_Expenses,Video Games,2023,11,0
+admin,Optional_Expenses,Video Games,2023,12,0
+admin,Optional_Expenses,Eating Out,2023,1,0
+admin,Optional_Expenses,Eating Out,2023,2,0
+admin,Optional_Expenses,Eating Out,2023,3,0
+admin,Optional_Expenses,Eating Out,2023,4,0
+admin,Optional_Expenses,Eating Out,2023,5,0
+admin,Optional_Expenses,Eating Out,2023,6,0
+admin,Optional_Expenses,Eating Out,2023,7,0
+admin,Optional_Expenses,Eating Out,2023,8,0
+admin,Optional_Expenses,Eating Out,2023,9,0
+admin,Optional_Expenses,Eating Out,2023,10,0
+admin,Optional_Expenses,Eating Out,2023,11,0
+admin,Optional_Expenses,Eating Out,2023,12,0
+admin,Optional_Expenses,Guilt-Free,2023,1,0
+admin,Optional_Expenses,Guilt-Free,2023,2,0
+admin,Optional_Expenses,Guilt-Free,2023,3,0
+admin,Optional_Expenses,Guilt-Free,2023,4,0
+admin,Optional_Expenses,Guilt-Free,2023,5,0
+admin,Optional_Expenses,Guilt-Free,2023,6,0
+admin,Optional_Expenses,Guilt-Free,2023,7,0
+admin,Optional_Expenses,Guilt-Free,2023,8,0
+admin,Optional_Expenses,Guilt-Free,2023,9,0
+admin,Optional_Expenses,Guilt-Free,2023,10,0
+admin,Optional_Expenses,Guilt-Free,2023,11,0
+admin,Optional_Expenses,Guilt-Free,2023,12,0
+admin,Optional_Expenses,Snacks,2023,1,0
+admin,Optional_Expenses,Snacks,2023,2,0
+admin,Optional_Expenses,Snacks,2023,3,0
+admin,Optional_Expenses,Snacks,2023,4,0
+admin,Optional_Expenses,Snacks,2023,5,0
+admin,Optional_Expenses,Snacks,2023,6,0
+admin,Optional_Expenses,Snacks,2023,7,0
+admin,Optional_Expenses,Snacks,2023,8,0
+admin,Optional_Expenses,Snacks,2023,9,0
+admin,Optional_Expenses,Snacks,2023,10,0
+admin,Optional_Expenses,Snacks,2023,11,0
+admin,Optional_Expenses,Snacks,2023,12,0
+admin,Optional_Expenses,Other,2023,1,0
+admin,Optional_Expenses,Other,2023,2,0
+admin,Optional_Expenses,Other,2023,3,0
+admin,Optional_Expenses,Other,2023,4,0
+admin,Optional_Expenses,Other,2023,5,0
+admin,Optional_Expenses,Other,2023,6,0
+admin,Optional_Expenses,Other,2023,7,0
+admin,Optional_Expenses,Other,2023,8,0
+admin,Optional_Expenses,Other,2023,9,0
+admin,Optional_Expenses,Other,2023,10,0
+admin,Optional_Expenses,Other,2023,11,0
+admin,Optional_Expenses,Other,2023,12,0
+admin,True_Expenses,Auto Maintenance,2023,1,0
+admin,True_Expenses,Auto Maintenance,2023,2,0
+admin,True_Expenses,Auto Maintenance,2023,3,0
+admin,True_Expenses,Auto Maintenance,2023,4,0
+admin,True_Expenses,Auto Maintenance,2023,5,0
+admin,True_Expenses,Auto Maintenance,2023,6,0
+admin,True_Expenses,Auto Maintenance,2023,7,0
+admin,True_Expenses,Auto Maintenance,2023,8,0
+admin,True_Expenses,Auto Maintenance,2023,9,0
+admin,True_Expenses,Auto Maintenance,2023,10,0
+admin,True_Expenses,Auto Maintenance,2023,11,0
+admin,True_Expenses,Auto Maintenance,2023,12,0
+admin,True_Expenses,Auto Insurance,2023,1,0
+admin,True_Expenses,Auto Insurance,2023,2,0
+admin,True_Expenses,Auto Insurance,2023,3,0
+admin,True_Expenses,Auto Insurance,2023,4,0
+admin,True_Expenses,Auto Insurance,2023,5,0
+admin,True_Expenses,Auto Insurance,2023,6,0
+admin,True_Expenses,Auto Insurance,2023,7,0
+admin,True_Expenses,Auto Insurance,2023,8,0
+admin,True_Expenses,Auto Insurance,2023,9,0
+admin,True_Expenses,Auto Insurance,2023,10,0
+admin,True_Expenses,Auto Insurance,2023,11,0
+admin,True_Expenses,Auto Insurance,2023,12,0
+admin,True_Expenses,Medical,2023,1,0
+admin,True_Expenses,Medical,2023,2,0
+admin,True_Expenses,Medical,2023,3,0
+admin,True_Expenses,Medical,2023,4,0
+admin,True_Expenses,Medical,2023,5,0
+admin,True_Expenses,Medical,2023,6,0
+admin,True_Expenses,Medical,2023,7,0
+admin,True_Expenses,Medical,2023,8,0
+admin,True_Expenses,Medical,2023,9,0
+admin,True_Expenses,Medical,2023,10,0
+admin,True_Expenses,Medical,2023,11,0
+admin,True_Expenses,Medical,2023,12,0
+admin,True_Expenses,Gifts,2023,1,0
+admin,True_Expenses,Gifts,2023,2,0
+admin,True_Expenses,Gifts,2023,3,0
+admin,True_Expenses,Gifts,2023,4,0
+admin,True_Expenses,Gifts,2023,5,0
+admin,True_Expenses,Gifts,2023,6,0
+admin,True_Expenses,Gifts,2023,7,0
+admin,True_Expenses,Gifts,2023,8,0
+admin,True_Expenses,Gifts,2023,9,0
+admin,True_Expenses,Gifts,2023,10,0
+admin,True_Expenses,Gifts,2023,11,0
+admin,True_Expenses,Gifts,2023,12,0
+admin,True_Expenses,Other,2023,1,0
+admin,True_Expenses,Other,2023,2,0
+admin,True_Expenses,Other,2023,3,0
+admin,True_Expenses,Other,2023,4,0
+admin,True_Expenses,Other,2023,5,0
+admin,True_Expenses,Other,2023,6,0
+admin,True_Expenses,Other,2023,7,0
+admin,True_Expenses,Other,2023,8,0
+admin,True_Expenses,Other,2023,9,0
+admin,True_Expenses,Other,2023,10,0
+admin,True_Expenses,Other,2023,11,0
+admin,True_Expenses,Other,2023,12,0
+admin,Reimbursements,Work Reimbursements,2023,1,0
+admin,Reimbursements,Work Reimbursements,2023,2,0
+admin,Reimbursements,Work Reimbursements,2023,3,0
+admin,Reimbursements,Work Reimbursements,2023,4,0
+admin,Reimbursements,Work Reimbursements,2023,5,0
+admin,Reimbursements,Work Reimbursements,2023,6,0
+admin,Reimbursements,Work Reimbursements,2023,7,0
+admin,Reimbursements,Work Reimbursements,2023,8,0
+admin,Reimbursements,Work Reimbursements,2023,9,0
+admin,Reimbursements,Work Reimbursements,2023,10,0
+admin,Reimbursements,Work Reimbursements,2023,11,0
+admin,Reimbursements,Work Reimbursements,2023,12,0
+admin,Reimbursements,Benefits,2023,1,0
+admin,Reimbursements,Benefits,2023,2,0
+admin,Reimbursements,Benefits,2023,3,0
+admin,Reimbursements,Benefits,2023,4,0
+admin,Reimbursements,Benefits,2023,5,0
+admin,Reimbursements,Benefits,2023,6,0
+admin,Reimbursements,Benefits,2023,7,0
+admin,Reimbursements,Benefits,2023,8,0
+admin,Reimbursements,Benefits,2023,9,0
+admin,Reimbursements,Benefits,2023,10,0
+admin,Reimbursements,Benefits,2023,11,0
+admin,Reimbursements,Benefits,2023,12,0
+admin,Reimbursements,Friends,2023,1,0
+admin,Reimbursements,Friends,2023,2,0
+admin,Reimbursements,Friends,2023,3,0
+admin,Reimbursements,Friends,2023,4,0
+admin,Reimbursements,Friends,2023,5,0
+admin,Reimbursements,Friends,2023,6,0
+admin,Reimbursements,Friends,2023,7,0
+admin,Reimbursements,Friends,2023,8,0
+admin,Reimbursements,Friends,2023,9,0
+admin,Reimbursements,Friends,2023,10,0
+admin,Reimbursements,Friends,2023,11,0
+admin,Reimbursements,Friends,2023,12,0
+admin,Reimbursements,Other,2023,1,0
+admin,Reimbursements,Other,2023,2,0
+admin,Reimbursements,Other,2023,3,0
+admin,Reimbursements,Other,2023,4,0
+admin,Reimbursements,Other,2023,5,0
+admin,Reimbursements,Other,2023,6,0
+admin,Reimbursements,Other,2023,7,0
+admin,Reimbursements,Other,2023,8,0
+admin,Reimbursements,Other,2023,9,0
+admin,Reimbursements,Other,2023,10,0
+admin,Reimbursements,Other,2023,11,0
+admin,Reimbursements,Other,2023,12,0
+admin,Deductions,Tax,2023,1,0
+admin,Deductions,Tax,2023,2,0
+admin,Deductions,Tax,2023,3,0
+admin,Deductions,Tax,2023,4,0
+admin,Deductions,Tax,2023,5,0
+admin,Deductions,Tax,2023,6,0
+admin,Deductions,Tax,2023,7,0
+admin,Deductions,Tax,2023,8,0
+admin,Deductions,Tax,2023,9,0
+admin,Deductions,Tax,2023,10,0
+admin,Deductions,Tax,2023,11,0
+admin,Deductions,Tax,2023,12,0
+admin,Deductions,CPP,2023,1,0
+admin,Deductions,CPP,2023,2,0
+admin,Deductions,CPP,2023,3,0
+admin,Deductions,CPP,2023,4,0
+admin,Deductions,CPP,2023,5,0
+admin,Deductions,CPP,2023,6,0
+admin,Deductions,CPP,2023,7,0
+admin,Deductions,CPP,2023,8,0
+admin,Deductions,CPP,2023,9,0
+admin,Deductions,CPP,2023,10,0
+admin,Deductions,CPP,2023,11,0
+admin,Deductions,CPP,2023,12,0
+admin,Deductions,EI,2023,1,0
+admin,Deductions,EI,2023,2,0
+admin,Deductions,EI,2023,3,0
+admin,Deductions,EI,2023,4,0
+admin,Deductions,EI,2023,5,0
+admin,Deductions,EI,2023,6,0
+admin,Deductions,EI,2023,7,0
+admin,Deductions,EI,2023,8,0
+admin,Deductions,EI,2023,9,0
+admin,Deductions,EI,2023,10,0
+admin,Deductions,EI,2023,11,0
+admin,Deductions,EI,2023,12,0
+admin,Deductions,Deductions,2023,1,0
+admin,Deductions,Deductions,2023,2,0
+admin,Deductions,Deductions,2023,3,0
+admin,Deductions,Deductions,2023,4,0
+admin,Deductions,Deductions,2023,5,0
+admin,Deductions,Deductions,2023,6,0
+admin,Deductions,Deductions,2023,7,0
+admin,Deductions,Deductions,2023,8,0
+admin,Deductions,Deductions,2023,9,0
+admin,Deductions,Deductions,2023,10,0
+admin,Deductions,Deductions,2023,11,0
+admin,Deductions,Deductions,2023,12,0
+admin,Deductions,Other,2023,1,0
+admin,Deductions,Other,2023,2,0
+admin,Deductions,Other,2023,3,0
+admin,Deductions,Other,2023,4,0
+admin,Deductions,Other,2023,5,0
+admin,Deductions,Other,2023,6,0
+admin,Deductions,Other,2023,7,0
+admin,Deductions,Other,2023,8,0
+admin,Deductions,Other,2023,9,0
+admin,Deductions,Other,2023,10,0
+admin,Deductions,Other,2023,11,0
+admin,Deductions,Other,2023,12,0
+admin,Other,Unexpected Expenses,2023,1,0
+admin,Other,Unexpected Expenses,2023,2,0
+admin,Other,Unexpected Expenses,2023,3,0
+admin,Other,Unexpected Expenses,2023,4,0
+admin,Other,Unexpected Expenses,2023,5,0
+admin,Other,Unexpected Expenses,2023,6,0
+admin,Other,Unexpected Expenses,2023,7,0
+admin,Other,Unexpected Expenses,2023,8,0
+admin,Other,Unexpected Expenses,2023,9,0
+admin,Other,Unexpected Expenses,2023,10,0
+admin,Other,Unexpected Expenses,2023,11,0
+admin,Other,Unexpected Expenses,2023,12,0
+admin,Other,Vacation,2023,1,0
+admin,Other,Vacation,2023,2,0
+admin,Other,Vacation,2023,3,0
+admin,Other,Vacation,2023,4,0
+admin,Other,Vacation,2023,5,0
+admin,Other,Vacation,2023,6,0
+admin,Other,Vacation,2023,7,0
+admin,Other,Vacation,2023,8,0
+admin,Other,Vacation,2023,9,0
+admin,Other,Vacation,2023,10,0
+admin,Other,Vacation,2023,11,0
+admin,Other,Vacation,2023,12,0
+admin,Other,Other,2023,1,0
+admin,Other,Other,2023,2,0
+admin,Other,Other,2023,3,0
+admin,Other,Other,2023,4,0
+admin,Other,Other,2023,5,0
+admin,Other,Other,2023,6,0
+admin,Other,Other,2023,7,0
+admin,Other,Other,2023,8,0
+admin,Other,Other,2023,9,0
+admin,Other,Other,2023,10,0
+admin,Other,Other,2023,11,0
+admin,Other,Other,2023,12,0

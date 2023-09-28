@@ -1,58 +1,58 @@
-Income,Salary
-Income,TFSA Matching
-Income,Bonus
-Income,Overtime
-Income,Reimbursement
-Income,Benefits
-Income,Business
-Income,Gifts
-Income,Interest
-Income,Other
-Investments,Emergency Fund
-Investments,TFSA
-Investments,RRSP
-Investments,FSHA
-Investments,Margin
-Investments,Crypto
-Investments,Masters
-Investments,Business
-Investments,Vacation
-Investments,Other
-Fixed_Expenses,Rent
-Fixed_Expenses,Utilities
-Fixed_Expenses,Phone Plan
-Fixed_Expenses,Internet
-Fixed_Expenses,Gym Membership
-Fixed_Expenses,Parking
-Fixed_Expenses,Fees
-Fixed_Expenses,Other
-Variable_Expenses,Groceries
-Variable_Expenses,Gas
-Variable_Expenses,Self Care
-Variable_Expenses,Clothing
-Variable_Expenses,Learning
-Variable_Expenses,Other
-Optional_Expenses,Vices
-Optional_Expenses,Entertainment
-Optional_Expenses,Video Games
-Optional_Expenses,Eating Out
-Optional_Expenses,Guilt-Free
-Optional_Expenses,Snacks
-Optional_Expenses,Other
-True_Expenses,Auto Maintenance
-True_Expenses,Auto Insurance
-True_Expenses,Medical
-True_Expenses,Gifts
-True_Expenses,Other
-Reimbursements,Work Reimbursements
-Reimbursements,Benefits
-Reimbursements,Friends
-Reimbursements,Other
-Deductions,Tax
-Deductions,CPP
-Deductions,EI
-Deductions,Deductions
-Deductions,Other
-Other,Unexpected Expenses
-Other,Vacation
-Other,Other
+admin,Income,Salary
+admin,Income,TFSA Matching
+admin,Income,Bonus
+admin,Income,Overtime
+admin,Income,Reimbursement
+admin,Income,Benefits
+admin,Income,Business
+admin,Income,Gifts
+admin,Income,Interest
+admin,Income,Other
+admin,Investments,Emergency Fund
+admin,Investments,TFSA
+admin,Investments,RRSP
+admin,Investments,FSHA
+admin,Investments,Margin
+admin,Investments,Crypto
+admin,Investments,Masters
+admin,Investments,Business
+admin,Investments,Vacation
+admin,Investments,Other
+admin,Fixed_Expenses,Rent
+admin,Fixed_Expenses,Utilities
+admin,Fixed_Expenses,Phone Plan
+admin,Fixed_Expenses,Internet
+admin,Fixed_Expenses,Gym Membership
+admin,Fixed_Expenses,Parking
+admin,Fixed_Expenses,Fees
+admin,Fixed_Expenses,Other
+admin,Variable_Expenses,Groceries
+admin,Variable_Expenses,Gas
+admin,Variable_Expenses,Self Care
+admin,Variable_Expenses,Clothing
+admin,Variable_Expenses,Learning
+admin,Variable_Expenses,Other
+admin,Optional_Expenses,Vices
+admin,Optional_Expenses,Entertainment
+admin,Optional_Expenses,Video Games
+admin,Optional_Expenses,Eating Out
+admin,Optional_Expenses,Guilt-Free
+admin,Optional_Expenses,Snacks
+admin,Optional_Expenses,Other
+admin,True_Expenses,Auto Maintenance
+admin,True_Expenses,Auto Insurance
+admin,True_Expenses,Medical
+admin,True_Expenses,Gifts
+admin,True_Expenses,Other
+admin,Reimbursements,Work Reimbursements
+admin,Reimbursements,Benefits
+admin,Reimbursements,Friends
+admin,Reimbursements,Other
+admin,Deductions,Tax
+admin,Deductions,CPP
+admin,Deductions,EI
+admin,Deductions,Deductions
+admin,Deductions,Other
+admin,Other,Unexpected Expenses
+admin,Other,Vacation
+admin,Other,Other

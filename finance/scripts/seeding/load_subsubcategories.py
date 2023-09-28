@@ -1,5 +1,5 @@
 import csv
-from main.models import SubSubCategory, SubCategory, MainCategory
+from main.models import SubSubCategory, SubCategory, MainCategory, User
 from django.utils import timezone
 '''
 load_subsubcategories.py
@@ -19,9 +19,10 @@ def run():
         reader = csv.reader(f)
         for row in reader:
             _, created = SubSubCategory.objects.get_or_create(
-                name=row[2],
+                user=User.objects.get(username=row[0]),
+                name=row[3],
                 description="test",    
-                sub_category=SubCategory.objects.get(name=row[1], main_category=MainCategory.objects.get(name=row[0])),
+                sub_category=SubCategory.objects.get(name=row[2], main_category=MainCategory.objects.get(name=row[1])),
                 created_at=timezone.now(),
                 updated_at=timezone.now(),                        
             )

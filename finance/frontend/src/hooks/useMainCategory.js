@@ -22,17 +22,27 @@ import { useEffect, useState } from "react"
 // API Import
 import { getRequest } from "../api/posts"
 
+// Custom Hooks
+import { useAuth } from "../context/AuthContext"
+
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 export const useMainCategory = () => {
+    const { authUser } = useAuth();
     const [mainCategories, setMainCategories] = useState([]);
 
     const fetchMainCategories = async () => {
         try {          
             const response = await getRequest("maincategories/", '');
-            if (response && response.data) setMainCategories(response.data);            
+            if (response && response.data)
+            {
+                const allMainCategories = response.data;
+                const userMainCategories = allMainCategories.filter((data) => data.user == authUser);
+                console.log(userMainCategories);
+                setMainCategories(userMainCategories);  
+            }           
         } catch (err) {
             if (err.response) { //Not in 200 Response Range
                     console.log(err.response.data);

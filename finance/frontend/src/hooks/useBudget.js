@@ -23,18 +23,23 @@ import { useEffect, useState } from "react"
 // API Import
 import { getRequest } from "../api/posts"
 
+// Custom Hooks
+// import { useAuth } from "../context/AuthContext"
+
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 export const useBudget = (selectedSub) => {
+    // const { authUser } = useAuth();
     const [budgets, setBudgets] = useState([]);
 
     const fetchBudgets = async () => {
         try {          
             const response = await getRequest("budgets/", '');
             if (response && response.data){
-                const allBudgets = response.data
+                const allBudgets = response.data;
+                // const userBudgets = allBudgets.filter((data) => data.user == authUser);
                 const filteredBudgets = allBudgets.filter((data) => data.sub_category.pk === selectedSub);
                 const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
                 setBudgets(sortedBudgets);

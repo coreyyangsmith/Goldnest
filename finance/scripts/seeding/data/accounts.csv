@@ -1,9 +1,9 @@
-RBC Chequings,CHEQUING,1234.45,0,,,RBC
-RBC Savings,SAVING,6543.12,0,,,RBC
-TD Chequings,CHEQUING,905.50,0.02,,,TD
-Questrade TFSA,INVESTMENT,20500.69,0,,,Questrade
-Questrade FHSA,INVESTMENT,8000.00,0,,,Questrade
-Questrade Margin,INVESTMENT,62364.12,0,,,Questrade
-Car,ASSET,10500.00,0,,,Self
-House,ASSET,325000.00,0,,,Self
-Mortage,DEBT,-300000.00,0.035,2023-01-01,2043-01-01,RBC
+admin,RBC Chequings,CHEQUING,1234.45,0,,,RBC
+admin,RBC Savings,SAVING,6543.12,0,,,RBC
+admin,TD Chequings,CHEQUING,905.50,0.02,,,TD
+admin,Questrade TFSA,INVESTMENT,20500.69,0,,,Questrade
+admin,Questrade FHSA,INVESTMENT,8000.00,0,,,Questrade
+admin,Questrade Margin,INVESTMENT,62364.12,0,,,Questrade
+admin,Car,ASSET,10500.00,0,,,Self
+admin,House,ASSET,325000.00,0,,,Self
+admin,Mortage,DEBT,-300000.00,0.035,2023-01-01,2043-01-01,RBC

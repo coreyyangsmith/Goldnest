@@ -1,5 +1,5 @@
 import csv
-from main.models import Entry, MainCategory, SubCategory, Entity
+from main.models import Entry, MainCategory, SubCategory, Entity, User
 from django.utils import timezone
 '''
 load_entries.py
@@ -19,14 +19,15 @@ def run():
         reader = csv.reader(f)
         for row in reader:
             _, created = Entry.objects.get_or_create(
-                name=row[0],
-                income=row[1],
-                expense=row[2],
-                notes=row[3],
-                date=row[4], ## TODO fix warning error for this import - maybe have to fix data?
-                routing=Entity.objects.get(name=row[5]),
-                main_category=MainCategory.objects.get(name=row[6]),
-                sub_category=SubCategory.objects.get(name=row[7]),      
+                user=User.objects.get(username=row[0]),
+                name=row[1],
+                income=row[2],
+                expense=row[3],
+                notes=row[4],
+                date=row[5], ## TODO fix warning error for this import - maybe have to fix data?
+                routing=Entity.objects.get(name=row[6]),
+                main_category=MainCategory.objects.get(name=row[7]),
+                sub_category=SubCategory.objects.get(name=row[8]),      
                 created_at=timezone.now(),
                 updated_at=timezone.now(),
             )
