@@ -28,7 +28,7 @@ class MainCategory(models.Model):
     name = models.CharField(max_length=15, blank=False, null=False)
     description = models.CharField(max_length=500, null=True)
 
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    

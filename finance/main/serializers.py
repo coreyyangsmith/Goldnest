@@ -46,7 +46,8 @@ class EntitySerializer(serializers.ModelSerializer):
 class MainCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = MainCategory
-        fields = ('pk', 'name', 'description',
+        user = UserSerializer()        
+        fields = ('pk', 'user', 'name', 'description',
                   'created_at', 'updated_at')
         
 class SubCategorySerializer(serializers.ModelSerializer):

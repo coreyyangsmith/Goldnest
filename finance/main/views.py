@@ -195,20 +195,24 @@ def entities_detail(request, pk):
 @api_view(['GET', 'POST'])
 def maincategories_list(request):
     if request.method == 'GET':
-        if 'HTTP_AUTHORIZATION' in request.META:
-            print("found token - display user values")      
+        if 'HTTP_AUTHORIZATION' in request.META:   
             token = request.META['HTTP_AUTHORIZATION'][6::]
             user = Token.objects.get(key=token).user       
-            print("found token!")
             data = MainCategory.objects.all().filter(user=user);
         else:
-            print("no token - display all values")
             data = MainCategory.objects.all().none();
         serializer = MainCategorySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 
-    elif request.method == 'POST':
-        serializer = MainCategorySerializer(data=request.data)
+    elif request.method == 'POST': #TODO add validation to false req
+        data=request.data
+        if 'HTTP_AUTHORIZATION' in request.META:
+            token = request.META['HTTP_AUTHORIZATION'][6::]
+            test = Token.objects.get(key=token).user
+            user = User.objects.get(username=test.username)
+            data['user'] = user.pk    
+            print(data)
+            serializer = MainCategorySerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)

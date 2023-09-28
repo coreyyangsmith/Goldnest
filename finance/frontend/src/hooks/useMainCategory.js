@@ -3,7 +3,7 @@
 //  Description: Data Fetching Hook to obtain "MainCategory" model from the local database
 //
 //  Requirements:
-//      - /api/posts (axios)
+//      - /api/authenticated (axios)
 //
 //  Returns:
 //      - List of Objects (Main Category)
@@ -31,7 +31,6 @@ import useToken from "../hooks/useToken"
 //-------------------------------------------------------//
 
 export const useMainCategory = () => {
-    const { authUser } = useAuth();
     const { token } = useToken();
     const [mainCategories, setMainCategories] = useState([]);
 

@@ -11,6 +11,10 @@ import { useForm } from "react-hook-form";
 //Axios Import
 import axios from "axios"
 import { getRequest } from '../../api/posts';
+
+// Custom Hooks
+import { useMainCategory } from '../../hooks/useMainCategory';
+
 const BUDGET_ENDPOINT = "http://127.0.0.1:8000/api/budgets/"
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/subcategories/"
 
@@ -20,17 +24,16 @@ const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
 const SubCategoryForm = (props) => {
 
     const [mainCatName, setMainCatName] = useState("");
-    const [mainCatList, setMainCatList] = useState([]);
+    const mainCatList = useMainCategory();
 
     //useEffect to get selected main_category (id), and find the corresponding name to update.
     useEffect(() => {
-
         if (props.selectedMain === undefined || props.selectedMain === "" || mainCatList === undefined || mainCatList === ""){
-            console.log("Error");
+            console.log("No Main Category Selected - cannot populate Sub Categories");
         }
         else {
-            console.log("running!");
             var match = mainCatList.filter(obj => obj.pk === props.selectedMain);
+            setMainCatName(match[0].name);
         }
     }
     ,[props.selectedMain])
@@ -104,6 +107,7 @@ const SubCategoryForm = (props) => {
                     required
                     label="Main Category"
                     value={mainCatName}
+                    placeholder='Selected Main Category'
                     variant="filled"
                     size='small'
                 />              
