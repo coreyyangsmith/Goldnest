@@ -5,6 +5,9 @@
 //  Parents:
 //      - Database.jsx
 //
+//  Requirements:
+//      - Entries Data (useEntries)
+//
 //  Returns:
 //      - Data Grid with User Entries
 //
@@ -26,6 +29,9 @@ import { Tooltip } from '@mui/material';
 
 // Axios Import
 import axios from "axios"
+
+// My Imports
+import { useEntries } from '../../hooks/useEntries';
 
 
 //  GLOBALS & INITIALIZATION
@@ -51,42 +57,10 @@ routing = routing.data
 export default function MyDataGrid() {
   
   // Initial Data Fetch
-  const [entries, setEntries] = useState([])
-
-  const fetchUserData = () => {
-      fetch(ENTRIES_API_URL)
-          .then(response => {
-              return response.json()
-              })
-          .then(data => {
-            const nextEntries = data.map((data) => {
-              return {
-                id: data.pk,
-                date: data.date,
-                name: data.name,
-                routing: data.routing.name,
-                notes: data.notes,
-                main_category: data.main_category.name,
-                sub_category: data.sub_category.name,
-                income: data.income,
-                expense: data.expense,
-                created_at: data.created_at,
-                updated_at: data.updated_at
-              }})
-              setEntries(nextEntries);
-          })
-  }
-
-  useEffect(() => {
-    fetchUserData();
-    }, [])
-
-  //Process Data
-  // TODO
-
-
+  const { entries } = useEntries();
 
   // Assign Data
+  console.log(entries);
   const rows = entries;
   const columns = [
     {
@@ -99,7 +73,7 @@ export default function MyDataGrid() {
       field: 'routing',
       headerName: 'Company',
       type: 'number',
-      width: 100,
+      width: 150,
       editable: true,
     },  
     {
@@ -117,19 +91,19 @@ export default function MyDataGrid() {
       field: 'main_category',
       headerName: 'Main Category',
       description: 'This column has a value getter and is not sortable.',
-      width: 150,
+      width: 175,
     },
     {
       field: 'sub_category',
       headerName: 'Sub Category',
       description: 'This column has a value getter and is not sortable.',
-      width: 150,
+      width: 175,
     },  
     {
       field: 'income',
       headerName: 'Income',
       description: 'This column has a value getter and is not sortable.',
-      width: 150,
+      width: 125,
       valueFormatter: (params) => {
         if (params.value == null) {
           return '$0.00';
@@ -141,7 +115,7 @@ export default function MyDataGrid() {
       field: 'expense',
       headerName: 'Expense',
       description: 'This column has a value getter and is not sortable.',
-      width: 150,
+      width: 125,
       valueFormatter: (params) => {
         if (params.value == null) {
           return '$0.00';
@@ -155,8 +129,8 @@ export default function MyDataGrid() {
   return (
     <Box sx={{ height: 575 + 57, width: '100%' }}>
       <DataGrid
-        getRowId={(row) => row.id}
         rows={rows}
+        getRowId={(row) => row.pk}
         columns={columns}
         initialState={{
           pagination: {

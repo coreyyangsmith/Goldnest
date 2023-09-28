@@ -1,13 +1,12 @@
 //-------------------------------------------------------//
-//  File Name: useBudget.js
-//  Description: Data Fetching Hook to obtain "Budget" model from the local database, based on selected Sub Category
+//  File Name: useEntities.js
+//  Description: Data Fetching Hook to obtain "Entity" model from the local database
 //
 //  Requirements:
 //      - /api/posts (axios)
-//      - Selected Sub Category
 //
 //  Returns:
-//      - Sorted List of Budgets (Sub Category)
+//      - List of Entities
 //
 // Created By: Corey Yang-Smith
 // Date: September 27th, 2023
@@ -30,19 +29,17 @@ import { getRequest } from "../api/posts"
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-export const useBudget = (selectedSub) => {
+export const useEntities = () => {
     // const { authUser } = useAuth();
-    const [budgets, setBudgets] = useState([]);
+    const [entities, setEntities] = useState([]);
 
-    const fetchBudgets = async () => {
+    const fetchEntities = async () => {
         try {          
-            const response = await getRequest("budgets/", '');
+            const response = await getRequest("entities/", '');
             if (response && response.data){
-                const allBudgets = response.data;
-                // const userBudgets = allBudgets.filter((data) => data.user == authUser);
-                const filteredBudgets = allBudgets.filter((data) => data.sub_category.pk === selectedSub);
-                const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
-                setBudgets(sortedBudgets);
+                const allEntities = response.data;
+                const userEntities = allEntities.filter((data) => data.user == authUser);
+                setEntities(userEntities);   
             }         
         } catch (err) {
             if (err.response) { //Not in 200 Response Range
@@ -56,8 +53,8 @@ export const useBudget = (selectedSub) => {
     }
 
     useEffect(() => {
-        fetchBudgets();
-    }, [selectedSub]);
+        fetchEntities();
+    }, []);
 
-    return { budgets, setBudgets };
+    return entities;
 };
