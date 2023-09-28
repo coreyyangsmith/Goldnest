@@ -38,6 +38,10 @@ export function putRequest(URL, payload) {
     return axiosClient.put(`/${URL}`, payload).then(response => response);
 }
 
-export function deleteRequest(URL, payload) {
-    return axiosClient.delete(`/${URL}`, payload).then(response => response);
+export function deleteRequest(URL, token) {
+    return axiosClient.delete(`/${URL}`, {
+        headers: {
+            Authorization: "token " + token
+        }        
+    }).then(response => response);
 }

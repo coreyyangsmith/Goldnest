@@ -31,6 +31,8 @@ import SubCategoryForm from "./SubCategoryForm";
 import BudgetList from './BudgetList';
 import SaveBudgetButton from './SaveBudgetButton';
 
+// Custom Hooks 
+import { useMainCategory } from '../../hooks/useMainCategory';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -40,8 +42,10 @@ const Budget = () => {
     const [budget, setBudget] = useState([])
     const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
     
+    const [formSubmitted, setFormSubmitted] = useState(1);
     const [selectedSub, setSelectedSub] = useState("")      
 
+    const { mainCategories, setMainCategories } = useMainCategory();
 
     return (
     <>
@@ -66,8 +70,14 @@ const Budget = () => {
                     <Box sx={{
                     }}>
                         <MainCategoriesList setSelectedMain={setSelectedMain}
-                                            selectedMain={selectedMain}/>
-                        <MainCategoryForm/>
+                                            selectedMain={selectedMain}
+                                            formSubmitted={formSubmitted}
+                                            mainCategories={mainCategories}
+                                            setMainCategories={setMainCategories}/>
+
+                        <MainCategoryForm   formSubmitted={formSubmitted}
+                                            setFormSubmitted={setFormSubmitted}
+                                            setMainCategories={setMainCategories}/>
                     </Box>
                 </Grid>
 
@@ -78,11 +88,13 @@ const Budget = () => {
                         <SubCategoriesList  selectedMain={selectedMain}
                                             selectedSub={selectedSub} 
                                             setSelectedSub={setSelectedSub}/>
+
                         <SubCategoryForm    setSubCategories={setSubCategories}
                                             selectedMain={selectedMain}
                                             setSelectedSub={setSelectedSub}
                                             setBudget={setBudget}
-                                            budget={budget}/>
+                                            budget={budget}
+                                            mainCategories={mainCategories}/>
                     </Box>
                 </Grid>
 

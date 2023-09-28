@@ -27,10 +27,10 @@ import "../../components/css/UIStyles.css";
 import { Button, Stack, Tooltip } from '@mui/material/'
 
 // API Imports
-import { getRequest, deleteRequest } from '../../api/posts'
+import { deleteRequest } from '../../api/authenticated'
 
 // My Hooks
-import { useMainCategory } from '../../hooks/useMainCategory';
+import useToken from '../../hooks/useToken';
 
 
 //  UTILITY
@@ -43,7 +43,7 @@ import { useMainCategory } from '../../hooks/useMainCategory';
 const MainCategoriesList = (props) => {
 
   //My Hooks
-  const mainCategories = useMainCategory();  
+  const { token } = useToken();
 
   // Handles Main Click - Sets Selected Main
   const handleClick = (mainCat) => {
@@ -52,12 +52,11 @@ const MainCategoriesList = (props) => {
 
   // Handles Delete Button - Delete Selected Main Category (and Children)
   const handleDelete = (mainCat) => {
-    console.log("Deleting: " + mainCat.name); 
 
+    // Handle Delete
     const deleteMainCategory = async(mainCat) => {
       try {
-          const response = await deleteRequest('maincategories/' + mainCat.pk, "");
-          console.log(response.data);      
+        await deleteRequest('maincategories/' + mainCat.pk, token); 
       } catch (err) {
           if (err.response) {
               // Not in 200 response range
@@ -71,28 +70,17 @@ const MainCategoriesList = (props) => {
       }
     }
 
-    const fetchMainCategories = async() => {
-      try {
-          const response = await getRequest('maincategories/', "");
-          props.setMainCategories(response.data);         
-      } catch (err) {
-          if (err.response) {
-              // Not in 200 response range
-              console.log(err.response.data);
-              console.log(err.response.status);
-              console.log(err.response.headers);   
-          }
-          else {
-              console.log(`Error: ${err.message}`);
-          }                             
-      }
-  }
     deleteMainCategory(mainCat);
-    fetchMainCategories();
+
+    // Handle Live Update
+    const myNewMainCategories = props.mainCategories.filter((myItems) => {
+      return myItems != mainCat
+    })
+    props.setMainCategories(myNewMainCategories);
   }
 
-  if (mainCategories.length > 0){
-    const myMainCategories = mainCategories.map(mainCat => {
+  if (props.mainCategories !== undefined && props.mainCategories.length > 0){
+    const myMainCategories = props.mainCategories.map(mainCat => {
       return  <React.Fragment key={mainCat.pk}>
       <Stack direction="row" spacing={0.5}>
       <Tooltip title={mainCat.description}>

@@ -18,6 +18,7 @@
 
 // React Import
 import React from 'react'
+import { useState } from 'react';
 
 // MUI Import
 import TextField from '@mui/material/TextField'
@@ -33,17 +34,14 @@ import { AuthContext } from '../../context/AuthContext';
 // Custom Hooks
 import useToken from '../../hooks/useToken';
 
-//Axios Import
-import axios from "axios"
-const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/maincategories/"
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const MainCategoryForm = (props) => {
-    const { token } = useToken();
 
+    // Custom Hooks
+    const { token } = useToken();
 
     const {
         register,
@@ -53,34 +51,17 @@ const MainCategoryForm = (props) => {
     } = useForm();
 
     
+    // Utility
+
+
     const onSubmit = async(FieldValues) => { // TODO if description is "" axios fails, to fix
-
-
-        // want front end to just send request + token
-        // backend to handle user validation and linking active user to db submission
-
 
         //Axios Post
         const response = await postRequest("maincategories/", FieldValues, token);
-        if (response && response.data)
-        {
-            const newMainCategories = response.data;
-            console.log(newMainCategories);
-        }
-
-
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        console.log(token);        
-        console.log(FieldValues);
-
-
-        
-        // Regen Page
-        // let mainCatList = await axios.get(MAIN_CATEGORY_API);
-        // mainCatList = mainCatList.data
-        // props.setMainCategories(mainCatList);
-        
+        const newData = await getRequest("maincategories/", token);
+        props.setMainCategories(newData.data);        
         reset();
+        await new Promise((resolve) => setTimeout(resolve, 250));    
     }
 
     return (

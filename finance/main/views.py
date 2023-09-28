@@ -198,7 +198,7 @@ def maincategories_list(request):
         if 'HTTP_AUTHORIZATION' in request.META:   
             token = request.META['HTTP_AUTHORIZATION'][6::]
             user = Token.objects.get(key=token).user       
-            data = MainCategory.objects.all().filter(user=user);
+            data = MainCategory.objects.all().filter(user=user)
         else:
             data = MainCategory.objects.all().none();
         serializer = MainCategorySerializer(data, context={'request': request}, many=True)
@@ -221,7 +221,12 @@ def maincategories_list(request):
 
 @api_view(['PUT', 'DELETE'])
 def maincategories_detail(request, pk):
+    if 'HTTP_AUTHORIZATION' in request.META:   
+        token = request.META['HTTP_AUTHORIZATION'][6::]
+        user = Token.objects.get(key=token).user       
+
     try:
+        print("looking for main category")
         maincategory = MainCategory.objects.get(pk=pk)
     except MainCategory.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)

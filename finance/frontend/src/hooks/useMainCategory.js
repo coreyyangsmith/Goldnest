@@ -23,7 +23,6 @@ import { useEffect, useState } from "react"
 import { getRequest } from "../api/authenticated"
 
 // Custom Hooks
-import { useAuth } from "../context/AuthContext"
 import useToken from "../hooks/useToken"
 
 
@@ -57,5 +56,5 @@ export const useMainCategory = () => {
         fetchMainCategories();
     }, []);
 
-    return mainCategories;
+    return { mainCategories, setMainCategories };
 };

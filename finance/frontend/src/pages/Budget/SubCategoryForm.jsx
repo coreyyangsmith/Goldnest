@@ -24,15 +24,15 @@ const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
 const SubCategoryForm = (props) => {
 
     const [mainCatName, setMainCatName] = useState("");
-    const mainCatList = useMainCategory();
 
     //useEffect to get selected main_category (id), and find the corresponding name to update.
     useEffect(() => {
-        if (props.selectedMain === undefined || props.selectedMain === "" || mainCatList === undefined || mainCatList === ""){
+        if (props.selectedMain === undefined || props.selectedMain === "" || props.mainCategories === undefined || props.mainCategories === ""){
             console.log("No Main Category Selected - cannot populate Sub Categories");
         }
         else {
-            var match = mainCatList.filter(obj => obj.pk === props.selectedMain);
+            console.log(props.selectedMain)
+            var match = props.mainCategories.filter(obj => obj.pk === props.selectedMain);
             setMainCatName(match[0].name);
         }
     }
