@@ -20,10 +20,11 @@
 import { useEffect, useState } from "react"
 
 // API Import
-import { getRequest } from "../api/posts"
+import { getRequest } from "../api/authenticated"
 
 // Custom Hooks
 import { useAuth } from "../context/AuthContext"
+import useToken from "../hooks/useToken"
 
 
 //  MAIN FUNCTION
@@ -31,16 +32,15 @@ import { useAuth } from "../context/AuthContext"
 
 export const useMainCategory = () => {
     const { authUser } = useAuth();
+    const { token } = useToken();
     const [mainCategories, setMainCategories] = useState([]);
 
     const fetchMainCategories = async () => {
         try {          
-            const response = await getRequest("maincategories/", '');
+            const response = await getRequest("maincategories/", token);
             if (response && response.data)
             {
-                const allMainCategories = response.data;
-                const userMainCategories = allMainCategories.filter((data) => data.user == authUser);
-                console.log(userMainCategories);
+                const userMainCategories = response.data;
                 setMainCategories(userMainCategories);  
             }           
         } catch (err) {

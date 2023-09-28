@@ -44,7 +44,6 @@ const BudgetList = (props) => {
       setBudgets(arr)
   }
 
-  console.log(budgets);
   if (budgets.length > 0){
     const myBudgets = budgets.map(item => {
       function monthName(month) {

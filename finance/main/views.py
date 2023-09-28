@@ -123,6 +123,7 @@ class HomeView(APIView):
         return Response(content)
     
 #-- Entry --#
+
 @api_view(['GET', 'POST'])
 def entrys_list(request):
     if request.method == 'GET':
@@ -194,7 +195,15 @@ def entities_detail(request, pk):
 @api_view(['GET', 'POST'])
 def maincategories_list(request):
     if request.method == 'GET':
-        data = MainCategory.objects.all()
+        if 'HTTP_AUTHORIZATION' in request.META:
+            print("found token - display user values")      
+            token = request.META['HTTP_AUTHORIZATION'][6::]
+            user = Token.objects.get(key=token).user       
+            print("found token!")
+            data = MainCategory.objects.all().filter(user=user);
+        else:
+            print("no token - display all values")
+            data = MainCategory.objects.all().none();
         serializer = MainCategorySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 

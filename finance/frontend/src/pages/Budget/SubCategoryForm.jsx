@@ -24,32 +24,13 @@ const SubCategoryForm = (props) => {
 
     //useEffect to get selected main_category (id), and find the corresponding name to update.
     useEffect(() => {
-        const fetchMainCategories = async() => {
-            try {
-                const response = await getRequest('maincategories/', "");
-                setMainCatList(response.data);                      
-            } catch (err) {
-                if (err.response) {
-                    // Not in 200 response range
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);   
-                }
-                else {
-                    console.log(`Error: ${err.message}`);
-                }                             
-            }
-        }
-        fetchMainCategories();
-        console.log(props.selectedMain);
-        console.log(mainCatList);
+
         if (props.selectedMain === undefined || props.selectedMain === "" || mainCatList === undefined || mainCatList === ""){
             console.log("Error");
         }
         else {
-            console.log("running!)");
-            var match = mainCatList.filter(obj => obj.pk === props.selectedMain);          
-            setMainCatName(match[0].name);
+            console.log("running!");
+            var match = mainCatList.filter(obj => obj.pk === props.selectedMain);
         }
     }
     ,[props.selectedMain])
