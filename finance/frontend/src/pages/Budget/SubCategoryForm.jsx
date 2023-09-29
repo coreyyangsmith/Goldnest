@@ -1,3 +1,22 @@
+//-------------------------------------------------------//
+//  File Name: SubCategoryForm.jsx
+//  Description: Form Submission for new Sub Cateogry, dependant on Selected Main
+//
+//  Requirements:
+//      - /api/authenticated (axios)
+//      - Selected Main Category
+//
+//  Submits:
+//      - New Sub Category
+//
+// Created By: Corey Yang-Smith
+// Date: September 28th, 2023
+//-------------------------------------------------------//
+
+
+//  IMPORTS
+//-------------------------------------------------------//
+
 // React Import
 import React, { useEffect, useState } from 'react'
 
@@ -9,21 +28,28 @@ import { Button, Stack, Input } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 //Axios Import
-import axios from "axios"
-import { getRequest } from '../../api/posts';
+import { getRequest, postRequest } from '../../api/authenticated';
 
 // Custom Hooks
-import { useMainCategory } from '../../hooks/useMainCategory';
+import useToken from '../../hooks/useToken';
 
-const BUDGET_ENDPOINT = "http://127.0.0.1:8000/api/budgets/"
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/subcategories/"
 
-const BUDGET_API = "http://127.0.0.1:8000/api/budgets/"
-const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 const SubCategoryForm = (props) => {
 
+    // Custom Hooks
+    const { token } = useToken();
+
     const [mainCatName, setMainCatName] = useState("");
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        reset,
+    } = useForm();
 
     //useEffect to get selected main_category (id), and find the corresponding name to update.
     useEffect(() => {
@@ -38,14 +64,8 @@ const SubCategoryForm = (props) => {
     }
     ,[props.selectedMain])
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, isSubmitting },
-        reset,
-    } = useForm();
-
-    const generateBudgetData = (myNewCategory) => {
+    const generateBudgetData = async(myNewCategory) => {
+        console.log(myNewCategory);
         let budget_data = {amount: 0,
                             year: 2023, 
                             month: 0,
@@ -55,31 +75,27 @@ const SubCategoryForm = (props) => {
  
         for (let i = 1; i <= 12; i++){
             budget_data.month = i;
-            axios.post(BUDGET_ENDPOINT, budget_data);
+            const response = await postRequest("budgets/", budget_data, token);
         }
     }
 
     const onSubmit = async(FieldValues) => {
         // Post to Server
-        axios.post(FORM_ENDPOINT, FieldValues);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const response = await postRequest("subcategories/", FieldValues, token);
+        const newData = await getRequest("subcategories/", token);
+        props.setSubCategories(newData.data);
+        await new Promise((resolve) => setTimeout(resolve, 250));
 
         //Obtain reference to recent submission
-        let subCatList = await axios.get(SUB_CATEGORY_API);
-        subCatList = subCatList.data;
-        let myNewCat = subCatList[subCatList.length - 1];
-
-        // Regen Page for SubCategory Update
-        props.setSubCategories(subCatList);
+        const myNewCat = newData.data[newData.data.length - 1];
 
         // Generate Budget Numbers
         generateBudgetData(myNewCat);
 
         // Obtain reference for budget generation
-        let budgetList = await axios.get(BUDGET_API);
-        budgetList = budgetList.data
-        let filteredBudgets = budgetList.filter((data) => data.sub_category.pk === myNewCat.pk);
-        let sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
+        const allBudgets = await getRequest("budgets/", token);
+        const filteredBudgets = allBudgets.data.filter((data) => data.sub_category.pk === myNewCat.pk);
+        const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
         
         // Regen page for budget
         props.setSelectedSub(myNewCat.pk);
@@ -140,5 +156,9 @@ const SubCategoryForm = (props) => {
         </form>
   )
 }
+
+
+//  EXPORTS
+//-------------------------------------------------------//
 
 export default SubCategoryForm

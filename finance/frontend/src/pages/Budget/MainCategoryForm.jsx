@@ -29,7 +29,6 @@ import { useForm } from "react-hook-form";
 
 // API Import
 import { getRequest, postRequest } from '../../api/authenticated'
-import { AuthContext } from '../../context/AuthContext';
 
 // Custom Hooks
 import useToken from '../../hooks/useToken';
@@ -52,8 +51,6 @@ const MainCategoryForm = (props) => {
 
     
     // Utility
-
-
     const onSubmit = async(FieldValues) => { // TODO if description is "" axios fails, to fix
 
         //Axios Post

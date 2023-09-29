@@ -41,6 +41,9 @@ export const useSubCategory = (selectedMain) => {
                 const allSubCategories = response.data;
                 // const userSubCategories = allSubCategories.filter((data) => data.user == authUser);
                 const filteredSubCat = allSubCategories.filter((data) => data.main_category == selectedMain);
+                console.log(allSubCategories);
+                console.log(selectedMain);
+                console.log(filteredSubCat);
                 setSubCategories(filteredSubCat);   
             }         
         } catch (err) {
@@ -58,5 +61,5 @@ export const useSubCategory = (selectedMain) => {
         fetchSubCategories();
     }, [selectedMain]);
 
-    return subCategories;
+    return { subCategories, setSubCategories };
 };

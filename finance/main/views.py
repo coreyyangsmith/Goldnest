@@ -251,10 +251,16 @@ def subcategories_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = SubCategorySerializer(data=request.data)
+        data=request.data;
+        if 'HTTP_AUTHORIZATION' in request.META:
+            token = request.META['HTTP_AUTHORIZATION'][6::]
+            test = Token.objects.get(key=token).user
+            user = User.objects.get(username=test.username)
+            data['user'] = user.pk    
+            serializer = SubCategorySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(status=status.HTTP_201_CREATED)     
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -323,10 +329,20 @@ def budgets_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = BudgetSerializer(data=request.data)
+        data=request.data;
+        if 'HTTP_AUTHORIZATION' in request.META:
+            token = request.META['HTTP_AUTHORIZATION'][6::]
+            test = Token.objects.get(key=token).user
+            user = User.objects.get(username=test.username)
+            print(user)
+
+            data['user'] = user.pk   
+            print(data)                     
+            serializer = BudgetSerializer(data=request.data)
+            print("successful")
         if serializer.is_valid():
             serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(status=status.HTTP_201_CREATED)        
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

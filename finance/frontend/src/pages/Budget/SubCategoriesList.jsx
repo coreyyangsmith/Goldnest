@@ -26,20 +26,13 @@ import React, { useEffect } from 'react'
 // MUI Imports
 import { Stack, Button, Tooltip } from '@mui/material/';
 
-// Axios import
-import { getRequest } from '../../api/posts'
-
-// My Imports
-import { useSubCategory } from '../../hooks/useSubCategory'
-
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const SubCategoriesList = (props) => {
 
-  const subCategories = useSubCategory(props.selectedMain);
-
+  console.log(props.subCategories);
   
   const handleClick = async(subCat) => {
     // Regenerate SubCategories List
@@ -57,9 +50,9 @@ const SubCategoriesList = (props) => {
     //TODO
   }
 
-  if (subCategories.length > 0)
+  if (props.subCategories.length > 0)
   {
-    const mySubCategories = subCategories.map(subCat => {
+    const mySubCategories = props.subCategories.map(subCat => {
       return <React.Fragment key={subCat.pk}>
       <Stack direction="row" spacing={0.5}>
         <Tooltip title={subCat.description}>   

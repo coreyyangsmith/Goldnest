@@ -41,7 +41,7 @@ class SubCategory(models.Model):
     description = models.CharField(max_length=500)
 
     main_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    
@@ -133,7 +133,7 @@ class Budget(models.Model):
                                              validators=[MinValueValidator(1), MaxValueValidator(12)])
 
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)    
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)    
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

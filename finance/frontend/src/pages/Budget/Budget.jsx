@@ -17,7 +17,7 @@
 //-------------------------------------------------------//
 
 // React Imports
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 // MUI Imports
 import { Box, Stack } from "@mui/material";
@@ -33,12 +33,12 @@ import SaveBudgetButton from './SaveBudgetButton';
 
 // Custom Hooks 
 import { useMainCategory } from '../../hooks/useMainCategory';
+import { useSubCategory } from '../../hooks/useSubCategory';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const Budget = () => {
-    const [subCategory, setSubCategories] = useState([])
     const [budget, setBudget] = useState([])
     const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
     
@@ -46,6 +46,7 @@ const Budget = () => {
     const [selectedSub, setSelectedSub] = useState("")      
 
     const { mainCategories, setMainCategories } = useMainCategory();
+    const { subCategories, setSubCategories } = useSubCategory(selectedMain);
 
     return (
     <>
@@ -87,13 +88,13 @@ const Budget = () => {
                     }}>
                         <SubCategoriesList  selectedMain={selectedMain}
                                             selectedSub={selectedSub} 
-                                            setSelectedSub={setSelectedSub}/>
+                                            setSelectedSub={setSelectedSub}
+                                            subCategories={subCategories}/>
 
                         <SubCategoryForm    setSubCategories={setSubCategories}
-                                            selectedMain={selectedMain}
+                                            selectedMain={selectedMain} //used
                                             setSelectedSub={setSelectedSub}
                                             setBudget={setBudget}
-                                            budget={budget}
                                             mainCategories={mainCategories}/>
                     </Box>
                 </Grid>
