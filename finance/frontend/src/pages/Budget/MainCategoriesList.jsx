@@ -45,11 +45,14 @@ import useToken from '../../hooks/useToken';
 
 const MainCategoriesList = (props) => {
 
-  //My Hooks
+  // My Hooks
   const { token } = useToken();
   const [open, setOpen] = useState(false);
+  const [selectedToDelete, setSelectedToDelete] = useState("");
 
-  const handleClickOpen = () => {
+  // Utility Functions
+  const handleClickOpen = (category) => {
+    setSelectedToDelete(category);
     setOpen(true);
   };
 
@@ -71,7 +74,6 @@ const MainCategoriesList = (props) => {
 
   // Handles Delete Button - Delete Selected Main Category (and Children)
   const handleDelete = (mainCat) => {
-    console.log("deleting " + mainCat.name)
     // Handle Delete
     const deleteMainCategory = async(mainCat) => {
       // Deletes Main Category (associated SubCat & Budgets get deleted by CASCADE)
@@ -90,8 +92,10 @@ const MainCategoriesList = (props) => {
       }
 
       // Need to reset selected main category
-      props.setSelectedMain("")
-      props.setSelectedSub("")
+      if (mainCat.pk == props.selectedMain) {
+        props.setSelectedMain("")
+        props.setSelectedSub("")
+      }
     }
 
     deleteMainCategory(mainCat);
@@ -124,7 +128,7 @@ const MainCategoriesList = (props) => {
                           setOpen={setOpen}
                           handleClose={handleClose}
                           handleConfirmation={handleConfirmation}
-                          category={mainCat}/>
+                          category={selectedToDelete}/>
       </React.Fragment>
     })
   

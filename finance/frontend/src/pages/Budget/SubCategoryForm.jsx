@@ -55,6 +55,7 @@ const SubCategoryForm = (props) => {
     useEffect(() => {
         if (props.selectedMain === undefined || props.selectedMain === "" || props.mainCategories === undefined || props.mainCategories === ""){
             console.log("No Main Category Selected - cannot populate Sub Categories");
+            setMainCatName("");
         }
         else {
             console.log(props.selectedMain)

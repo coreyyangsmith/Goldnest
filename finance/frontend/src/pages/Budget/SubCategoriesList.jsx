@@ -22,6 +22,7 @@
 
 // React Imports
 import React from 'react'
+import { useState } from 'react';
 
 // MUI Imports
 import { Stack, Button, Tooltip } from '@mui/material/';
@@ -40,8 +41,27 @@ import useToken from '../../hooks/useToken';
 
 const SubCategoriesList = (props) => {
 
-  //My Hooks
+  // My Hooks
   const { token } = useToken();  
+  const [open, setOpen] = useState(false);  
+  const [selectedToDelete, setSelectedToDelete] = useState("");
+
+  // Utility Functions
+  const handleClickOpen = (category) => {
+    setSelectedToDelete(category);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };  
+
+  const handleConfirmation = (category, open) => {
+    if (open){
+      handleDelete(category);
+      setOpen(false);
+    }
+  }  
   
   // Handles SubCat Click - Sets Selected Sub
   const handleClick = async(subCat) => {
@@ -69,8 +89,9 @@ const SubCategoriesList = (props) => {
       }
 
       // Need to reset selected sub category
-      props.setSelectedSub("")
-
+      if (subCat.pk == props.selectedSub)
+        props.setSelectedSub("")
+      
     }
     deleteSubCategory(subCat);
 
@@ -97,8 +118,13 @@ const SubCategoriesList = (props) => {
               </Tooltip>   
               <Button color="error"
                 variant='outlined'
-                onClick={() => handleDelete(subCat)}>X</Button>
+                onClick={() => handleClickOpen(subCat)}>X</Button>
       </Stack>         
+      <ConfirmationDialog open={open}
+                          setOpen={setOpen}
+                          handleClose={handleClose}
+                          handleConfirmation={handleConfirmation}
+                          category={selectedToDelete}/>      
       </React.Fragment>                    
     })
   

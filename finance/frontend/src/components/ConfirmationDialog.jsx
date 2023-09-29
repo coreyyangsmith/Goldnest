@@ -51,7 +51,7 @@ const ConfirmationDialog = (props) => {
     keepMounted
     onClose={props.handleClose}
     aria-describedby="alert-dialog-slide-description">
-      <DialogTitle>{"Confirm category deletion?"}</DialogTitle>
+      <DialogTitle>{props.category.name}</DialogTitle>
       <DialogContent>
         <DialogContentText>
           Deleting a category will delete all associated children.
