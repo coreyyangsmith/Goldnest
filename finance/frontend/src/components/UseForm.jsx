@@ -15,7 +15,6 @@ function useForm({ additionalData }) {
       .filter((input) => input.name)
       .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value }), {});
 
-    console.log(data)
     if (additionalData) {
       Object.assign(data, additionalData);
     }

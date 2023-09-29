@@ -54,7 +54,7 @@ const ConfirmationDialog = (props) => {
       <DialogTitle>{props.category.name}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Deleting a category will delete all associated children.
+          Deleting a Category will erase all its associated data.
         </DialogContentText>
       </DialogContent>
       <DialogActions>

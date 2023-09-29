@@ -20,17 +20,16 @@
 import { useEffect, useState } from "react"
 
 // API Import
-import { getRequest } from "../api/posts"
+import { getRequest } from "../api/authenticated"
 
 // Custom Hooks
-import { useAuth } from "../context/AuthContext"
-
+import useToken from "./useToken";
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 export const useEntries = () => {
-    const { authUser } = useAuth();
+    const { token } = useToken();
     const [entries, setEntries] = useState([]);
 
     // Process Data
@@ -38,8 +37,6 @@ export const useEntries = () => {
     // for readability
     function processData(arr) {
       arr.forEach((element, index) => {
-        console.log(arr[index]);
-        console.log(element.main_category['name'])
         arr[index].date = element.date.toString().slice(0,10);  
         arr[index].main_category = element.main_category.name;
         arr[index].sub_category = element.sub_category.name;
@@ -50,10 +47,9 @@ export const useEntries = () => {
 
     const fetchEntries = async () => {
         try {          
-            const response = await getRequest("entrys/", '');
+            const response = await getRequest("entrys/", token);
             if (response && response.data){
-                const allEntries = response.data;
-                const userEntries = allEntries.filter((data) => data.user == authUser);
+                const userEntries = response.data;
                 const cleanData = processData(userEntries);
                 setEntries(cleanData);   
             }         

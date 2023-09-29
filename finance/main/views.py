@@ -127,7 +127,13 @@ class HomeView(APIView):
 @api_view(['GET', 'POST'])
 def entrys_list(request):
     if request.method == 'GET':
-        data = Entry.objects.all()
+        if 'HTTP_AUTHORIZATION' in request.META:   
+            token = request.META['HTTP_AUTHORIZATION'][6::]
+            user = Token.objects.get(key=token).user       
+            data = Entry.objects.all().filter(user=user)
+        else:
+            data = Entry.objects.all().none();
+
         serializer = EntrySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 

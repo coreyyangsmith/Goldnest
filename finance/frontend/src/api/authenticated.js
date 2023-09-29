@@ -1,21 +1,34 @@
-// Token Import
-//import useToken from "../components/useToken"
+//-------------------------------------------------------//
+//  File Name: authenticated.js
+//  Description: Utilizes axios to connect to main back-end apis, requires user token
+//
+//  Requirements:
+//      - User Token
+//
+//  Returns:
+//      - REST api to selected back-end
+//
+// Created By: Corey Yang-Smith
+// Date: September 29th, 2023
+//-------------------------------------------------------//
+
+//  IMPORTS
+//-------------------------------------------------------//
 
 // Import Axios
 import axios from 'axios'
 
-// Get Token
-//const [token, setToken] = { useToken }
 
-{/* 
-src/api/posts.js
-Responsible for setting up Axios' baseURL to be utilized throughout the project.
-*/}
-// headers: { Authorization: `Bearer ${token}` },
+//  UTILITY
+//-------------------------------------------------------//
+
 const axiosClient = axios.create({
     baseURL : `http://127.0.0.1:8000/api/`,
 });
 
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
 
 export function getRequest(URL, token) {
     return axiosClient.get(`/${URL}`, {

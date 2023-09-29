@@ -69,7 +69,7 @@ class EntrySerializer(serializers.ModelSerializer):
     routing = EntitySerializer()       
     class Meta:
         model = Entry 
-        fields = ('pk', 'name', 'income', 'expense',
+        fields = ('pk', 'user', 'name', 'income', 'expense',
                   'notes', 'date', 'routing', 'main_category',
                   'sub_category', 'created_at', 'updated_at')
         

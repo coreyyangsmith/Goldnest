@@ -37,7 +37,6 @@ import { useEntries } from '../../hooks/useEntries';
 //  GLOBALS & INITIALIZATION
 //-------------------------------------------------------//
 
-const ENTRIES_API_URL = "http://127.0.0.1:8000/api/entrys/"
 const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
 const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
 const ROUTING_API = "http://127.0.0.1:8000/api/entitys/"
@@ -60,7 +59,6 @@ export default function MyDataGrid() {
   const { entries } = useEntries();
 
   // Assign Data
-  console.log(entries);
   const rows = entries;
   const columns = [
     {

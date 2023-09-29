@@ -18,152 +18,196 @@
 
 // React Import
 import React from 'react'
-import { useState } from 'react'
-
-// Component Imports
-import DateComponent from '../../components/DateComponent.jsx'
 
 // MUI Imports
-import { Autocomplete } from '@mui/material'
+import { Autocomplete, Select } from '@mui/material/'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
+import Stack from '@mui/material/Stack'
 
-//Axios Import
-import axios from "axios"
-import useForm from '../../components/UseForm.jsx'
+// React Hook Form
+import { useForm, Controller } from "react-hook-form";
+
+// API Import
+import { getRequest, postRequest } from '../../api/authenticated'
+
+// Custom Hooks
+import useToken from '../../hooks/useToken.js'
+
+// Day JS/Date Picker
+import dayjs from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
 //  GLOBALS & INITIALIZATION
 //-------------------------------------------------------//
 
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/entrys/"
-const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
-const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
-const ROUTING_API = "http://127.0.0.1:8000/api/entitys/"
-
-let mainCatData = await axios.get(MAIN_CATEGORY_API);
-let subCatData = await axios.get(SUB_CATEGORY_API);
-let routingData = await axios.get(ROUTING_API);
-
-mainCatData = mainCatData.data
-subCatData = subCatData.data
-routingData = routingData.data
+const options = [
+    { id: 1, name: "item1" },
+    { id: 2, name: "item2" }
+  ];
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const AddNewForm = () => {
-    // Use State to Manage variables for form submission
-    const [date, setDate] = useState("")
-    const [name, setName] = useState("")
-    const [notes, setNotes] = useState("")
-    const [routing, setRouting] = useState("")
-    const [mainCat, setMainCat] = useState("")
-    const [subCat, setSubCat] = useState("")  
-    const [income, setIncome] = useState("")
-    const [expense, setExpense] = useState("")  
+const AddNewForm = (props) => {
+
+    // Custom Hooks
+    const { token } = useToken();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        reset,
+        control,
+    } = useForm();    
 
     const additionalData = {
         created_at: "2018-11-20T15:58:44.767594-06:00",
         updated_at: "2018-11-20T15:58:44.767594-06:00",
     }   
 
-    const { handleSubmit } = useForm({additionalData});
+    // Utility
+    const onSubmit = async(FieldValues) => {
+        // Axios Post
+        console.log(FieldValues);
+        await postRequest("entrys/", FieldValues, token);
+        const newData = await getRequest("entrys/", token);
+        console.log(newData.data);
+        props.setEntrys(newData.data);
+        reset();
+        await new Promise((resolve) => setTimeout(resolve, 250));
+    }
 
   return (
-    <>
-    <form action={FORM_ENDPOINT}
-                  onSubmit={handleSubmit}
-                  method="POST"
-                  autoComplete='on'>
+    <form onSubmit={handleSubmit((data) => {
+        data.created_at = "";
+        data.updated_at = "";
+        onSubmit(data);
+    })}>
 
-      {/* Date */}
-      <DateComponent value={date}
-                      onChange={(e) => (e.target.value)}/>
+        <Stack spacing={2}
+                marginTop={2}
+                fullwidth="true">
+            <h3>Add New Entry</h3>
 
-      {/* Company (Router) */}
-      <Autocomplete
-              options={routingData} 
-              value={routing}
-              name="routing"
-              getOptionLabel={(option) => option.name}
-              onChange={(e) => setRouting(e.target.value.pk)}       
-              renderInput={(params) => (
+            {/* Date */}
+            <Controller
+              control={control}
+              name='date'
+              render={({ field }) => (
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      placeholderText='Select date'
+                      onChange={(date) => field.onChange(dayjs(date.$d).format('YYYY-MM-DD'))}
+                      selected={field.value}
+                    />
+                </LocalizationProvider>
+             )}
+            />
+
+            {/* Company (Router) */}
+            <TextField {...register("routing", {
+                    required: "Company is required"
+                })} 
+                    placeholder='Enter Company/Entity Name'
+            />
+            {errors.routing && (
+                <p>{`${errors.routing.message}`}</p>
+            )}        
+
+            <Stack  direction="row" 
+                    spacing={2}>
+                {/* Name */}
+                <TextField {...register("name", {
+                    required: "Name is required"
+                })} 
+                    placeholder='Enter Entity Name'
+                />
+                {errors.name && (
+                    <p>{`${errors.name.message}`}</p>
+                )}  
+
+                {/* Notes (show on hover?) */}
+                <TextField {...register("notes", {
+                    required: "Notes is required"
+                })} 
+                    placeholder='Enter Note'
+                    fullWidth
+                />
+                {errors.notes && (
+                    <p>{`${errors.notes.message}`}</p>
+                )}                      
+            </Stack> 
+
+            {/* Main Category */}       
+            <Controller
+              control={control}
+              name='main_category'
+              render={({ field: {onChange, value} }) => (
+                <Autocomplete
+                onChange={(event, item) => {
+                  onChange(item);
+                }}
+                value={value}
+                options={options}
+                getOptionLabel={(item) => (item.name ? item.name : "")}
+                getOptionSelected={(option, value) =>
+                  value === undefined || value === "" || option.id === value.id
+                }
+                renderInput={(params) => (
                   <TextField
-                      {...params}
-                      variant="standard"
-                      label="Company"
-                      placeholder=""
-                  />)}
-      />             
+                    {...params}
+                    label="items"
+                    margin="normal"
+                    variant="outlined"
+                    error={!!errors.item}
+                    helperText={errors.item && "item required"}
+                    required
+                  />
+                )}
+              />
+             )}
+            />
 
-      {/* Name */}
-      <TextField id="name-input" 
-                  label="Item Name" 
-                  variant="standard" 
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}/>
+            {/* Sub Category */}
+            <TextField {...register("sub_category", {
+                    required: "Sub Category is required"
+                })} 
+                    placeholder='Enter Sub Category'
+                    fullWidth
+            />
+            {errors.sub_cateogry && (
+                <p>{`${errors.sub_cateogry.message}`}</p>
+            )}  
 
-      {/* Notes (show on hover?) */}
-      <TextField multiline 
-                  id="notes-input" 
-                  label="Notes" 
-                  variant="standard"
-                  maxRows={4}
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)} />    
+            {/* Income */}
+            <TextField {...register("income", {
+                    required: "Income is required"
+                })} 
+                    placeholder='Enter Income'
+                    fullWidth
+            />
+            {errors.income && (
+                <p>{`${errors.income.message}`}</p>
+            )} 
 
-      {/* Main Category */}
-      <Autocomplete
-                  options={mainCatData} 
-                  value={mainCat}
-                  name="main_category"
-                  getOptionLabel={(option) => option.name}
-                  onChange={(e) => setMainCat(e.target.value.pk)}       
-                  renderInput={(params) => (
-                      <TextField
-                          {...params}
-                          variant="standard"
-                          label="Main Category"
-                          placeholder=""
-                      />)}
-      />      
-
-      {/* Sub Category */}
-      <Autocomplete
-              options={subCatData} 
-              value={subCat}
-              name="subCat"
-              getOptionLabel={(option) => option.name}
-              onChange={(e) => setSubCat(e.target.value.pk)}       
-              renderInput={(params) => (
-                  <TextField
-                      {...params}
-                      variant="standard"
-                      label="Sub Category"
-                      placeholder=""
-                  />)}
-      /> 
-
-      {/* Income */}
-      <TextField id="income-input" 
-                  label="Income" 
-                  variant="standard"
-                  value={income}
-                  onChange={(e) => setIncome(e.target.value)} />    
-
-      {/* Expense */}
-      <TextField id="expense-input" 
-                  label="Expense" 
-                  variant="standard"
-                  value={expense}
-                  onChange={(e) => setExpense(e.target.value)} />        
-
+            {/* Expense */}
+            <TextField {...register("expense", {
+                    required: "Expense is required"
+                })} 
+                    placeholder='Enter Expense'
+                    fullWidth
+            />
+            {errors.sub_cateogry && (
+                <p>{`${errors.sub_cateogry.message}`}</p>
+            )}                                    
+        </Stack>
       <Button type="submit">Submit</Button>
       </form>
-    
-    
-    </>
   )
 }
 
