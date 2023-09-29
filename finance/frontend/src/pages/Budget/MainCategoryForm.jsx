@@ -18,7 +18,6 @@
 
 // React Import
 import React from 'react'
-import { useState } from 'react';
 
 // MUI Import
 import TextField from '@mui/material/TextField'
@@ -54,8 +53,9 @@ const MainCategoryForm = (props) => {
     const onSubmit = async(FieldValues) => { // TODO if description is "" axios fails, to fix
 
         //Axios Post
-        const response = await postRequest("maincategories/", FieldValues, token);
+        await postRequest("maincategories/", FieldValues, token);
         const newData = await getRequest("maincategories/", token);
+        console.log(newData.data);
         props.setMainCategories(newData.data);        
         reset();
         await new Promise((resolve) => setTimeout(resolve, 250));    

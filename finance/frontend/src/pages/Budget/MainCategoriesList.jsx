@@ -18,13 +18,16 @@
 //-------------------------------------------------------//
 
 // React Imports
-import React from 'react'
+import React, { useState } from 'react'
 
 // CSS Import
 import "../../components/css/UIStyles.css";
 
 // MUI Imports
 import { Button, Stack, Tooltip } from '@mui/material/'
+
+// My Imports
+import ConfirmationDialog from '../../components/ConfirmationDialog';
 
 // API Imports
 import { deleteRequest } from '../../api/authenticated'
@@ -44,6 +47,22 @@ const MainCategoriesList = (props) => {
 
   //My Hooks
   const { token } = useToken();
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };  
+
+  const handleConfirmation = (mainCat, open) => {
+    if (open){
+      handleDelete(mainCat);
+      setOpen(false);
+    }
+  }
 
   // Handles Main Click - Sets Selected Main
   const handleClick = (mainCat) => {
@@ -52,7 +71,7 @@ const MainCategoriesList = (props) => {
 
   // Handles Delete Button - Delete Selected Main Category (and Children)
   const handleDelete = (mainCat) => {
-
+    console.log("deleting " + mainCat.name)
     // Handle Delete
     const deleteMainCategory = async(mainCat) => {
       // Deletes Main Category (associated SubCat & Budgets get deleted by CASCADE)
@@ -79,7 +98,7 @@ const MainCategoriesList = (props) => {
 
     // Handle Live Update
     const myNewMainCategories = props.mainCategories.filter((myItems) => {
-      return myItems != mainCat
+      return myItems !== mainCat
     })
     props.setMainCategories(myNewMainCategories);
   }
@@ -99,8 +118,13 @@ const MainCategoriesList = (props) => {
       </Tooltip>
       <Button color="error"
             variant='outlined'
-            onClick={() => handleDelete(mainCat)}>X</Button>
+            onClick={() => handleClickOpen(mainCat)}>X</Button>
       </Stack>
+      <ConfirmationDialog open={open}
+                          setOpen={setOpen}
+                          handleClose={handleClose}
+                          handleConfirmation={handleConfirmation}
+                          category={mainCat}/>
       </React.Fragment>
     })
   
