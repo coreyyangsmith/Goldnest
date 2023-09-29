@@ -74,7 +74,8 @@ const Budget = () => {
                                             selectedMain={selectedMain}
                                             formSubmitted={formSubmitted}
                                             mainCategories={mainCategories}
-                                            setMainCategories={setMainCategories}/>
+                                            setMainCategories={setMainCategories}
+                                            setSelectedSub={setSelectedSub}/>
 
                         <MainCategoryForm   formSubmitted={formSubmitted}
                                             setFormSubmitted={setFormSubmitted}
@@ -89,7 +90,8 @@ const Budget = () => {
                         <SubCategoriesList  selectedMain={selectedMain}
                                             selectedSub={selectedSub} 
                                             setSelectedSub={setSelectedSub}
-                                            subCategories={subCategories}/>
+                                            subCategories={subCategories}
+                                            setSubCategories={setSubCategories}/>
 
                         <SubCategoryForm    setSubCategories={setSubCategories}
                                             selectedMain={selectedMain} //used

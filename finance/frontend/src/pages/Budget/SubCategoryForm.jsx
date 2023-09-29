@@ -83,7 +83,8 @@ const SubCategoryForm = (props) => {
         // Post to Server
         const response = await postRequest("subcategories/", FieldValues, token);
         const newData = await getRequest("subcategories/", token);
-        props.setSubCategories(newData.data);
+        const newDataFiltered = newData.data.filter((data) => data.main_category == props.selectedMain)
+        props.setSubCategories(newDataFiltered);
         await new Promise((resolve) => setTimeout(resolve, 250));
 
         //Obtain reference to recent submission

@@ -55,6 +55,7 @@ const MainCategoriesList = (props) => {
 
     // Handle Delete
     const deleteMainCategory = async(mainCat) => {
+      // Deletes Main Category (associated SubCat & Budgets get deleted by CASCADE)
       try {
         await deleteRequest('maincategories/' + mainCat.pk, token); 
       } catch (err) {
@@ -68,6 +69,10 @@ const MainCategoriesList = (props) => {
               console.log(`Error: ${err.message}`);
           }                             
       }
+
+      // Need to reset selected main category
+      props.setSelectedMain("")
+      props.setSelectedSub("")
     }
 
     deleteMainCategory(mainCat);

@@ -21,33 +21,61 @@
 //-------------------------------------------------------//
 
 // React Imports
-import React, { useEffect } from 'react'
+import React from 'react'
 
 // MUI Imports
 import { Stack, Button, Tooltip } from '@mui/material/';
 
+// API Import
+import { deleteRequest } from '../../api/authenticated';
+
+// Custon Hook
+import useToken from '../../hooks/useToken';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const SubCategoriesList = (props) => {
 
-  console.log(props.subCategories);
+  //My Hooks
+  const { token } = useToken();  
   
+  // Handles SubCat Click - Sets Selected Sub
   const handleClick = async(subCat) => {
-    // Regenerate SubCategories List
     props.setSelectedSub(subCat.pk);
-
-    // // Regenerate Budget List
-    // const response = await getRequest('budgets/', "");
-    // let filteredBudgets = response.data.filter((data) => data.sub_category.pk === subCat.pk);
-    // let sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
-    // props.setBudget(sortedBudgets)
   }
 
-  const handleDelete = async(subCat) => {
-    console.log("Deleting: " + subCat.name);
-    //TODO
+  // Handles Delete Button - Delete Selected Sub Category (and Regen List)
+  const handleDelete = (subCat) => {
+    
+    // Handle Delete
+    const deleteSubCategory = async(subCat) => {
+      // Deletes Sub Category (associated Budgets get deleted through CASCADE)
+      try {
+        await deleteRequest('subcategories/' + subCat.pk, token);
+      } catch (err) {
+        if (err.response) {
+          // Not in 200 response range
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);   
+        }
+        else {
+            console.log(`Error: ${err.message}`);
+        }            
+      }
+
+      // Need to reset selected sub category
+      props.setSelectedSub("")
+
+    }
+    deleteSubCategory(subCat);
+
+    // Handle Live Update
+    const myNewSubCategories = props.subCategories.filter((myItems) => {
+      return myItems != subCat
+    })
+    props.setSubCategories(myNewSubCategories);
   }
 
   if (props.subCategories.length > 0)
