@@ -82,6 +82,8 @@ const SubCategoryForm = (props) => {
 
     const onSubmit = async(FieldValues) => {
         // Post to Server
+        console.log("Submitting in SubCategoryForm");
+        console.log(FieldValues);
         const response = await postRequest("subcategories/", FieldValues, token);
         const newData = await getRequest("subcategories/", token);
         const newDataFiltered = newData.data.filter((data) => data.main_category == props.selectedMain)

@@ -51,6 +51,9 @@ export const useEntries = () => {
             if (response && response.data){
                 const userEntries = response.data;
                 const cleanData = processData(userEntries);
+                console.log("LOADING ENTRYS")
+                console.log(userEntries);
+
                 setEntries(cleanData);   
             }         
         } catch (err) {

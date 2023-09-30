@@ -1,16 +1,14 @@
 //-------------------------------------------------------//
-//  File Name: useSubCategory.js
-//  Description: Data Fetching Hook to obtain "SubCategory" model from the local database, based on selected Main Cateogry
-//
+//  File Name: useSubCategoryAll.js
+//  Description: Data Fetching Hook to obtain "SubCategory" model from the local database. Returns all (for DB entry autocomplete)
 //  Requirements:
 //      - /api/posts (axios)
-//      - Selected Main Category
 //
 //  Returns:
 //      - List of Objects (Sub Category)
 //
 // Created By: Corey Yang-Smith
-// Date: September 26th, 2023
+// Date: September 30th, 2023
 //-------------------------------------------------------//
 
 
@@ -21,28 +19,35 @@
 import { useEffect, useState } from "react"
 
 // API Import
-import { getRequest } from "../api/posts"
+import { getRequest } from "../api/authenticated"
 
 // Custom Hooks
-import useToken from "../hooks/useToken"
+import useToken from "./useToken"
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-export const useSubCategory = (selectedMain) => {
+export const useSubCategory = () => {
     const { token } = useToken();
     const [subCategories, setSubCategories] = useState([]);
+
+    // Process Data
+    // Convert nested objects --> object.name
+    // for readability
+    function processData(arr) {
+        arr.forEach((element, index) => {
+          arr[index].main_category = element.main_category.name;
+      });   
+        return arr;
+      }   
 
     const fetchSubCategories = async () => {
         try {          
             const response = await getRequest("subcategories/", token);
             if (response && response.data){
                 const userSubCategories = response.data;
-                const filteredSubCat = userSubCategories.filter((data) => data.main_category.pk == selectedMain);
-                console.log(userSubCategories);
-                console.log(selectedMain);
-                console.log(filteredSubCat);
-                setSubCategories(filteredSubCat);   
+                const cleanData = processData(userSubCategories);
+                setSubCategories(cleanData);   
             }         
         } catch (err) {
             if (err.response) { //Not in 200 Response Range
@@ -57,7 +62,7 @@ export const useSubCategory = (selectedMain) => {
 
     useEffect(() => {
         fetchSubCategories();
-    }, [selectedMain]);
+    }, []);
 
     return { subCategories, setSubCategories };
 };

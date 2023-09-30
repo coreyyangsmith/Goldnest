@@ -23,13 +23,14 @@ import React from 'react'
 import { Button } from '@mui/material'
 
 // Axios Import
-import { putRequest } from '../../api/posts'
+import { putRequest } from '../../api/authenticated'
 
 // Toast Notifications
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
+// Custom Hooks
+import useToken from "../../hooks/useToken";
 
 //  GLOBALS & INITIALIZATION
 //-------------------------------------------------------//
@@ -42,10 +43,14 @@ const LOCATION_TO_SAVE = "budgets/"
 
 const SaveBudgetButton = (props) => {
 
+  const { token } = useToken();
+
   const saveBudgets = async() => {
+    console.log("saving budgets");
+    console.log(props.budgets);
       try {
         for (var i = 0; i < props.budgets.length; i++){
-          await putRequest(LOCATION_TO_SAVE + props.budgets[i].pk + "/", props.budgets[i]); 
+          await putRequest(LOCATION_TO_SAVE + props.budgets[i].pk + "/", props.budgets[i], token); 
         }
         toast.success('Budget saved successfully!', {
           position: "top-right",

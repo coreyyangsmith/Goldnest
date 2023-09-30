@@ -41,19 +41,20 @@ class ProfileSerializer(serializers.ModelSerializer):
 class EntitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Entity
-        fields = ('pk', 'name', 'created_at', 'updated_at')
+        fields = ('pk', 'user', 'name', 'created_at', 'updated_at')
 
 class MainCategorySerializer(serializers.ModelSerializer):
+    user = UserSerializer()      
     class Meta:
-        model = MainCategory
-        user = UserSerializer()        
+        model = MainCategory      
         fields = ('pk', 'user', 'name', 'description',
                   'created_at', 'updated_at')
         
 class SubCategorySerializer(serializers.ModelSerializer):
+    main_category = MainCategorySerializer()   
+    user = UserSerializer()           
     class Meta:
         model = SubCategory
-        main_category = MainCategorySerializer()
         fields = ('pk', 'user', 'name', 'description',
                   'main_category', 'created_at', 'updated_at')
 
@@ -66,7 +67,8 @@ class SubSubCategorySerializer(serializers.ModelSerializer):
 class EntrySerializer(serializers.ModelSerializer):
     main_category = MainCategorySerializer()
     sub_category = SubCategorySerializer()    
-    routing = EntitySerializer()       
+    routing = EntitySerializer()  
+    user = UserSerializer()           
     class Meta:
         model = Entry 
         fields = ('pk', 'user', 'name', 'income', 'expense',
@@ -83,10 +85,10 @@ class AccountSerializer(serializers.ModelSerializer):
                   'created_at', 'updated_at')
         
 class BudgetSerializer(serializers.ModelSerializer):
-    sub_category = SubCategorySerializer()       
+    sub_category = SubCategorySerializer()          
     class Meta:
         model = Budget
-        fields = ('pk', 'amount', 'year', 'month',
+        fields = ('pk', 'user', 'amount', 'year', 'month',
                   'sub_category', 'created_at', 'updated_at')
         
     def create(self, validated_data):

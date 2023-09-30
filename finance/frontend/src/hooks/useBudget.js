@@ -24,25 +24,33 @@ import { useEffect, useState } from "react"
 import { getRequest } from "../api/posts"
 
 // Custom Hooks
-// import { useAuth } from "../context/AuthContext"
-
+import useToken from "../hooks/useToken"
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 export const useBudget = (selectedSub) => {
-    // const { authUser } = useAuth();
+    const { token } = useToken();
     const [budgets, setBudgets] = useState([]);
+
+    // Process budget data and change 'sub_category' from objects reference to pk reference
+    // Needed for budget PUT req
+    function processData(arr) {
+        arr.forEach((element, index) => {
+            arr[index].sub_category.main_category.user = element.sub_category.main_category.user.id;            
+        });
+        return arr;
+      }
 
     const fetchBudgets = async () => {
         try {          
-            const response = await getRequest("budgets/", '');
+            const response = await getRequest("budgets/", token);
             if (response && response.data){
-                const allBudgets = response.data;
-                // const userBudgets = allBudgets.filter((data) => data.user == authUser);
-                const filteredBudgets = allBudgets.filter((data) => data.sub_category.pk === selectedSub);
+                const userBudgets = response.data;
+                const filteredBudgets = userBudgets.filter((data) => data.sub_category.pk === selectedSub);
                 const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
-                setBudgets(sortedBudgets);
+                const cleanedBudgets = processData(sortedBudgets);
+                setBudgets(cleanedBudgets);
             }         
         } catch (err) {
             if (err.response) { //Not in 200 Response Range

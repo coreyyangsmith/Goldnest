@@ -20,25 +20,24 @@
 import { useEffect, useState } from "react"
 
 // API Import
-import { getRequest } from "../api/posts"
+import { getRequest } from "../api/authenticated"
 
 // Custom Hooks
-// import { useAuth } from "../context/AuthContext"
+import useToken from "../hooks/useToken"
 
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 export const useEntities = () => {
-    // const { authUser } = useAuth();
+    const { token } = useToken();    
     const [entities, setEntities] = useState([]);
 
     const fetchEntities = async () => {
         try {          
-            const response = await getRequest("entities/", '');
+            const response = await getRequest("entitys/", token);
             if (response && response.data){
-                const allEntities = response.data;
-                const userEntities = allEntities.filter((data) => data.user == authUser);
+                const userEntities = response.data;
                 setEntities(userEntities);   
             }         
         } catch (err) {
@@ -56,5 +55,5 @@ export const useEntities = () => {
         fetchEntities();
     }, []);
 
-    return entities;
+    return {entities, setEntities};
 };

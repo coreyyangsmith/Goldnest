@@ -167,7 +167,12 @@ def entrys_detail(request, pk):
 @api_view(['GET', 'POST'])
 def entities_list(request):
     if request.method == 'GET':
-        data = Entity.objects.all()
+        if 'HTTP_AUTHORIZATION' in request.META:   
+            token = request.META['HTTP_AUTHORIZATION'][6::]
+            user = Token.objects.get(key=token).user       
+            data = Entity.objects.all().filter(user=user)
+        else:
+            data = Entity.objects.all().none();        
         serializer = EntitySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 
@@ -252,7 +257,12 @@ def maincategories_detail(request, pk):
 @api_view(['GET', 'POST'])
 def subcategories_list(request):
     if request.method == 'GET':
-        data = SubCategory.objects.all()
+        if 'HTTP_AUTHORIZATION' in request.META:
+            token = request.META['HTTP_AUTHORIZATION'][6::]
+            user = Token.objects.get(key=token).user       
+            data = SubCategory.objects.all().filter(user=user)
+        else:
+            data = SubCategory.objects.all()
         serializer = SubCategorySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 
@@ -260,10 +270,10 @@ def subcategories_list(request):
         data=request.data;
         if 'HTTP_AUTHORIZATION' in request.META:
             token = request.META['HTTP_AUTHORIZATION'][6::]
-            test = Token.objects.get(key=token).user
-            user = User.objects.get(username=test.username)
-            data['user'] = user.pk    
-            serializer = SubCategorySerializer(data=request.data)
+            token = Token.objects.get(key=token).user
+            user = User.objects.get(username=token.username)
+            data['user'] = user.pk     
+            serializer = SubCategorySerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)     

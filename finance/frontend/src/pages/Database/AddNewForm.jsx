@@ -33,6 +33,9 @@ import { getRequest, postRequest } from '../../api/authenticated'
 
 // Custom Hooks
 import useToken from '../../hooks/useToken.js'
+import { useMainCategory } from '../../hooks/useMainCategory'
+import { useSubCategory } from '../../hooks/useSubCategoryAll.js'
+import { useEntities } from '../../hooks/useEntities.js'
 
 // Day JS/Date Picker
 import dayjs from 'dayjs';
@@ -56,6 +59,10 @@ const AddNewForm = (props) => {
 
     // Custom Hooks
     const { token } = useToken();
+
+    const { mainCategories } = useMainCategory(); //cannot create new
+    const { subCategories } = useSubCategory(); //cannot create new
+    const { entities, setEntities } = useEntities(); //able to create new 
 
     const {
         register,
@@ -101,6 +108,8 @@ const AddNewForm = (props) => {
               render={({ field }) => (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
+                      label="Entry Date"
+                      required
                       placeholderText='Select date'
                       onChange={(date) => field.onChange(dayjs(date.$d).format('YYYY-MM-DD'))}
                       selected={field.value}
@@ -110,22 +119,46 @@ const AddNewForm = (props) => {
             />
 
             {/* Company (Router) */}
-            <TextField {...register("routing", {
-                    required: "Company is required"
-                })} 
-                    placeholder='Enter Company/Entity Name'
-            />
-            {errors.routing && (
-                <p>{`${errors.routing.message}`}</p>
-            )}        
+            <Controller
+              control={control}
+              name='routing'
+              render={({ field: {onChange, value} }) => (
+                <Autocomplete
+                onChange={(event, item) => {
+                  onChange(item);
+                }}
+                value={value}
+                options={entities}
+                freeSolo
+                getOptionLabel={(item) => (item.name ? item.name : "")}
+                getOptionSelected={(option, value) =>
+                  value === undefined || value === "" || option.id === value.id
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Company/Entity"
+                    margin="normal"
+                    variant="outlined"
+                    error={!!errors.item}
+                    helperText={errors.item && "item required"}
+                    required
+                  />
+                )}
+              />
+             )}
+            />   
 
+
+            {/* Name + Notes */}
             <Stack  direction="row" 
                     spacing={2}>
                 {/* Name */}
                 <TextField {...register("name", {
                     required: "Name is required"
                 })} 
-                    placeholder='Enter Entity Name'
+                    placeholder='Enter Item Name'
+                    fullWidth
                 />
                 {errors.name && (
                     <p>{`${errors.name.message}`}</p>
@@ -153,7 +186,7 @@ const AddNewForm = (props) => {
                   onChange(item);
                 }}
                 value={value}
-                options={options}
+                options={mainCategories}
                 getOptionLabel={(item) => (item.name ? item.name : "")}
                 getOptionSelected={(option, value) =>
                   value === undefined || value === "" || option.id === value.id
@@ -161,7 +194,7 @@ const AddNewForm = (props) => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="items"
+                    label="Main Category"
                     margin="normal"
                     variant="outlined"
                     error={!!errors.item}
@@ -174,15 +207,34 @@ const AddNewForm = (props) => {
             />
 
             {/* Sub Category */}
-            <TextField {...register("sub_category", {
-                    required: "Sub Category is required"
-                })} 
-                    placeholder='Enter Sub Category'
-                    fullWidth
+            <Controller
+              control={control}
+              name='sub_category'
+              render={({ field: {onChange, value} }) => (
+                <Autocomplete
+                onChange={(event, item) => {
+                  onChange(item);
+                }}
+                value={value}
+                options={subCategories}
+                getOptionLabel={(item) => (item.name ? item.name + " (" + item.main_category + ")": "")}
+                getOptionSelected={(option, value) =>
+                  value === undefined || value === "" || option.id === value.id
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Sub Category"
+                    margin="normal"
+                    variant="outlined"
+                    error={!!errors.item}
+                    helperText={errors.item && "item required"}
+                    required
+                  />
+                )}
+              />
+             )}
             />
-            {errors.sub_cateogry && (
-                <p>{`${errors.sub_cateogry.message}`}</p>
-            )}  
 
             {/* Income */}
             <TextField {...register("income", {
