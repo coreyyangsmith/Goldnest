@@ -65,7 +65,7 @@ const SubCategoriesList = (props) => {
   
   // Handles SubCat Click - Sets Selected Sub
   const handleClick = async(subCat) => {
-    props.setSelectedSub(subCat.pk);
+    props.setSelectedSub(subCat);
   }
 
   // Handles Delete Button - Delete Selected Sub Category (and Regen List)
@@ -111,7 +111,7 @@ const SubCategoriesList = (props) => {
                 <Button color="secondary"
                           fullWidth={true}
                           variant="outlined" 
-                          className={`Category-Button ${props.selectedSub === subCat.pk && "active"}`}                    
+                          className={`Category-Button ${props.selectedSub.pk === subCat.pk && "active"}`}                    
                           onClick={() => {handleClick(subCat)}}>
                   {subCat.name}
                 </Button>

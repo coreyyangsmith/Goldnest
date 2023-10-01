@@ -59,12 +59,28 @@ class MainCategorySerializer(serializers.ModelSerializer):
         
         
 class SubCategorySerializer(serializers.ModelSerializer):
-    main_category = MainCategorySerializer()   
-    user = UserSerializer()           
+    main_category = MainCategorySerializer()
     class Meta:
         model = SubCategory
         fields = ('pk', 'user', 'name', 'description',
                   'main_category', 'created_at', 'updated_at')
+
+    def create(self, validated_data):
+        print("create in sub cat serializer")
+        print(validated_data)
+        user_data = validated_data.pop('user')
+        user, created = User.objects.get_or_create(id=user_data.id)
+
+        main_category_data = validated_data.pop('main_category')
+        main_category_name = list(main_category_data.values())[0]
+
+        main_category, created = MainCategory.objects.get_or_create(name=main_category_name)
+
+        sub_category = SubCategory.objects.create(user=user, main_category=main_category, **validated_data)
+        return sub_category
+
+    def update(self, validated_data):
+        print("updating method - serializer sub cat");
 
 class SubSubCategorySerializer(serializers.ModelSerializer):
     class Meta:

@@ -69,7 +69,7 @@ const MainCategoriesList = (props) => {
 
   // Handles Main Click - Sets Selected Main
   const handleClick = (mainCat) => {
-    props.setSelectedMain(mainCat.pk)
+    props.setSelectedMain(mainCat)
   }
 
   // Handles Delete Button - Delete Selected Main Category (and Children)
@@ -78,7 +78,7 @@ const MainCategoriesList = (props) => {
     const deleteMainCategory = async(mainCat) => {
       // Deletes Main Category (associated SubCat & Budgets get deleted by CASCADE)
       try {
-        await deleteRequest('maincategories/' + mainCat.pk, token); 
+        await deleteRequest('maincategories/' + mainCat.id, token); 
       } catch (err) {
           if (err.response) {
               // Not in 200 response range
@@ -92,7 +92,8 @@ const MainCategoriesList = (props) => {
       }
 
       // Need to reset selected main category
-      if (mainCat.pk == props.selectedMain) {
+
+      if (mainCat.id == props.selectedMain.id) {
         props.setSelectedMain("")
         props.setSelectedSub("")
       }
@@ -109,13 +110,13 @@ const MainCategoriesList = (props) => {
 
   if (props.mainCategories !== undefined && props.mainCategories.length > 0){
     const myMainCategories = props.mainCategories.map(mainCat => {
-      return  <React.Fragment key={mainCat.pk}>
+      return  <React.Fragment key={mainCat.id}>
       <Stack direction="row" spacing={0.5}>
       <Tooltip title={mainCat.description}>
         <Button color="secondary"
                         variant="outlined" 
                         fullWidth={true}
-                        className={`Category-Button ${props.selectedMain === mainCat.pk && "active"}`} 
+                        className={`Category-Button ${props.selectedMain.id === mainCat.id && "active"}`} 
                         onClick={() => {handleClick(mainCat)}}>
           {mainCat.name}
         </Button>

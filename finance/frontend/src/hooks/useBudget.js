@@ -36,6 +36,7 @@ export const useBudget = (selectedSub) => {
     // Process budget data and change 'sub_category' from objects reference to pk reference
     // Needed for budget PUT req
     function processData(arr) {
+        console.log(arr)
         arr.forEach((element, index) => {
             arr[index].sub_category.main_category.user = element.sub_category.main_category.user.id;            
         });
@@ -47,7 +48,8 @@ export const useBudget = (selectedSub) => {
             const response = await getRequest("budgets/", token);
             if (response && response.data){
                 const userBudgets = response.data;
-                const filteredBudgets = userBudgets.filter((data) => data.sub_category.pk === selectedSub);
+                console.log(selectedSub)
+                const filteredBudgets = userBudgets.filter((data) => data.sub_category.pk === selectedSub.pk);
                 const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
                 const cleanedBudgets = processData(sortedBudgets);
                 setBudgets(cleanedBudgets);

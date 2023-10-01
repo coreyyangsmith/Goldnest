@@ -217,7 +217,6 @@ def maincategories_list(request):
 
     elif request.method == 'POST': #TODO add validation to false req
         data=request.data
-        print("\nPosting\n")
         if 'HTTP_AUTHORIZATION' in request.META:
             token = request.META['HTTP_AUTHORIZATION'][6::]
             obj = Token.objects.get(key=token).user
@@ -267,14 +266,15 @@ def subcategories_list(request):
 
     elif request.method == 'POST':
         data=request.data;
+        print("posting!")
+        print(data)
         if 'HTTP_AUTHORIZATION' in request.META:
             token = request.META['HTTP_AUTHORIZATION'][6::]
-            token = Token.objects.get(key=token).user
-            user = User.objects.get(username=token.username)
-            data['user'] = user.pk     
+            obj = Token.objects.get(key=token).user
+            user = User.objects.get(username=obj.username)
             serializer = SubCategorySerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=user)
             return Response(status=status.HTTP_201_CREATED)     
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

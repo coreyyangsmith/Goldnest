@@ -58,8 +58,7 @@ const SubCategoryForm = (props) => {
             setMainCatName("");
         }
         else {
-            console.log(props.selectedMain)
-            var match = props.mainCategories.filter(obj => obj.pk === props.selectedMain);
+            var match = props.mainCategories.filter(obj => obj.id === props.selectedMain.id);
             setMainCatName(match[0].name);
         }
     }
@@ -86,7 +85,7 @@ const SubCategoryForm = (props) => {
         console.log(FieldValues);
         const response = await postRequest("subcategories/", FieldValues, token);
         const newData = await getRequest("subcategories/", token);
-        const newDataFiltered = newData.data.filter((data) => data.main_category == props.selectedMain)
+        const newDataFiltered = newData.data.filter((data) => data.main_category.id == props.selectedMain.id)
         props.setSubCategories(newDataFiltered);
         await new Promise((resolve) => setTimeout(resolve, 250));
 
@@ -102,7 +101,7 @@ const SubCategoryForm = (props) => {
         const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
         
         // Regen page for budget
-        props.setSelectedSub(myNewCat.pk);
+        props.setSelectedSub(myNewCat);
         props.setBudget(sortedBudgets);
      
         reset();

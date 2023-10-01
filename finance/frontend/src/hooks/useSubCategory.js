@@ -38,10 +38,7 @@ export const useSubCategory = (selectedMain) => {
             const response = await getRequest("subcategories/", token);
             if (response && response.data){
                 const userSubCategories = response.data;
-                const filteredSubCat = userSubCategories.filter((data) => data.main_category.pk == selectedMain);
-                console.log(userSubCategories);
-                console.log(selectedMain);
-                console.log(filteredSubCat);
+                const filteredSubCat = userSubCategories.filter((data) => data.main_category.id === selectedMain.id);              
                 setSubCategories(filteredSubCat);   
             }         
         } catch (err) {
