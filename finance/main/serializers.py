@@ -44,11 +44,19 @@ class EntitySerializer(serializers.ModelSerializer):
         fields = ('pk', 'user', 'name', 'created_at', 'updated_at')
 
 class MainCategorySerializer(serializers.ModelSerializer):
-    user = UserSerializer()      
     class Meta:
         model = MainCategory      
-        fields = ('pk', 'user', 'name', 'description',
-                  'created_at', 'updated_at')
+        fields = '__all__'
+        
+    def create(self, validated_data):
+        user_data = validated_data.pop('user')
+        user, created = User.objects.get_or_create(id=user_data.id)
+        main_category = MainCategory.objects.create(user=user, **validated_data)
+        return main_category
+    
+    def update(self, validated_data):
+        print("updating method")
+        
         
 class SubCategorySerializer(serializers.ModelSerializer):
     main_category = MainCategorySerializer()   

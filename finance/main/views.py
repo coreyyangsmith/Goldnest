@@ -217,15 +217,14 @@ def maincategories_list(request):
 
     elif request.method == 'POST': #TODO add validation to false req
         data=request.data
+        print("\nPosting\n")
         if 'HTTP_AUTHORIZATION' in request.META:
             token = request.META['HTTP_AUTHORIZATION'][6::]
-            test = Token.objects.get(key=token).user
-            user = User.objects.get(username=test.username)
-            data['user'] = user.pk    
-            print(data)
-            serializer = MainCategorySerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
+            obj = Token.objects.get(key=token).user
+            user = User.objects.get(username=obj.username)
+            serializer = MainCategorySerializer(data=data)                                    
+        if serializer.is_valid():          
+            serializer.save(user=user)
             return Response(status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

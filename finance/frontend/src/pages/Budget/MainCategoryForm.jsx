@@ -53,9 +53,9 @@ const MainCategoryForm = (props) => {
     const onSubmit = async(FieldValues) => { // TODO if description is "" axios fails, to fix
 
         // Axios Post
+        console.log(FieldValues);        
         await postRequest("maincategories/", FieldValues, token);
         const newData = await getRequest("maincategories/", token);
-        console.log(newData.data);
         props.setMainCategories(newData.data);        
         reset();
         await new Promise((resolve) => setTimeout(resolve, 250));    
