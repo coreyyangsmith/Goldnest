@@ -6,7 +6,7 @@
 //      - Database.jsx
 //
 //  Requirements:
-//      - Entries Data (useEntries)
+//      - Entries Data (prop)
 //
 //  Returns:
 //      - Data Grid with User Entries
@@ -27,39 +27,28 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { Tooltip } from '@mui/material';
 
-// Axios Import
-import axios from "axios"
-
 // My Imports
-import { useEntries } from '../../hooks/useEntries';
+import { useEntries } from '../../hooks/useEntries.js'
 
 
 //  GLOBALS & INITIALIZATION
 //-------------------------------------------------------//
 
-const MAIN_CATEGORY_API = "http://127.0.0.1:8000/api/maincategories/"
-const SUB_CATEGORY_API = "http://127.0.0.1:8000/api/subcategories/"
-const ROUTING_API = "http://127.0.0.1:8000/api/entitys/"
-
-let mainCat = await axios.get(MAIN_CATEGORY_API);
-let subCat = await axios.get(SUB_CATEGORY_API);
-let routing = await axios.get(ROUTING_API);
-
-mainCat = mainCat.data
-subCat = subCat.data
-routing = routing.data
-
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-export default function MyDataGrid() {
+export default function MyDataGrid(props) {
+
+  // Custom Hooks
+  const { processData } = useEntries();
   
   // Initial Data Fetch
-  const { entries } = useEntries();
+
 
   // Assign Data
-  const rows = entries;
+  const rows = props.entries
+
   const columns = [
     {
       field: 'date',

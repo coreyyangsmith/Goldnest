@@ -25,7 +25,7 @@ class Profile(models.Model):
 
 # Expenses
 class MainCategory(models.Model):
-    name = models.CharField(max_length=15, blank=False, null=False)
+    name = models.CharField(max_length=50, blank=False, null=False)
     description = models.CharField(max_length=500, null=True)
 
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
@@ -37,7 +37,7 @@ class MainCategory(models.Model):
         return self.name
 
 class SubCategory(models.Model):
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
 
     main_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE)
@@ -83,7 +83,7 @@ class Entry(models.Model):
     routing = models.ForeignKey(Entity, on_delete=models.DO_NOTHING)
     main_category = models.ForeignKey(MainCategory, on_delete=models.DO_NOTHING)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.DO_NOTHING)
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)    
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)    
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

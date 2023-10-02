@@ -36,7 +36,7 @@ export const useSubCategory = () => {
     // for readability
     function processData(arr) {
         arr.forEach((element, index) => {
-          arr[index].main_category = element.main_category.name;
+          arr[index].main_category = element.main_category;
       });   
         return arr;
       }   

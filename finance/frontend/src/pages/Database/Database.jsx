@@ -21,16 +21,21 @@ import { Container, Grid } from '@mui/material';
 import MyDataGrid from './MyDataGrid';
 import AddNewForm from './AddNewForm';
 
+// Custom Hooks
+import { useEntries } from '../../hooks/useEntries.js'
+
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const Database = () => {
+    const { entries, setEntries, processData } = useEntries();
+
     return <>
         <h2>Welcome to My Database</h2>
-        <MyDataGrid/>  
-        <AddNewForm/>
-    </>
+        <MyDataGrid entries={entries}/>  
+        <AddNewForm setEntries={setEntries} processData={processData}/>
+</>
 }
 
 

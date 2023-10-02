@@ -47,10 +47,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 //  GLOBALS & INITIALIZATION
 //-------------------------------------------------------//
 
-const options = [
-    { id: 1, name: "item1" },
-    { id: 2, name: "item2" }
-  ];
+
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -62,7 +59,7 @@ const AddNewForm = (props) => {
 
     const { mainCategories } = useMainCategory(); //cannot create new
     const { subCategories } = useSubCategory(); //cannot create new
-    const { entities, setEntities } = useEntities(); //able to create new 
+    const { entities } = useEntities(); //able to create new 
 
     const {
         register,
@@ -72,19 +69,15 @@ const AddNewForm = (props) => {
         control,
     } = useForm();    
 
-    const additionalData = {
-        created_at: "2018-11-20T15:58:44.767594-06:00",
-        updated_at: "2018-11-20T15:58:44.767594-06:00",
-    }   
-
     // Utility
     const onSubmit = async(FieldValues) => {
         // Axios Post
-        console.log(FieldValues);
         await postRequest("entrys/", FieldValues, token);
+        console.log(FieldValues);
         const newData = await getRequest("entrys/", token);
-        console.log(newData.data);
-        props.setEntrys(newData.data);
+        const cleanData = props.processData(newData.data);          
+        props.setEntries(cleanData);
+        
         reset();
         await new Promise((resolve) => setTimeout(resolve, 250));
     }
@@ -93,6 +86,7 @@ const AddNewForm = (props) => {
     <form onSubmit={handleSubmit((data) => {
         data.created_at = "";
         data.updated_at = "";
+        //data.user = 106; //TODO get user
         onSubmit(data);
     })}>
 
@@ -217,7 +211,7 @@ const AddNewForm = (props) => {
                 }}
                 value={value}
                 options={subCategories}
-                getOptionLabel={(item) => (item.name ? item.name + " (" + item.main_category + ")": "")}
+                getOptionLabel={(item) => (item.name ? item.name + " (" + item.main_category.name + ")": "")}
                 getOptionSelected={(option, value) =>
                   value === undefined || value === "" || option.id === value.id
                 }

@@ -36,6 +36,7 @@ export const useEntries = () => {
     // Convert nested objects --> object.name
     // for readability
     function processData(arr) {
+        console.log(arr);
       arr.forEach((element, index) => {
         arr[index].date = element.date.toString().slice(0,10);  
         arr[index].main_category = element.main_category.name;
@@ -51,9 +52,8 @@ export const useEntries = () => {
             if (response && response.data){
                 const userEntries = response.data;
                 const cleanData = processData(userEntries);
-                console.log("LOADING ENTRYS")
                 console.log(userEntries);
-
+                console.log(cleanData);
                 setEntries(cleanData);   
             }         
         } catch (err) {
@@ -71,5 +71,5 @@ export const useEntries = () => {
         fetchEntries();
     }, []);
 
-    return { entries, setEntries };
+    return { entries, setEntries, processData };
 };

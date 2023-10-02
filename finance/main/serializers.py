@@ -66,15 +66,13 @@ class SubCategorySerializer(serializers.ModelSerializer):
                   'main_category', 'created_at', 'updated_at')
 
     def create(self, validated_data):
-        print("create in sub cat serializer")
-        print(validated_data)
         user_data = validated_data.pop('user')
         user, created = User.objects.get_or_create(id=user_data.id)
 
         main_category_data = validated_data.pop('main_category')
         main_category_name = list(main_category_data.values())[0]
 
-        main_category, created = MainCategory.objects.get_or_create(name=main_category_name)
+        main_category, created = MainCategory.objects.get(name=main_category_name)
 
         sub_category = SubCategory.objects.create(user=user, main_category=main_category, **validated_data)
         return sub_category
@@ -99,26 +97,24 @@ class EntrySerializer(serializers.ModelSerializer):
                   'sub_category', 'created_at', 'updated_at')
         
     def create(self, validated_data):
-        print("create in entry serializer")
-        print(validated_data)
         user_data = validated_data.pop('user')
         user, created = User.objects.get_or_create(id=user_data.id)
 
         main_category_data = validated_data.pop('main_category')
         main_category_name = list(main_category_data.values())[0]
-        print(main_category_name)
         main_category, created = MainCategory.objects.get_or_create(name=main_category_name)
 
         sub_category_data = validated_data.pop('sub_category')
-        sub_category_name = list(sub_category_data.values())[0]
+        sub_category_name = list(sub_category_data.values())[1]
         sub_category, created = SubCategory.objects.get_or_create(name=sub_category_name, main_category=main_category)
         
+        print(sub_category_data)
         entity_data = validated_data.pop('routing')
-        entity_name = list(entity_data.values())[0]
+        entity_name = list(entity_data.values())[1]
         entity, created = Entity.objects.get_or_create(name=entity_name)
 
         entry = Entry.objects.create(user=user, main_category=main_category,
-                                     sub_category=sub_category, entity=entity)
+                                     sub_category=sub_category, routing=entity, **validated_data)
         
         return entry        
 
