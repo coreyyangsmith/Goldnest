@@ -26,6 +26,10 @@ import { Button, Stack } from "@mui/material";
 // React Hook Form
 import { useForm } from "react-hook-form";
 
+// Toast Notifications
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // API Import
 import { getRequest, postRequest } from '../../api/authenticated'
 
@@ -51,14 +55,46 @@ const MainCategoryForm = (props) => {
     
     // Utility
     const onSubmit = async(FieldValues) => { // TODO if description is "" axios fails, to fix
+        try {
+            // Axios Post
+            console.log(FieldValues);        
+            await postRequest("maincategories/", FieldValues, token);
+            const newData = await getRequest("maincategories/", token);
+            props.setMainCategories(newData.data);    
 
-        // Axios Post
-        console.log(FieldValues);        
-        await postRequest("maincategories/", FieldValues, token);
-        const newData = await getRequest("maincategories/", token);
-        props.setMainCategories(newData.data);        
+            toast.success(FieldValues.name + ' main category saved successfully!', {
+                position: "top-right",
+                autoClose: 2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });  
+        } catch (err) {
+            if (err.response) {            
+              // Not in 200 response range
+              console.log(err.response.data);
+              console.log(err.response.status);
+              console.log(err.response.headers);               
+            } else {
+                console.log(`Error: ${err.message}`);
+        }      
+        toast.error('Unknown error occured.', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });  
+        }         
+        
         reset();
-        await new Promise((resolve) => setTimeout(resolve, 250));    
+        await new Promise((resolve) => setTimeout(resolve, 250));  
     }
 
     return (
@@ -97,7 +133,8 @@ const MainCategoryForm = (props) => {
                             Submit
                 </Button>    
 
-            </Stack>            
+            </Stack>   
+            <ToastContainer/>         
         </form>
   )
 }

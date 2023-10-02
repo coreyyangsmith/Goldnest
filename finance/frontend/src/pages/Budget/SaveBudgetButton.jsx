@@ -46,8 +46,6 @@ const SaveBudgetButton = (props) => {
   const { token } = useToken();
 
   const saveBudgets = async() => {
-    console.log("saving budgets");
-    console.log(props.budgets);
       try {
         for (var i = 0; i < props.budgets.length; i++){
           await putRequest(LOCATION_TO_SAVE + props.budgets[i].pk + "/", props.budgets[i], token); 

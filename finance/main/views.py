@@ -133,14 +133,19 @@ def entrys_list(request):
             data = Entry.objects.all().filter(user=user)
         else:
             data = Entry.objects.all().none();
-
         serializer = EntrySerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = EntrySerializer(data=request.data)
+        data=request.data
+        print(data)
+        if 'HTTP_AUTHORIZATION' in request.META:
+            token = request.META['HTTP_AUTHORIZATION'][6::]
+            obj = Token.objects.get(key=token).user
+            user = User.objects.get(username=obj.username)
+            serializer = EntrySerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=user)
             return Response(status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

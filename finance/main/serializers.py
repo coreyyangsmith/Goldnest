@@ -91,14 +91,39 @@ class SubSubCategorySerializer(serializers.ModelSerializer):
 class EntrySerializer(serializers.ModelSerializer):
     main_category = MainCategorySerializer()
     sub_category = SubCategorySerializer()    
-    routing = EntitySerializer()  
-    user = UserSerializer()           
+    routing = EntitySerializer()       
     class Meta:
         model = Entry 
         fields = ('pk', 'user', 'name', 'income', 'expense',
                   'notes', 'date', 'routing', 'main_category',
                   'sub_category', 'created_at', 'updated_at')
         
+    def create(self, validated_data):
+        print("create in entry serializer")
+        print(validated_data)
+        user_data = validated_data.pop('user')
+        user, created = User.objects.get_or_create(id=user_data.id)
+
+        main_category_data = validated_data.pop('main_category')
+        main_category_name = list(main_category_data.values())[0]
+        print(main_category_name)
+        main_category, created = MainCategory.objects.get_or_create(name=main_category_name)
+
+        sub_category_data = validated_data.pop('sub_category')
+        sub_category_name = list(sub_category_data.values())[0]
+        sub_category, created = SubCategory.objects.get_or_create(name=sub_category_name, main_category=main_category)
+        
+        entity_data = validated_data.pop('routing')
+        entity_name = list(entity_data.values())[0]
+        entity, created = Entity.objects.get_or_create(name=entity_name)
+
+        entry = Entry.objects.create(user=user, main_category=main_category,
+                                     sub_category=sub_category, entity=entity)
+        
+        return entry        
+
+    def update(self, validated_data):
+        print("updating method - serializer, entry")
                   
 # Macro Finance
 class AccountSerializer(serializers.ModelSerializer):

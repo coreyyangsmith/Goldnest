@@ -27,6 +27,10 @@ import { Button, Stack, Input } from "@mui/material";
 // React Hook Form
 import { useForm } from "react-hook-form";
 
+// Toast Notifications
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //Axios Import
 import { getRequest, postRequest } from '../../api/authenticated';
 
@@ -80,31 +84,63 @@ const SubCategoryForm = (props) => {
     }
 
     const onSubmit = async(FieldValues) => {
-        // Post to Server
-        console.log("Submitting in SubCategoryForm");
-        console.log(FieldValues);
-        const response = await postRequest("subcategories/", FieldValues, token);
-        const newData = await getRequest("subcategories/", token);
-        const newDataFiltered = newData.data.filter((data) => data.main_category.id == props.selectedMain.id)
-        props.setSubCategories(newDataFiltered);
-        await new Promise((resolve) => setTimeout(resolve, 250));
+        try {
+            // Post to Server
+            const response = await postRequest("subcategories/", FieldValues, token);
+            const newData = await getRequest("subcategories/", token);
+            const newDataFiltered = newData.data.filter((data) => data.main_category.id == props.selectedMain.id)
+            props.setSubCategories(newDataFiltered);
 
-        //Obtain reference to recent submission
-        const myNewCat = newData.data[newData.data.length - 1];
 
-        // Generate Budget Numbers
-        generateBudgetData(myNewCat);
+            //Obtain reference to recent submission
+            const myNewCat = newData.data[newData.data.length - 1];
 
-        // Obtain reference for budget generation
-        const allBudgets = await getRequest("budgets/", token);
-        const filteredBudgets = allBudgets.data.filter((data) => data.sub_category.pk === myNewCat.pk);
-        const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
-        
-        // Regen page for budget
-        props.setSelectedSub(myNewCat);
-        props.setBudget(sortedBudgets);
+            // Generate Budget Numbers
+            generateBudgetData(myNewCat);
+
+            // Obtain reference for budget generation
+            const allBudgets = await getRequest("budgets/", token);
+            const filteredBudgets = allBudgets.data.filter((data) => data.sub_category.pk === myNewCat.pk);
+            const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
+            
+            // Regen page for budget
+            props.setSelectedSub(myNewCat);
+            props.setBudget(sortedBudgets);        
+            
+            toast.success(FieldValues.name + ' sub category saved successfully!', {
+                position: "top-right",
+                autoClose: 2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });              
+
+        } catch (err) {
+            if (err.response) {            
+              // Not in 200 response range
+              console.log(err.response.data);
+              console.log(err.response.status);
+              console.log(err.response.headers);               
+            } else {
+                console.log(`Error: ${err.message}`);
+        }      
+        toast.error('Unknown error occured.', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });  
+        }         
      
         reset();
+        await new Promise((resolve) => setTimeout(resolve, 250));        
     }
 
     return (
