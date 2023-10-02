@@ -34,7 +34,9 @@ const Database = () => {
     return <>
         <h2>Welcome to My Database</h2>
         <MyDataGrid entries={entries}/>  
-        <AddNewForm setEntries={setEntries} processData={processData}/>
+        <Container>
+            <AddNewForm setEntries={setEntries} processData={processData}/>
+        </Container>
 </>
 }
 

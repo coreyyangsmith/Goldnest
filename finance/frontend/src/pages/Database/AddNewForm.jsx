@@ -43,6 +43,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+// Toast Notifications
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //  GLOBALS & INITIALIZATION
 //-------------------------------------------------------//
@@ -71,13 +74,44 @@ const AddNewForm = (props) => {
 
     // Utility
     const onSubmit = async(FieldValues) => {
+      try {
         // Axios Post
         await postRequest("entrys/", FieldValues, token);
-        console.log(FieldValues);
         const newData = await getRequest("entrys/", token);
         const cleanData = props.processData(newData.data);          
-        props.setEntries(cleanData);
+        props.setEntries(cleanData);      
         
+        toast.success(FieldValues.name + ' entry saved successfully!', {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });             
+        } catch (err) {
+          if (err.response) {            
+            // Not in 200 response range
+            console.log(err.response.data);
+            console.log(err.response.status);
+            console.log(err.response.headers);               
+          } else {
+              console.log(`Error: ${err.message}`);
+      }      
+      toast.error('Unknown error occured.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });  
+      }     
+
         reset();
         await new Promise((resolve) => setTimeout(resolve, 250));
     }
@@ -99,6 +133,7 @@ const AddNewForm = (props) => {
             <Controller
               control={control}
               name='date'
+              defaultValue=""              
               render={({ field }) => (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
@@ -124,6 +159,7 @@ const AddNewForm = (props) => {
                 value={value}
                 options={entities}
                 freeSolo
+                defaultValue=""
                 getOptionLabel={(item) => (item.name ? item.name : "")}
                 getOptionSelected={(option, value) =>
                   value === undefined || value === "" || option.id === value.id
@@ -134,6 +170,7 @@ const AddNewForm = (props) => {
                     label="Company/Entity"
                     margin="normal"
                     variant="outlined"
+                    defaultValue=""
                     error={!!errors.item}
                     helperText={errors.item && "item required"}
                     required
@@ -181,6 +218,7 @@ const AddNewForm = (props) => {
                 }}
                 value={value}
                 options={mainCategories}
+                defaultValue=""
                 getOptionLabel={(item) => (item.name ? item.name : "")}
                 getOptionSelected={(option, value) =>
                   value === undefined || value === "" || option.id === value.id
@@ -211,6 +249,7 @@ const AddNewForm = (props) => {
                 }}
                 value={value}
                 options={subCategories}
+                defaultValue=""
                 getOptionLabel={(item) => (item.name ? item.name + " (" + item.main_category.name + ")": "")}
                 getOptionSelected={(option, value) =>
                   value === undefined || value === "" || option.id === value.id
@@ -253,6 +292,7 @@ const AddNewForm = (props) => {
             )}                                    
         </Stack>
       <Button type="submit">Submit</Button>
+      <ToastContainer/>
       </form>
   )
 }

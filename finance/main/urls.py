@@ -49,7 +49,9 @@ urlpatterns = [
     re_path(r'^api/budgets/(?P<pk>\d+)/$', views.budgets_detail),    
 
     re_path(r'^api/users/$', views.users_list),    
-    re_path(r'^api/users/current/$', views.current_user),            
+    re_path(r'^api/users/current/$', views.current_user),       
+
+    re_path(r'^api/profiles/$', views.profiles_list),             
 
     path('api/', include(router.urls)),
   
