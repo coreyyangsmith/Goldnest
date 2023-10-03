@@ -17,19 +17,16 @@
 //-------------------------------------------------------//
 
 // React Import
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 
 // MUI Import
-import { Box, Container, Grid } from '@mui/material/';
+import { Container } from '@mui/material/';
 import { Select, MenuItem } from '@mui/material';
 import { Button } from '@mui/material/'
 
 // My Components
-import DoughnutReport from "./DoughnutReport";
-import ExpensesByMainCategory from './ExpensesByMainCategory';
-import NetWorthLineChart from './NetWorthLineChart';
-import MyD3Component from './MyD3Chart';
+import ReportManager from './ReportManager';
 
 
 //  MAIN FUNCTION 
@@ -37,15 +34,28 @@ import MyD3Component from './MyD3Chart';
 
 const Reports = () => {
     const [selectedTimeSpan, setSelecedTimeSpan] = useState("");
-    const [selectedTimeRange, setSelectedTimeRange] = useState("");    
-    const [selectedReportType, setSelectedReportType] = useState("");
 
     const [selectedYear, setSelectedYear] = useState("");
     const [selectedMonth, setSelectedMonth] = useState("");
-    const [selectedReport, setSelectedReport] = useState("");
+    const [selectedWeek, setSelectedWeek] = useState("");    
+
+    const [selectedReportType, setSelectedReportType] = useState("");
+
+    const [generateReport, setGenerateReport] = useState(false);
+
+    const handleClick = () => {
+        console.log("generate report")
+        setGenerateReport(true);
+    }
+
+    // Initial Conditions
+    useEffect(() => {
+        console.log("useEffect");
+        setGenerateReport(false)
+    }, [])
 
     return <>
-    <Container>
+    <Container sx={{marginLeft: 5, marginRight: 5}}>
         <h2>Welcome to My Reports</h2>
 
         {/* Step 1 - Specified Time Span */}
@@ -67,8 +77,8 @@ const Reports = () => {
         <>     
             <h3>Step 2) Specify Time Range</h3>   
             <Select
-            value={selectedTimeRange}
-            onChange={(e) => setSelectedTimeRange(e.target.value)}
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(e.target.value)}
             fullWidth
             variant='outlined'
             color='primary'
@@ -82,13 +92,27 @@ const Reports = () => {
 
         {selectedTimeSpan === 'month' && (
         <>        
-            <h3>Step 2) Specify Time Range</h3>        
+            <h3>Step 2) Specify Time Range</h3>    
             <Select
-            value={selectedTimeRange}
-            onChange={(e) => setSelectedTimeRange(e.target.value)}
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(e.target.value)}
             fullWidth
             variant='outlined'
             color='primary'
+            placeholder='Selected Year'
+            >
+                <MenuItem value={"2022"}>2022</MenuItem>
+                <MenuItem value={"2023"}>2023</MenuItem>
+                <MenuItem value={"2024"}>2024</MenuItem>                                               
+            </Select>            
+
+            <Select
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(e.target.value)}
+            fullWidth
+            variant='outlined'
+            color='primary'
+            placeholder='Selected Month'
             >
                 <MenuItem value={"January"}>January</MenuItem>
                 <MenuItem value={"February"}>February</MenuItem>
@@ -110,11 +134,12 @@ const Reports = () => {
         <>        
             <h3>Step 2) Specify Time Range</h3>        
             <Select
-            value={selectedTimeRange}
-            onChange={(e) => setSelectedTimeRange(e.target.value)}
+            value={selectedWeek}
+            onChange={(e) => setSelectedWeek(e.target.value)}
             fullWidth
             variant='outlined'
             color='primary'
+            placeholder='Selected Week'
             >
                 <MenuItem value={"W1"}>Week 1 (Jan 1 - Jan 7)</MenuItem>
                 <MenuItem value={"W2"}>Week 2 (Jan 8 - Jan 14)</MenuItem>                                             
@@ -122,9 +147,8 @@ const Reports = () => {
         </>
         )}            
 
-
         {/* Step 3 - Specified Report Type */}
-        {selectedTimeRange !== "" && (
+        {selectedYear !== "" && (
         <>
             <h3>Step 3) Select Report Type</h3>
             <Select
@@ -149,12 +173,25 @@ const Reports = () => {
                 fullWidth
                 color="secondary"
                 variant="outlined"
-                sx={{padding:1.5, marginTop:3}}>
+                sx={{padding:1.5, marginTop:3}}
+                onClick={() => handleClick()}>
                             Generate Report
                 </Button>   
         </>
         )}
 
+        {/* Step 5 - Logic and Manager */}
+        {generateReport === true && (
+        <>
+        <ReportManager  selectedYear={selectedYear}
+                        selectedMonth={selectedMonth}
+                        selectedWeek={selectedWeek}
+                        selectedTimeSpan={selectedTimeSpan}
+                        selectedReportType={selectedReportType}
+                        />
+        </>        
+
+        )}
         {/* 
         <h3>Select Report</h3>
         <Select
@@ -169,52 +206,12 @@ const Reports = () => {
         </Select>
         */}        
 
-        {/* Main Logic */}
-        <Grid container spacing={2}>
-
-            <Grid item xs={6}>
-                <Box sx={{
-                    width: 300,
-                    height: 300
-                }}>
-                    <DoughnutReport selectedMonth={selectedMonth} 
-                                    selectedYear={selectedYear}/>
-                </Box>
-            </Grid>
-
-            <Grid item xs={6}>
-                <Box sx={{
-                    width: 300,
-                    height: 300
-                }}>
-                    <ExpensesByMainCategory/>
-                </Box>      
-            </Grid>     
-
-            <Grid item xs={6}>
-                <Box sx={{
-                    width: 300,
-                    height: 300
-                }}>
-                    <NetWorthLineChart />
-                </Box>      
-            </Grid>          
-
-            <Grid item xs={6}>
-                <Box sx={{
-                    width: 300,
-                    height: 300
-                }}>
-                    <MyD3Component data = {[10, 20, 30]}/>
-                </Box>      
-            </Grid>                 
-        </Grid>
     </Container>    
     </>
 }
 
 
-//  MAIN FUNCTION
+//  EXPORTS
 //-------------------------------------------------------//
 
 export default Reports;

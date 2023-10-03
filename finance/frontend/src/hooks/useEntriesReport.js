@@ -33,25 +33,22 @@ export const useEntries = () => {
     const [entries, setEntries] = useState([]);
 
     // Process Data
-    // Convert nested objects --> object.name
-    // for readability
+    // Convert date to hold year
     function processData(arr) {
-      arr.forEach((element, index) => {
-        arr[index].date = element.date.toString().slice(0,10);  
-        arr[index].main_category = element.main_category.name;
-        arr[index].sub_category = element.sub_category.name;
-        arr[index].routing = element.routing.name;
-    });   
-      return arr;
-    }    
+        arr.forEach((element, index) => {
+          arr[index].date = element.date.toString().slice(0,10);
+          arr[index].year = parseInt(element.date.toString().slice(0,4));
+      });   
+        return arr;
+      }        
 
     const fetchEntries = async () => {
         try {          
             const response = await getRequest("entrys/", token);
             if (response && response.data){
                 const userEntries = response.data;
-                const cleanData = processData(userEntries);
-                setEntries(cleanData);   
+                const processedData = processData(userEntries)
+                setEntries(processedData);   
             }         
         } catch (err) {
             if (err.response) { //Not in 200 Response Range
@@ -68,5 +65,5 @@ export const useEntries = () => {
         fetchEntries();
     }, []);
 
-    return { entries, setEntries, processData };
+    return { entries, setEntries };
 };

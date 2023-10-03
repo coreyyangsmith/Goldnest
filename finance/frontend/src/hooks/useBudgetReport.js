@@ -1,16 +1,16 @@
 //-------------------------------------------------------//
-//  File Name: useBudget.js
-//  Description: Data Fetching Hook to obtain "Budget" model from the local database, based on selected Sub Category
+//  File Name: useBudgetReport.js
+//  Description: Data Fetching Hook to obtain "Budget" model from the local database. Returns all Budgets.
 //
 //  Requirements:
-//      - /api/posts (axios)
+//      - /api/authenticated (axios)
 //      - Selected Sub Category
 //
 //  Returns:
 //      - Sorted List of Budgets (Sub Category)
 //
 // Created By: Corey Yang-Smith
-// Date: September 27th, 2023
+// Date: October 3rd, 2023
 //-------------------------------------------------------//
 
 
@@ -21,22 +21,21 @@
 import { useEffect, useState } from "react"
 
 // API Import
-import { getRequest } from "../api/posts"
+import { getRequest } from "../api/authenticated"
 
 // Custom Hooks
-import useToken from "../hooks/useToken"
+import useToken from "./useToken"
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-export const useBudget = (selectedSub) => {
+export const useBudget = () => {
     const { token } = useToken();
     const [budgets, setBudgets] = useState([]);
 
     // Process budget data and change 'sub_category' from objects reference to pk reference
     // Needed for budget PUT req
     function processData(arr) {
-        console.log(arr)
         arr.forEach((element, index) => {
             arr[index].sub_category.main_category.user = element.sub_category.main_category.user.id;            
         });
@@ -48,10 +47,10 @@ export const useBudget = (selectedSub) => {
             const response = await getRequest("budgets/", token);
             if (response && response.data){
                 const userBudgets = response.data;
-                const filteredBudgets = userBudgets.filter((data) => data.sub_category.pk === selectedSub.pk);
-                const sortedBudgets = filteredBudgets.sort((a,b) => a.month - b.month);
+                const sortedBudgets = userBudgets.sort((a,b) => a.month - b.month);
                 const cleanedBudgets = processData(sortedBudgets);
                 setBudgets(cleanedBudgets);
+                console.log(cleanedBudgets);
             }         
         } catch (err) {
             if (err.response) { //Not in 200 Response Range
@@ -66,7 +65,7 @@ export const useBudget = (selectedSub) => {
 
     useEffect(() => {
         fetchBudgets();
-    }, [selectedSub]);
+    }, []);
 
     return { budgets, setBudgets };
 };

@@ -39,6 +39,7 @@ export const useMainCategory = () => {
             if (response && response.data)
             {
                 const userMainCategories = response.data;
+                console.log(mainCategories);
                 setMainCategories(userMainCategories);  
             }           
         } catch (err) {

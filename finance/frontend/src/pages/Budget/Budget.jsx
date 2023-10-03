@@ -51,19 +51,6 @@ const Budget = () => {
     <>
         <h1>Welcome to My Budget</h1>
         <Stack>
-            {/* 
-            <Grid container spacing={2}>
-                <Grid item xs={8}>
-                    <YearSelection selectedYear={selectedYear}
-                                    setSelectedYear={setSelectedYear}/>
-                </Grid>
-                <Grid item xs={4}>
-                    <p>current empty space!</p>
-                </Grid>
-            </Grid>
-    */}
-
-
             <Grid container spacing={2}>
                 <Grid item xs={4}>
                     <h2>Main Categories</h2>
