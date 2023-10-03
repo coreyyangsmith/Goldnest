@@ -67,8 +67,7 @@ const Budget = () => {
             <Grid container spacing={2}>
                 <Grid item xs={4}>
                     <h2>Main Categories</h2>
-                    <Box sx={{
-                    }}>
+                    <Box>
                         <MainCategoriesList setSelectedMain={setSelectedMain}
                                             selectedMain={selectedMain}
                                             formSubmitted={formSubmitted}
@@ -84,8 +83,7 @@ const Budget = () => {
 
                 <Grid item xs={4}>
                     <h2>Sub Categories</h2>
-                    <Box sx={{
-                    }}>
+                    <Box>
                         <SubCategoriesList  selectedMain={selectedMain}
                                             selectedSub={selectedSub} 
                                             setSelectedSub={setSelectedSub}

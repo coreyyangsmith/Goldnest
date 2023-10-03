@@ -71,8 +71,9 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
         main_category_data = validated_data.pop('main_category')
         main_category_name = list(main_category_data.values())[0]
+        print(main_category_data)
 
-        main_category, created = MainCategory.objects.get(name=main_category_name)
+        main_category  = MainCategory.objects.get(name=main_category_name)
 
         sub_category = SubCategory.objects.create(user=user, main_category=main_category, **validated_data)
         return sub_category
