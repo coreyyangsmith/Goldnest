@@ -79,7 +79,7 @@ class Entry(models.Model):
     expense = models.FloatField()
     notes = models.CharField(max_length=200, null=True, blank=False)
 
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     routing = models.ForeignKey(Entity, on_delete=models.DO_NOTHING)
     main_category = models.ForeignKey(MainCategory, on_delete=models.DO_NOTHING)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.DO_NOTHING)

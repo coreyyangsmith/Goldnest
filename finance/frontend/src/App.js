@@ -1,14 +1,10 @@
 // React
-import React, { useEffect, useState } from "react"
+import React from "react"
 import useToken from "./hooks/useToken";
 
 // MUI Dependencies
-import { Container } from "@mui/material"
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
-// Axios
-import { getRequest } from './api/posts'
 
 // Components
 import './App.css';

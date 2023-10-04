@@ -2,3 +2,51 @@ admin,Video Game (Baldurs Gate 1),0,83.99,gift,2023-08-13,Steam,Optional_Expense
 admin,Video Game (Baldurs Gate 2),0,23.12,Test,2023-08-13,Steam,Optional_Expenses,Video Games
 admin,Video Game (Baldurs Gate 3),0,83.99,gift,2023-08-13,EB Games,Optional_Expenses,Video Games
 admin,Video Game (Baldurs Gate 4),0,83.99,gift,2023-08-13,EB Games,Optional_Expenses,Video Games
+admin,Rent Payment,0,975,Rent,2023-01-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-02-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-03-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-04-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-05-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-06-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-07-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-08-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-09-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-10-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-11-01,Boardwalk,Fixed_Expenses,Rent
+admin,Rent Payment,0,975,Rent,2023-12-01,Boardwalk,Fixed_Expenses,Rent
+admin,Enmax,0,115,Power & Gas,2023-01-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,123.21,Power & Gas,2023-02-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,87.65,Power & Gas,2023-03-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,75.50,Power & Gas,2023-04-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,76.54,Power & Gas,2023-05-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,65.46,Power & Gas,2023-06-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,86.56,Power & Gas,2023-07-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,67.67,Power & Gas,2023-08-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,87.48,Power & Gas,2023-09-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,25.86,Power & Gas,2023-10-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,97.56,Power & Gas,2023-11-01,Enmax,Fixed_Expenses,Utilities
+admin,Enmax,0,102.22,Power & Gas,2023-12-01,Enmax,Fixed_Expenses,Utilities
+admin,Phone Plan,0,49.95,Phone Plan,2023-01-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,49.95,Phone Plan,2023-02-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,49.95,Phone Plan,2023-03-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,49.95,Phone Plan,2023-04-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,49.95,Phone Plan,2023-05-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,49.95,Phone Plan,2023-06-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,49.95,Phone Plan,2023-07-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,49.95,Phone Plan,2023-08-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,49.95,Phone Plan,2023-09-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,49.95,Phone Plan,2023-10-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,55.55,New Phone Plan,2023-11-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Phone Plan,0,55.55,Phone Plan,2023-12-01,Rogers,Fixed_Expenses,Phone Plan
+admin,Internet,0,49.99,Internet,2023-01-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-02-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-03-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-04-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-05-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-06-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-07-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-08-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-09-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-10-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-11-01,Telus,Fixed_Expenses,Internet
+admin,Internet,0,49.99,Internet,2023-12-01,Telus,Fixed_Expenses,Internet

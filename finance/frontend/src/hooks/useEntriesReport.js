@@ -49,7 +49,6 @@ export const useEntries = () => {
             if (response && response.data){
                 const userEntries = response.data;
                 const processedData = processData(userEntries)
-                console.log(processedData);
                 setEntries(processedData);   
             }         
         } catch (err) {

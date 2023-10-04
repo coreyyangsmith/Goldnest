@@ -74,13 +74,34 @@ const DoughnutYearlyEntry = (props) => {
         return row.year == props.selectedYear;
       });
 
-      const sumByMain = groupedByYear.reduce((acc, cur) => {
-        acc[cur.sub_category.main_category.name] = acc[cur.sub_category.main_category.name] + cur.expense || cur.expense;
+      const sumByMainCategory = groupedByYear.reduce((acc, cur) => {
+        acc[cur.sub_category.main_category.name] = acc[cur.sub_category.main_category.name] + cur.expense || cur.expense;          
         return acc;
       }, {})
 
-      const summedValues = Object.values(sumByMain);    
-      setMyData(summedValues);
+      const includeDefaultsMainCategory = [];
+
+      // Find match for main category in case no entries for data to label mapping
+      var foundMatch = false;
+      for (var i = 0; i < myLabels.length; i++)
+      {
+        for (const key in sumByMainCategory)
+        {
+          if (myLabels[i] == key)
+          {
+            foundMatch = true;
+            includeDefaultsMainCategory.push(sumByMainCategory[key]);
+          }
+        }
+
+        if (!foundMatch)
+        {
+          includeDefaultsMainCategory.push(0)
+        }
+        foundMatch = false;
+      }
+
+      setMyData(includeDefaultsMainCategory);
 
       //Based on array length, randomly generate array of rgb colors.
       var rgb = [];

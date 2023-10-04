@@ -1,12 +1,13 @@
 //-------------------------------------------------------//
-//  File Name: VBarYearBudgetEntry.jsx
-//  Description: Generates Charts.js VBar Chart given yearly budget & entry data.
+//  File Name: VBarYearBudgetEntryCategory.jsx
+//  Description: Generates Charts.js VBar Chart given yearly budget & entry data, for a selected Main Category
 //
 //  Parents:
 //      - ReportManager.jsx
 //
 //  Requirements:
 //      - Input Data (Budget & Entry)
+//      - selectedMain (prop)
 //
 //  Returns:
 //      - VBar Chart
@@ -20,12 +21,13 @@
 //-------------------------------------------------------//
 
 // React Import
-import React, { useEffect, useState } from 'react'
+import React, {useState, useEffect} from 'react'
 
 // Charts JS Import
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend} from 'chart.js';
 
 import { Bar } from 'react-chartjs-2';
+import { faker } from '@faker-js/faker';
 
 
 //  UTILITY
@@ -43,25 +45,37 @@ function monthName(mon) {
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const VBarYearBudgetEntry = (props) => {
+const VBarYearBudgetEntryCategory = (props) => {
 
   // Hooks
   const [myBudgetData, setMyBudgetData] = useState([]);
   const [myEntryData, setMyEntryData] = useState([]);
 
   useEffect(() => {
-    // Sum all by Month
-    const budgetByYear = props.budgets.filter(function(row) {
+    // Budget
+    // Filter based on Selected Main
+    const budgetBySelectedMain = props.budgets?.filter(function(row) {
+      return row.sub_category.main_category.name == props.selectedMain.name;
+    })
+
+    // Filter by Selected Year
+    const budgetByYear = budgetBySelectedMain.filter(function(row) {
       return row.year == props.selectedYear;
     });
 
+    // Filter through Months
     const budgetByMonth = budgetByYear.reduce((acc, cur) => {
       acc[monthName(cur.month)] = acc[monthName(cur.month)] + cur.amount || cur.amount;
       return acc;
     }, {})
 
+    //Entry
+    const entryBySelectedMain = props.entries?.filter(function(row) {
+      return row.main_category.name == props.selectedMain.name
+    })
+
     // Sum all by Month
-    const entryByYear = props.entries.filter(function(row) {
+    const entryByYear = entryBySelectedMain.filter(function(row) {
       return row.year == props.selectedYear;
     });
 
@@ -99,14 +113,13 @@ const VBarYearBudgetEntry = (props) => {
   
   return (
   <>
-  <h5>Yearly Budget Comparison</h5>
+  <h5>Yearly Budget Comparison - {props.selectedMain.name}</h5>
   <Bar data={data}/>  
   </>
   )
-}
-
+}  
 
 //  EXPORTS 
 //-------------------------------------------------------//
 
-export default VBarYearBudgetEntry
+export default VBarYearBudgetEntryCategory
