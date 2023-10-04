@@ -90,7 +90,6 @@ const Budget = () => {
                     <Box>
                         <BudgetList selectedSub={selectedSub}/>
                     </Box>
-
                 </Grid>              
             </Grid>
         </Stack>

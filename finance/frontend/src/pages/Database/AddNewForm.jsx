@@ -128,7 +128,7 @@ const AddNewForm = (props) => {
                 marginTop={2}
                 fullwidth="true">
             <h3>Add New Entry</h3>
-
+            <a id='new-form'></a>
             {/* Date */}
             <Controller
               control={control}
@@ -291,7 +291,7 @@ const AddNewForm = (props) => {
                 <p>{`${errors.sub_cateogry.message}`}</p>
             )}                                    
         </Stack>
-      <Button type="submit">Submit</Button>
+      <Button fullWidth variant='outlined' sx={{marginTop: 3}}type="submit">Submit</Button>
       <ToastContainer/>
       </form>
   )

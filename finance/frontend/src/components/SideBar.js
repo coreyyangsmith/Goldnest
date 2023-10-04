@@ -274,7 +274,7 @@ export default function MiniDrawer() {
             </ListItemButton>
           </ListItem>    
 
-          <ListItem key="Add New Data" component={Link} to="/data" disablePadding sx={{ display: 'block'}}>
+          <ListItem key="Add New Data" component={Link} to="/data#new-form" disablePadding sx={{ display: 'block'}}>
             <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
               <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
                 <AddIcon/>                            
@@ -325,6 +325,7 @@ export default function MiniDrawer() {
                 <Route path="/budget" element={<Budget />} />
                 <Route path="/reports" element={<Reports />} />             
                 <Route path="/data" element={<Database />} />
+                <Route path="/data" element={<Database />} />                
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile/settings" element={<Settings />} />            
 

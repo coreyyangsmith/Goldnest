@@ -50,7 +50,6 @@ export const useBudget = () => {
                 const sortedBudgets = userBudgets.sort((a,b) => a.month - b.month);
                 const cleanedBudgets = processData(sortedBudgets);
                 setBudgets(cleanedBudgets);
-                console.log(cleanedBudgets);
             }         
         } catch (err) {
             if (err.response) { //Not in 200 Response Range

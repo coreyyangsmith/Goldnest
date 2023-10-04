@@ -32,9 +32,8 @@ import { Box, Grid } from '@mui/material/';
 // My Components
 import DoughnutYearlyBudget from "./DoughnutYearlyBudget";
 import DoughnutYearlyEntry from "./DoughnutYearlyEntry";
-// import ExpensesByMainCategory from './ExpensesByMainCategory';
-// import NetWorthLineChart from './NetWorthLineChart';
-// import MyD3Component from './MyD3Chart';
+import NetWorthLineChart from './samples/NetWorthLineChart';
+import VBarYearBudgetEntry from './VBarYearBudgetEntry';
 
 // My Hooks
 import { useMainCategory } from '../../hooks/useMainCategory';
@@ -50,22 +49,17 @@ const ReportManager = (props) => {
   const { mainCategories } = useMainCategory();
   const { budgets } = useBudget();
   const { entries } = useEntries();
-
-  console.log("report manager")
-  console.log(mainCategories);
-  console.log(budgets);
-  console.log(entries);
-
-
-
   return (
 <>
-    <Grid container spacing={2}>
+    <Grid container spacing={2}
+    alignItems="center"
+    justifyContent="center"
+    direction="row">
 
-        <Grid item xs={6}>
+        <Grid item xs={6} >
             <Box sx={{
-                width: 300,
-                height: 300
+                width: 1,
+                height: 375
             }}>
                 <DoughnutYearlyBudget   selectedMonth={props.selectedMonth} 
                                         selectedYear={props.selectedYear}
@@ -76,15 +70,26 @@ const ReportManager = (props) => {
 
         <Grid item xs={6}>
             <Box sx={{
-                width: 300,
-                height: 300
+                width: 1,
+                height: 375
             }}>
                 <DoughnutYearlyEntry    selectedMonth={props.selectedMonth} 
                                         selectedYear={props.selectedYear}
                                         mainCategories={mainCategories}
                                         entries={entries}/>
             </Box>
-        </Grid>        
+        </Grid>     
+
+        <Grid item xs={6}>
+            <Box sx={{
+                width: 600,
+                height: 300
+            }}>
+                <VBarYearBudgetEntry entries={entries}
+                                        budgets={budgets}
+                                        selectedYear={props.selectedYear}/>
+            </Box>
+        </Grid>              
 
         {/* 
         <Grid item xs={6}>

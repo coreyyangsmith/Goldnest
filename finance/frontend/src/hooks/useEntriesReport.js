@@ -33,11 +33,12 @@ export const useEntries = () => {
     const [entries, setEntries] = useState([]);
 
     // Process Data
-    // Convert date to hold year
+    // Convert date to hold year & month
     function processData(arr) {
         arr.forEach((element, index) => {
           arr[index].date = element.date.toString().slice(0,10);
           arr[index].year = parseInt(element.date.toString().slice(0,4));
+          arr[index].month = parseInt(element.date.toString().slice(5,8));          
       });   
         return arr;
       }        
@@ -48,6 +49,7 @@ export const useEntries = () => {
             if (response && response.data){
                 const userEntries = response.data;
                 const processedData = processData(userEntries)
+                console.log(processedData);
                 setEntries(processedData);   
             }         
         } catch (err) {
