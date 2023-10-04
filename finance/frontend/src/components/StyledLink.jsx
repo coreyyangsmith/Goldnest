@@ -31,14 +31,16 @@ import styled from 'styled-components';
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: white;
-    padding-left: 24px;
-    padding-right: 24px;    
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-left: 12px;
+    padding-right: 12px;    
 
     display: flex;
     justify-content: center;
 
     &:hover {
-        background-color: #000;
+        background-color: #fff8e1;
     }
 
     &:focus, &:hover, &:visited, &:link, &:active {

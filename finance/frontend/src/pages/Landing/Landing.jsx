@@ -19,14 +19,19 @@
 // React Import
 import React from 'react'
 
-//MUI Imports
-import { Container } from '@mui/material';
+// MUI Imports
+import { Container, Grid } from '@mui/material';
+
 
 // Routing
 import { Route, Routes } from "react-router-dom";
 
 // My Page Imports
 import LandingNav from './LandingNav';
+import LandingHeroContent from './LandingHeroContent';
+
+
+
 import Contact from './Contact';
 import Register from '../Register/Register'
 import Login from '../Login/Login.jsx'
@@ -40,13 +45,30 @@ const Landing = () => {
     return <>
     <LandingNav/>
     <Container>
-        <h2>Welcome to The Landing Page!</h2>
-    <Routes>      
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />  
-        <Route path="/contact" element={<Contact />} />          
-    </Routes>  
+        <Grid   container
+                justify-content="center"
+                alignContent="center">
+            <Grid item xs={3}/>
+
+            <Grid container 
+                    item 
+                    xs={6} 
+                    justifyContent="center"
+                    alignItems="center">                
+                <LandingHeroContent/>
+            </Grid>
+
+            <Grid item xs={3}/>
+        </Grid>
+
+        <Routes>      
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />  
+            <Route path="/contact" element={<Contact />} />          
+        </Routes>  
+
+
     </Container>
 
     </>
