@@ -132,7 +132,37 @@ const lightTheme = createTheme({
       fontWeight: 500,
       fontFamily: 'inter',      
       color: '#FFFFFF',
-      },                     
+      },      
+      
+    feature_heading: {
+      lineHeight: 1.6,
+      fontSize: 28,
+      fontWeight: 600,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#000000',
+      },   
+    card_heading: {
+      lineHeight: 1.6,
+      fontSize: 20,
+      fontWeight: 800,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#000000',
+      },  
+    card_body: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 500,
+      fontFamily: 'inter',      
+      color: '#979797',
+      },    
+    card_link: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 500,
+      fontFamily: 'inter',   
+      fontStyle: 'underline',   
+      color: '#D86800',
+      },                            
   },  
 });
 

@@ -39,15 +39,14 @@ import StackedVBarEChartsExample from './samples/StackedVBarEChartsExample';
 import StackedHBarEChartsExample from './samples/StackedHBarEChartsExample';
 import TreechartEChartsExample from './samples/TreechartEChartsExample';
 import GradientStackedEChartsExample from './samples/GradientStackedEChartsExample';
+import VHeatMapEChartsExample from './samples/VHeatMapEChartsExample';
+import CalendarIconEChartsExample from './samples/CalendarIconEChartsExample';
+import MonthHeatMapEChartsExample from './samples/MonthHeatMapEChartsExample';
 
 // My Hooks
 import { useMainCategory } from '../../hooks/useMainCategory';
 import { useEntries } from '../../hooks/useEntriesReport';
 import { useBudget } from '../../hooks/useBudgetReport'
-import VHeatMapEChartsExample from './samples/VHeatMapEChartsExample';
-import CalendarIconEChartsExample from './samples/CalendarIconEChartsExample';
-import MonthHeatMapEChartsExample from './samples/MonthHeatMapEChartsExample';
-
 
 //  MAIN FUNCTION 
 //-------------------------------------------------------//

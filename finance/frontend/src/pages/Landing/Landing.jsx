@@ -20,7 +20,7 @@
 import React from 'react'
 
 // MUI Imports
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, Stack } from '@mui/material';
 
 
 // Routing
@@ -36,6 +36,7 @@ import Contact from './Contact';
 import Register from '../Register/Register'
 import Login from '../Login/Login.jsx'
 import Home from './Home';
+import LandingFeatureContent from './LandingFeatureContent';
 
 
 //  MAIN FUNCTION
@@ -45,23 +46,27 @@ const Landing = () => {
     return <>
     <LandingNav/>
     <Container disableGutters>
-        <Grid   container
-                justify-content="center"
-                alignContent="center">
-                    
-            <Grid item xs={3}/>
+        <Stack direction="column" spacing={2}>
 
-            <Grid container 
-                    item 
-                    xs={6} 
-                    justifyContent="center"
-                    alignItems="center">                
-                <LandingHeroContent/>
+            {/* HERO CONTENT */}
+            <Grid   container
+                    justify-content="center"
+                    alignContent="center">
+                        
+                <Grid item xs={3}/>
+                <Grid container 
+                        item 
+                        xs={6} 
+                        justifyContent="center"
+                        alignItems="center">                
+                    <LandingHeroContent/>
+                </Grid>
+                <Grid item xs={3}/>
             </Grid>
 
-            <Grid item xs={3}/>
-        </Grid>
-
+            {/* FEATURE CONTENT */}       
+            <LandingFeatureContent/>  
+        </Stack>
         <Routes>      
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
