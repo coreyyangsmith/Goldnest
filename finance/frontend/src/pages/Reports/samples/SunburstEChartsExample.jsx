@@ -1,10 +1,8 @@
-
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Import
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 // ECharts
 import ReactEcharts from "echarts-for-react";
@@ -86,8 +84,21 @@ const option = {
       borderWidth: 2
     },
     label: {
-      show: false
-    }
+      color: '#000',
+      textBorderColor: '#fff',
+      textBorderWidth: 2,
+      formatter: function (param) {
+        var depth = param.treePathInfo.length;
+        if (depth === 2) {
+          return 'radial';
+        } else if (depth === 3) {
+          return 'tangential';
+        } else if (depth === 4) {
+          return '0';
+        }
+        return '';
+      }
+    },
   }
 };
 
