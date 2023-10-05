@@ -33,6 +33,7 @@ import WindowBackground from '../../assets/images/WindowBackground.png'
 const LandingHeroContent = () => {
   return (
 <Stack spacing={2} direction="column" sx={{marginTop: 5}}>
+    
     <Typography variant='hero_content' align='center'>Your Money, Your Rules: Unleash Financial Freedom</Typography>
     <Typography variant='hero_title' align='center'>Gain insights on your spending  
             <Typography
@@ -47,7 +48,7 @@ const LandingHeroContent = () => {
     <Box align='center'>
         <Button variant='contained' 
                 color='black'
-                sx={{paddingTop: 2, paddingBottom: 2, width: 200}}>
+                sx={{paddingTop: 2, paddingBottom: 2, width: 250}}>
             <Typography variant='hero_button'>
                 Create account
             </Typography>

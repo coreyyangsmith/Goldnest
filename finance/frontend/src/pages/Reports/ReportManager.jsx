@@ -34,7 +34,7 @@ import DoughnutYearlyBudget from "./DoughnutYearlyBudget";
 import DoughnutYearlyEntry from "./DoughnutYearlyEntry";
 import VBarYearBudgetEntry from './VBarYearBudgetEntry';
 import VBarYearBudgetEntryCategory from './VBarYearBudgetEntryCategory';
-
+import SunburstEChartsExample from './samples/SunburstEChartsExample';
 
 // My Hooks
 import { useMainCategory } from '../../hooks/useMainCategory';
@@ -107,6 +107,15 @@ const ReportManager = (props) => {
             </Box>  
         </Grid>                  
 
+        <Grid item xs={6}>
+            <Box sx={{
+                width: 1,
+                height: 1
+            }}>
+                <SunburstEChartsExample/>
+            </Box>  
+        </Grid>   
+        
         {/* 
         <Grid item xs={6}>
             <Box sx={{

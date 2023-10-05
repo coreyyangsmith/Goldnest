@@ -44,10 +44,11 @@ import Home from './Home';
 const Landing = () => {
     return <>
     <LandingNav/>
-    <Container>
+    <Container disableGutters>
         <Grid   container
                 justify-content="center"
                 alignContent="center">
+                    
             <Grid item xs={3}/>
 
             <Grid container 

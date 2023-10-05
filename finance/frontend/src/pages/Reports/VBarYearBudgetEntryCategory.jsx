@@ -54,7 +54,7 @@ const VBarYearBudgetEntryCategory = (props) => {
   useEffect(() => {
     // Budget
     // Filter based on Selected Main
-    const budgetBySelectedMain = props.budgets?.filter(function(row) {
+    const budgetBySelectedMain = props.budgets.filter(function(row) {
       return row.sub_category.main_category.name == props.selectedMain.name;
     })
 
@@ -113,7 +113,7 @@ const VBarYearBudgetEntryCategory = (props) => {
   
   return (
   <>
-  <h5>Yearly Budget Comparison - {props.selectedMain.name}</h5>
+  <h5>Yearly Budget Comparison - Main Category</h5>
   <Bar data={data}/>  
   </>
   )
