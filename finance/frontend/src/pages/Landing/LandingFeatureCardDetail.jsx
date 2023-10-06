@@ -20,7 +20,11 @@
 import React from 'react'
 
 // MUI Import
-import { Paper, Stack, Typography } from '@mui/material'
+import { Divider, Paper, Stack, Typography, Chip } from '@mui/material'
+
+// MUI Icon Import
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+
 
 // My Imports
 import CardLink from '../../components/CardLink'
@@ -29,16 +33,60 @@ import CardLink from '../../components/CardLink'
 //-------------------------------------------------------//
 
 const LandingFeatureCardDetail = (props) => {
+
+  const myBasicFeatures = props.basicFeatures.map(feat => {
+    return  <React.Fragment key={feat.id}>
+        <Stack direction="row">
+          <CheckCircleOutlineIcon color="primary"/>
+          <Typography paddingLeft={2} variant='prices_list'>{feat}</Typography>
+        </Stack>
+    </React.Fragment>
+  })
+
+  const myProFeatures = props.proFeatures.map(feat => {
+    return  <React.Fragment key={feat.id}>
+        <Stack direction="row">
+          <CheckCircleOutlineIcon color="primary"/>
+          <Typography paddingLeft={2} variant='prices_list'>{feat}</Typography>
+        </Stack>
+    </React.Fragment>
+  })
+  
+  const myPowerFeatures = props.powerFeatures.map(feat => {
+    return  <React.Fragment key={feat.id}>
+        <Stack direction="row">
+          <CheckCircleOutlineIcon color="primary"/>
+          <Typography paddingLeft={2} variant='prices_list'>{feat}</Typography>
+        </Stack>
+    </React.Fragment>
+  })  
+
   return (
 <Paper elevation={2} sx={{background: '#f3f3f3', 
                                         minHeight:"150px",
                                         padding:"32px"}}>
-    <Stack direction="column" paddingTop={3} paddingBottom={3}>
+    <Stack direction="row" spacing={2} alignItems='center' marginBottom="16px">
         {props.icon}
-        <Typography variant='card_heading' paddingTop={2}>{props.headingText}</Typography>
-        <Typography variant='card_body'>{props.descriptionText}</Typography>
-        <CardLink to={props.path}><Typography variant='card_link' paddingTop={2}>Learn More ➥</Typography></CardLink>               
+        <Typography variant='feature_heading'>{props.headingText}</Typography>
+    </Stack>    
+    <Divider/>
+
+    <Chip label="Basic" size='small' sx={{paddingLeft:"4px", paddingRight:"4px", marginBottom: "16px", marginTop: "24px", background: "#dbdbdb", color:"#5c5c5c"}}/>                                      
+    <Stack direction="column" spacing={1.5}>
+      {myBasicFeatures}
     </Stack>
+
+    <Chip label="Pro" size='small' sx={{paddingLeft:"4px", paddingRight:"4px", marginBottom: "16px", marginTop: "24px", background: "#F2EEC8", color:"#C9A800"}}/>                                      
+    <Stack direction="column" spacing={1.5}>
+      {myProFeatures}
+    </Stack>    
+
+    <Chip label="Power" size='small' sx={{paddingLeft:"4px", paddingRight:"4px", marginBottom: "16px", marginTop: "24px", background: "#A7E4F8", color:"#2593F9"}}/>                                          
+    <Stack direction="column" spacing={1.5}>    
+      {myPowerFeatures}
+    </Stack>    
+
+
 
 </Paper>
   )

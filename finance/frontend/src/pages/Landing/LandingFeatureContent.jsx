@@ -101,10 +101,29 @@ const LandingFeatureContent = () => {
                             path="/login"/>            
     </Stack>
 
-    <LandingFeatureCardDetail headingText={"Advanced Analytics"}
-                            descriptionText={"Dive deep into your financial data. Gain valuable insights into your spending patterns and uncover opportunities for smarter financial choices."}
-                            icon={<AssessmentIcon/>}
-                            path="/login"/>   
+    <LandingFeatureCardDetail   headingText={"Income Management"}
+                                icon={<PaymentsIcon sx={{fontSize: '50px'}}/>}
+                                basicFeatures={["Track the state of your various accounts, cards, and cash.", "Record your expenses and catalogue them the way you want to."]}
+                                proFeatures={["Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum."]}
+                                powerFeatures={["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]}/> 
+
+    <LandingFeatureCardDetail   headingText={"Financial Forecasting"}
+                                icon={<InsightsIcon sx={{fontSize: '50px'}}/>}
+                                basicFeatures={["Gain insights and live updates on your budget throughout the month, based on your spending."]}
+                                proFeatures={["Chart your financial growth over the years with our long-term net worth tracking.", "Set ambitious goals to tackle your debt, or reach your savings milestones."]}
+                                powerFeatures={["Gain access to our advanced FI (Financial Independence) calculator to plan your retirement."]}/>   
+
+    <LandingFeatureCardDetail   headingText={"Customizable Templates"}
+                                icon={<FeedIcon sx={{fontSize: '50px'}}/>}
+                                basicFeatures={["Select 1 of our budget templates to help get you started.", "Ability to create and customize your own budget templates."]}
+                                proFeatures={["Access to all of our budget templates", "Ability to import budget templates."]}
+                                powerFeatures={["Ability to save and export your own budget templates."]}/>   
+                                
+    <LandingFeatureCardDetail   headingText={"Advanced Analytics"}
+                                icon={<AssessmentIcon sx={{fontSize: '50px'}}/>}
+                                basicFeatures={["Access to basic analytics based on your financial data."]}
+                                proFeatures={["Access to advanced analytics based on your financial data.", "Export your generated financial report to PDF for your own personal record keeping."]}
+                                powerFeatures={["Export all your data to .csv for your own data analysis needs", "Ability to curate custom reports, using our store of advanced analytics."]}/>                                                  
 
 </Stack>      
     )
