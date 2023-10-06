@@ -72,6 +72,7 @@ import Logout from '../pages/Login/Logout.jsx'
 // Context
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
+import { HashLink } from 'react-router-hash-link';
 
 
 //  UTILITY
@@ -317,7 +318,7 @@ export default function MiniDrawer(props) {
             </ListItemButton>
           </ListItem>    
 
-          <ListItem key="Add New Data" component={Link} to="/data#new-form" disablePadding sx={{ display: 'block'}}>
+          <ListItem key="Add New Data" component={HashLink} to="/data#new-form" disablePadding sx={{ display: 'block'}}>
             <ListItemButton sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
               <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
                 <AddIcon/>                            

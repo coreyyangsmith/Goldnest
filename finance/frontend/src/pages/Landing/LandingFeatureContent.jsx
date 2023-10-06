@@ -30,7 +30,7 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 
 // My Components
 import LandingFeatureCard from './LandingFeatureCard'
-
+import LandingFeatureCardDetail from './LandingFeatureCardDetail'
 
 
 //  MAIN FUNCTION
@@ -100,6 +100,11 @@ const LandingFeatureContent = () => {
                             icon={<AssessmentIcon/>}
                             path="/login"/>            
     </Stack>
+
+    <LandingFeatureCardDetail headingText={"Advanced Analytics"}
+                            descriptionText={"Dive deep into your financial data. Gain valuable insights into your spending patterns and uncover opportunities for smarter financial choices."}
+                            icon={<AssessmentIcon/>}
+                            path="/login"/>   
 
 </Stack>      
     )

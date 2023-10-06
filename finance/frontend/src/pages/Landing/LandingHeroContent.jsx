@@ -22,6 +22,9 @@ import React from 'react'
 // MUI Imports
 import { Typography, Button, Stack, Box } from '@mui/material'
 
+// React Router Dom Import
+import { Link } from 'react-router-dom'
+
 // Assets Imports
 import Dashboard from '../../assets/images/Dashboard.png'
 import WindowBackground from '../../assets/images/WindowBackground.png'
@@ -49,9 +52,11 @@ const LandingHeroContent = () => {
         <Button variant='contained' 
                 color='black'
                 sx={{paddingTop: 2, paddingBottom: 2, width: 250}}>
+            <Link to="/register">                   
             <Typography variant='hero_button'>
                 Create account
             </Typography>
+            </Link>             
         </Button>
     </Box>
         

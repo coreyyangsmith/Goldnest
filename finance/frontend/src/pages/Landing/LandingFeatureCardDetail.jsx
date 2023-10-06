@@ -16,11 +16,31 @@
 //  IMPORTS
 //-------------------------------------------------------//
 
+// React Import
 import React from 'react'
 
-const LandingFeatureCardDetail = () => {
+// MUI Import
+import { Paper, Stack, Typography } from '@mui/material'
+
+// My Imports
+import CardLink from '../../components/CardLink'
+
+//  MAIN FUNCTION
+//-------------------------------------------------------//
+
+const LandingFeatureCardDetail = (props) => {
   return (
-    <div>LandingFeatureCardDetail</div>
+<Paper elevation={2} sx={{background: '#f3f3f3', 
+                                        minHeight:"150px",
+                                        padding:"32px"}}>
+    <Stack direction="column" paddingTop={3} paddingBottom={3}>
+        {props.icon}
+        <Typography variant='card_heading' paddingTop={2}>{props.headingText}</Typography>
+        <Typography variant='card_body'>{props.descriptionText}</Typography>
+        <CardLink to={props.path}><Typography variant='card_link' paddingTop={2}>Learn More ➥</Typography></CardLink>               
+    </Stack>
+
+</Paper>
   )
 }
 

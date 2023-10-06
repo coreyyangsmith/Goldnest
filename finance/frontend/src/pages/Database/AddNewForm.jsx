@@ -123,6 +123,7 @@ const AddNewForm = (props) => {
         //data.user = 106; //TODO get user
         onSubmit(data);
     })}>
+      <div id="new-form"></div>
 
         <Stack spacing={2}
                 marginTop={2}

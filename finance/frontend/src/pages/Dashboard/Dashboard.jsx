@@ -15,27 +15,22 @@
 
 //  IMPORTS
 //-------------------------------------------------------//
-// NA
+
+// My Page Imports
+import DashboardInfoPanel from './DashboardInfoPanel'
 
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const Dashboard = () => {
-    const date = new Date();
 
-    let month = date.toLocaleString('en-US', { month: 'long' }); 
-    let year = date.getFullYear();
-    let today = date.getDate();
 
-    let daysInMonth =  new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();    
-    let timeLeft = daysInMonth - today
+    return (
+    <>
+    <DashboardInfoPanel/>
 
-    return <>
-    <h1>Welcome to My Dashboard.</h1>
-    <h2>{month} {today} {year}</h2>
-    <h2>Days remaining: {timeLeft}</h2>    
-    </>
+    </>)
 }
 
 

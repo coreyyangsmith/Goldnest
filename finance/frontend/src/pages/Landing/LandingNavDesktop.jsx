@@ -23,6 +23,7 @@ import React from 'react'
 // Routing
 import StyledLink from '../../components/StyledLink'
 import StyledHashLink from '../../components/StyledHashLink';
+import StyledHomeLink from '../../components/StyledHomeLink';
 
 // React Router Import
 import { Link } from 'react-router-dom';
@@ -59,8 +60,10 @@ const LandingNavDesktop = () => {
                 xs={3}
                 direction="row"   
                 justifyContent="flex-start"          
-                alignItems="center">          
-            <Typography variant='landing_title'>GOLDNEST</Typography>  
+                alignItems="center">
+            <StyledHomeLink to="/">                        
+            <Typography variant='landing_title'>GOLDNEST</Typography> 
+            </StyledHomeLink>             
           </Grid>
 
           <Grid container 

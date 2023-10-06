@@ -23,9 +23,12 @@ import React from 'react'
 // Routing
 import StyledLink from '../../components/StyledLink'
 import StyledHashLink from '../../components/StyledHashLink';
+import StyledHomeLink from '../../components/StyledHomeLink';
+
 
 // React Router Import
 import { Link } from 'react-router-dom';
+
 
 // MUI Import
 import { AppBar, Toolbar, Typography } from '@mui/material'
@@ -62,8 +65,10 @@ const LandingNavTablet = () => {
                 xs={6}
                 direction="row"   
                 justifyContent="flex-start"         
-                alignItems="center">          
+                alignItems="center">   
+            <StyledHomeLink to="/">    
             <Typography variant='landing_title'>GOLDNEST</Typography>  
+            </StyledHomeLink>
           </Grid>
 
           <Grid container 
