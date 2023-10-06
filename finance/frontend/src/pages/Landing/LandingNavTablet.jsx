@@ -22,6 +22,7 @@ import React from 'react'
 
 // Routing
 import StyledLink from '../../components/StyledLink'
+import StyledHashLink from '../../components/StyledHashLink';
 
 // React Router Import
 import { Link } from 'react-router-dom';

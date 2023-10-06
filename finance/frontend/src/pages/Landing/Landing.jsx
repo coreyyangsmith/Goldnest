@@ -28,17 +28,11 @@ import { Route, Routes } from "react-router-dom";
 
 // My Page Imports
 import LandingNav from './LandingNav';
-import LandingHeroContent from './LandingHeroContent';
-
-
 
 import Contact from './Contact';
 import Register from '../Register/Register'
 import Login from '../Login/Login.jsx'
 import Home from './Home';
-import LandingFeatureContent from './LandingFeatureContent';
-import LandingPriceContent from './LandingPriceContent';
-
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -48,38 +42,12 @@ const Landing = () => {
     <LandingNav/>
     <Container disableGutters>
         <Stack direction="column" spacing={2}>
-
-            {/* HERO CONTENT */}
-            <Grid   container
-                    justify-content="center"
-                    alignContent="center">
-                        
-                <Grid item xs={3}/>
-                <Grid container 
-                        item 
-                        xs={6} 
-                        justifyContent="center"
-                        alignItems="center">                
-                    <LandingHeroContent/>
-                </Grid>
-                <Grid item xs={3}/>
-            </Grid>
-
-            {/* FEATURE CONTENT */}       
-            <LandingFeatureContent/>  
-
-            {/* PRICE CONTENT */}       
-            <LandingPriceContent/>           
-
-            {/* CONTACT CONTENT */}          
-            {/* TODO */}              
-                         
+                                
         </Stack>
         <Routes>      
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />  
-            <Route path="/contact" element={<Contact />} />          
+            <Route path="/register" element={<Register />} />         
         </Routes>  
 
 

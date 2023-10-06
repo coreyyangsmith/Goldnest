@@ -16,7 +16,16 @@
 //  IMPORTS
 //-------------------------------------------------------//
 
+// React Import
 import React from 'react'
+
+// MUI Import
+import { Grid } from '@mui/material';
+
+// My Page Imports
+import LandingHeroContent from './LandingHeroContent';
+import LandingFeatureContent from './LandingFeatureContent';
+import LandingPriceContent from './LandingPriceContent';
 
 
 //  MAIN FUNCTION
@@ -24,7 +33,33 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <p>Home Rendered</p>
+    <>
+            {/* HERO CONTENT */}
+            <Grid   container
+                    justify-content="center"
+                    alignContent="center">
+                        
+                <Grid item xs={3}/>
+                <Grid container 
+                        item 
+                        xs={6} 
+                        justifyContent="center"
+                        alignItems="center">                
+                    <LandingHeroContent/>
+                </Grid>
+                <Grid item xs={3}/>
+            </Grid>
+
+            {/* FEATURE CONTENT */}       
+            <LandingFeatureContent/>  
+
+            {/* PRICE CONTENT */}       
+            <LandingPriceContent/>           
+
+            {/* CONTACT CONTENT */}          
+            {/* TODO */}       
+
+    </>
   )
 }
 

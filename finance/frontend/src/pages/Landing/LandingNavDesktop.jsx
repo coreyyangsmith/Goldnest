@@ -70,8 +70,8 @@ const LandingNavDesktop = () => {
                 justifyContent="center"
                 alignItems="center">
             <StyledHashLink smooth to="/#features"><Typography variant='landing_menu'>Features</Typography></StyledHashLink>
-            <StyledHashLink smooth to='#price'><Typography variant='landing_menu'>Pricing</Typography></StyledHashLink>                
-            <StyledHashLink smooth to="/contact" ><Typography variant='landing_menu'>About Us</Typography></StyledHashLink>          
+            <StyledHashLink smooth to='/#price'><Typography variant='landing_menu'>Pricing</Typography></StyledHashLink>                
+            <StyledHashLink smooth to="/#contact" ><Typography variant='landing_menu'>About Us</Typography></StyledHashLink>          
           </Grid>
 
           <Grid container 

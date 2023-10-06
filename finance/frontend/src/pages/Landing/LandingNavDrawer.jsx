@@ -23,6 +23,9 @@ import { Drawer, List, ListItem, ListItemText } from "@mui/material"
 import {IconButton} from '@mui/material';
 import { GridMenuIcon } from '@mui/x-data-grid';
 
+import StyledHashLinkTablet from '../../components/StyledHashLinkTablet';
+
+
 // React Router Dom
 import { Link } from "react-router-dom";
 
@@ -45,27 +48,27 @@ const LandingNavDrawer = () => {
           <List>
            <ListItem onClick={() => setOpenDrawer(false)}>
               <ListItemText>
-                <Link to="/">Features</Link>
+                <StyledHashLinkTablet smooth to="/#features">Features</StyledHashLinkTablet>
               </ListItemText>
             </ListItem>
             <ListItem onClick={() => setOpenDrawer(false)}>
               <ListItemText>
-                <Link to="/">Pricing</Link>
+                <StyledHashLinkTablet smooth to="/#price">Pricing</StyledHashLinkTablet>
               </ListItemText>
             </ListItem>
             <ListItem onClick={() => setOpenDrawer(false)}>
               <ListItemText>
-                <Link to="/">About Us</Link>
+                <StyledHashLinkTablet to="/#contact"></StyledHashLinkTablet>
               </ListItemText>
             </ListItem>
             <ListItem onClick={() => setOpenDrawer(false)}>
               <ListItemText>
-                <Link to="/">Login</Link>
+                <StyledHashLinkTablet to="/login">Login</StyledHashLinkTablet>
               </ListItemText>
             </ListItem>
             <ListItem onClick={() => setOpenDrawer(false)}>
               <ListItemText>
-                <Link to="/">Sign Up</Link>
+                <StyledHashLinkTablet to="/register">Sign Up</StyledHashLinkTablet>
               </ListItemText>
             </ListItem>            
           </List>

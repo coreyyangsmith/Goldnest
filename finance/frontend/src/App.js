@@ -1,5 +1,5 @@
 // React
-import React from "react"
+import React, { useState } from "react"
 import useToken from "./hooks/useToken";
 
 // MUI Dependencies
@@ -81,6 +81,10 @@ const lightTheme = createTheme({
     background: {
       default: "#FAFAFA",
     },      
+
+    appBackground: {
+      default: "#ebebeb",
+    },
   },
 
   typography: {
@@ -201,6 +205,7 @@ const lightTheme = createTheme({
 
 const App = () => {
   const { token, setToken } = useToken();
+  const [themeColor, setThemeColor] = useState(lightTheme)
 
   if (!token) {
     return (
@@ -215,10 +220,10 @@ const App = () => {
 
   return (
     <div>
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={themeColor}>
           <CssBaseline/>
 
-              <SideBar/>
+              <SideBar activeTheme={themeColor} setTheme={setThemeColor} lightTheme={lightTheme} darkTheme={darkTheme}/>
    
         </ThemeProvider>
     </div>

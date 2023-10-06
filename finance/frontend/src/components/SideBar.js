@@ -54,6 +54,8 @@ import AddIcon from '@mui/icons-material/Add'; //Add new
 import AccountBoxIcon from '@mui/icons-material/AccountBox'; // Profile
 import SettingsIcon from '@mui/icons-material/Settings'; //Settings
 import LogoutIcon from '@mui/icons-material/Logout'; // Logout
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 // Pages
 import Dashboard from '../pages/Dashboard/Dashboard.jsx'
@@ -146,12 +148,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-export default function MiniDrawer() {
+export default function MiniDrawer(props) {
   const { token } = useToken();  
   const { authUser, 
           setAuthUser, 
           isLoggedIn, 
           setIsLoggedIn } = useAuth()
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);          
 
   useEffect(() => {
     const fetchCurrentUser = async() => {
@@ -188,8 +192,47 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+
+  const toggleTheme = () => {
+    if (props.activeTheme === props.lightTheme)
+    {
+      props.setTheme(props.darkTheme)
+    }
+    else
+    {
+      props.setTheme(props.lightTheme)
+    }
+
+  }
+
+  const darkModeToggle = (props) => {
+    if (props.activeTheme === props.lightTheme)
+    {
+      return (
+        <ListItem key="DarkMode" disablePadding sx={{ display: 'block'}}>
+        <ListItemButton onClick={() => {toggleTheme(props)}} sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5}}>
+          <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+            <DarkModeIcon/>        
+          </ListItemIcon>
+          <ListItemText secondary="Logout" sx={{ opacity: open ? 1 : 0 }}/>                 
+        </ListItemButton>
+      </ListItem>            
+
+      )
+
+    } else {
+      return (
+        <ListItem key="DarkMode" disablePadding sx={{ display: 'block'}}>
+        <ListItemButton onClick={() => {toggleTheme(props)}} sx={{minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5,}}>
+          <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+            <WbSunnyIcon/>        
+          </ListItemIcon>
+          <ListItemText secondary="Logout" sx={{ opacity: open ? 1 : 0 }}/>                 
+        </ListItemButton>
+      </ListItem>       
+      )
+    }
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -312,7 +355,9 @@ export default function MiniDrawer() {
               <ListItemText secondary="Logout" sx={{ opacity: open ? 1 : 0 }}/>                 
             </ListItemButton>
           </ListItem>                     
-
+          <Divider />
+          {darkModeToggle(props)}
+           
 
         </List>
       </Drawer>
