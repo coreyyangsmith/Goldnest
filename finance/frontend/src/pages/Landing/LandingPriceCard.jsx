@@ -1,9 +1,9 @@
 //-------------------------------------------------------//
-//  File Name: LandingFeatureCard.jsx
-//  Description: Centered Feature Content displayed on Landing Page
+//  File Name: LandingPriceCard.jsx
+//  Description: Centered Price Content displayed on Landing Page
 //
 //  Requirements:
-//      - LandingFeatureContent.jsx
+//      - LandingPriceContent.jsx
 //
 //  Returns:
 //      - Feature Card
@@ -20,7 +20,10 @@
 import React from 'react'
 
 // MUI Imports
-import { Typography, Stack, Paper } from '@mui/material'
+import { Typography, Stack, Paper, Button } from '@mui/material'
+
+// MUI Icons Imports
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 // Imports
 import { Link } from 'react-router-dom'
@@ -30,16 +33,20 @@ import CardLink from '../../components/CardLink'
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const LandingFeatureCard = (props) => {
+const LandingPriceCard = (props) => {
   return (
 <Paper elevation={2} sx={{background: '#f3f3f3', 
                                         minHeight:"150px",
                                         padding:"32px"}}>
-    <Stack direction="column" paddingTop={3} paddingBottom={3}>
-        {props.icon}
-        <Typography variant='card_heading' paddingTop={2}>{props.headingText}</Typography>
+    <Stack direction="column" paddingTop={3} paddingBottom={3} spacing={2}>
+        Basic
+        <Stack direction="row">
+          <CheckCircleOutlineIcon/>
+          <Typography paddingLeft={2} variant='card_heading'>Basic Analytics</Typography>
+        </Stack>
+
         <Typography variant='card_body'>{props.descriptionText}</Typography>
-        <CardLink to={props.path}><Typography variant='card_link' paddingTop={2}>Learn More ➥</Typography></CardLink>               
+        <Button variant='contained' paddingTop={4}>Get Started</Button>
     </Stack>
 
 </Paper>
@@ -50,4 +57,4 @@ const LandingFeatureCard = (props) => {
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default LandingFeatureCard
+export default LandingPriceCard

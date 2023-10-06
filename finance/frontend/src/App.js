@@ -161,7 +161,7 @@ const lightTheme = createTheme({
       fontWeight: 500,
       fontFamily: 'inter',   
       fontStyle: 'underline',   
-      color: '#D86800',
+      color: '',
       },                            
   },  
 });

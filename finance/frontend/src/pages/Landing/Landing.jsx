@@ -37,6 +37,7 @@ import Register from '../Register/Register'
 import Login from '../Login/Login.jsx'
 import Home from './Home';
 import LandingFeatureContent from './LandingFeatureContent';
+import LandingPriceContent from './LandingPriceContent';
 
 
 //  MAIN FUNCTION
@@ -66,6 +67,13 @@ const Landing = () => {
 
             {/* FEATURE CONTENT */}       
             <LandingFeatureContent/>  
+
+            {/* PRICE CONTENT */}       
+            <LandingPriceContent/>           
+
+            {/* CONTACT CONTENT */}          
+            {/* TODO */}              
+                         
         </Stack>
         <Routes>      
             <Route path="/" element={<Home />} />
