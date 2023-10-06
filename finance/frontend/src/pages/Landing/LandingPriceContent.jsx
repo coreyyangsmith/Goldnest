@@ -20,7 +20,7 @@
 import React from 'react'
 
 // MUI Imports
-import { Typography, Grid, Stack, Paper } from '@mui/material'
+import { Typography, Grid, Stack, Box } from '@mui/material'
 
 // MUI Icon Import
 import PaymentsIcon from '@mui/icons-material/Payments';
@@ -38,28 +38,60 @@ import LandingPriceCard from './LandingPriceCard';
 //-------------------------------------------------------//
 
 const LandingPriceContent = () => {
+
   return (
-<Stack spacing={2} direction="column" sx={{marginTop: 5}}>
-
+<>
     {/* Top Info */}
-
     <Typography variant='feature_heading' paddingTop={4}>Our Prices</Typography>
-    <Stack direction="row" spacing={2}>
-        <LandingPriceCard headingText={"Income Management"}
-                            descriptionText={"Your earnings, your way. Effortlessly track your various sources of income, from salaries to investments, all in one place."}
-                            icon={<PaymentsIcon/>}
-                            path="/login"/>
-        <LandingPriceCard headingText={"Financial Forecasting"}
-                            descriptionText={"See the future of your finances. Our advanced analytics and forecasting tools help you predict your financial trajectory, so you can plan with confidence."}
-                            icon={<InsightsIcon/>}
-                            path="/login"/>
-        <LandingPriceCard headingText={"Customizable Templates"}
-                            descriptionText={"Budgeting tailored to you. Create and personalize budget templates that align with your unique financial goals and lifestyle."}
-                            icon={<FeedIcon/>}
-                            path="/login"/>         
-    </Stack>
+        <div id="price"></div>
+        <Grid container spacing={2} justifyContent="center">
 
-</Stack>      
+        <Grid item sx={4}>
+        <Box>
+        <LandingPriceCard   tierText={"Basic"}
+                            tierColor={"#dbdbdb"}
+                            tierTextColor={"#5c5c5c"}
+                            priceAmount={"$0"}                            
+                            priceText={"A free community version of everything, for free!"}
+                            features={["1 Budget Template", "Budget Planning", "Expense Tracking", "Basic Analytics"]}
+                            btnColor={"primary"}
+                            btnText={"Get Started"}
+                            path="/login"/>
+        </Box>                            
+        </Grid>                            
+
+        <Grid item sx={4}>
+        <Box>            
+        <LandingPriceCard   tierText={"Pro"}
+                            tierColor={"#F2EEC8"}
+                            tierTextColor={"#C9A800"}                            
+                            priceAmount={"$9"}
+                            priceText={"One lifetime license for the financially-savvy who values long term planning."}
+                            features={["Everything from Basic", "3 Budget Templates", "Net Worth Tracking", "Export PDF Reports", "Advanced Analytics"]}
+
+                            btnColor={"primary"}
+                            btnText={"Get Started"}
+                            path="/login"/>
+        </Box>                            
+        </Grid>                         
+
+        <Grid item sx={4}>
+        <Box>            
+        <LandingPriceCard   tierText={"Power"}
+                            tierColor={"#A7E4F8"}
+                            tierTextColor={"#2593F9"}
+                            priceAmount={"$29"}
+                            priceText={"Power features for data-driven user who wants their own data, their own way."}
+                            features={["Everything from Basic and Pro", "Multiple Users", "Export Raw Data", "Custom Reports"]}
+                            
+                            btnColor={"grayBtn"}
+                            btnText={"Coming Soon"}
+                            path="/login"/>     
+        </Box>                            
+        </Grid>                            
+                               
+        </Grid>
+</>    
     )
 }
 

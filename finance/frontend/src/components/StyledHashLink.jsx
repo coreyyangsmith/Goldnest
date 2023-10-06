@@ -1,15 +1,15 @@
 //-------------------------------------------------------//
-//  File Name: CardLink.jsx
-//  Description: Override of React Router Dom's { Link } for Card
+//  File Name: StyledHashLink.jsx
+//  Description: Override of React Router Dom's { HashLink }
 //
 //  Requirements:
-//      - React Router Dom Link
+//      - React Router Dom Hash Link
 //
 //  Returns:
 //      - Styled Link (to Remove Hyperlink Default Style)
 //
 // Created By: Corey Yang-Smith
-// Date: October 5th, 2023
+// Date: October 6th, 2023 
 //-------------------------------------------------------//
 
 //  IMPORTS
@@ -19,7 +19,7 @@
 import React from 'react';
 
 // React Router Import
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 // Styled-Components Import
 import styled from 'styled-components';
@@ -28,12 +28,20 @@ import styled from 'styled-components';
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const CardLink = styled(Link)`
+const StyledHashLink = styled(HashLink)`
     text-decoration: none;
-    color: primary;
+    color: white;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-left: 12px;
+    padding-right: 12px;    
 
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+
+    &:hover {
+        background-color: #fff8e1;
+    }
 
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
@@ -43,4 +51,4 @@ const CardLink = styled(Link)`
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default (props) => <CardLink {...props} />;
+export default (props) => <StyledHashLink {...props} />;

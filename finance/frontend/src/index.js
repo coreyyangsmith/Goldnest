@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 // Context - Current User
 import { AuthProvider } from "./context/AuthContext"
@@ -10,10 +11,10 @@ import { AuthProvider } from "./context/AuthContext"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <App/>
       </AuthProvider>          
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );

@@ -22,6 +22,7 @@ import React from 'react'
 
 // Routing
 import StyledLink from '../../components/StyledLink'
+import StyledHashLink from '../../components/StyledHashLink';
 
 // React Router Import
 import { Link } from 'react-router-dom';
@@ -68,9 +69,9 @@ const LandingNavDesktop = () => {
                 direction="row"                    
                 justifyContent="center"
                 alignItems="center">
-            <StyledLink to="/"><Typography variant='landing_menu'>Features</Typography></StyledLink>
-            <StyledLink to="/"><Typography variant='landing_menu'>Pricing</Typography></StyledLink>                
-            <StyledLink to="/" ><Typography variant='landing_menu'>About Us</Typography></StyledLink>          
+            <StyledHashLink smooth to="/#features"><Typography variant='landing_menu'>Features</Typography></StyledHashLink>
+            <StyledHashLink smooth to='#price'><Typography variant='landing_menu'>Pricing</Typography></StyledHashLink>                
+            <StyledHashLink smooth to="/contact" ><Typography variant='landing_menu'>About Us</Typography></StyledHashLink>          
           </Grid>
 
           <Grid container 

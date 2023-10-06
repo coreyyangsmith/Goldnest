@@ -41,10 +41,12 @@ const LandingFeatureContent = () => {
 <Stack spacing={2} direction="column" sx={{marginTop: 5}}>
 
     {/* Top Info */}
+
         <Grid container>
             <Grid item xs={8}>
             <Paper elevation={2} sx={{background: '#f3f3f3', 
-                                        minHeight:"350px",
+                                        minHeight:"400px",
+                                        maxHeight: "600px",
                                         padding:"32px"}}>
                 <Stack direction="column">                                      
                     <Typography variant='feature_heading' paddingTop={4}>
@@ -68,16 +70,19 @@ const LandingFeatureContent = () => {
 
             <Grid item xs={4} paddingLeft={2}>
             <Paper elevation={2} sx={{background: '#f3f3f3', 
-                                        minHeight:"350px",
+                                        minHeight:"400px",
+                                        maxHeight: "550px",
                                         padding:"32px"}}>
                 <Typography variant='hero-content'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet a odio eget egestas. Nulla vel commodo nisi. Quisque euismod id sapien non maximus. Nam ultrices tempor risus sed gravida.</Typography>
             </Paper>
             </Grid>            
         </Grid>
 
+    <div id="features"></div>
+    <Typography variant='feature_heading'>How We Help</Typography>
+    <Stack direction="row" spacing={2} justifyContent="center">
 
-    <Typography variant='feature_heading' paddingTop={4}>How We Help</Typography>
-    <Stack direction="row" spacing={2}>
+        
         <LandingFeatureCard headingText={"Income Management"}
                             descriptionText={"Your earnings, your way. Effortlessly track your various sources of income, from salaries to investments, all in one place."}
                             icon={<PaymentsIcon/>}

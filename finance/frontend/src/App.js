@@ -49,18 +49,37 @@ const lightTheme = createTheme({
     primary: {
       main: '#ffa000',
     },
+
     secondary: {
       main: '#40c4ff',
     },
+
     heroContent: {
       main: '#979797',
     },    
+
     black: {
       main: '#000000'
     },
 
+    grayBtn: {
+      main: '#dbdbdb',
+    },    
+
+    basicTier: {
+      main: '#dbdbdb',
+    },  
+    
+    proTier: {
+      main: '#40c4ff',
+    },  
+    
+    powerTier: {
+      main: '#000000',
+    },      
+
     background: {
-      default: "#FAFAFA"
+      default: "#FAFAFA",
     },      
   },
 
@@ -136,7 +155,7 @@ const lightTheme = createTheme({
       
     feature_heading: {
       lineHeight: 1.6,
-      fontSize: 28,
+      fontSize: 36,
       fontWeight: 600,
       fontFamily: 'Plus Jakarta Sans',      
       color: '#000000',
@@ -161,8 +180,22 @@ const lightTheme = createTheme({
       fontWeight: 500,
       fontFamily: 'inter',   
       fontStyle: 'underline',   
-      color: '',
-      },                            
+      color: '#ffa000',
+      },  
+    prices_heading: {
+      lineHeight: 1.6,
+      fontSize: 42,
+      fontWeight: 800,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#000000',
+      },            
+    prices_list: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 500,
+      fontFamily: 'inter',      
+      color: '#000000',
+      },         
   },  
 });
 
