@@ -29,7 +29,7 @@ import CardLink from '../../components/CardLink'
 import { motion, AnimatePresence } from "framer-motion";
 
 // My Components
-import Modal from '../../components/Modal'
+import ModalFeatureCardDetail from './ModalFeatureCardDetail'
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -63,9 +63,16 @@ const LandingFeatureCard = (props) => {
             </Typography>
         </motion.button>
 
-
-        {modalOpen && <Modal text={"testing"} modalOpen={modalOpen} handleClose={close} />}                                 
-       
+        {modalOpen && <ModalFeatureCardDetail 
+                      text={"testing"} 
+                      modalOpen={modalOpen} 
+                      handleClose={close} 
+                      detailHeadingText={props.detailHeadingText}
+                      largeIcon={props.largeIcon}
+                      basicFeatures={props.basicFeatures}
+                      proFeatures={props.proFeatures}
+                      powerFeatures={props.powerFeatures}
+                      />}                                 
     </Stack>
 
 </Paper>

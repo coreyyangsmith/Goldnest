@@ -66,8 +66,8 @@ const LandingFeatureCardDetail = (props) => {
                                         minHeight:"150px",
                                         padding:"32px"}}>
     <Stack direction="row" spacing={2} alignItems='center' marginBottom="16px">
-        {props.icon}
-        <Typography variant='feature_heading'>{props.headingText}</Typography>
+        {props.largeIcon}
+        <Typography variant='feature_heading'>{props.detailHeadingText}</Typography>
     </Stack>    
     <Divider/>
 

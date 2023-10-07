@@ -1,6 +1,6 @@
 //-------------------------------------------------------//
-//  File Name: Modal.jsx
-//  Description: Dummy modal template.
+//  File Name: ModalFeatureCardDetail.jsx
+//  Description: Modal for Feature Card Detail
 //
 //  Requirements:
 //      - Backdrop.jsx
@@ -23,7 +23,8 @@ import React from 'react'
 import { motion } from "framer-motion";
 
 // My Components
-import Backdrop from './Backdrop'
+import Backdrop from '../../components/Backdrop'
+import LandingFeatureCardDetail from './LandingFeatureCardDetail';
 
 
 //  UTILITY
@@ -32,11 +33,11 @@ import Backdrop from './Backdrop'
 // Data to further define animaiton
 const dropIn = {
     hidden: {
-      y: "-100vh",
+      x: "-100vw",
       opacity: 0,
     },
     visible: {
-      y: "0",
+      x: "0",
       opacity: 1,
       transition: {
         duration: 0.1,
@@ -46,7 +47,7 @@ const dropIn = {
       },
     },
     exit: {
-      y: "100vh",
+      x: "100vw",
       opacity: 0,
     },
   };
@@ -54,20 +55,23 @@ const dropIn = {
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const Modal = ({ handleClose, text }) => {  
+const Modal = (props, { handleClose }) => {  
 
 return (
     <Backdrop onClick={handleClose}>
         <motion.div
           onClick={(e) => e.stopPropagation()}  
-          className="modal orange-gradient"
           variants={dropIn}
           initial="hidden"
           animate="visible"
           exit="exit"
         >
-              <p>{text}</p>
-              <button onClick={handleClose}>Close</button>
+          <LandingFeatureCardDetail   detailHeadingText={props.detailHeadingText}
+                                      largeIcon={props.largeIcon}
+                                      basicFeatures={props.basicFeatures}
+                                      proFeatures={props.proFeatures}
+                                      powerFeatures={props.powerFeatures}
+          />
         </motion.div>
     </Backdrop>  
 )    
