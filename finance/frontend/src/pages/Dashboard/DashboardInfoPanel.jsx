@@ -9,15 +9,16 @@
 //      - Main Page for Dashboard
 //
 // Created By: Corey Yang-Smith
-// Date: September 25th, 2023
+// Date: October 6th, 2023
 //-------------------------------------------------------//
-
-import { Paper, Stack, Typography } from "@mui/material";
 
 
 //  IMPORTS
 //-------------------------------------------------------//
-// NA
+
+// MUI Imports
+import { Divider, Paper, Stack, Typography } from "@mui/material";
+import CustomSlider from "../../components/CustomSlider"
 
 
 //  MAIN FUNCTION
@@ -33,14 +34,27 @@ const DashboardInfoPanel = () => {
     let daysInMonth =  new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();    
     let timeLeft = daysInMonth - today
 
+
+    // Slide Info
+    const marks = [
+        {
+            value: 100,
+            label: '$2500',
+        }
+    ]
+
     return (
     <>
     <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}}>
-        <Stack>
+        <Stack direction='column' spacing={2}>
         <Typography variant="h1">Today is {month} {today} {year}</Typography>
         <Typography variant="h2">Days remaining: {timeLeft}</Typography>  
-        <Typography>Spend this Month: $x</Typography>
-        <Typography>Budget Remaining: $x</Typography>        
+        <Divider/>
+
+        <CustomSlider marks={marks} defaultValue={20} disabled style={{}}/>
+
+        <Typography>Average Daily Spend This Month: $82.23</Typography>
+        <Typography>Budget Daily Spend Remaining: $30.23</Typography>        
         </Stack>         
     </Paper>    
     </>)

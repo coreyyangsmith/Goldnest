@@ -33,6 +33,7 @@ import LandingFeatureCard from './LandingFeatureCard'
 import LandingFeatureCardDetail from './LandingFeatureCardDetail'
 
 
+
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
@@ -104,8 +105,8 @@ const LandingFeatureContent = () => {
     <LandingFeatureCardDetail   headingText={"Income Management"}
                                 icon={<PaymentsIcon sx={{fontSize: '50px'}}/>}
                                 basicFeatures={["Track the state of your various accounts, cards, and cash.", "Record your expenses and catalogue them the way you want to."]}
-                                proFeatures={["Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum."]}
-                                powerFeatures={["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]}/> 
+                                proFeatures={["Set up automated income/expenses for recurring entries.",]}
+                                powerFeatures={["Add your investments direcly for live market updates, without having to check your accounts."]}/> 
 
     <LandingFeatureCardDetail   headingText={"Financial Forecasting"}
                                 icon={<InsightsIcon sx={{fontSize: '50px'}}/>}
