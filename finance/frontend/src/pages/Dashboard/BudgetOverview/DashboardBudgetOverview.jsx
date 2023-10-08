@@ -80,7 +80,7 @@ const DashboardBudgetOverview = (props) => {
     return (
     <>
     {/* Main Panel */}
-    <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}}>
+    <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
         <Typography variant="dashboard_heading">Budget Overview</Typography>
         <Divider/>
 
@@ -115,16 +115,13 @@ const DashboardBudgetOverview = (props) => {
             </Stack>        
 
             {/* Main Categories Box */}  
-            <Paper
-                    sx={{background: "#FCFCFC", paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}}>
-
+            <Paper sx={{background: "#FCFCFC", paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}}>
                 <Stack direction="column">
                     <Typography>Main Categories</Typography>
                     <Stack direction="row" spacing={1} sx={{overflowY: 'hidden', paddingTop: "16px", paddingBottom: "16px"}}>
                         {myMainCategories}
                     </Stack>
                 </Stack>
-                
             </Paper>    
 
 
