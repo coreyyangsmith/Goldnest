@@ -253,7 +253,15 @@ const lightTheme = createTheme({
       fontWeight: 400,
       fontFamily: 'inter',      
       color: '#000000',
-      },               
+      },    
+      
+    dashboard_small_card_heavy: {
+      lineHeight: 1.6,
+      fontSize: 11,
+      fontWeight: 650,
+      fontFamily: 'inter',      
+      color: '#000000',
+      },            
   },  
 });
 

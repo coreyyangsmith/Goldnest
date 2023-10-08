@@ -14,6 +14,21 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
       boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
     },
 
+  // Align End Label (Max Value) for Slider
+  '& .MuiSlider-markLabel[data-index="0"]': {
+    //TODO?
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },     
+  '& .MuiSlider-markLabel[data-index="1"]': {
+    width: "50px",    
+    marginLeft: "-25px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },    
+
   '& .MuiSlider-rail': {
     color: `gray`,
   },

@@ -25,6 +25,7 @@ import { Divider, Paper, Stack, Typography } from "@mui/material";
 
 // My Componens
 import DashboardMainCategorySmallPanel from './DashboardMainCategorySmallPanel'
+import DashboardToDateSmallCard from './DashboardToDateSmallCard'
 
 // My Custom Components
 import CustomSlider from "../../../components/CustomSlider"
@@ -231,41 +232,37 @@ const DashboardBudgetOverview = (props) => {
 
             {/* Budget Slider */}      
             <Stack direction="row" spacing={1}>
-                <Typography>Budget Estimate</Typography>
+                <Typography width="150px">Budget Estimate</Typography>
           
                 <CustomSlider disabled 
                                 marks={budgetMarks} 
                                 defaultValue={budgetSliderPercentage}
                                 value={budgetSliderPercentage}/>
 
-                <Stack direction="column" width="200px">
-                    <Typography paddingLeft="24px">Spent to Date</Typography>
-                    <Typography paddingLeft="24px">${budgetSpendPerDay}/day</Typography>  
-                    <Typography paddingLeft="24px">({budgetSliderPercentage}%)</Typography>              
-                    <Divider/>
-                    <Typography paddingLeft="24px">Remaining</Typography>                    
-                    <Typography paddingLeft="24px">${budgetSpendPerDayRemaining}/day</Typography>  
-                    <Typography paddingLeft="24px">({100-budgetSliderPercentage}%)</Typography>                         
-                </Stack> 
+                <DashboardToDateSmallCard   title={"Spent To date"}
+                                            number={budgetSpendPerDay}
+                                            percentage={budgetSliderPercentage}/>   
+
+                <DashboardToDateSmallCard   title={"Remaining"}
+                                            number={budgetSpendPerDayRemaining}
+                                            percentage={100-budgetSliderPercentage}/>                   
             </Stack>    
 
             {/* Expenses Slider */}  
-            <Stack direction="row" spacing={2}>
-                <Typography>Actual Expenses</Typography>
+            <Stack direction="row" spacing={1}>
+                <Typography width="150px">Actual Expenses</Typography>
                 <CustomSlider disabled 
                                 marks={expenseMarks} 
                                 defaultValue={entrySliderPercentage}
                                 value={entrySliderPercentage}/>
 
-                <Stack direction="column" width="200px">
-                    <Typography paddingLeft="24px">Spent to Date</Typography>
-                    <Typography paddingLeft="24px">${expenseSpendPerDay}/day</Typography>  
-                    <Typography paddingLeft="24px">({entrySliderPercentage}%)</Typography>              
-                    <Divider/>
-                    <Typography paddingLeft="24px">Remaining</Typography>                    
-                    <Typography paddingLeft="24px">${expenseSpendPerDayRemaining}/day</Typography>  
-                    <Typography paddingLeft="24px">({100-entrySliderPercentage}%)</Typography>           
-                </Stack>                       
+                    <DashboardToDateSmallCard   title={"Spent To date"}
+                                                number={expenseSpendPerDay}
+                                                percentage={entrySliderPercentage}/>       
+
+                    <DashboardToDateSmallCard   title={"Remaining"}
+                                                number={expenseSpendPerDayRemaining}
+                                                percentage={100-entrySliderPercentage}/>                                                       
             </Stack>        
 
             {/* Main Categories Box */}  
