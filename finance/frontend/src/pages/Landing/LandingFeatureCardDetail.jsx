@@ -3,7 +3,7 @@
 //  Description: Large Card for further description on available features
 //
 //  Requirements:
-//      - LandingFeatureContent.jsx
+//      - ModalFeatureCardDetail.jsx
 //
 //  Returns:
 //      - Detailed Feature Card
@@ -35,7 +35,7 @@ import CardLink from '../../components/CardLink'
 const LandingFeatureCardDetail = (props) => {
 
   const myBasicFeatures = props.basicFeatures.map(feat => {
-    return  <React.Fragment key={feat.id}>
+    return  <React.Fragment>
         <Stack direction="row">
           <CheckCircleOutlineIcon color="primary"/>
           <Typography paddingLeft={2} variant='prices_list'>{feat}</Typography>
@@ -44,7 +44,7 @@ const LandingFeatureCardDetail = (props) => {
   })
 
   const myProFeatures = props.proFeatures.map(feat => {
-    return  <React.Fragment key={feat.id}>
+    return  <React.Fragment>
         <Stack direction="row">
           <CheckCircleOutlineIcon color="primary"/>
           <Typography paddingLeft={2} variant='prices_list'>{feat}</Typography>
@@ -53,7 +53,7 @@ const LandingFeatureCardDetail = (props) => {
   })
   
   const myPowerFeatures = props.powerFeatures.map(feat => {
-    return  <React.Fragment key={feat.id}>
+    return  <React.Fragment>
         <Stack direction="row">
           <CheckCircleOutlineIcon color="primary"/>
           <Typography paddingLeft={2} variant='prices_list'>{feat}</Typography>
@@ -85,6 +85,7 @@ const LandingFeatureCardDetail = (props) => {
     <Stack direction="column" spacing={1.5}>    
       {myPowerFeatures}
     </Stack>    
+    <button onClick={props.handleClose}>Close</button>   
 
 
 

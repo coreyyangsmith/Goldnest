@@ -199,7 +199,23 @@ const lightTheme = createTheme({
       fontWeight: 500,
       fontFamily: 'inter',      
       color: '#000000',
-      },         
+      },    
+      
+    prices_card_heading: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 600,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#717171',
+      },        
+      
+    prices_card_body: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 500,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#717171',
+      },                
   },  
 });
 

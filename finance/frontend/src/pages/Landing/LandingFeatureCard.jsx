@@ -55,24 +55,25 @@ const LandingFeatureCard = (props) => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className=''
+          className='feature-button'
           onClick={() => {modalOpen ? close() : open()}}
           >
             <Typography variant='card_link' paddingTop={2}>
               Learn More ➥
             </Typography>
         </motion.button>
+        <AnimatePresence>
+          {modalOpen && <ModalFeatureCardDetail 
+                        modalOpen={modalOpen} 
+                        handleClose={close} 
 
-        {modalOpen && <ModalFeatureCardDetail 
-                      text={"testing"} 
-                      modalOpen={modalOpen} 
-                      handleClose={close} 
-                      detailHeadingText={props.detailHeadingText}
-                      largeIcon={props.largeIcon}
-                      basicFeatures={props.basicFeatures}
-                      proFeatures={props.proFeatures}
-                      powerFeatures={props.powerFeatures}
-                      />}                                 
+                        detailHeadingText={props.detailHeadingText}
+                        largeIcon={props.largeIcon}
+                        basicFeatures={props.basicFeatures}
+                        proFeatures={props.proFeatures}
+                        powerFeatures={props.powerFeatures}
+                        />}       
+          </AnimatePresence>                                                
     </Stack>
 
 </Paper>

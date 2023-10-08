@@ -1,6 +1,6 @@
 //-------------------------------------------------------//
-//  File Name: ModalFeatureCardDetail.jsx
-//  Description: Modal for Feature Card Detail
+//  File Name: ModalPriceCardDetail.jsx
+//  Description: Modal for Price Card Detail
 //
 //  Requirements:
 //      - Backdrop.jsx
@@ -24,7 +24,7 @@ import { motion } from "framer-motion";
 
 // My Components
 import Backdrop from '../../components/Backdrop'
-import LandingFeatureCardDetail from './LandingFeatureCardDetail';
+import LandingPriceCardDetail from './LandingPriceCardDetail';
 
 
 //  UTILITY
@@ -66,13 +66,17 @@ return (
           animate="visible"
           exit="exit"
         >
-          <LandingFeatureCardDetail   detailHeadingText={props.detailHeadingText}
-                                      largeIcon={props.largeIcon}
-                                      basicFeatures={props.basicFeatures}
-                                      proFeatures={props.proFeatures}
-                                      powerFeatures={props.powerFeatures}
-                                      handleClose={props.handleClose}
-          />
+          <LandingPriceCardDetail   tierText={props.tierText}
+                                    tierColor={props.tierColor}
+                                    tierTextColor={props.tierTextColor}
+                                    priceAmount={props.priceAmount}
+                                    priceText={props.priceText}
+                                    features={props.features}
+                                    featureDescriptions={props.featureDescriptions}      
+                                    cardBtnColor={props.cardBtnColor}
+                                    cardBtnText={props.cardBtnText}                                                                          
+                                    handleClose={props.handleClose}
+          />        
         
         </motion.div>
     </Backdrop>  

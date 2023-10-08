@@ -17,7 +17,7 @@
 //-------------------------------------------------------//
 
 // React Import 
-import React from 'react'
+import React, { useState } from 'react'
 
 // MUI Imports
 import { Typography, Stack, Paper, Button, Chip, Divider, Box } from '@mui/material'
@@ -25,9 +25,15 @@ import { Typography, Stack, Paper, Button, Chip, Divider, Box } from '@mui/mater
 // MUI Icons Imports
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
+// Animation Import
+import { motion, AnimatePresence } from "framer-motion";
+
 // Imports
 import { Link } from 'react-router-dom'
 import CardLink from '../../components/CardLink'
+
+// My Components
+import ModalPriceCardDetail from './ModalPriceCardDetail'
 
 
 // UTILITY
@@ -40,6 +46,12 @@ import CardLink from '../../components/CardLink'
 //-------------------------------------------------------//
 
 const LandingPriceCard = (props) => {
+    // My Hooks
+    const [modalOpen, setModalOpen] = useState(false)
+
+    const close = () => setModalOpen(false);
+    const open = () => setModalOpen(true);
+
 
   const myFeatures = props.features.map(feat => {
     return  <React.Fragment key={feat.id}>
@@ -69,9 +81,34 @@ const LandingPriceCard = (props) => {
       <Divider/>
         {myFeatures}
         <Box paddingTop={2}>
-          <Button fullWidth variant='contained' color={props.btnColor} sx={{paddingTop: "8px", paddingBottom: "8px"}}>{props.btnText}</Button>
+   
+            <Button   fullWidth 
+                      variant='contained' 
+                      color={props.btnColor} sx={{paddingTop: "8px", paddingBottom: "8px"}}
+                      onClick={() => {modalOpen ? close() : open()}}                      
+            >
+              {props.btnText}
+            </Button>
         </Box>      
     </Stack>
+
+    <AnimatePresence>
+          {modalOpen && <ModalPriceCardDetail 
+                        modalOpen={modalOpen} 
+                        handleClose={close} 
+
+                        tierText={props.tierText}
+                        tierColor={props.tierColor}
+                        tierTextColor={props.tierTextColor}
+                        priceAmount={props.priceAmount}
+                        priceText={props.priceText}
+                        features={props.features}
+                        featureDescriptions={props.featureDescriptions} 
+                        cardBtnColor={props.cardBtnColor}
+                        cardBtnText={props.cardBtnText}                       
+                        
+                        />}       
+          </AnimatePresence>          
 
 </Paper>
   )
