@@ -76,7 +76,6 @@ def users_list(request):
         if 'HTTP_AUTHORIZATION' in request.META:   
             token = request.META['HTTP_AUTHORIZATION'][6::]
             user = Token.objects.get(key=token).user     
-            print(user)  
             data = User.objects.all()
         else:
             data = User.objects.all().none()

@@ -123,7 +123,7 @@ const DashboardBudgetOverview = (props) => {
           return row.month == props.selectedMonth;
         })
 
-        const mySummedBudget = budgetByMonth.reduce((total, entry) => total + entry.amount, 0);
+        const mySummedBudget = budgetByMonth.reduce((total, budget) => total + budget.amount, 0);
         const myMaxBudget = Math.round(mySummedBudget);
         setBudgetSliderMax(myMaxBudget);
 
@@ -274,9 +274,6 @@ const DashboardBudgetOverview = (props) => {
                     </Stack>
                 </Stack>
             </Paper>    
-
-
-      
         </Stack>     
     </Paper>    
     </>)

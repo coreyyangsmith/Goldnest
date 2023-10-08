@@ -78,8 +78,8 @@ const Dashboard = () => {
                                         selectedMonth={selectedMonth}/>
         </Grid>          
         <Grid item xs={4}>         
-            <DashboardSpendingOverview  mainCategories={mainCategories}
-                                        subCategories={subCategories}
+            <DashboardSpendingOverview  selectedYear={selectedYear}
+                                        selectedMonth={selectedMonth}
                                         entries={entries}
                                         budgets={budgets}/>                                        
         </Grid>

@@ -23,7 +23,7 @@ import React from 'react';
 import { Divider, Paper, Stack, Typography } from "@mui/material";
 
 // My Componens
-import DashboardMainCategorySmallPanel from '../BudgetOverview/DashboardMainCategorySmallPanel'
+import DashboardBudgetExpensesLineChart from '../SpendingOverview/DashboardBudgetExpensesLineChart'
 
 // My Custom Components
 import CustomSlider from "../../../components/CustomSlider"
@@ -33,55 +33,16 @@ import CustomSlider from "../../../components/CustomSlider"
 //-------------------------------------------------------//
 
 const DashboardSpendingOverview = (props) => {
-
-    const myMainCategories = props.mainCategories.map((value, index) => {
-    
-        return  <React.Fragment>
-            <DashboardMainCategorySmallPanel mainCategory={value}
-                                            entries={props.entries}
-                                            budgets={props.budgets}/>
-        </React.Fragment>
-      })   
-
-    const date = new Date();
-
-    let month = date.toLocaleString('en-US', { month: 'long' }); 
-    let year = date.getFullYear();
-    let today = date.getDate();
-
-    let daysInMonth =  new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();    
-    let timeLeft = daysInMonth - today
-
-
-    // Slide Info
-    const budgetMarks = [
-        {
-            value: 20,
-            label: '$500',
-        },        
-        {
-            value: 100,
-            label: '$2500',
-        }
-    ]
-
-    const expenseMarks = [
-        {
-            value: 25,
-            label: '$625',
-        },        
-        {
-            value: 100,
-            label: '$2500',
-        }
-    ]    
-
     return (
     <>
     {/* Main Panel */}
     <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
         <Typography variant="dashboard_heading">Spending Overview</Typography>
         <Divider/>    
+        <DashboardBudgetExpensesLineChart   selectedYear={props.selectedYear}
+                                            selectedMonth={props.selectedMonth}
+                                            entries={props.entries}
+                                            budgets={props.budgets}/>
     </Paper>    
     </>)
 }

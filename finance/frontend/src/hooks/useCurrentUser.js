@@ -1,5 +1,5 @@
 //-------------------------------------------------------//
-//  File Name: useUser.js
+//  File Name: useCurrentUser.js
 //  Description: Data Fetching Hook to obtain current "User" model from the local database
 //
 //  Requirements:
@@ -10,7 +10,7 @@
 //      - Sorted List of Budgets (Sub Category)
 //
 // Created By: Corey Yang-Smith
-// Date: September 27th, 2023
+// Date: October 8th, 2023
 //-------------------------------------------------------//
 
 
@@ -38,7 +38,6 @@ export const useCurrentUser = (selectedSub) => {
             const response = await getRequest("users/", token);
             if (response && response.data){
                 const users = response.data;
-
                 setCurrentUser(users[0]);
             }         
         } catch (err) {
