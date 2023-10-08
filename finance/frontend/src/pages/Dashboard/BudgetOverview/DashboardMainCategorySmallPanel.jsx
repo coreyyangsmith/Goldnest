@@ -40,11 +40,11 @@ const DashboardMainCategorySmallPanel = (props) => {
     // Entries
     // Set summedEntries for Selected Year/Month
     const entriesForYear = props.entries.filter(function(row) {
-      return row.year == 2023;
+      return row.year == props.selectedYear;
     })
 
     const entiresByMonth = entriesForYear.filter(function(row) {
-      return row.month == 10;
+      return row.month == props.selectedMonth;
     })
 
     const filteredEntries = entiresByMonth.filter((entry) => {
@@ -60,11 +60,11 @@ const DashboardMainCategorySmallPanel = (props) => {
     // Budget
     // Set summedBudget for Selected Year/Month
     const budgetForYear = props.budgets.filter(function(row) {
-      return row.year == 2023;
+      return row.year == props.selectedYear;
     })
 
     const budgetByMonth = budgetForYear.filter(function(row) {
-      return row.month == 10;
+      return row.month == props.selectedMonth;
     })
 
     const filteredBudgets = budgetByMonth.filter((entry) => {

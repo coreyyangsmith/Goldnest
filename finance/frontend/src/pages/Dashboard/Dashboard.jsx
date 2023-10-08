@@ -17,7 +17,7 @@
 //-------------------------------------------------------//
 
 // React Imports
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // My Page Imports
 import DashboardTopHeading from './TopHeading/DashboardTopHeading'
@@ -45,6 +45,19 @@ const Dashboard = () => {
     const [selectedYear, setSelectedYear] = useState(2023)
     const [selectedMonth, setSelectedMonth] = useState(1)
 
+    // Grab Today for selectedYear, selectedMonth
+    useEffect(() => {
+        const date = new Date();
+        const month = date.toLocaleString('en-US', { month: 'numeric' }); 
+        const year = date.getFullYear();   
+        
+        setSelectedYear(year);
+        setSelectedMonth(month);        
+    },[])
+
+
+  
+
 
     return (
     <>
@@ -60,7 +73,9 @@ const Dashboard = () => {
             <DashboardBudgetOverview    mainCategories={mainCategories}
                                         subCategories={subCategories}
                                         entries={entries}
-                                        budgets={budgets}/>
+                                        budgets={budgets}
+                                        selectedYear={selectedYear}
+                                        selectedMonth={selectedMonth}/>
         </Grid>          
         <Grid item xs={4}>         
             <DashboardSpendingOverview  mainCategories={mainCategories}

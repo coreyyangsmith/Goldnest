@@ -18,7 +18,7 @@
 //-------------------------------------------------------//
 
 // React Import
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // MUI Imports
 import { Divider, Paper, Stack, Typography } from "@mui/material";
@@ -35,45 +35,187 @@ import CustomSlider from "../../../components/CustomSlider"
 
 const DashboardBudgetOverview = (props) => {
 
-    const myMainCategories = props.mainCategories.map((value, index) => {
+    // Custom Hooks
+    const [budgetSliderCurr, setBudgetSliderCurr] = useState(0)
+    const [budgetSliderMax, setBudgetSliderMax] = useState(9999)
+    const [entrySliderCurr, setEntrySliderCurr] = useState(0)
+    const [entrySliderMax, setEntrySliderMax] = useState(9999)    
     
+    const [budgetSliderPercentage, setBugetSliderPercentage] = useState(budgetSliderCurr/budgetSliderMax)
+    const [entrySliderPercentage, setEntrySliderPercentage] = useState(budgetSliderCurr/budgetSliderMax)
+
+    const [daysPassed, setDaysPassed] = useState(5)
+    const [daysRemaining, setDaysRemaining] = useState(25)
+
+    const [budgetSpendPerDay, setBudgetSpendPerDay] = useState(0)
+    const [budgetSpendPerDayRemaining, setBudgetSpendPerDayRemaining] = useState(0)
+    const [expenseSpendPerDay, setExpenseSpendPerDay] = useState(0)
+    const [expenseSpendPerDayRemaining, setExpenseSpendPerDayRemaining] = useState(0)
+
+    const [timeframe, setTimeframe] = useState("");
+
+
+    // Generates Micro Panels in Main Category Paper
+    const myMainCategories = props.mainCategories.map((value, index) => {
         return  <React.Fragment>
             <DashboardMainCategorySmallPanel mainCategory={value}
                                             entries={props.entries}
-                                            budgets={props.budgets}/>
+                                            budgets={props.budgets}
+                                            selectedYear={props.selectedYear}
+                                            selectedMonth={props.selectedMonth}/>
         </React.Fragment>
-      })   
+    })
+    
+    function setPast(daysInMonth) {
+        setDaysPassed(daysInMonth);
+        setDaysRemaining(0);     
+        setTimeframe("Past");  
+        return
+    }
 
-    const date = new Date();
-
-    let month = date.toLocaleString('en-US', { month: 'long' }); 
-    let year = date.getFullYear();
-    let today = date.getDate();
-
-    let daysInMonth =  new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();    
-    let timeLeft = daysInMonth - today
+    function setFuture(daysInMonth) {
+        setDaysPassed(0);
+        setDaysRemaining(daysInMonth);        
+        setTimeframe("Future");      
+        return
+    }    
 
 
-    // Slide Info
+    // Grabs Information needed for Custom Sliders
+    useEffect(() => {
+        //Grab Today's date for reference
+        const date = new Date();
+        const month = date.toLocaleString('en-US', { month: 'numeric' }); 
+        const year = date.getFullYear();
+        const today = date.getDate();
+
+        // Info for daysPassed/daysRemaining based on Today's date OR Selected Time Frame (ahead or behind today?)
+        // If Current Month, calculate daysPassed/daysRemaining
+        const daysInMonth =  new Date(props.selectedYear, props.selectedMonth + 1, 0).getDate();           
+        if (month == props.selectedMonth && year == props.selectedYear)
+        {
+            const timeLeft = daysInMonth - today        
+            setDaysPassed(today);
+            setDaysRemaining(timeLeft);
+            setTimeframe("Current");               
+        }
+        else if (year < props.selectedYear)     // Future Year
+            setFuture(daysInMonth);
+        else if (year > props.selectedYear)     // Past Year
+            setPast(daysInMonth);
+        else if (month < props.selectedMonth)   // Future Month
+            setFuture(daysInMonth);
+        else                                    // Past Month
+            setPast(daysInMonth);
+
+
+        // Slider Info for Budget
+        //  - Current Budget Amount
+        //  - Max Budget Amount
+        //  - Slider Percentage
+
+        const budgetForYear = props.budgets.filter(function(row) {
+            return row.year == props.selectedYear;
+        })
+      
+        const budgetByMonth = budgetForYear.filter(function(row) {
+          return row.month == props.selectedMonth;
+        })
+
+        const mySummedBudget = budgetByMonth.reduce((total, entry) => total + entry.amount, 0);
+        const myMaxBudget = Math.round(mySummedBudget);
+        setBudgetSliderMax(myMaxBudget);
+
+        const myCurrBudget = Math.round(mySummedBudget/daysPassed)
+        setBudgetSliderCurr(myCurrBudget)
+
+        const myCurrBudgetPercentage = Math.round((mySummedBudget/daysPassed)/mySummedBudget * 100)
+        setBugetSliderPercentage(myCurrBudgetPercentage)
+
+        // Set Textual Information
+        setBudgetSpendPerDay(parseFloat(myCurrBudget/daysPassed).toFixed(2))
+
+        const reminingBudget = mySummedBudget - (mySummedBudget/daysPassed);
+        setBudgetSpendPerDayRemaining(parseFloat(reminingBudget/daysRemaining).toFixed(2));
+
+        // Slider Info for Entries
+        //  - Current Entry Amount
+        //  - Max Entry Amount
+        //  - Slider Percentage
+
+        const entriesForYear = props.entries.filter(function(row) {
+            return row.year == props.selectedYear;
+        })
+      
+        const entiresByMonth = entriesForYear.filter(function(row) {
+          return row.month == props.selectedMonth;
+        })
+        
+        // "Max" (ie Target) should be equal to Budget Max
+        setEntrySliderMax(myMaxBudget);
+
+        const mySummedEntries = entiresByMonth.reduce((total, entry) => total + entry.expense, 0);
+        const myCurrEntry = Math.round(mySummedEntries)
+        setEntrySliderCurr(myCurrEntry)
+
+        const myCurrEntryPercentage = Math.round((mySummedEntries)/myMaxBudget * 100)
+        setEntrySliderPercentage(myCurrEntryPercentage)             
+
+        // Set Textual Information
+        setExpenseSpendPerDay(parseFloat(mySummedEntries/daysPassed).toFixed(2))
+  
+        const remainingEntries = mySummedBudget - mySummedEntries;
+        setExpenseSpendPerDayRemaining(parseFloat(remainingEntries/daysRemaining).toFixed(2));    
+
+
+        // Override for Past, Future
+        if (timeframe === "Past") 
+        {
+            setBudgetSliderCurr(myMaxBudget);
+            setBugetSliderPercentage(100);
+            setBudgetSpendPerDay(parseFloat(myMaxBudget/daysPassed).toFixed(2));
+            setBudgetSpendPerDayRemaining(0);            
+
+            setExpenseSpendPerDay(parseFloat(mySummedEntries/daysPassed).toFixed(2));
+            setExpenseSpendPerDayRemaining(0);                
+
+        } else if (timeframe === "Future")
+        {
+            setBudgetSliderCurr(0);  
+            setBugetSliderPercentage(0);            
+            setBudgetSpendPerDay(0);
+            setBudgetSpendPerDay(0);
+            setBudgetSpendPerDayRemaining(parseFloat(myMaxBudget/daysRemaining).toFixed(2));     
+            
+            setExpenseSpendPerDay(parseFloat(mySummedEntries/1).toFixed(2));
+            setExpenseSpendPerDayRemaining(parseFloat(remainingEntries/daysRemaining).toFixed(2));               
+        }
+              
+
+    }, [props, daysPassed, daysRemaining])
+
+
+
+    // Information Required for Custom Slides
     const budgetMarks = [
         {
-            value: 20,
-            label: '$500',
+            value: budgetSliderPercentage,
+            label: '$' + budgetSliderCurr,
         },        
         {
             value: 100,
-            label: '$2500',
+            label: '$' + budgetSliderMax,
         }
     ]
 
     const expenseMarks = [
         {
-            value: 25,
-            label: '$625',
+            value: entrySliderPercentage,
+            label: '$' + entrySliderCurr,
         },        
         {
             value: 100,
-            label: '$2500',
+            label: '$' + entrySliderMax,
         }
     ]    
 
@@ -93,11 +235,17 @@ const DashboardBudgetOverview = (props) => {
           
                 <CustomSlider disabled 
                                 marks={budgetMarks} 
-                                defaultValue={20}/>
+                                defaultValue={budgetSliderPercentage}
+                                value={budgetSliderPercentage}/>
 
-                <Stack direction="column" width="175px">
-                    <Typography paddingLeft="24px">$50.00/day</Typography>  
-                    <Typography paddingLeft="24px">(20% utilized)</Typography>              
+                <Stack direction="column" width="200px">
+                    <Typography paddingLeft="24px">Spent to Date</Typography>
+                    <Typography paddingLeft="24px">${budgetSpendPerDay}/day</Typography>  
+                    <Typography paddingLeft="24px">({budgetSliderPercentage}%)</Typography>              
+                    <Divider/>
+                    <Typography paddingLeft="24px">Remaining</Typography>                    
+                    <Typography paddingLeft="24px">${budgetSpendPerDayRemaining}/day</Typography>  
+                    <Typography paddingLeft="24px">({100-budgetSliderPercentage}%)</Typography>                         
                 </Stack> 
             </Stack>    
 
@@ -106,11 +254,17 @@ const DashboardBudgetOverview = (props) => {
                 <Typography>Actual Expenses</Typography>
                 <CustomSlider disabled 
                                 marks={expenseMarks} 
-                                defaultValue={25}/>
+                                defaultValue={entrySliderPercentage}
+                                value={entrySliderPercentage}/>
 
-                <Stack direction="column" width="175px">
-                    <Typography paddingLeft="24px">$62.50/day</Typography>  
-                    <Typography paddingLeft="24px">(25% utilized)</Typography>              
+                <Stack direction="column" width="200px">
+                    <Typography paddingLeft="24px">Spent to Date</Typography>
+                    <Typography paddingLeft="24px">${expenseSpendPerDay}/day</Typography>  
+                    <Typography paddingLeft="24px">({entrySliderPercentage}%)</Typography>              
+                    <Divider/>
+                    <Typography paddingLeft="24px">Remaining</Typography>                    
+                    <Typography paddingLeft="24px">${expenseSpendPerDayRemaining}/day</Typography>  
+                    <Typography paddingLeft="24px">({100-entrySliderPercentage}%)</Typography>           
                 </Stack>                       
             </Stack>        
 
@@ -126,7 +280,7 @@ const DashboardBudgetOverview = (props) => {
 
 
       
-        </Stack>         
+        </Stack>     
     </Paper>    
     </>)
 }
