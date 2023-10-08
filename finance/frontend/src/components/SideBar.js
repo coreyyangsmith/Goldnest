@@ -215,7 +215,7 @@ export default function MiniDrawer(props) {
           <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
             <DarkModeIcon/>        
           </ListItemIcon>
-          <ListItemText secondary="Logout" sx={{ opacity: open ? 1 : 0 }}/>                 
+          <ListItemText secondary="Dark Mode" sx={{ opacity: open ? 1 : 0 }}/>                 
         </ListItemButton>
       </ListItem>            
 
@@ -228,7 +228,7 @@ export default function MiniDrawer(props) {
           <ListItemIcon sx={{minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
             <WbSunnyIcon/>        
           </ListItemIcon>
-          <ListItemText secondary="Logout" sx={{ opacity: open ? 1 : 0 }}/>                 
+          <ListItemText secondary="Light Mode" sx={{ opacity: open ? 1 : 0 }}/>                 
         </ListItemButton>
       </ListItem>       
       )

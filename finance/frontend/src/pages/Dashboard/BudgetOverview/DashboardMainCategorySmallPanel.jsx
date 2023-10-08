@@ -79,6 +79,21 @@ const DashboardMainCategorySmallPanel = (props) => {
 
   }, [props])
 
+  function obtainCircleColor(entry, budget) {
+    const percentage = entry/budget;
+
+    if ((percentage < 0.2) | (percentage == NaN)) //blue
+      return "#b3e5e6";
+    else if (percentage < 0.4) //green
+      return "#b3e6b8";
+    else if (percentage < 0.6) // yellow
+      return "#dbe6b3";
+    else if (percentage < 0.8) // orange
+      return "#e6d0b3";
+    else if (percentage >= 0.8) // red
+      return "#e6b3b3";
+  }
+
 
 
   return (
@@ -96,7 +111,7 @@ const DashboardMainCategorySmallPanel = (props) => {
                       alignItems: 'center',
                       justifyContent: 'center'}}
                       spacing={.25}>
-          <Box sx={{ background: "lightblue", 
+          <Box sx={{ background: obtainCircleColor(summedEntries, summedBudget), 
                       borderRadius: "50%",
                       width: "50px",
                       height: "50px",

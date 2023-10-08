@@ -26,6 +26,7 @@ import React, { useEffect, useState } from 'react';
 
 // ECharts
 import ReactEcharts from "echarts-for-react";
+import { VIEW_HEIGHT } from '@mui/x-date-pickers/internals/constants/dimensions';
 
 
 //  MAIN FUNCTION
@@ -188,7 +189,8 @@ const DashboardCategoryStackedBar = (props) => {
           },
           axisTick: {
             show: true,
-            interval: 0
+            interval: 0,
+            length: -10,
           }
         }
       ],
