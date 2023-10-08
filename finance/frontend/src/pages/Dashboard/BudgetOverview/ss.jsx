@@ -18,13 +18,13 @@
 
 // MUI Imports
 import { Divider, Paper, Stack, Typography } from "@mui/material";
-import CustomSlider from "../../components/CustomSlider"
+import CustomSlider from "../../../components/CustomSlider"
 
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const DashboardInfoPanel = () => {
+const DashboardBudgetOverview = () => {
     const date = new Date();
 
     let month = date.toLocaleString('en-US', { month: 'long' }); 
@@ -46,6 +46,9 @@ const DashboardInfoPanel = () => {
     return (
     <>
     <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}}>
+        <Typography variant="dashboard_heading">Budget Overview</Typography>
+        <Divider/>
+
         <Stack direction='column' spacing={2}>
         <Typography variant="h1">Today is {month} {today} {year}</Typography>
         <Typography variant="h2">Days remaining: {timeLeft}</Typography>  
@@ -64,4 +67,4 @@ const DashboardInfoPanel = () => {
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default DashboardInfoPanel;
+export default DashboardBudgetOverview;

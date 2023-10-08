@@ -1,56 +1,29 @@
-import Slider from '@mui/material/Slider'
+import * as React from 'react';
+import Slider from '@mui/material/Slider';
+import { alpha, styled } from '@mui/material/styles';
 
-// Styled-Components Import
-import styled from 'styled-components';
+const CustomSlider = styled(Slider)(({ theme }) => ({
 
-// TODO Implement - not working
+  disabled: {
+    color: theme.palette.success.main
+  },
 
-const CustomSlider = styled(Slider)`
-    root: {
-      color: '#52af77',
-      height: 8,
-      '&$vertical': {
-        width: 8
-      }
-    },
-    thumb: {
-      height: 24,
-      width: 24,
-      backgroundColor: '#fff',
+  '& .MuiSlider-thumb': {
+      color: theme.palette.success.main,
       border: '2px solid currentColor',
-      marginTop: -8,
-      marginLeft: -12,
-      '&:focus, &:hover': {
-        boxShadow: '0px 0px 0px 8px rgba(84, 199, 97, 0.16)'
-      },
-      '&$active': {
-        boxShadow: '0px 0px 0px 12px rgba(84, 199, 97, 0.16)'
-      }
+      boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
     },
-    active: {},
-    valueLabel: {
-      left: 'calc(-50% + 4px)'
-    },
-    track: {
-      height: 8,
-      borderRadius: 4
-    },
-    rail: {
-      height: 20,
-      borderRadius: 4
-    },
-    vertical: {
-      '& $rail': {
-        width: 8
-      },
-      '& $track': {
-        width: 8
-      },
-      '& $thumb': {
-        marginLeft: -8,
-        marginBottom: -11
-      }
-    }
-  }`;
 
-  export default (props) => <CustomSlider {...props} />;
+  '& .MuiSlider-rail': {
+    color: `gray`,
+  },
+
+  '& .MuiSlider-track': {
+    color: theme.palette.success.main,
+  },  
+
+}))  
+
+export default function StyledCustomization(props) {
+  return <CustomSlider {...props}/>;
+}

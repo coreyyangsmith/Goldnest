@@ -38,6 +38,8 @@ const darkTheme = createTheme({
       '"Segoe UI Symbol"',
     ].join(','),
   },  
+
+
 });
 
 const lightTheme = createTheme({
@@ -53,6 +55,10 @@ const lightTheme = createTheme({
     secondary: {
       main: '#40c4ff',
     },
+
+    success: {
+      main: '#72EA8C',
+    },    
 
     heroContent: {
       main: '#979797',
@@ -215,7 +221,39 @@ const lightTheme = createTheme({
       fontWeight: 500,
       fontFamily: 'Plus Jakarta Sans',      
       color: '#717171',
-      },                
+      },    
+      
+    dashboard_heading: {
+      lineHeight: 1.6,
+      fontSize: 24,
+      fontWeight: 700,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#000000',
+      },  
+      
+    dashboard_card_heading: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 500,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#717171',
+      },           
+      
+    dashboard_card_heavy: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 700,
+      fontFamily: 'inter',      
+      color: '#000000',
+      },       
+      
+    dashboard_card_light: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 400,
+      fontFamily: 'inter',      
+      color: '#000000',
+      },               
   },  
 });
 
