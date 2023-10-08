@@ -73,9 +73,16 @@ class Entity(viewsets.ModelViewSet): #TODO Find out what this is? lol
 @api_view(['GET', 'POST'])
 def users_list(request):
     if request.method == 'GET':
-        data = Profile.objects.all()
-        serializer = ProfileSerializer(data, context={'request': request}, many=True)
+        if 'HTTP_AUTHORIZATION' in request.META:   
+            token = request.META['HTTP_AUTHORIZATION'][6::]
+            user = Token.objects.get(key=token).user     
+            print(user)  
+            data = User.objects.all()
+        else:
+            data = User.objects.all().none()
+        serializer = UserSerializer(data, context={'request': request}, many=True)
         return Response(serializer.data)
+
 
     elif request.method == 'POST':
         serializer = ProfileSerializer(data=request.data)

@@ -26,8 +26,9 @@ import React, { useState } from 'react'
 // MUI Imports
 import { Paper, Grid, Stack, Typography, Select, MenuItem } from '@mui/material'
 
-// Context
-import { useAuth } from '../../../context/AuthContext'
+// My Hooks
+import { useCurrentUser } from '../../../hooks/useCurrentUser'
+
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -35,18 +36,18 @@ import { useAuth } from '../../../context/AuthContext'
 const DashboardTopHeading = (props) => {
 
   // Custom Hooks
-  const { authUser } = useAuth()
-  
+  const { currentUser } = useCurrentUser();
+
   return (
     <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
       <Grid container>
 
         {/* Main User Info */}
-        <Grid item xs={4}>
+        <Grid item xs={4}  display="flex" alignItems="center">
           <Stack direction="column"
                   display="flex"
                   justifyContent="center">
-            <Typography variant='dashboard_card_heavy'>Hello, {authUser} </Typography>
+            <Typography variant='dashboard_card_heavy'>Hello, {currentUser.first_name} {currentUser.last_name}</Typography>
             <Typography variant='dashboard_card_light'>Today is Sunday, October 8th 2023</Typography>
           </Stack>
         </Grid>
