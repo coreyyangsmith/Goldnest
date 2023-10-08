@@ -32,6 +32,7 @@ import { useMainCategory } from '../../hooks/useMainCategory';
 import { useSubCategory } from '../../hooks/useSubCategory';
 import { useEntries } from '../../hooks/useEntriesReport';
 import { useBudget } from '../../hooks/useBudgetReport';
+import DashboardCategoryBreakdown from './CategoryBreakdown/DashboardCategoryBreakdown';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -54,10 +55,6 @@ const Dashboard = () => {
         setSelectedYear(year);
         setSelectedMonth(month);        
     },[])
-
-
-  
-
 
     return (
     <>
@@ -82,6 +79,15 @@ const Dashboard = () => {
                                         selectedMonth={selectedMonth}
                                         entries={entries}
                                         budgets={budgets}/>                                        
+        </Grid>
+
+        <Grid item xs={8}>
+            <DashboardCategoryBreakdown selectedYear={selectedYear}
+                                        selectedMonth={selectedMonth}
+                                        entries={entries}
+                                        budgets={budgets}
+                                        mainCategories={mainCategories}/>
+
         </Grid>
     </Grid>
     </>)
