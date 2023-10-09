@@ -33,18 +33,20 @@ import { useSubCategory } from '../../hooks/useSubCategory';
 import { useEntries } from '../../hooks/useEntriesReport';
 import { useBudget } from '../../hooks/useBudgetReport';
 import DashboardCategoryBreakdown from './CategoryBreakdown/DashboardCategoryBreakdown';
+import DashboardSubCategoryBreakdown from './CategoryBreakdown/DashboardSubCategoryBreakdown';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const Dashboard = () => {
+const Dashboard = () => {    
+    const [selectedYear, setSelectedYear] = useState(2023);
+    const [selectedMonth, setSelectedMonth] = useState(1);
+    const [selectedMain, setSelectedMain] = useState("");
+
     const { mainCategories } = useMainCategory();
-    const { subCategories } = useSubCategory();
+    const { subCategories, setSubCategories } = useSubCategory(selectedMain);
     const { entries } = useEntries();
     const { budgets } = useBudget();            
-
-    const [selectedYear, setSelectedYear] = useState(2023)
-    const [selectedMonth, setSelectedMonth] = useState(1)
 
     // Grab Today for selectedYear, selectedMonth
     useEffect(() => {
@@ -53,8 +55,9 @@ const Dashboard = () => {
         const year = date.getFullYear();   
         
         setSelectedYear(year);
-        setSelectedMonth(month);        
-    },[])
+        setSelectedMonth(month);      
+            
+    },[selectedMain])
 
     return (
     <>
@@ -72,7 +75,8 @@ const Dashboard = () => {
                                         entries={entries}
                                         budgets={budgets}
                                         selectedYear={selectedYear}
-                                        selectedMonth={selectedMonth}/>
+                                        selectedMonth={selectedMonth}
+                                        setSelectedMain={setSelectedMain}/>
         </Grid>          
         <Grid item xs={4}>         
             <DashboardSpendingOverview  selectedYear={selectedYear}
@@ -87,8 +91,23 @@ const Dashboard = () => {
                                         entries={entries}
                                         budgets={budgets}
                                         mainCategories={mainCategories}/>
-
         </Grid>
+
+        <Grid item xs={4}>
+            <DashboardSpendingOverview  selectedYear={selectedYear}
+                                        selectedMonth={selectedMonth}
+                                        entries={entries}
+                                        budgets={budgets}/>   
+        </Grid>
+
+        <Grid item xs={8}>
+            <DashboardSubCategoryBreakdown  selectedYear={selectedYear}
+                                            selectedMonth={selectedMonth}
+                                            entries={entries}
+                                            budgets={budgets}
+                                            subCategories={subCategories}
+                                            selectedMain={selectedMain}/>
+        </Grid>                
     </Grid>
     </>)
 }

@@ -56,14 +56,17 @@ const DashboardBudgetOverview = (props) => {
     const [timeframe, setTimeframe] = useState("");
 
 
+
+
     // Generates Micro Panels in Main Category Paper
     const myMainCategories = props.mainCategories.map((value, index) => {
         return  <React.Fragment>
-            <DashboardMainCategorySmallPanel mainCategory={value}
-                                            entries={props.entries}
-                                            budgets={props.budgets}
-                                            selectedYear={props.selectedYear}
-                                            selectedMonth={props.selectedMonth}/>
+            <DashboardMainCategorySmallPanel    mainCategory={value}
+                                                entries={props.entries}
+                                                budgets={props.budgets}
+                                                selectedYear={props.selectedYear}
+                                                selectedMonth={props.selectedMonth}
+                                                setSelectedMain={props.setSelectedMain}/>
         </React.Fragment>
     })
     

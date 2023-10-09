@@ -2,7 +2,7 @@
 //  File Name: useSubCategoryAll.js
 //  Description: Data Fetching Hook to obtain "SubCategory" model from the local database. Returns all (for DB entry autocomplete)
 //  Requirements:
-//      - /api/posts (axios)
+//      - /api/authenticated (axios)
 //
 //  Returns:
 //      - List of Objects (Sub Category)

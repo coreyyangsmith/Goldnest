@@ -19,7 +19,7 @@
 import React, { useEffect, useState } from 'react'
 
 // MUI Imports
-import { Box, Paper, Stack, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, Paper, Stack, Typography } from '@mui/material';
 
 // MUI Icon Import
 import PaidIcon from '@mui/icons-material/Paid'; //TEMPORARY
@@ -33,6 +33,11 @@ const DashboardMainCategorySmallPanel = (props) => {
   // My Hooks 
   const [summedEntries, setSummedEntries] = useState(0)
   const [summedBudget, setSummedBudget] = useState(0)
+
+  const handleClick = (mainCategory) => {
+    props.setSelectedMain(mainCategory);
+    console.log(mainCategory);
+  }
 
   // Load Budget & Entry Data, and Sum based on selected year/month
   useEffect(() => {
@@ -82,50 +87,60 @@ const DashboardMainCategorySmallPanel = (props) => {
   function obtainCircleColor(entry, budget) {
     const percentage = entry/budget;
 
-    if ((percentage < 0.2) | (percentage == NaN)) //blue
-      return "#b3e5e6";
-    else if (percentage < 0.4) //green
+    if ((percentage < 0.2) | (percentage == NaN)) //purple
+      return "#dacbe6";
+    else if (percentage < 0.4) //blue
       return "#b3e6b8";
-    else if (percentage < 0.6) // yellow
-      return "#dbe6b3";
-    else if (percentage < 0.8) // orange
-      return "#e6d0b3";
-    else if (percentage >= 0.8) // red
+    else if (percentage < 0.6) // green
+      return "#b3e6be";
+    else if (percentage < 0.8) // yellow
+      return "#e6e5b3";
+    else if (percentage <= 1) // orange
+      return "#e6d0b3";      
+    else if (percentage > 1) // red
       return "#e6b3b3";
   }
 
 
-
   return (
-    <React.Fragment key={props.id}>
-      <Paper sx={{paddingLeft:"16px", 
-                  paddingRight:"16px", 
-                  paddingTop:"16px", 
-                  paddingBottom:"8px",
+    <React.Fragment key={props.mainCategory.id}>
+      <Card sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  width: "225px",
+                  boxShadow: 1,
+                  "&:hover": {
+                    boxShadow: 4,
+                  },
                   }}>
-        <Stack  direction="column" 
-                sx={{display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'}}
-                      spacing={.25}>
-          <Box sx={{ background: obtainCircleColor(summedEntries, summedBudget), 
-                      borderRadius: "50%",
-                      width: "50px",
-                      height: "50px",
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-            }}>
-                        <PaidIcon/>
-                      </Box>
-          <Typography variant='dashboard_card_heading'>{props.mainCategory.name}</Typography>
-          <Typography variant='dashboard_card_heavy'>${summedEntries} /</Typography>
-          <Typography variant='dashboard_card_light'>${summedBudget}</Typography>          
-        </Stack>                            
-      </Paper>      
+          <CardActionArea onClick={() => handleClick(props.mainCategory)}>
+            <CardContent sx={{paddingLeft:"16px", 
+                              paddingRight:"16px", 
+                              paddingTop:"16px", 
+                              paddingBottom:"8px"}}>
+              <Stack  direction="column" 
+                      sx={{display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'}}
+                            spacing={.25}>
+                <Box sx={{ background: obtainCircleColor(summedEntries, summedBudget), 
+                            borderRadius: "50%",
+                            width: "50px",
+                            height: "50px",
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                  }}>
+                              <PaidIcon/>
+                            </Box>
+                <Typography variant='dashboard_card_heading'>{props.mainCategory.name}</Typography>
+                <Typography variant='dashboard_card_heavy'>${summedEntries} /</Typography>
+                <Typography variant='dashboard_card_light'>${summedBudget}</Typography>          
+              </Stack>     
+            </CardContent> 
+          </CardActionArea>                                                      
+      </Card>      
     </React.Fragment>    
   )
 }
