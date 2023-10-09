@@ -23,17 +23,18 @@ import { useEffect, useState } from 'react';
 import DashboardTopHeading from './TopHeading/DashboardTopHeading'
 import DashboardBudgetOverview from './BudgetOverview/DashboardBudgetOverview'
 import DashboardSpendingOverview from './SpendingOverview/DashboardSpendingOverview'
+import DashboardCategoryBreakdown from './CategoryBreakdown/DashboardCategoryBreakdown';
+import DashboardSubCategoryBreakdown from './CategoryBreakdown/DashboardSubCategoryBreakdown';
+import DashboardSpendingCategoryOverview from './SpendingOverview/DashboardSpendingCategoryOverview';
 
 // MUI Imports
-import { Grid, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
 
 // My Hooks
 import { useMainCategory } from '../../hooks/useMainCategory';
 import { useSubCategory } from '../../hooks/useSubCategory';
 import { useEntries } from '../../hooks/useEntriesReport';
 import { useBudget } from '../../hooks/useBudgetReport';
-import DashboardCategoryBreakdown from './CategoryBreakdown/DashboardCategoryBreakdown';
-import DashboardSubCategoryBreakdown from './CategoryBreakdown/DashboardSubCategoryBreakdown';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -79,7 +80,7 @@ const Dashboard = () => {
                                         setSelectedMain={setSelectedMain}/>
         </Grid>          
         <Grid item xs={4}>         
-            <DashboardSpendingOverview  selectedYear={selectedYear}
+            <DashboardSpendingOverview  selectedYear={selectedYear} // REPLACE WITH ??
                                         selectedMonth={selectedMonth}
                                         entries={entries}
                                         budgets={budgets}/>                                        
@@ -107,6 +108,15 @@ const Dashboard = () => {
                                             budgets={budgets}
                                             subCategories={subCategories}
                                             selectedMain={selectedMain}/>
+        </Grid>   
+        <Grid item xs={4}>
+            <DashboardSpendingCategoryOverview  selectedYear={selectedYear}
+                                                selectedMonth={selectedMonth}
+                                                entries={entries}
+                                                budgets={budgets}
+                                                selectedMain={selectedMain}/>   
+
+
         </Grid>                
     </Grid>
     </>)
