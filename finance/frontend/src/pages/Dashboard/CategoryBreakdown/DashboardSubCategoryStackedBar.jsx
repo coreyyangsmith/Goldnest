@@ -40,8 +40,7 @@ const DashboardSubCategoryStackedBar = (props) => {
 
     // Process budget and entries into appropriate datasets based on selected year and month
     useEffect(() => {
-      console.log(props.subCategories);
-      // Map Categories - fix?
+      // Map Categories
       function getSubCategoriesList() {
         const subCategoriesArray = [];
         if (props.subCategories != undefined)
@@ -49,23 +48,22 @@ const DashboardSubCategoryStackedBar = (props) => {
         return subCategoriesArray;
       }
       setSubCategories(getSubCategoriesList());
-      
+
 
     function getCumulativeEntriesByCategory() {
 
         // Filter Initial Entries Data
+
         const entriesForYear = props.entries.filter(function(row) {
             return row.year == props.selectedYear;
         })
-
         const entiresByMonth = entriesForYear.filter(function(row) {
             return row.month == props.selectedMonth;
         })
-
         const entiresByMainCategory = entiresByMonth.filter(function(row) {
           return row.main_category.name == props.selectedMain.name;
         })        
-        console.log(entiresByMainCategory);
+      
 
         // Create new map to store cumulative amounts
         const sumByCategory = {}
@@ -89,16 +87,14 @@ const DashboardSubCategoryStackedBar = (props) => {
           sum: parseFloat(sumByCategory[category]).toFixed(0),
         }));
 
-        console.log(summedObjects);        
-        console.log(subCategories);
 
         // Final array (holds zero for null entry)
         const finalSumByCategory = []
 
-        for (let i = 0; i < subCategories.length; i++) {
+        for (let i = 0; i < props.subCategories.length; i++) {
           let matchFound = false;
           for (let j = 0; j < summedObjects.length; j++) {
-            if (subCategories[i] === summedObjects[j].category) {
+            if (props.subCategories[i].name === summedObjects[j].category) {
               finalSumByCategory.push(summedObjects[j].sum);
               matchFound = true;
             }
@@ -106,30 +102,32 @@ const DashboardSubCategoryStackedBar = (props) => {
           if (!matchFound)
             finalSumByCategory.push(0);
         }
-
-        console.log(finalSumByCategory);
-
         return finalSumByCategory;
     }
-    if (props.entries.length > 0)
-        setEntryData(getCumulativeEntriesByCategory());
+    setEntryData(getCumulativeEntriesByCategory());
 
 
     function getCumulativeBudgetByCategory() {
-          // Filter Initial Entries Data
-          const budgetForYear = props.budgets.filter(function(row) {
-            return row.year == props.selectedYear;
-          })
-        
-          const budgetByMonth = budgetForYear.filter(function(row) {
-            return row.month == props.selectedMonth;
-          })
+        // Filter Initial Entries Data
+        console.log("budgets")
+
+        const budgetForYear = props.budgets.filter(function(row) {
+          return row.year == props.selectedYear;
+        })
+
+        const budgetByMonth = budgetForYear.filter(function(row) {
+          return row.month == props.selectedMonth;
+        })     
+
+        const budgetByMainCategory = budgetByMonth.filter(function(row) {
+          return row.sub_category.main_category.name == props.selectedMain.name;
+        })               
 
         // Create new map to store cumulative amounts
         const sumByCategory = {}
 
         //Iterate through entries and accumulative amounts foreach day
-        budgetByMonth.forEach((budget) => {
+        budgetByMainCategory.forEach((budget) => {
             const category = budget.sub_category.name;
             const value = budget.amount;
 
@@ -150,10 +148,10 @@ const DashboardSubCategoryStackedBar = (props) => {
         // Final array (holds zero for null entry)
         const finalSumByCategory = []
 
-        for (let i = 0; i < subCategories.length; i++) {
+        for (let i = 0; i < props.subCategories.length; i++) {
           let matchFound = false;
           for (let j = 0; j < summedObjects.length; j++) {
-            if (subCategories[i] === summedObjects[j].category) {
+            if (props.subCategories[i].name === summedObjects[j].category) {
               finalSumByCategory.push(summedObjects[j].sum);
               matchFound = true;
             }
@@ -164,14 +162,13 @@ const DashboardSubCategoryStackedBar = (props) => {
 
         return finalSumByCategory;        
     }
-    if (props.budgets.length > 0)
-        setBudgetData(getCumulativeBudgetByCategory());    
+    setBudgetData(getCumulativeBudgetByCategory());    
 
     }, [props])
 
     const option = {
       title: {
-        text: 'Sub Category Breakdown - ' + props.selectedMain.name,
+        text: 'Sub Category Breakdown - ' + (props.selectedMain.name != undefined ? props.selectedMain.name : "No Category Selected"),
         top: '1%',
       },
       tooltip: {
