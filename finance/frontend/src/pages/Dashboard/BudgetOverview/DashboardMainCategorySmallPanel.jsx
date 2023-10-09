@@ -36,7 +36,6 @@ const DashboardMainCategorySmallPanel = (props) => {
 
   const handleClick = (mainCategory) => {
     props.setSelectedMain(mainCategory);
-    console.log(mainCategory);
   }
 
   // Load Budget & Entry Data, and Sum based on selected year/month
@@ -101,10 +100,10 @@ const DashboardMainCategorySmallPanel = (props) => {
       return "#e6b3b3";
   }
 
-
   return (
     <React.Fragment key={props.mainCategory.id}>
-      <Card sx={{
+      <Card className={`Dashboard-Category ${props.selectedMain.id === props.mainCategory.id && "active"}`}
+            sx={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',

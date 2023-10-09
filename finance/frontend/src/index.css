@@ -24,3 +24,7 @@
     width: 400px;
 
 }
+
+.Dashboard-Category.active {
+    background-color: #f5fcff !important;
+}

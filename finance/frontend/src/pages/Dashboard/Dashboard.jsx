@@ -49,7 +49,7 @@ const Dashboard = () => {
     const { entries } = useEntries();
     const { budgets } = useBudget();            
 
-    // Grab Today for selectedYear, selectedMonth
+    // Grab Today for selectedYear, selectedMonth, for initial load only!
     useEffect(() => {
         const date = new Date();
         const month = date.toLocaleString('en-US', { month: 'numeric' }); 
@@ -58,7 +58,7 @@ const Dashboard = () => {
         setSelectedYear(year);
         setSelectedMonth(month);      
             
-    },[selectedMain])
+    },[])
 
     return (
     <>
@@ -77,7 +77,8 @@ const Dashboard = () => {
                                         budgets={budgets}
                                         selectedYear={selectedYear}
                                         selectedMonth={selectedMonth}
-                                        setSelectedMain={setSelectedMain}/>
+                                        setSelectedMain={setSelectedMain}
+                                        selectedMain={selectedMain}/>
         </Grid>          
         <Grid item xs={4}>         
             <DashboardSpendingOverview  selectedYear={selectedYear} // REPLACE WITH ??
@@ -99,7 +100,7 @@ const Dashboard = () => {
                                         selectedMonth={selectedMonth}
                                         entries={entries}
                                         budgets={budgets}/>   
-        </Grid>
+        </Grid>          
 
         <Grid item xs={8}>
             <DashboardSubCategoryBreakdown  selectedYear={selectedYear}
@@ -109,6 +110,7 @@ const Dashboard = () => {
                                             subCategories={subCategories}
                                             selectedMain={selectedMain}/>
         </Grid>   
+      
         <Grid item xs={4}>
             <DashboardSpendingCategoryOverview  selectedYear={selectedYear}
                                                 selectedMonth={selectedMonth}

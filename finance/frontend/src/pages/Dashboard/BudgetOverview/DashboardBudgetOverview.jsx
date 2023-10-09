@@ -61,12 +61,13 @@ const DashboardBudgetOverview = (props) => {
     // Generates Micro Panels in Main Category Paper
     const myMainCategories = props.mainCategories.map((value, index) => {
         return  <React.Fragment>
-            <DashboardMainCategorySmallPanel    mainCategory={value}
-                                                entries={props.entries}
-                                                budgets={props.budgets}
-                                                selectedYear={props.selectedYear}
-                                                selectedMonth={props.selectedMonth}
-                                                setSelectedMain={props.setSelectedMain}/>
+            <DashboardMainCategorySmallPanel mainCategory={value}
+                                            entries={props.entries}
+                                            budgets={props.budgets}
+                                            selectedYear={props.selectedYear}
+                                            selectedMonth={props.selectedMonth}
+                                            setSelectedMain={props.setSelectedMain}
+                                            selectedMain={props.selectedMain}/>
         </React.Fragment>
     })
     
