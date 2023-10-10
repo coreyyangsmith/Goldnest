@@ -26,8 +26,6 @@ import { Grid } from '@mui/material';
 import LandingHeroContent from './LandingHeroContent';
 import LandingFeatureContent from './LandingFeatureContent';
 import LandingPriceContent from './LandingPriceContent';
-import LandingContactContent from './LandingContactContent';
-
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -56,10 +54,6 @@ const Home = () => {
 
             {/* PRICE CONTENT */}       
             <LandingPriceContent/>           
-
-            {/* CONTACT CONTENT */}          
-            <LandingContactContent/>  
-
     </>
   )
 }

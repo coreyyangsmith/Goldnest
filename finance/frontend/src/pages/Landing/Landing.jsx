@@ -27,6 +27,7 @@ import { Route, Routes } from "react-router-dom";
 
 // My Page Imports
 import LandingNav from './LandingNav';
+import LandingFooter from './LandingFooter';
 
 import Contact from './Contact';
 import Register from '../Register/Register'
@@ -49,8 +50,8 @@ const Landing = () => {
             <Route path="/register" element={<Register />} />         
         </Routes>  
 
-
     </Container>
+    <LandingFooter/>
 
     </>
 }

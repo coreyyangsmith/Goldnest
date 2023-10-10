@@ -40,6 +40,7 @@ const StyledHashLink = styled(HashLink)`
     justify-content: center;
 
     &:hover {
+        transform: scale(1.05);
         background-color: #fff8e1;
     }
 

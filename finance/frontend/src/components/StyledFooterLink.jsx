@@ -1,5 +1,5 @@
 //-------------------------------------------------------//
-//  File Name: StyledLink.jsx
+//  File Name: StyledFooterLink.jsx
 //  Description: Override of React Router Dom's { Link }
 //
 //  Requirements:
@@ -9,7 +9,7 @@
 //      - Styled Link (to Remove Hyperlink Default Style)
 //
 // Created By: Corey Yang-Smith
-// Date: September 25th, 2023
+// Date: October 6th, 2023
 //-------------------------------------------------------//
 
 //  IMPORTS
@@ -28,28 +28,24 @@ import styled from 'styled-components';
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const StyledLink = styled(Link)`
+const StyledFooterLink = styled(Link)`
     text-decoration: none;
-    color: white;
-    margin-left: 12px;
-    margin-right: 12px;
-    padding-left: 12px;
-    padding-right: 12px;    
-
     display: flex;
     justify-content: center;
+    padding-left: 12px;
+    padding-right: 12px;
 
     &:hover {
         background-color: #fff8e1;
-        transform: scale(1.05);        
+        transform: scale(1.05);
     }
 
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
-    }
+    }    
 `;
 
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default (props) => <StyledLink {...props} />;
+export default (props) => <StyledFooterLink {...props} />;
