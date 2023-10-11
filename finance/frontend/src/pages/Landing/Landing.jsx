@@ -20,7 +20,7 @@
 import React from 'react'
 
 // MUI Imports
-import { Container, Grid, Stack } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 
 // Routing
 import { Route, Routes } from "react-router-dom";
@@ -40,6 +40,7 @@ import Home from './Home';
 const Landing = () => {
     return <>
     <LandingNav/>
+
     <Container disableGutters>
         <Stack direction="column" spacing={2}>
                                 
@@ -51,6 +52,7 @@ const Landing = () => {
         </Routes>  
 
     </Container>
+
     <LandingFooter/>
 
     </>

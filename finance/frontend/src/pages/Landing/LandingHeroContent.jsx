@@ -26,7 +26,6 @@ import { Typography, Button, Stack, Box } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 // Assets Imports
-import Dashboard from '../../assets/images/Dashboard.png'
 import WindowBackground from '../../assets/images/WindowBackground.png'
 
 
@@ -35,9 +34,9 @@ import WindowBackground from '../../assets/images/WindowBackground.png'
 
 const LandingHeroContent = () => {
   return (
-<Stack spacing={2} direction="column" sx={{marginTop: 5}}>
-    
-    <Typography variant='hero_content' align='center'>Your Money, Your Rules: Unleash Financial Freedom</Typography>
+<Stack spacing={2} direction="column" sx={{marginTop: 3}}>
+    <div id="home"/>
+    <Typography id='home' variant='hero_content' align='center'>Your Money, Your Rules: Unleash Financial Freedom</Typography>
     <Typography variant='hero_title' align='center'>Gain insights on your spending  
             <Typography
             variant='hero_title'

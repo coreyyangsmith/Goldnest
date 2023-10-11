@@ -42,10 +42,10 @@ const toolbarSX = {
 const LandingFooter = () => {
   return (
     <>
-    <AppBar color="background" position='relative' elevation={0} sx={{marginTop: "50px", paddingBottom:"50px"}}>
+    <AppBar color="background" position='relative' elevation={0} sx={{marginTop: "32px", paddingBottom:"32px"}}>
       <Toolbar variant="regular" sx={toolbarSX}>
         <Stack direction="column" spacing={2} sx={{justifyContent:'center', marginTop:"32px"}}>
-          <Typography variant="feature_heading" sx={{textAlign:'center'}}>GOLDNEST</Typography>
+          <Typography variant="landing_title" sx={{textAlign:'center'}}>GOLDNEST</Typography>
 
           <Stack direction="row" spacing={1}>
 

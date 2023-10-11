@@ -6,17 +6,16 @@
 //      - Reports.jsx
 //
 //  Requirements:
+//      - selectedReportType (prop)
 //      - selectedYear (prop)
 //      - selectedMonth (prop, optional)
-//      - selectedWeek (prop, optional)
-//      - selectedTimeSpan (prop)
-//      - selectedReportType (prop)
 //
 //  Returns:
 //      - Renders sub-components dependant on selectedReportType
 //
 // Created By: Corey Yang-Smith
 // Date: October 3rd, 2023
+// Updated: October 11th, 2023
 //-------------------------------------------------------//
 
 
@@ -53,160 +52,10 @@ import { useBudget } from '../../hooks/useBudgetReport'
 
 const ReportManager = (props) => {
   // My Custom Hooks
-  const { mainCategories } = useMainCategory();
-  const { budgets } = useBudget();
-  const { entries } = useEntries();
-
-
   
   return (
 <>
-    <Grid container spacing={4}
-    alignItems="center"
-    justifyContent="center"
-    direction="row">
-
-        <Grid item xs={6} >
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <DoughnutYearlyBudget   selectedMonth={props.selectedMonth} 
-                                        selectedYear={props.selectedYear}
-                                        mainCategories={mainCategories}
-                                        budgets={budgets}/>
-            </Box>
-        </Grid>
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <DoughnutYearlyEntry    selectedMonth={props.selectedMonth} 
-                                        selectedYear={props.selectedYear}
-                                        mainCategories={mainCategories}
-                                        entries={entries}/>
-            </Box>
-        </Grid>     
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <VBarYearBudgetEntry    entries={entries}
-                                        budgets={budgets}
-                                        selectedYear={props.selectedYear}/>
-            </Box>
-        </Grid>       
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <VBarYearBudgetEntryCategory    entries={entries}
-                                                budgets={budgets}
-                                                selectedYear={props.selectedYear}
-                                                selectedMain={mainCategories[2]}/>
-            </Box>  
-        </Grid>                  
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <SunburstEChartsExample/>
-            </Box>  
-        </Grid>   
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <StackedVBarEChartsExample/>
-            </Box>  
-        </Grid>           
-        
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <StackedHBarEChartsExample/>
-            </Box>  
-        </Grid>       
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <TreechartEChartsExample/>
-            </Box>  
-        </Grid>     
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <VHeatMapEChartsExample/>
-            </Box>  
-        </Grid>  
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <GradientStackedEChartsExample/>
-            </Box>  
-        </Grid>                          
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 1,
-                height: 1
-            }}>
-                <MonthHeatMapEChartsExample/>
-            </Box>  
-        </Grid>          
-
-                
-        {/* 
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 300,
-                height: 300
-            }}>
-                <ExpensesByMainCategory/>
-            </Box>      
-        </Grid>     
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 300,
-                height: 300
-            }}>
-                <NetWorthLineChart />
-            </Box>      
-        </Grid>          
-
-        <Grid item xs={6}>
-            <Box sx={{
-                width: 300,
-                height: 300
-            }}>
-                <MyD3Component data = {[10, 20, 30]}/>
-            </Box>      
-        </Grid>           
-        */}
-
-    </Grid>
+<p>report manager</p>
 </>
   )
 }

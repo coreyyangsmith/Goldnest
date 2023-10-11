@@ -19,7 +19,7 @@
 import React from 'react';
 
 // React Router Import
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 // Styled-Components Import
 import styled from 'styled-components';
@@ -28,7 +28,7 @@ import styled from 'styled-components';
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const StyledHomeLink = styled(Link)`
+const StyledHomeHashLink = styled(HashLink)`
     text-decoration: none;
     color: black;
     margin-left: 12px;
@@ -43,9 +43,11 @@ const StyledHomeLink = styled(Link)`
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
     }
-`;
+`
+document.body.scrollTop = document.documentElement.scrollTop = 0;
+
 
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default (props) => <StyledHomeLink {...props} />;
+export default (props) => <StyledHomeHashLink {...props} />;

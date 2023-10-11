@@ -23,7 +23,7 @@ import React from 'react'
 // Routing
 import StyledLink from '../../components/StyledLink'
 import StyledHashLink from '../../components/StyledHashLink';
-import StyledHomeLink from '../../components/StyledHomeLink';
+import StyledHomeLink from '../../components/StyledHomeHashLink';
 
 
 // React Router Import

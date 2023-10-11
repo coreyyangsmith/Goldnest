@@ -26,6 +26,7 @@ import { Grid } from '@mui/material';
 import LandingHeroContent from './LandingHeroContent';
 import LandingFeatureContent from './LandingFeatureContent';
 import LandingPriceContent from './LandingPriceContent';
+import LandingExampleContent from './LandingExampleContent';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -48,6 +49,9 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={3}/>
             </Grid>
+
+            {/* EXAMPLE CONTENT */}    
+            <LandingExampleContent/>          
 
             {/* FEATURE CONTENT */}       
             <LandingFeatureContent/>  

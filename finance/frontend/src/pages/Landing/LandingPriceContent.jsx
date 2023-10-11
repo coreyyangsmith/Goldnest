@@ -20,13 +20,7 @@
 import React from 'react'
 
 // MUI Imports
-import { Typography, Grid, Stack, Box } from '@mui/material'
-
-// MUI Icon Import
-import PaymentsIcon from '@mui/icons-material/Payments';
-import InsightsIcon from '@mui/icons-material/Insights';
-import FeedIcon from '@mui/icons-material/Feed';
-import AssessmentIcon from '@mui/icons-material/Assessment';
+import { Typography, Grid, Box } from '@mui/material'
 
 // My Components
 import LandingFeatureCard from './LandingFeatureCard'
@@ -40,10 +34,9 @@ import LandingPriceCard from './LandingPriceCard';
 const LandingPriceContent = () => {
 
   return (
-<>
+<Box marginTop="16px">
     {/* Top Info */}
-    <Typography variant='feature_heading' paddingTop={4}>Our Prices</Typography>
-        <div id="price"></div>
+    <Typography id="price" variant='feature_heading'>Our Prices</Typography>
         <Grid container spacing={2} justifyContent="center">
 
         <Grid item sx={4}>
@@ -124,7 +117,7 @@ const LandingPriceContent = () => {
         </Grid>                            
                                
         </Grid>
-</>    
+  </Box> 
     )
 }
 
