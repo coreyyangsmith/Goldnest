@@ -40,9 +40,9 @@ import ReportManager from './ReportManager'
 //-------------------------------------------------------//
 
 const Reports = () => {
-    const [selectedReport, setSelectedReport] = useState();    
-    const [selectedYear, setSelectedYear] = useState();
-    const [selectedMonth, setSelectedMonth] = useState();
+    const [selectedReport, setSelectedReport] = useState('');    
+    const [selectedYear, setSelectedYear] = useState('');
+    const [selectedMonth, setSelectedMonth] = useState('');
 
     const { mainCategories } = useMainCategory();
     const { subCategories, setSubCategories } = useSubCategory();
@@ -73,7 +73,8 @@ const Reports = () => {
                                 subCategories={subCategories}
                                 budget={budgets}
                                 selectedYear={selectedYear}
-                                selectedMonth={selectedMonth}/>
+                                selectedMonth={selectedMonth}
+                                selectedReport={selectedReport}/>
         </Grid>
     </Grid>
 

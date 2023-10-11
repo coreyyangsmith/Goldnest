@@ -23,7 +23,7 @@
 import React, { useState } from 'react'
 
 // MUI Imports
-import { Paper, Grid, Button, InputLabel, Select, MenuItem, FormControl, Stack, TextField } from '@mui/material'
+import { Paper, Grid, Button, InputLabel, Select, MenuItem, FormControl, Stack, TextField, Divider } from '@mui/material'
 
 // My Hooks
 import { useCurrentUser } from '../../../hooks/useCurrentUser'
@@ -95,6 +95,12 @@ const ReportsTopHeading = (props) => {
                       <MenuItem value={"custom"}>Custom</MenuItem>                                                                                                     
             </TextField>
           </FormControl>
+
+
+          {/* Vertical Divider to Display
+          {props.selectedReport !== undefined && (
+          <Divider orientation='vertical' flexItem='true' style={{height:"100%"}} justifyContent="flex-start"/>          
+          )} */}
 
           {/* Selected Year */}
           {props.selectedReport !== undefined && (

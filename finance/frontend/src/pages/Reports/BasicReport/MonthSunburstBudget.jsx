@@ -1,12 +1,14 @@
 //-------------------------------------------------------//
-//  File Name: SunburstBudget.jsx
-//  Description: Sunburst Diagram for all Budget Items for SelectedYear
+//  File Name: MonthSunburstBudget.jsx
+//  Description: Sunburst Diagram for all Budget Items for SelectedYear & SelectedMonth
 //
 //  Requirements:
 //      - Report Manager
 //      - Budget (all)
-//      - Main Categories (?)
-//      - Sub Categories (?)
+//      - Main Categories
+//      - Sub Categories 
+//      - Selected Year (prop)
+//      - Selected Month (prop)
 //
 //  Returns:
 //      - Sunburst Chart
@@ -20,7 +22,7 @@
 //-------------------------------------------------------//
 
 // React Import
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // MUI Import
 import { Divider, Paper, Typography } from '@mui/material'
@@ -31,7 +33,7 @@ import ReactEcharts from "echarts-for-react";
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const YearSunburstBudget = (props) => {
+const MonthSunburstBudget = (props) => {
 
 
   // My Hooks
@@ -64,7 +66,11 @@ const YearSunburstBudget = (props) => {
         return row.year == props.selectedYear;
       })
 
-      const mappedBudgetsMain = budgetForYear.map(budget => {
+      const budgetForMonth = budgetForYear.filter(function(row) {
+        return row.month == props.selectedMonth;
+      })      
+
+      const mappedBudgetsMain = budgetForMonth.map(budget => {
         const matchingMainCategoryName = mainCategories.find(str => str === budget.sub_category.main_category.name);
         return { ...budget, matchingMainCategoryName };
       });    
@@ -180,7 +186,7 @@ const YearSunburstBudget = (props) => {
 
   return (
   <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
-    <Typography variant="dashboard_heading">Yearly Budget Categories</Typography>
+    <Typography variant="dashboard_heading">Monthly Budget Categories</Typography>
     <Divider/>
     <ReactEcharts option={option} style={{height:"750px"}}/>  
   </Paper>)
@@ -190,4 +196,4 @@ const YearSunburstBudget = (props) => {
 //  EXPORTS 
 //-------------------------------------------------------//
 
-export default YearSunburstBudget
+export default MonthSunburstBudget

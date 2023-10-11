@@ -26,7 +26,7 @@ import { Select, MenuItem } from '@mui/material';
 import { Button } from '@mui/material/'
 
 // My Components
-import ReportManager from './ReportManager';
+import ReportManager from '../ReportManager';
 
 
 //  MAIN FUNCTION 
