@@ -66,7 +66,7 @@ function checkIfDataFilled(props) {
 const ReportsTopHeading = (props) => {
 
   return (
-    <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
+    <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px", marginBottom:"16px"}} elevation={4}>
       <Grid container>
 
         {/* Selections */}
