@@ -30,6 +30,7 @@ import { Box, Grid } from '@mui/material/';
 
 // My Components
 import YearSunburstBudget from './BasicReport/YearSunburstBudget'
+import YearSunburstEntry from './BasicReport/YearSunburstEntry';
 
 //  MAIN FUNCTION 
 //-------------------------------------------------------//
@@ -40,15 +41,18 @@ const ReportManager = (props) => {
   return (
 <>
 <Grid container>
-  <Grid item xs={12}>
+  <Grid item xs={6}>
     <YearSunburstBudget budget={props.budget}
                         selectedYear={props.selectedYear}
                         mainCategories={props.mainCategories}
                         subCategories={props.subCategories}/>
-
   </Grid>
 
-  <Grid item xs={4}>
+  <Grid item xs={6}>
+  <YearSunburstEntry    entries={props.entries}
+                        selectedYear={props.selectedYear}
+                        mainCategories={props.mainCategories}
+                        subCategories={props.subCategories}/>    
     
   </Grid>
 

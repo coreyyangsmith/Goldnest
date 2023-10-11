@@ -1,10 +1,10 @@
 //-------------------------------------------------------//
-//  File Name: SunburstBudget.jsx
-//  Description: Sunburst Diagram for all Budget Items for SelectedYear
+//  File Name: YearSunburstEntry.jsx
+//  Description: Sunburst Diagram for all Entry Items for SelectedYear
 //
 //  Requirements:
 //      - Report Manager
-//      - Budget (all)
+//      - Entry (all)
 //      - Main Categories (?)
 //      - Sub Categories (?)
 //
@@ -31,11 +31,11 @@ import ReactEcharts from "echarts-for-react";
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const SunburstEChartsExample = (props) => {
+const YearSunburstEntry = (props) => {
 
 
   // My Hooks
-  const [budgetData, setBudgetData] = useState([]);
+  const [entryData, setEntryData] = useState([]);
   const [mainCategories, setMainCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);  
 
@@ -59,19 +59,21 @@ const SunburstEChartsExample = (props) => {
       }
       setSubCategories(getSubCategoriesList());    
 
-      // Preprocess Budget Data
-      const budgetForYear = props.budget.filter(function(row) {
+      // Preprocess Entry Data
+      const entryForYear = props.entries.filter(function(row) {
         return row.year == props.selectedYear;
       })
+      console.log("entryForYear");
+      console.log(entryForYear);
 
-      const mappedBudgetsMain = budgetForYear.map(budget => {
-        const matchingMainCategoryName = mainCategories.find(str => str === budget.sub_category.main_category.name);
-        return { ...budget, matchingMainCategoryName };
+      const mappedEntriesMain = entryForYear.map(entry => {
+        const matchingMainCategoryName = mainCategories.find(str => str === entry.main_category.name);
+        return { ...entry, matchingMainCategoryName };
       });    
 
-      const mappedBudgetsSub = mappedBudgetsMain.map(budget => {
-        const matchingSubCategoryID = subCategories.find(id => id === budget.sub_category.pk);
-        return { ...budget, matchingSubCategoryID };
+      const mappedEntriesSub = mappedEntriesMain.map(entry => {
+        const matchingSubCategoryID = subCategories.find(id => id === entry.sub_category.pk);
+        return { ...entry, matchingSubCategoryID };
       });        
 
       // Filter Budget Data into appropriate format
@@ -87,12 +89,12 @@ const SunburstEChartsExample = (props) => {
               sum: 0,
             };
           }
-          result[key].sum += item.amount; // Assuming each object has a 'sum' property
+          result[key].sum += item.expense; // Assuming each object has a 'sum' property
           result[key].name = item.sub_category.name;
 
           return result;
         }, {})}   
-      const mySummedSubCategories = groupAndSumByAttribute(mappedBudgetsSub, 'matchingSubCategoryID');
+      const mySummedSubCategories = groupAndSumByAttribute(mappedEntriesSub, 'matchingSubCategoryID');
       // Convert from one large object to array of objects
       const mySummedSubCategoriesFinal = Object.keys(mySummedSubCategories).map(key => ({ key, value: mySummedSubCategories[key]}));
 
@@ -116,7 +118,6 @@ const SunburstEChartsExample = (props) => {
       const myCategoryLabels = groupByAttribute(props.subCategories);
       // Convert from one large object to array of objects
       const myCategoryLabelsFinal = Object.keys(myCategoryLabels).map(key => ({ key, value: myCategoryLabels[key]}));
-
 
       function combineLists(list1, list2) {
 
@@ -152,9 +153,9 @@ const SunburstEChartsExample = (props) => {
         if (mySummedSubCategoriesFinal[0].key !== "undefined")
         {
           const finalData = combineLists(myCategoryLabelsFinal, mySummedSubCategoriesFinal)
-          setBudgetData(finalData);
+          setEntryData(finalData);
         }
-      }     
+      }
     }    
 
   }, [props])
@@ -163,7 +164,7 @@ const SunburstEChartsExample = (props) => {
     
     series: {
       type: 'sunburst',
-      data: budgetData,
+      data: entryData,
       radius: [70, "90%"],
       itemStyle: {
         borderRadius: 5,
@@ -180,7 +181,7 @@ const SunburstEChartsExample = (props) => {
 
   return (
   <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
-    <Typography variant="dashboard_heading">Yearly Budget Categories</Typography>
+    <Typography variant="dashboard_heading">Yearly Entry Categories</Typography>
     <Divider/>
     <ReactEcharts option={option} style={{height:"750px"}}/>  
   </Paper>)
@@ -190,4 +191,4 @@ const SunburstEChartsExample = (props) => {
 //  EXPORTS 
 //-------------------------------------------------------//
 
-export default SunburstEChartsExample
+export default YearSunburstEntry
