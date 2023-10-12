@@ -63,8 +63,6 @@ const YearSunburstEntry = (props) => {
       const entryForYear = props.entries.filter(function(row) {
         return row.year == props.selectedYear;
       })
-      console.log("entryForYear");
-      console.log(entryForYear);
 
       const mappedEntriesMain = entryForYear.map(entry => {
         const matchingMainCategoryName = mainCategories.find(str => str === entry.main_category.name);
@@ -174,6 +172,7 @@ const YearSunburstEntry = (props) => {
         color: '#000',
         textBorderColor: '#fff',
         textBorderWidth: 2,
+        fontSize: 14,
 
       },
     }

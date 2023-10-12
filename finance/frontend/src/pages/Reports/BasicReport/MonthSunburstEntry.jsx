@@ -176,14 +176,14 @@ const MonthSunburstEntry = (props) => {
         color: '#000',
         textBorderColor: '#fff',
         textBorderWidth: 2,
-
+        fontSize: 14,
       },
     }
   };  
 
   return (
   <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
-    <Typography variant="dashboard_heading">Yearly Entry Categories</Typography>
+    <Typography variant="dashboard_heading">Monthly Entry Categories</Typography>
     <Divider/>
     <ReactEcharts option={option} style={{height:"750px"}}/>  
   </Paper>)

@@ -173,7 +173,7 @@ const YearSunburstBudget = (props) => {
         color: '#000',
         textBorderColor: '#fff',
         textBorderWidth: 2,
-
+        fontSize: 14,
       },
     }
   };  

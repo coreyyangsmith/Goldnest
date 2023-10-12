@@ -24,8 +24,12 @@ const darkTheme = createTheme({
     },
   },
   typography: {
+    button: {
+      textTransform: 'none'
+    },    
     fontFamily: [
-      'inter',
+      'Plus Jakarta Sans',
+      'inter', 
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
@@ -37,9 +41,158 @@ const darkTheme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
+    landing_title: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 800,
+      fontFamily: 'Plus Jakarta Sans',
+      color: 'black',   
+      letterSpacing: '3px',          
+      },    
+    landing_menu: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 500,
+      fontFamily: 'Plus Jakarta Sans',     
+      color: 'black',        
+      },   
+    landing_button: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 500,
+      fontFamily: 'Plus Jakarta Sans',     
+      color: '#FFFFFF',
+      },        
+
+    hero_title: {
+      lineHeight: 1.6,
+      fontSize: 52,
+      fontWeight: 800,  
+      fontFamily: 'Plus Jakarta Sans',  
+      color: 'black', 
+      },              
+    hero_content: {
+      lineHeight: 1.6,
+      fontSize: 18,
+      fontWeight: 500,
+      fontFamily: 'inter',      
+      color: '#979797',
+      },    
+    hero_small: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 500,
+      fontFamily: 'inter',      
+      color: '#979797',
+      },    
+    hero_button: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 500,
+      fontFamily: 'inter',      
+      color: '#FFFFFF',
+      },      
+      
+    feature_heading: {
+      lineHeight: 1.6,
+      fontSize: 36,
+      fontWeight: 600,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#FFFFFF',
+      },   
+    card_heading: {
+      lineHeight: 1.6,
+      fontSize: 20,
+      fontWeight: 800,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#FFFFFF',
+      },  
+    card_body: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 500,
+      fontFamily: 'inter',      
+      color: '#979797',
+      },    
+    card_link: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 500,
+      fontFamily: 'inter',   
+      fontStyle: 'underline',   
+      color: '#ffa000',
+      },  
+    prices_heading: {
+      lineHeight: 1.6,
+      fontSize: 42,
+      fontWeight: 800,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#FFFFFF',
+      },            
+    prices_list: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 500,
+      fontFamily: 'inter',      
+      color: '#FFFFFF',
+      },    
+      
+    prices_card_heading: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 600,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#717171',
+      },        
+      
+    prices_card_body: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 500,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#717171',
+      },    
+      
+    dashboard_heading: {
+      lineHeight: 1.6,
+      fontSize: 24,
+      fontWeight: 700,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#FFFFFF',
+      },  
+      
+    dashboard_card_heading: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 500,
+      fontFamily: 'Plus Jakarta Sans',      
+      color: '#717171',
+      },           
+      
+    dashboard_card_heavy: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 700,
+      fontFamily: 'inter',      
+      color: '#FFFFFF',
+      },       
+      
+    dashboard_card_light: {
+      lineHeight: 1.6,
+      fontSize: 14,
+      fontWeight: 400,
+      fontFamily: 'inter',      
+      color: '#FFFFFF',
+      },    
+      
+    dashboard_small_card_heavy: {
+      lineHeight: 1.6,
+      fontSize: 11,
+      fontWeight: 650,
+      fontFamily: 'inter',      
+      color: '#FFFFFF',
+      },            
   },  
-
-
 });
 
 const lightTheme = createTheme({
@@ -261,7 +414,23 @@ const lightTheme = createTheme({
       fontWeight: 650,
       fontFamily: 'inter',      
       color: '#000000',
-      },            
+      },      
+      
+    debug: {
+      lineHeight: 1.6,
+      fontSize: 8,
+      fontWeight: 300,
+      fontFamily: 'inter',      
+      color: '#000000',
+      },    
+
+    debug_small: {
+      lineHeight: 1.6,
+      fontSize: 6,
+      fontWeight: 300,
+      fontFamily: 'inter',      
+      color: '#000000',
+      },             
   },  
 });
 

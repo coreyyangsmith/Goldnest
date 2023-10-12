@@ -39,6 +39,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { Stack } from '@mui/material';
 
 // Routing
 import { Link } from "react-router-dom"
@@ -73,7 +74,6 @@ import Logout from '../pages/Login/Logout.jsx'
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import { HashLink } from 'react-router-hash-link';
-
 
 //  UTILITY
 //-------------------------------------------------------//
@@ -238,8 +238,8 @@ export default function MiniDrawer(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
+      <AppBar position="fixed" open={open} variant='elevation' style={{ background: '#FFFFFF' }}>
+        <Toolbar variant='dense'>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -256,9 +256,7 @@ export default function MiniDrawer(props) {
           <Typography variant="h6" noWrap component="div">
             GOLDNEST
           </Typography>
-          <Typography padding={3}>
-            Current User: {authUser} | {token} | {isLoggedIn.toString()}
-          </Typography>
+
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -358,7 +356,19 @@ export default function MiniDrawer(props) {
           </ListItem>                     
           <Divider />
           {darkModeToggle(props)}
-           
+
+          {/* Debug Text */}
+          <Stack paddingTop={3} direction='column'>
+            <Typography paddingLeft={3} sx={{ opacity: open ? 1 : 0 }} display='block' variant='debug'>
+              {authUser}
+            </Typography>
+            <Typography paddingLeft={3} sx={{ opacity: open ? 1 : 0 }} display='block' variant='debug_small'>
+                {token}
+            </Typography>            
+            <Typography paddingLeft={3} sx={{ opacity: open ? 1 : 0 }} display='block' variant='debug'>
+              {isLoggedIn.toString()}
+            </Typography>
+          </Stack>          
 
         </List>
       </Drawer>

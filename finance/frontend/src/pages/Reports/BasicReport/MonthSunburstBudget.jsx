@@ -170,7 +170,7 @@ const MonthSunburstBudget = (props) => {
     series: {
       type: 'sunburst',
       data: budgetData,
-      radius: [70, "90%"],
+      radius: ['0%', "90%"],
       itemStyle: {
         borderRadius: 5,
         borderWidth: 5
@@ -179,7 +179,7 @@ const MonthSunburstBudget = (props) => {
         color: '#000',
         textBorderColor: '#fff',
         textBorderWidth: 2,
-
+        fontSize: 14,
       },
     }
   };  

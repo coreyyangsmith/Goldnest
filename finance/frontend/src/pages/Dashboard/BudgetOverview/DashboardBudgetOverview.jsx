@@ -62,12 +62,12 @@ const DashboardBudgetOverview = (props) => {
     const myMainCategories = props.mainCategories.map((value, index) => {
         return  <React.Fragment>
             <DashboardMainCategorySmallPanel mainCategory={value}
-                                            entries={props.entries}
-                                            budgets={props.budgets}
-                                            selectedYear={props.selectedYear}
-                                            selectedMonth={props.selectedMonth}
-                                            setSelectedMain={props.setSelectedMain}
-                                            selectedMain={props.selectedMain}/>
+                                                entries={props.entries}
+                                                budgets={props.budgets}
+                                                selectedYear={props.selectedYear}
+                                                selectedMonth={props.selectedMonth}
+                                                setSelectedMain={props.setSelectedMain}
+                                                selectedMain={props.selectedMain}/>
         </React.Fragment>
     })
     
@@ -270,10 +270,10 @@ const DashboardBudgetOverview = (props) => {
             </Stack>        
 
             {/* Main Categories Box */}  
-            <Paper sx={{background: "#FCFCFC", paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}}>
+            <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}}>
                 <Stack direction="column">
                     <Typography>Main Categories</Typography>
-                    <Stack direction="row" spacing={1} sx={{overflowY: 'hidden', paddingTop: "16px", paddingBottom: "16px"}}>
+                    <Stack direction="row" spacing={1} sx={{overflowX: 'hidden', paddingTop: "16px", paddingBottom: "16px"}}>
                         {myMainCategories}
                     </Stack>
                 </Stack>
