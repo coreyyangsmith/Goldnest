@@ -106,8 +106,7 @@ const DashboardMainCategorySmallPanel = (props) => {
             sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  width: "225px",
+                  width: "100%",
                   boxShadow: 1,
                   "&:hover": {
                     boxShadow: 4,
@@ -133,7 +132,7 @@ const DashboardMainCategorySmallPanel = (props) => {
                   }}>
                               <PaidIcon/>
                             </Box>
-                <Typography variant='dashboard_card_heading'>{props.mainCategory.name}</Typography>
+                <Typography variant='dashboard_card_heading' style={{flexWrap: "wrap", height: "auto", width: "maxContent"}}>{props.mainCategory.name}</Typography>
                 <Typography variant='dashboard_card_heavy'>${summedEntries} /</Typography>
                 <Typography variant='dashboard_card_light'>${summedBudget}</Typography>          
               </Stack>     

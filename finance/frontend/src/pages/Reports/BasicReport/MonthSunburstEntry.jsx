@@ -167,15 +167,15 @@ const MonthSunburstEntry = (props) => {
     series: {
       type: 'sunburst',
       data: entryData,
-      radius: [70, "90%"],
+      radius: ['0%', "97%"],
       itemStyle: {
-        borderRadius: 5,
-        borderWidth: 5
+        borderRadius: 0,
+        borderWidth: 1
       },
       label: {
         color: '#000',
         textBorderColor: '#fff',
-        textBorderWidth: 2,
+        textBorderWidth: 4,
         fontSize: 14,
       },
     }

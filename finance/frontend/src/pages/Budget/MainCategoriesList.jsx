@@ -36,10 +36,6 @@ import { deleteRequest } from '../../api/authenticated'
 import useToken from '../../hooks/useToken';
 
 
-//  UTILITY
-//-------------------------------------------------------//
-
-
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 

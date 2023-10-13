@@ -21,7 +21,7 @@
 import React, { useState, useEffect } from 'react';
 
 // MUI Imports
-import { Divider, Paper, Stack, Typography } from "@mui/material";
+import { Divider, Paper, Stack, Typography, Box } from "@mui/material";
 
 // My Componens
 import DashboardMainCategorySmallPanel from './DashboardMainCategorySmallPanel'
@@ -172,7 +172,6 @@ const DashboardBudgetOverview = (props) => {
         const remainingEntries = mySummedBudget - mySummedEntries;
         setExpenseSpendPerDayRemaining(parseFloat(remainingEntries/daysRemaining).toFixed(2));    
 
-
         // Override for Past, Future
         if (timeframe === "Past") 
         {
@@ -198,8 +197,6 @@ const DashboardBudgetOverview = (props) => {
               
 
     }, [props, daysPassed, daysRemaining])
-
-
 
     // Information Required for Custom Slides
     const budgetMarks = [
@@ -270,13 +267,16 @@ const DashboardBudgetOverview = (props) => {
             </Stack>        
 
             {/* Main Categories Box */}  
-            <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}}>
+            <Paper  sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} 
+                    style={{display:"flex", flexDirection:"row", overflow:"scroll"}}>
                 <Stack direction="column">
                     <Typography>Main Categories</Typography>
-                    <Stack direction="row" spacing={1} sx={{overflowX: 'hidden', paddingTop: "16px", paddingBottom: "16px"}}>
-                        {myMainCategories}
-                    </Stack>
+                        <Stack direction="row" spacing={2} sx={{paddingTop: "16px",
+                                                                paddingBottom: "16px"}}>
+                            {myMainCategories}
+                        </Stack>                                    
                 </Stack>
+
             </Paper>    
         </Stack>     
     </Paper>    
