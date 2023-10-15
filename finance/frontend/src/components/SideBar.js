@@ -32,14 +32,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Stack } from '@mui/material';
+import { Stack, Card } from '@mui/material';
 
 // Routing
 import { Link } from "react-router-dom"
@@ -74,6 +73,7 @@ import Logout from '../pages/Login/Logout.jsx'
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import { HashLink } from 'react-router-hash-link';
+import SpinningTorus from './SpinningTorus';
 
 //  UTILITY
 //-------------------------------------------------------//
@@ -238,21 +238,19 @@ export default function MiniDrawer(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} variant='elevation' style={{ background: '#FFFFFF' }}>
+      <AppBar position="fixed" open={open} variant='elevation' style={{ background: '#FFFFFF' }} sx={{height:"50px"}}>
         <Toolbar variant='dense'>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <PaidIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />          
+            {/* My Spinning Logo */}
+            <Card sx={{width:"40px", height:"40px", marginRight: 3, marginLeft:-1.5, background:"white",
+              ...(open && { display: 'none' })}}             
+                  aria-label="open drawer"
+                  onClick={handleDrawerOpen}
+                  edge="start">
+
+            <SpinningTorus open={open}/>              
+
+            </Card>          
+       
           <Typography variant="h6" noWrap component="div">
             GOLDNEST
           </Typography>

@@ -15,6 +15,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     dateOfBirth = models.DateField(null=True, auto_now=False, auto_now_add=False)
     gender = models.CharField(max_length=6, choices=GENDER, default='M')
+    #profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
+    tier = models.IntegerField(null=False); # either 1 2 or 3 depending on paid tier
 
     def __str__(self):
         return self.user.username
