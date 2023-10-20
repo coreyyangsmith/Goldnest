@@ -39,9 +39,7 @@ const YearSunburstEntry = (props) => {
 
   // Load Budget Data and Partiton into Yearly Sunburst Format
   useEffect(() => {
-    if (props.selectedYear !== "")
-    {
-      // Map Categories (get mainCategories Array)
+    if (props.selectedYear !== "") {
 
       /**
        * Returns an Array of the Main Category Names (String)
@@ -68,6 +66,8 @@ const YearSunburstEntry = (props) => {
 
       /**
        * Takes in a user's entries, selectedYear, mainCategories and subCategories, and returns an enriched entries array
+       * @param {*} mainCategories Array of Main Category Names
+       * @param {*} subCategories Array of Sub Cateogry Names
        * @returns mappedEntriesSub: Array of Entries (Object) enriched with "matchingMainCategoryName" and "matchingMainCategoryID"
        */
       function getFilteredEntries(mainCategories, subCategories) {
@@ -169,11 +169,15 @@ const YearSunburstEntry = (props) => {
           setData(finalData);
         }
       }
-    }    
-
+        
+    }
   }, [props])
 
   const option = {
+    tooltip: {
+      trigger: 'item',
+      triggerOn: 'mousemove'
+    },       
     
     series: {
       type: 'sunburst',
@@ -188,6 +192,9 @@ const YearSunburstEntry = (props) => {
         textBorderColor: '#fff',
         textBorderWidth: 4,
         fontSize: 14,
+        formatter: function(d) {
+          return d.name + " (" + Number(d.value).toFixed(0) + ")";
+        }        
       },
     }
   };  

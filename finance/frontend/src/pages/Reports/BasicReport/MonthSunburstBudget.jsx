@@ -37,48 +37,65 @@ const MonthSunburstBudget = (props) => {
 
 
   // My Hooks
-  const [budgetData, setBudgetData] = useState([]);
-  const [mainCategories, setMainCategories] = useState([]);
-  const [subCategories, setSubCategories] = useState([]);  
+  const [data, setData] = useState([]);
+
 
   // Load Budget Data and Partiton into Yearly Sunburst Format
   useEffect(() => {
     if (props.selectedYear !== undefined)
     {
-      // Map Categories (get mainCategories Array)
+
+      /**
+       * Returns an Arra of the Main Category Names (String)
+       * @returns mainCategoriesArray: Array of MainCategoryNames (String) 
+       */
       function getMainCategoriesList() {
         const mainCategoriesArray = [];
         props.mainCategories.forEach((mainCat) => mainCategoriesArray.push(mainCat.name))
         return mainCategoriesArray;
       }
-      setMainCategories(getMainCategoriesList());
+      const mainCatData = getMainCategoriesList();
 
-      // Map Categories (get SubCategories Array)
+      /**
+       * Returns an Array of the Sub Category Names (String)
+       * @returns subCategoriesArray: Array of SubCategoryNames (String)
+       */
       function getSubCategoriesList() {
         const subCategoriesArray = [];
         props.subCategories.forEach((subCat) => subCategoriesArray.push(subCat.pk))
         return subCategoriesArray;
       }
-      setSubCategories(getSubCategoriesList());    
+      const subCatData = getSubCategoriesList();    
 
-      // Preprocess Budget Data
-      const budgetForYear = props.budget.filter(function(row) {
-        return row.year == props.selectedYear;
-      })
 
-      const budgetForMonth = budgetForYear.filter(function(row) {
-        return row.month == props.selectedMonth;
-      })      
+      /**
+       * Takes in a user's entries, selectedYear, mainCategories and subCategories, and returns an enriched budgets array
+       * @param {*} mainCategories Array of Main Category Names
+       * @param {*} subCategories Array of Sub Cateogry Names
+       * @returns mappedBudgetSub: Array of Entries (Object) enriched with "matchingMainCategoryName" and "matchingMainCategoryID"
+       */      
+      function getFilteredBudgets(mainCategories, subCategories) {
+        const budgetForYear = props.budget.filter(function(row) {
+          return row.year == props.selectedYear;
+        })
 
-      const mappedBudgetsMain = budgetForMonth.map(budget => {
-        const matchingMainCategoryName = mainCategories.find(str => str === budget.sub_category.main_category.name);
-        return { ...budget, matchingMainCategoryName };
-      });    
+        const budgetForMonth = budgetForYear.filter(function(row) {
+          return row.month == props.selectedMonth;
+        })      
 
-      const mappedBudgetsSub = mappedBudgetsMain.map(budget => {
-        const matchingSubCategoryID = subCategories.find(id => id === budget.sub_category.pk);
-        return { ...budget, matchingSubCategoryID };
-      });        
+        const mappedBudgetsMain = budgetForMonth.map(budget => {
+          console.log(budget);
+          const matchingMainCategoryName = mainCategories.find(obj => obj === budget.sub_category.main_category.name);
+          return { ...budget, matchingMainCategoryName };
+        });    
+
+        const mappedBudgetsSub = mappedBudgetsMain.map(budget => {
+          const matchingSubCategoryID = subCategories.find(obj => obj === budget.sub_category.pk);
+          return { ...budget, matchingSubCategoryID };
+        });      
+        return mappedBudgetsSub
+      }        
+      const mappedBudgetsSub = getFilteredBudgets(mainCatData, subCatData);
 
       // Filter Budget Data into appropriate format
       // Sum based on category IDs
@@ -158,7 +175,7 @@ const MonthSunburstBudget = (props) => {
         if (mySummedSubCategoriesFinal[0].key !== "undefined")
         {
           const finalData = combineLists(myCategoryLabelsFinal, mySummedSubCategoriesFinal)
-          setBudgetData(finalData);
+          setData(finalData);
         }
       }     
     }    
@@ -166,10 +183,14 @@ const MonthSunburstBudget = (props) => {
   }, [props])
 
   const option = {
+    tooltip: {
+      trigger: 'item',
+      triggerOn: 'mousemove'
+    },       
     
     series: {
       type: 'sunburst',
-      data: budgetData,
+      data: data,
       radius: ['0%', "97%"],
       itemStyle: {
         borderRadius: 0,
@@ -180,6 +201,9 @@ const MonthSunburstBudget = (props) => {
         textBorderColor: '#fff',
         textBorderWidth: 4,
         fontSize: 14,
+        formatter: function(d) {
+          return d.name + " (" + Number(d.value).toFixed(0) + ")";
+        }        
       },
     }
   };  

@@ -34,6 +34,7 @@ import YearSunburstEntry from './BasicReport/YearSunburstEntry';
 import MonthSunburstBudget from './BasicReport/MonthSunburstBudget';
 import MonthSunburstEntry from './BasicReport/MonthSunburstEntry';
 import YearSankeyBudget from './BasicReport/YearSankeyBudget';
+import YearSankeyEntry from './BasicReport/YearSankeyEntry';
 
 //  MAIN FUNCTION 
 //-------------------------------------------------------//
@@ -93,6 +94,14 @@ const ReportManager = (props) => {
                             subCategories={props.subCategories}/>    
         
       </Grid>      
+
+      <Grid item xs={12}>
+      <YearSankeyEntry      entries={props.entries}
+                            selectedYear={props.selectedYear}
+                            mainCategories={props.mainCategories}
+                            subCategories={props.subCategories}/>    
+        
+      </Grid>            
       </>      
     }
 

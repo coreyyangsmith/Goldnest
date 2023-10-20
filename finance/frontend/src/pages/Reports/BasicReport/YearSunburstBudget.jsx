@@ -158,6 +158,10 @@ const YearSunburstBudget = (props) => {
   }, [props])
 
   const option = {
+    tooltip: {
+      trigger: 'item',
+      triggerOn: 'mousemove'
+    },    
     
     series: {
       type: 'sunburst',
@@ -168,10 +172,15 @@ const YearSunburstBudget = (props) => {
         borderWidth: 1
       },
       label: {
+        rotate: 'radial',
         color: '#000',
         textBorderColor: '#fff',
         textBorderWidth: 4,
         fontSize: 14,
+        formatter: function(d) {
+          return d.name + " (" + Number(d.value).toFixed(0) + ")";
+        }
+
       },
     }
   };  
