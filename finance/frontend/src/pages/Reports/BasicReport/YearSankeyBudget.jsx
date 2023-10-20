@@ -112,7 +112,7 @@ const YearSankeyBudget = (props) => {
             // If matching objects are found, accumulate the additional values
             const sum = matchingObjects.reduce((acc, obj) => acc + obj.amount, 0);
             // Create a new object with the accumulated sum and the name
-            resultsArray.push({ source: obj.main_category.name, target: obj.name, value: sum });
+            resultsArray.push({ source: obj.main_category.name, target: obj.main_category.name + "-" + obj.name, value: sum });
           }    
         }
         return resultsArray;
@@ -136,16 +136,30 @@ const YearSankeyBudget = (props) => {
 
         // DUMMY DATA
         myNodes.push({"name":"DUMMY"})
-
+        console.log(mainCategoryData);
+        console.log(subCategoryData);
         // Push all Main Category Names as Nodes
         mainCategoryData.forEach((obj) => {
-          myNodes.push({"name":obj.target});
+          if (obj.value != 0)
+            myNodes.push({"name":obj.target});
         })
 
         // Push all Sub Category Names as Nodes        
         subCategoryData.forEach((obj) => {
-          myNodes.push({"name":obj.target});
+          if (obj.value != 0)
+            myNodes.push({"name":obj.target});
         })        
+
+        // Filter for testing...
+        // const filteredNodes = myNodes.filter((item) => item.name === "DUMMY");    
+        // filteredNodes.push({"name":"Income"})
+        // filteredNodes.push({"name":"Investments"})
+        // filteredNodes.push({"name":"Fixed_Expenses"})
+        // filteredNodes.push({"name":"Variable_Expenses"})
+        // filteredNodes.push({"name":"Optional_Expenses"})     
+        // filteredNodes.push({"name":"Salary"})           
+        // filteredNodes.push({"name":"Reimbursements"})   
+        // filteredNodes.push({"name":"True_Expenses"})                                      
 
         return myNodes
       }
@@ -170,13 +184,13 @@ const YearSankeyBudget = (props) => {
         });        
 
         const links = myLinks.filter((item) => item.value !== 0);
+        const filteredLinks = links.filter((item) => item.source === "DUMMY");        
         return links
       }
 
       myData.push({"nodes": generateNodes(mainCatData, subCatData)});
-      myData.push({"links": generateLinks(mainCatData, subCatData)});    
-
-      // remove 0 values
+      myData.push({"links": generateLinks(mainCatData, subCatData)});   
+      
 
       setData(myData);    
 
@@ -185,7 +199,60 @@ const YearSankeyBudget = (props) => {
 
 
 // WIP, Sankey generates but for some reason the data is not valid - perhaps because of duplicates?
+const test_data = {nodes: [
+  {
+    name: 'a'
+  },
+  {
+    name: 'b'
+  },
+  {
+    name: 'a1'
+  },
+  {
+    name: 'a2'
+  },
+  {
+    name: 'b1'
+  },
+  {
+    name: 'c'
+  }
+], links: [
+  {
+    source: 'a',
+    target: 'a1',
+    value: 5
+  },
+  {
+    source: 'a',
+    target: 'a2',
+    value: 3
+  },
+  {
+    source: 'b',
+    target: 'b1',
+    value: 8
+  },
+  {
+    source: 'a',
+    target: 'b1',
+    value: 3
+  },
+  {
+    source: 'b1',
+    target: 'a1',
+    value: 1
+  },
+  {
+    source: 'b1',
+    target: 'c',
+    value: 2
+  }
+]}
 
+console.log(test_data);
+console.log(data);
 let option = {
   series: {
     type: 'sankey',
@@ -193,58 +260,8 @@ let option = {
     emphasis: {
       focus: 'adjacency'
     },
-    data: [
-      {
-        name: 'a'
-      },
-      {
-        name: 'b'
-      },
-      {
-        name: 'a1'
-      },
-      {
-        name: 'a2'
-      },
-      {
-        name: 'b1'
-      },
-      {
-        name: 'c'
-      }
-    ],
-    links: [
-      {
-        source: 'a',
-        target: 'a1',
-        value: 5
-      },
-      {
-        source: 'a',
-        target: 'a2',
-        value: 3
-      },
-      {
-        source: 'b',
-        target: 'b1',
-        value: 8
-      },
-      {
-        source: 'a',
-        target: 'b1',
-        value: 3
-      },
-      {
-        source: 'b1',
-        target: 'a1',
-        value: 1
-      },
-      {
-        source: 'b1',
-        target: 'c',
-        value: 2
-      }
-    ]
+    data: test_data.nodes,
+    links: test_data.links
   } 
 }
 
@@ -256,12 +273,17 @@ if (data.length > 0)
   option = {      
     series: {
       type: 'sankey',
-      layout: 'none',
+      data: data[0].nodes,
+      links: data[1].links,      
       emphasis: {
         focus: 'adjacency'
       },
-      data: Object.values(data[0]),
-      links: Object.values(data[1])
+      nodeAlign: 'left',
+      lineStyle: {
+        color: 'gradient',
+        curveness: 0.5
+      }
+
     }
   };   
 } 
