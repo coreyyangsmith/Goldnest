@@ -33,6 +33,7 @@ import YearSunburstBudget from './BasicReport/YearSunburstBudget'
 import YearSunburstEntry from './BasicReport/YearSunburstEntry';
 import MonthSunburstBudget from './BasicReport/MonthSunburstBudget';
 import MonthSunburstEntry from './BasicReport/MonthSunburstEntry';
+import YearSankeyBudget from './BasicReport/YearSankeyBudget';
 
 //  MAIN FUNCTION 
 //-------------------------------------------------------//
@@ -42,7 +43,7 @@ const ReportManager = (props) => {
 
   function GenerateReport(props) {
     // BASIC MONTHLY - TODO
-    if (props.selectedReport === "basicMonthly" && (props.selectedYear !== undefined && props.selectedMonth !== undefined))
+    if (props.selectedReport === "basicMonthly" && (props.selectedYear !== "" && props.selectedMonth !== ""))
     {
       console.log("generate basic monthly")
       return <>
@@ -66,8 +67,9 @@ const ReportManager = (props) => {
     }
 
     // BASIC YEARLY - WIP
-    if (props.selectedReport === "basicYearly" && (props.selectedYear !== undefined))
+    if (props.selectedReport === "basicYearly" && (props.selectedYear !== ""))
     {
+      console.log("generating Report");
       return <>
       <Grid item xs={6}>
         <YearSunburstBudget budget={props.budget}
@@ -83,6 +85,14 @@ const ReportManager = (props) => {
                             subCategories={props.subCategories}/>    
         
       </Grid>
+
+      <Grid item xs={12}>
+      <YearSankeyBudget     budget={props.budget}
+                            selectedYear={props.selectedYear}
+                            mainCategories={props.mainCategories}
+                            subCategories={props.subCategories}/>    
+        
+      </Grid>      
       </>      
     }
 
@@ -118,7 +128,6 @@ const ReportManager = (props) => {
 <>
 <Grid container spacing={2}>
     {GenerateReport(props)}
-
 </Grid>
 </>
   )

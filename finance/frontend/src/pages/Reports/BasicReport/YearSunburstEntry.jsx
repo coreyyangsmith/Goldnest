@@ -20,7 +20,7 @@
 //-------------------------------------------------------//
 
 // React Import
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // MUI Import
 import { Divider, Paper, Typography } from '@mui/material'
@@ -35,44 +35,59 @@ const YearSunburstEntry = (props) => {
 
 
   // My Hooks
-  const [entryData, setEntryData] = useState([]);
-  const [mainCategories, setMainCategories] = useState([]);
-  const [subCategories, setSubCategories] = useState([]);  
+  const [data, setData] = useState([]);
 
   // Load Budget Data and Partiton into Yearly Sunburst Format
   useEffect(() => {
-    if (props.selectedYear !== undefined)
+    if (props.selectedYear !== "")
     {
       // Map Categories (get mainCategories Array)
+
+      /**
+       * Returns an Array of the Main Category Names (String)
+       * @returns mainCategoriesArray: Array of MainCategory Names (String)
+       */
       function getMainCategoriesList() {
+        
         const mainCategoriesArray = [];
         props.mainCategories.forEach((mainCat) => mainCategoriesArray.push(mainCat.name))
         return mainCategoriesArray;
       }
-      setMainCategories(getMainCategoriesList());
+      const mainCatData = getMainCategoriesList();
 
-      // Map Categories (get SubCategories Array)
+      /**
+       * Returns an Array of the Sub Category Names (String)
+       * @returns subCategoriesArray: Array of SubCategory Names (String)
+       */
       function getSubCategoriesList() {
         const subCategoriesArray = [];
         props.subCategories.forEach((subCat) => subCategoriesArray.push(subCat.pk))
         return subCategoriesArray;
       }
-      setSubCategories(getSubCategoriesList());    
+      const subCatData = getSubCategoriesList();    
 
-      // Preprocess Entry Data
-      const entryForYear = props.entries.filter(function(row) {
-        return row.year == props.selectedYear;
-      })
+      /**
+       * Takes in a user's entries, selectedYear, mainCategories and subCategories, and returns an enriched entries array
+       * @returns mappedEntriesSub: Array of Entries (Object) enriched with "matchingMainCategoryName" and "matchingMainCategoryID"
+       */
+      function getFilteredEntries(mainCategories, subCategories) {
+        const entryForYear = props.entries.filter(function(row) {
+          return row.year == props.selectedYear;
+        })
 
-      const mappedEntriesMain = entryForYear.map(entry => {
-        const matchingMainCategoryName = mainCategories.find(str => str === entry.main_category.name);
-        return { ...entry, matchingMainCategoryName };
-      });    
+        const mappedEntriesMain = entryForYear.map(entry => {
+          const matchingMainCategoryName = mainCategories.find(str => str === entry.main_category.name);
+          return { ...entry, matchingMainCategoryName };
+        });    
 
-      const mappedEntriesSub = mappedEntriesMain.map(entry => {
-        const matchingSubCategoryID = subCategories.find(id => id === entry.sub_category.pk);
-        return { ...entry, matchingSubCategoryID };
-      });        
+        const mappedEntriesSub = mappedEntriesMain.map(entry => {
+          const matchingSubCategoryID = subCategories.find(id => id === entry.sub_category.pk);
+          return { ...entry, matchingSubCategoryID };
+        });     
+        
+        return mappedEntriesSub;
+      }
+      const mappedEntriesSub = getFilteredEntries(mainCatData, subCatData);
 
       // Filter Budget Data into appropriate format
       // Sum based on category IDs
@@ -151,7 +166,7 @@ const YearSunburstEntry = (props) => {
         if (mySummedSubCategoriesFinal[0].key !== "undefined")
         {
           const finalData = combineLists(myCategoryLabelsFinal, mySummedSubCategoriesFinal)
-          setEntryData(finalData);
+          setData(finalData);
         }
       }
     }    
@@ -162,7 +177,7 @@ const YearSunburstEntry = (props) => {
     
     series: {
       type: 'sunburst',
-      data: entryData,
+      data: data,
       radius: ['0%', "97%"],
       itemStyle: {
         borderRadius: 0,

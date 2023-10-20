@@ -16,16 +16,26 @@ import { angleToRadians } from './../utils/angle'
 const SpinningTorus = (props) => {
 
     // Animation 
+    const timeline = gsap.timeline({defaults: {duration: 1}})
+
     const torusRef = useRef();
-    useEffect(() => {
+    useEffect((props) => {
         if (!!torusRef.current) {
-            gsap.to(torusRef.current.rotation, {
+
+
+            timeline.to(torusRef.current.rotation, {
                 x: angleToRadians(360),
                 y: angleToRadians(360),
                 z: angleToRadians(360),
                 duration: 4,
                 repeat: 0,
                 ease: "linear",
+                onUpdate: () => {
+                    //apply updated rotation
+                    torusRef.current.rotation.x = torusRef.current.rotation.x % (Math.PI * 2);        
+                    torusRef.current.rotation.y = torusRef.current.rotation.y % (Math.PI * 2); 
+                    torusRef.current.rotation.z = torusRef.current.rotation.z % (Math.PI * 2);                                                     
+                }                
             })
         }},[props]);
 

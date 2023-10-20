@@ -268,7 +268,7 @@ const DashboardBudgetOverview = (props) => {
 
             {/* Main Categories Box */}  
             <Paper  sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} 
-                    style={{display:"flex", flexDirection:"row", overflow:"scroll"}}>
+                    style={{display:"flex", flexDirection:"row", overflowX:"scroll"}}>
                 <Stack direction="column">
                     <Typography>Main Categories</Typography>
                         <Stack direction="row" spacing={2} sx={{paddingTop: "16px",

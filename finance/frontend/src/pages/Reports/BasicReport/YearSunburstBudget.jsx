@@ -1,5 +1,5 @@
 //-------------------------------------------------------//
-//  File Name: SunburstBudget.jsx
+//  File Name: YearSunburstBudget.jsx
 //  Description: Sunburst Diagram for all Budget Items for SelectedYear
 //
 //  Requirements:
@@ -36,8 +36,6 @@ const YearSunburstBudget = (props) => {
 
   // My Hooks
   const [budgetData, setBudgetData] = useState([]);
-  const [mainCategories, setMainCategories] = useState([]);
-  const [subCategories, setSubCategories] = useState([]);  
 
   // Load Budget Data and Partiton into Yearly Sunburst Format
   useEffect(() => {
@@ -49,7 +47,7 @@ const YearSunburstBudget = (props) => {
         props.mainCategories.forEach((mainCat) => mainCategoriesArray.push(mainCat.name))
         return mainCategoriesArray;
       }
-      setMainCategories(getMainCategoriesList());
+      const mainCatData = getMainCategoriesList();
 
       // Map Categories (get SubCategories Array)
       function getSubCategoriesList() {
@@ -57,7 +55,7 @@ const YearSunburstBudget = (props) => {
         props.subCategories.forEach((subCat) => subCategoriesArray.push(subCat.pk))
         return subCategoriesArray;
       }
-      setSubCategories(getSubCategoriesList());    
+      const subCatData = getSubCategoriesList(); 
 
       // Preprocess Budget Data
       const budgetForYear = props.budget.filter(function(row) {
@@ -65,12 +63,12 @@ const YearSunburstBudget = (props) => {
       })
 
       const mappedBudgetsMain = budgetForYear.map(budget => {
-        const matchingMainCategoryName = mainCategories.find(str => str === budget.sub_category.main_category.name);
+        const matchingMainCategoryName = mainCatData.find(str => str === budget.sub_category.main_category.name);
         return { ...budget, matchingMainCategoryName };
       });    
 
       const mappedBudgetsSub = mappedBudgetsMain.map(budget => {
-        const matchingSubCategoryID = subCategories.find(id => id === budget.sub_category.pk);
+        const matchingSubCategoryID = subCatData.find(id => id === budget.sub_category.pk);
         return { ...budget, matchingSubCategoryID };
       });        
 

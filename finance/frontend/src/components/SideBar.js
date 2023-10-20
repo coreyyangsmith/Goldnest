@@ -241,8 +241,7 @@ export default function MiniDrawer(props) {
       <AppBar position="fixed" open={open} variant='elevation' style={{ background: '#FFFFFF' }} sx={{height:"50px"}}>
         <Toolbar variant='dense'>
             {/* My Spinning Logo */}
-            <Card sx={{width:"40px", height:"40px", marginRight: 3, marginLeft:-1.5, background:"white",
-              ...(open && { display: 'none' })}}             
+            <Card sx={{width:"40px", height:"40px", marginRight: 3, marginLeft:-1.5, background:"white"}}             
                   aria-label="open drawer"
                   onClick={handleDrawerOpen}
                   edge="start">
