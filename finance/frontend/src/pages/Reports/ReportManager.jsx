@@ -29,12 +29,16 @@ import React from 'react'
 import { Box, Grid } from '@mui/material/';
 
 // My Components
+//// Sunburst
 import YearSunburstBudget from './BasicReport/YearSunburstBudget'
 import YearSunburstEntry from './BasicReport/YearSunburstEntry';
 import MonthSunburstBudget from './BasicReport/MonthSunburstBudget';
 import MonthSunburstEntry from './BasicReport/MonthSunburstEntry';
+//// Sankey
 import YearSankeyBudget from './BasicReport/YearSankeyBudget';
 import YearSankeyEntry from './BasicReport/YearSankeyEntry';
+import MonthSankeyEntry from './BasicReport/MonthSankeyEntry';
+import MonthSankeyBudget from './BasicReport/MonthSankeyBudget';
 
 //  MAIN FUNCTION 
 //-------------------------------------------------------//
@@ -63,7 +67,25 @@ const ReportManager = (props) => {
                             mainCategories={props.mainCategories}
                             subCategories={props.subCategories}/>    
         
-      </Grid>      
+      </Grid> 
+
+      <Grid item xs={12}>
+      <MonthSankeyBudget      budget={props.budget}
+                              selectedYear={props.selectedYear}
+                              selectedMonth={props.selectedMonth}
+                              mainCategories={props.mainCategories}
+                              subCategories={props.subCategories}/>    
+        
+      </Grid>                  
+
+      <Grid item xs={12}>
+      <MonthSankeyEntry     entries={props.entries}
+                            selectedYear={props.selectedYear}
+                            selectedMonth={props.selectedMonth}
+                            mainCategories={props.mainCategories}
+                            subCategories={props.subCategories}/>    
+        
+      </Grid>            
       </>
     }
 
