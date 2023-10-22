@@ -40,6 +40,10 @@ import YearSankeyEntry from './BasicReport/YearSankeyEntry';
 import MonthSankeyEntry from './BasicReport/MonthSankeyEntry';
 import MonthSankeyBudget from './BasicReport/MonthSankeyBudget';
 import MonthHeatmapEntry from './BasicReport/MonthHeatmapEntry';
+import MonthTreeBudget from './BasicReport/MonthTreeBudget';
+import YearTreeBudget from './BasicReport/YearTreeBudget';
+import YearTreeEntry from './BasicReport/YearTreeEntry';
+import MonthTreeEntry from './BasicReport/MonthTreeEntry';
 
 //  MAIN FUNCTION 
 //-------------------------------------------------------//
@@ -88,14 +92,32 @@ const ReportManager = (props) => {
         
       </Grid>         
 
-      <Grid item xs={4}>
+      <Grid item xs={12}>
       <MonthHeatmapEntry    entries={props.entries}
                             selectedYear={props.selectedYear}
                             selectedMonth={props.selectedMonth}
                             mainCategories={props.mainCategories}
                             subCategories={props.subCategories}/>    
         
-      </Grid>              
+      </Grid>        
+
+      <Grid item xs={6}>
+      <MonthTreeBudget      budget={props.budget}
+                            selectedYear={props.selectedYear}
+                            selectedMonth={props.selectedMonth}
+                            mainCategories={props.mainCategories}
+                            subCategories={props.subCategories}/>    
+        
+      </Grid>          
+
+      <Grid item xs={6}>
+      <MonthTreeEntry       entries={props.entries}
+                            selectedYear={props.selectedYear}
+                            selectedMonth={props.selectedMonth}
+                            mainCategories={props.mainCategories}
+                            subCategories={props.subCategories}/>    
+        
+      </Grid>                   
 
       </>
     }
@@ -134,7 +156,25 @@ const ReportManager = (props) => {
                             mainCategories={props.mainCategories}
                             subCategories={props.subCategories}/>    
         
-      </Grid>            
+      </Grid>      
+
+      <Grid item xs={6}>
+      <YearTreeBudget       budget={props.budget}
+                            selectedYear={props.selectedYear}
+                            selectedMonth={props.selectedMonth}
+                            mainCategories={props.mainCategories}
+                            subCategories={props.subCategories}/>    
+        
+      </Grid>    
+
+      <Grid item xs={6}>
+      <YearTreeEntry        entries={props.entries}
+                            selectedYear={props.selectedYear}
+                            selectedMonth={props.selectedMonth}
+                            mainCategories={props.mainCategories}
+                            subCategories={props.subCategories}/>    
+        
+      </Grid>                      
       </>      
     }
 

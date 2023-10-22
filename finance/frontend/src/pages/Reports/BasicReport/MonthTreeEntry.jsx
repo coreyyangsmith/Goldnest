@@ -1,13 +1,14 @@
 //-------------------------------------------------------//
-//  File Name: YearTreeBudget.jsx
-//  Description: Sunburst Diagram for all Budget Items for SelectedYear
+//  File Name: MonthTreeEntry.jsx
+//  Description: Sunburst Diagram for all Entry Items for SelectedYear & SelectedMonth
 //
 //  Requirements:
 //      - Report Manager
-//      - Budget (all)
+//      - Entry (all)
 //      - Main Categories
 //      - Sub Categories 
 //      - Selected Year (prop)
+//      - Selected Month (prop)
 //
 //  Returns:
 //      - Sunburst Chart
@@ -32,7 +33,7 @@ import ReactEcharts from "echarts-for-react";
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const YearTreeBudget = (props) => {
+const MonthTreeEntry = (props) => {
 
   // My Hooks
   const [data, setData] = useState([]);
@@ -72,23 +73,27 @@ const YearTreeBudget = (props) => {
        * @param {*} subCategories Array of Sub Cateogry Names
        * @returns mappedBudgetSub: Array of Entries (Object) enriched with "matchingMainCategoryName" and "matchingMainCategoryID"
        */      
-      function getFilteredBudgets(mainCategories, subCategories) {
-        const budgetForYear = props.budget.filter(function(row) {
+      function getFilteredEntries(mainCategories, subCategories) {
+        const entryForYear = props.entries.filter(function(row) {
           return row.year == props.selectedYear;
         })
 
-        const mappedBudgetsMain = budgetForYear.map(budget => {
-          const matchingMainCategoryName = mainCategories.find(obj => obj === budget.sub_category.main_category.name);
-          return { ...budget, matchingMainCategoryName };
+        const entryForMonth = entryForYear.filter(function(row) {
+          return row.month == props.selectedMonth;
+        })      
+
+        const mappedEntriesMain = entryForMonth.map(entry => {
+          const matchingMainCategoryName = mainCategories.find(obj => obj === entry.main_category.name);
+          return { ...entry, matchingMainCategoryName };
         });    
 
-        const mappedBudgetsSub = mappedBudgetsMain.map(budget => {
-          const matchingSubCategoryID = subCategories.find(obj => obj === budget.sub_category.pk);
-          return { ...budget, matchingSubCategoryID };
-        });      
-        return mappedBudgetsSub
-      }        
-      const mappedBudgetsSub = getFilteredBudgets(mainCatData, subCatData);
+        const mappedEntriesSub = mappedEntriesMain.map(entry => {
+          const matchingSubCategoryID = subCategories.find(obj => obj === entry.sub_category.pk);
+          return { ...entry, matchingSubCategoryID };
+        });        
+        return mappedEntriesSub
+      }
+      const mappedEntriesSub = getFilteredEntries(mainCatData, subCatData);
 
       // Filter Budget Data into appropriate format
       // Sum based on category IDs
@@ -103,12 +108,12 @@ const YearTreeBudget = (props) => {
               sum: 0,
             };
           }
-          result[key].sum += item.amount; // Assuming each object has a 'sum' property
+          result[key].sum += item.expense; // Assuming each object has a 'sum' property
           result[key].name = item.sub_category.name;
 
           return result;
         }, {})}   
-      const mySummedSubCategories = groupAndSumByAttribute(mappedBudgetsSub, 'matchingSubCategoryID');
+      const mySummedSubCategories = groupAndSumByAttribute(mappedEntriesSub, 'matchingSubCategoryID');
       // Convert from one large object to array of objects
       const mySummedSubCategoriesFinal = Object.keys(mySummedSubCategories).map(key => ({ key, value: mySummedSubCategories[key]}));
 
@@ -217,7 +222,7 @@ const YearTreeBudget = (props) => {
   const option = {
     series: [
       {
-        name: 'Budget',
+        name: 'Entry',
         type: 'treemap',
         visibleMin: 0,
         label: {
@@ -241,7 +246,7 @@ const YearTreeBudget = (props) => {
 
   return (
   <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
-    <Typography variant="dashboard_heading">Yearly Budget Treechart</Typography>
+    <Typography variant="dashboard_heading">Monthly Entry Treechart</Typography>
     <Divider/>
     <ReactEcharts option={option} style={{height:"750px"}}/>  
   </Paper>)
@@ -251,4 +256,4 @@ const YearTreeBudget = (props) => {
 //  EXPORTS 
 //-------------------------------------------------------//
 
-export default YearTreeBudget
+export default MonthTreeEntry

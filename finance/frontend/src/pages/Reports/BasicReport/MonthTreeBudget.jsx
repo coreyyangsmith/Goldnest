@@ -1,6 +1,6 @@
 //-------------------------------------------------------//
-//  File Name: YearTreeBudget.jsx
-//  Description: Sunburst Diagram for all Budget Items for SelectedYear
+//  File Name: MonthTreeBudget.jsx
+//  Description: Sunburst Diagram for all Budget Items for SelectedYear & SelectedMonth
 //
 //  Requirements:
 //      - Report Manager
@@ -8,6 +8,7 @@
 //      - Main Categories
 //      - Sub Categories 
 //      - Selected Year (prop)
+//      - Selected Month (prop)
 //
 //  Returns:
 //      - Sunburst Chart
@@ -32,7 +33,8 @@ import ReactEcharts from "echarts-for-react";
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const YearTreeBudget = (props) => {
+const MonthTreeBudget = (props) => {
+
 
   // My Hooks
   const [data, setData] = useState([]);
@@ -77,7 +79,11 @@ const YearTreeBudget = (props) => {
           return row.year == props.selectedYear;
         })
 
-        const mappedBudgetsMain = budgetForYear.map(budget => {
+        const budgetForMonth = budgetForYear.filter(function(row) {
+          return row.month == props.selectedMonth;
+        })      
+
+        const mappedBudgetsMain = budgetForMonth.map(budget => {
           const matchingMainCategoryName = mainCategories.find(obj => obj === budget.sub_category.main_category.name);
           return { ...budget, matchingMainCategoryName };
         });    
@@ -241,7 +247,7 @@ const YearTreeBudget = (props) => {
 
   return (
   <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
-    <Typography variant="dashboard_heading">Yearly Budget Treechart</Typography>
+    <Typography variant="dashboard_heading">Monthly Budget Treechart</Typography>
     <Divider/>
     <ReactEcharts option={option} style={{height:"750px"}}/>  
   </Paper>)
@@ -251,4 +257,4 @@ const YearTreeBudget = (props) => {
 //  EXPORTS 
 //-------------------------------------------------------//
 
-export default YearTreeBudget
+export default MonthTreeBudget

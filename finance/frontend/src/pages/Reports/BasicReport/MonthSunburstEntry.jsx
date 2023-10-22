@@ -172,6 +172,7 @@ const MonthSunburstEntry = (props) => {
         }
       }
     }    
+    console.log(data); 
 
   }, [props])
 
