@@ -80,7 +80,6 @@ const MonthSunburstEntry = (props) => {
         })      
 
         const mappedEntriesMain = entryForMonth.map(entry => {
-          console.log(entry);          
           const matchingMainCategoryName = mainCategories.find(obj => obj === entry.main_category.name);
           return { ...entry, matchingMainCategoryName };
         });    

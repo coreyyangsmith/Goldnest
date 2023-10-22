@@ -39,6 +39,7 @@ import YearSankeyBudget from './BasicReport/YearSankeyBudget';
 import YearSankeyEntry from './BasicReport/YearSankeyEntry';
 import MonthSankeyEntry from './BasicReport/MonthSankeyEntry';
 import MonthSankeyBudget from './BasicReport/MonthSankeyBudget';
+import MonthHeatmapEntry from './BasicReport/MonthHeatmapEntry';
 
 //  MAIN FUNCTION 
 //-------------------------------------------------------//
@@ -85,7 +86,17 @@ const ReportManager = (props) => {
                             mainCategories={props.mainCategories}
                             subCategories={props.subCategories}/>    
         
-      </Grid>            
+      </Grid>         
+
+      <Grid item xs={4}>
+      <MonthHeatmapEntry    entries={props.entries}
+                            selectedYear={props.selectedYear}
+                            selectedMonth={props.selectedMonth}
+                            mainCategories={props.mainCategories}
+                            subCategories={props.subCategories}/>    
+        
+      </Grid>              
+
       </>
     }
 

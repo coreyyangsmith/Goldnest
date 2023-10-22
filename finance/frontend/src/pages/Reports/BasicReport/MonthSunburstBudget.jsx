@@ -84,7 +84,6 @@ const MonthSunburstBudget = (props) => {
         })      
 
         const mappedBudgetsMain = budgetForMonth.map(budget => {
-          console.log(budget);
           const matchingMainCategoryName = mainCategories.find(obj => obj === budget.sub_category.main_category.name);
           return { ...budget, matchingMainCategoryName };
         });    
