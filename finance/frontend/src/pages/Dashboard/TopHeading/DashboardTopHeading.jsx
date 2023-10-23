@@ -48,7 +48,7 @@ const DashboardTopHeading = (props) => {
                   display="flex"
                   justifyContent="center">
             <Typography variant='dashboard_card_heavy'>Hello, {currentUser.first_name} {currentUser.last_name}</Typography>
-            <Typography variant='dashboard_card_light'>Today is Sunday, October 8th 2023</Typography>
+            <Typography variant='dashboard_card_light'>Today is Sunday, October 23rd 2023</Typography>
           </Stack>
         </Grid>
 
