@@ -229,7 +229,8 @@ const YearTreeEntry = (props) => {
           show: true,
           height: 30,
           borderWidth: 5,
-          color: 'white'
+          color: 'white',
+          formatter: (v) => v.name + "\n" + "$" + parseFloat(v.value).toFixed(2)                
         },
         itemStyle: {
           borderColor: '#fff',

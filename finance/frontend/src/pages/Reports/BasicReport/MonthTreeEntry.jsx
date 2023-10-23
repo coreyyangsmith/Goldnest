@@ -105,12 +105,12 @@ const MonthTreeEntry = (props) => {
           if (!result[key]) {
             result[key] = {
               [attribute]: key,
-              sum: 0,
+              sum: Number(0),
             };
           }
-          result[key].sum += item.expense; // Assuming each object has a 'sum' property
+          result[key].sum = parseFloat(result[key].sum) + parseFloat(Number(item.expense).toFixed(2)); // Assuming each object has a 'sum' property
           result[key].name = item.sub_category.name;
-
+          console.log(result);
           return result;
         }, {})}   
       const mySummedSubCategories = groupAndSumByAttribute(mappedEntriesSub, 'matchingSubCategoryID');
@@ -174,6 +174,7 @@ const MonthTreeEntry = (props) => {
         {
           const finalData = combineLists(myCategoryLabelsFinal, mySummedSubCategoriesFinal)
           setData(finalData);
+          console.log(finalData);
         }
       }     
     }    
@@ -227,13 +228,15 @@ const MonthTreeEntry = (props) => {
         visibleMin: 0,
         label: {
           show: true,
-          formatter: '{b}\n${c}'
+          formatter: '{b}\n${c}',
+          valueFormatter: (value) => Number(value).toFixed(2),
         },
         upperLabel: {
           show: true,
           height: 30,
           borderWidth: 5,
-          color: 'white'
+          color: 'white',        
+          formatter: (v) => v.name + "\n" + "$" + parseFloat(v.value).toFixed(2)      
         },
         itemStyle: {
           borderColor: '#fff',
