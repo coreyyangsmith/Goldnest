@@ -216,11 +216,16 @@ const YearTreeEntry = (props) => {
   }  
 
   const option = {
+    tooltip: {
+      show: true,
+      formatter: '{a} <br> Category : {b} <br> Value : ${c}'
+    },    
     series: [
       {
         name: 'Entry',
         type: 'treemap',
         visibleMin: 0,
+        roam: 'move',
         label: {
           show: true,
           formatter: '{b}\n${c}'

@@ -215,10 +215,15 @@ const YearTreeBudget = (props) => {
   }  
 
   const option = {
+    tooltip: {
+      show: true,
+      formatter: '{a} <br> Category : {b} <br> Value : ${c}'
+    },    
     series: [
       {
         name: 'Budget',
         type: 'treemap',
+        roam: 'move',        
         visibleMin: 0,
         label: {
           show: true,
