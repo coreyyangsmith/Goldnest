@@ -1,6 +1,6 @@
 //-------------------------------------------------------//
-//  File Name: MonthHeatmapEntry.jsx
-//  Description: Sunburst Diagram for all Entry Items for SelectedYear & SelectedMonth
+//  File Name: DashboardHeatmap.jsx
+//  Description: Heatmap Diagram for all Entry Items for SelectedYear & SelectedMonth, filtered by SelectedCategory
 //
 //  Requirements:
 //      - Report Manager
@@ -12,7 +12,7 @@
 //      - Sunburst Chart
 //
 // Created By: Corey Yang-Smith
-// Date: October 20th, 2023
+// Date: October 23rd, 2023
 //-------------------------------------------------------//
 
 
@@ -32,7 +32,7 @@ import ReactEcharts from "echarts-for-react";
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const MonthHeatmapEntry = (props) => {
+const DashboardHeatmap = (props) => {
 
   // My Hooks
   const [data, setData] = useState([]);
@@ -62,12 +62,16 @@ const MonthHeatmapEntry = (props) => {
             return row.month == props.selectedMonth;
         })              
 
+        const entriesByMainCategory = entiresByMonth.filter(function(row) {
+          return row.main_category.name == props.selectedMain.name;
+      })              
+
         // Create new map to store cumulative amounts
         const entriesByDay = new Map();   
         let maxVal = 0;
         
         //Iterate through entries and accumulative amounts foreach day
-        entiresByMonth.forEach((entry) => {
+        entriesByMainCategory.forEach((entry) => {
           const date = new Date(entry.date);
           const day = date.getDate();
           const month = date.getMonth();
@@ -115,23 +119,22 @@ const MonthHeatmapEntry = (props) => {
       max: maxValue,
       orient: 'horizontal',
       bottom: "0%",
-      right: "5%",
+      right: "0%",
       calculable: true,
     },
     calendar: {
       orient: 'vertical',
       yearLabel: {
-        margin: 40
+        show: false
+      },
+      monthLabel: {
+        margin: 10,
       },
       dayLabel: {
         firstDay: 0,
         nameMap: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
       },
-      monthLabel: {
-        nameMap: 'cn',
-        margin: 10
-      },
-      cellSize: 50,
+      cellSize: 32,
       range: calendarMonth,
       itemStyle: {
         borderWidth: 1
@@ -149,7 +152,7 @@ const MonthHeatmapEntry = (props) => {
   <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
     <Typography variant="dashboard_heading">Monthly Spending Heatmap</Typography>
     <Divider/>
-    <ReactEcharts option={option} style={{height:"350px"}}/>  
+    <ReactEcharts option={option} style={{}}/>  
   </Paper>)
 }
 
@@ -157,4 +160,4 @@ const MonthHeatmapEntry = (props) => {
 //  EXPORTS 
 //-------------------------------------------------------//
 
-export default MonthHeatmapEntry
+export default DashboardHeatmap

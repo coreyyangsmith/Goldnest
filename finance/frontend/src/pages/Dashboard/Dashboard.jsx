@@ -35,6 +35,7 @@ import { useMainCategory } from '../../hooks/useMainCategory';
 import { useSubCategory } from '../../hooks/useSubCategory';
 import { useEntries } from '../../hooks/useEntriesReport';
 import { useBudget } from '../../hooks/useBudgetReport';
+import DashboardHeatmap from './Heatmap/DashboardHeatmap';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -81,10 +82,12 @@ const Dashboard = () => {
                                         selectedMain={selectedMain}/>
         </Grid>          
         <Grid item xs={4}>         
-            <DashboardSpendingOverview  selectedYear={selectedYear} // REPLACE WITH ??
+            <DashboardHeatmap           selectedYear={selectedYear}
                                         selectedMonth={selectedMonth}
                                         entries={entries}
-                                        budgets={budgets}/>                                        
+                                        mainCategories={mainCategories}
+                                        subCategories={subCategories}
+                                        selectedMain={selectedMain}/>                                        
         </Grid>
 
         <Grid item xs={8}>
