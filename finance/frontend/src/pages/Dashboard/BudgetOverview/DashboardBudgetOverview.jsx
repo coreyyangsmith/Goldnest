@@ -45,7 +45,7 @@ const DashboardBudgetOverview = (props) => {
     const [budgetSliderPercentage, setBugetSliderPercentage] = useState(budgetSliderCurr/budgetSliderMax)
     const [entrySliderPercentage, setEntrySliderPercentage] = useState(budgetSliderCurr/budgetSliderMax)
 
-    const [daysPassed, setDaysPassed] = useState(5)
+    const [daysPassed, setDaysPassed] = useState("")
     const [daysRemaining, setDaysRemaining] = useState(25)
 
     const [budgetSpendPerDay, setBudgetSpendPerDay] = useState(0)
@@ -99,7 +99,7 @@ const DashboardBudgetOverview = (props) => {
         const daysInMonth =  new Date(props.selectedYear, props.selectedMonth + 1, 0).getDate();           
         if (month == props.selectedMonth && year == props.selectedYear)
         {
-            const timeLeft = daysInMonth - today        
+            const timeLeft = daysInMonth - today       
             setDaysPassed(today);
             setDaysRemaining(timeLeft);
             setTimeframe("Current");               
@@ -131,10 +131,10 @@ const DashboardBudgetOverview = (props) => {
         const myMaxBudget = Math.round(mySummedBudget);
         setBudgetSliderMax(myMaxBudget);
 
-        const myCurrBudget = Math.round(mySummedBudget/daysPassed)
+        const myCurrBudget = Math.round(mySummedBudget* (daysPassed/daysInMonth))
         setBudgetSliderCurr(myCurrBudget)
 
-        const myCurrBudgetPercentage = Math.round((mySummedBudget/daysPassed)/mySummedBudget * 100)
+        const myCurrBudgetPercentage = Math.round((daysPassed)/daysInMonth * 100)
         setBugetSliderPercentage(myCurrBudgetPercentage)
 
         // Set Textual Information

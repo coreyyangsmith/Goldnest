@@ -21,10 +21,10 @@
 //-------------------------------------------------------//
 
 // React Import
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // MUI Imports
-import { Paper, Grid, Stack, Typography, Select, MenuItem } from '@mui/material'
+import { Paper, Grid, Stack, Typography, Select, MenuItem, tableBodyClasses } from '@mui/material'
 
 // My Hooks
 import { useCurrentUser } from '../../../hooks/useCurrentUser'
@@ -37,6 +37,22 @@ const DashboardTopHeading = (props) => {
 
   // Custom Hooks
   const { currentUser } = useCurrentUser();
+  const [currentDateString, setCurrentDateString] = useState("");
+
+  // Set Date String
+  useEffect(() => {
+
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+
+    const date = new Date();
+    const dateString = date.toLocaleDateString("en-US", options);
+    setCurrentDateString(dateString);
+  }, [])
 
   return (
     <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
@@ -48,7 +64,7 @@ const DashboardTopHeading = (props) => {
                   display="flex"
                   justifyContent="center">
             <Typography variant='dashboard_card_heavy'>Hello, {currentUser.first_name} {currentUser.last_name}</Typography>
-            <Typography variant='dashboard_card_light'>Today is Sunday, October 23rd 2023</Typography>
+            <Typography variant='dashboard_card_light'>Today is {currentDateString}</Typography>
           </Stack>
         </Grid>
 

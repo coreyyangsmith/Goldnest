@@ -67,7 +67,6 @@ const DashboardHeatmap = (props) => {
         
         var entriesToUse;
         
-        console.log(props.selectedMain);
         if (props.selectedMain == "") {
           entriesToUse = entiresByMonth;
         }
@@ -167,7 +166,7 @@ const DashboardHeatmap = (props) => {
   };  
 
   return (
-  <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
+  <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}  style={{alignItems: 'stretch'}}>
     <Typography variant="dashboard_heading">Monthly Spending Heatmap</Typography>
     <Divider/>
     <ReactEcharts option={option} style={{}}/>  

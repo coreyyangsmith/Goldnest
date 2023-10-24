@@ -21,11 +21,11 @@ import { useEffect, useState } from 'react';
 
 // My Page Imports
 import DashboardTopHeading from './TopHeading/DashboardTopHeading'
+import DashboardHeatmap from './Heatmap/DashboardHeatmap';
 import DashboardBudgetOverview from './BudgetOverview/DashboardBudgetOverview'
-import DashboardSpendingOverview from './SpendingOverview/DashboardSpendingOverview'
-import DashboardCategoryBreakdown from './CategoryBreakdown/DashboardCategoryBreakdown';
-import DashboardSubCategoryBreakdown from './CategoryBreakdown/DashboardSubCategoryBreakdown';
-import DashboardSpendingCategoryOverview from './SpendingOverview/DashboardSpendingCategoryOverview';
+import DashboardCombinedBreakdown from './CategoryBreakdown/DashboardCombinedBreakdown';
+import DashboardSpendingCombinedOverview from './SpendingOverview/DashboardSpendingCombinedOverview';
+
 
 // MUI Imports
 import { Grid } from '@mui/material'
@@ -35,7 +35,8 @@ import { useMainCategory } from '../../hooks/useMainCategory';
 import { useSubCategory } from '../../hooks/useSubCategory';
 import { useEntries } from '../../hooks/useEntriesReport';
 import { useBudget } from '../../hooks/useBudgetReport';
-import DashboardHeatmap from './Heatmap/DashboardHeatmap';
+
+
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -48,7 +49,7 @@ const Dashboard = () => {
     const { mainCategories } = useMainCategory();
     const { subCategories, setSubCategories } = useSubCategory(selectedMain);
     const { entries } = useEntries();
-    const { budgets } = useBudget();            
+    const { budgets } = useBudget();           
 
     // Grab Today for selectedYear, selectedMonth, for initial load only!
     useEffect(() => {
@@ -91,38 +92,23 @@ const Dashboard = () => {
         </Grid>
 
         <Grid item xs={8}>
-            <DashboardCategoryBreakdown selectedYear={selectedYear}
+            <DashboardCombinedBreakdown selectedYear={selectedYear}
                                         selectedMonth={selectedMonth}
                                         entries={entries}
                                         budgets={budgets}
-                                        mainCategories={mainCategories}/>
+                                        mainCategories={mainCategories}
+                                        subCategories={subCategories}
+                                        selectedMain={selectedMain}/>
         </Grid>
 
         <Grid item xs={4}>
-            <DashboardSpendingOverview  selectedYear={selectedYear}
-                                        selectedMonth={selectedMonth}
-                                        entries={entries}
-                                        budgets={budgets}/>   
-        </Grid>          
-
-        <Grid item xs={8}>
-            <DashboardSubCategoryBreakdown  selectedYear={selectedYear}
-                                            selectedMonth={selectedMonth}
-                                            entries={entries}
-                                            budgets={budgets}
-                                            subCategories={subCategories}
-                                            selectedMain={selectedMain}/>
-        </Grid>   
-      
-        <Grid item xs={4}>
-            <DashboardSpendingCategoryOverview  selectedYear={selectedYear}
+            <DashboardSpendingCombinedOverview  selectedYear={selectedYear}
                                                 selectedMonth={selectedMonth}
                                                 entries={entries}
                                                 budgets={budgets}
                                                 selectedMain={selectedMain}/>   
-
-
-        </Grid>                
+        </Grid>          
+               
     </Grid>
     </>)
 }

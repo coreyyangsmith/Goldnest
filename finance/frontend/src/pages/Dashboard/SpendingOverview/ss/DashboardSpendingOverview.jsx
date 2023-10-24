@@ -26,7 +26,7 @@ import { Divider, Paper, Stack, Typography } from "@mui/material";
 import DashboardBudgetExpensesLineChart from '../SpendingOverview/DashboardBudgetExpensesLineChart'
 
 // My Custom Components
-import CustomSlider from "../../../components/CustomSlider"
+import CustomSlider from "../../../../components/CustomSlider"
 
 
 //  MAIN FUNCTION
