@@ -25,15 +25,7 @@ def run():
     SubSubCategory.objects.all().delete()      
     SubCategory.objects.all().delete()   
     MainCategory.objects.all().delete()
-
     User.objects.all().delete()
-
-
-
- 
-
-
-
 
     # Step 2: Populate
     user.run()
@@ -44,5 +36,3 @@ def run():
     entity.run()
     entry.run()
     account.run()
-
-    

@@ -46,7 +46,6 @@ const DashboardHeatmap = (props) => {
 
     if (props.selectedYear !== "" && props.selectedMonth !== "")
     {
-
       /**
        * Gets the sum of entries by each day in a month, and formats for heatmap echarts
        * @returns Array of Objects with {Date (String) and Entry Summed Value (Float)}
@@ -64,14 +63,24 @@ const DashboardHeatmap = (props) => {
 
         const entriesByMainCategory = entiresByMonth.filter(function(row) {
           return row.main_category.name == props.selectedMain.name;
-      })              
+        })     
+        
+        var entriesToUse;
+        
+        console.log(props.selectedMain);
+        if (props.selectedMain == "") {
+          entriesToUse = entiresByMonth;
+        }
+        else {
+          entriesToUse = entriesByMainCategory;
+        }
 
         // Create new map to store cumulative amounts
         const entriesByDay = new Map();   
         let maxVal = 0;
         
         //Iterate through entries and accumulative amounts foreach day
-        entriesByMainCategory.forEach((entry) => {
+        entriesToUse.forEach((entry) => {
           const date = new Date(entry.date);
           const day = date.getDate();
           const month = date.getMonth();
@@ -118,8 +127,8 @@ const DashboardHeatmap = (props) => {
       min: 0,
       max: maxValue,
       orient: 'horizontal',
-      bottom: "0%",
-      right: "0%",
+      top: "bottom",
+      left: "right",
       calculable: true,
     },
     calendar: {
@@ -138,13 +147,22 @@ const DashboardHeatmap = (props) => {
       range: calendarMonth,
       itemStyle: {
         borderWidth: 1
-      }
+      },
+      left: 'center',
+      top: 'middle',
     },
     series: {
       type: 'heatmap',
       coordinateSystem: 'calendar',
       data: data      
-    }
+    },
+    title: {
+      show: true,
+      text: (props.selectedMain.name == undefined) ? "All Categories" : props.selectedMain.name,
+      textStyle: {
+        fontSize: 12
+      },
+    },
 
   };  
 

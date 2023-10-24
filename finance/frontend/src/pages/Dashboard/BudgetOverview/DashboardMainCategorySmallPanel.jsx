@@ -35,7 +35,11 @@ const DashboardMainCategorySmallPanel = (props) => {
   const [summedBudget, setSummedBudget] = useState(0)
 
   const handleClick = (mainCategory) => {
-    props.setSelectedMain(mainCategory);
+    // Deselect
+      if (props.selectedMain == mainCategory)
+        props.setSelectedMain("")
+      else
+        props.setSelectedMain(mainCategory); // set Selected
   }
 
   // Load Budget & Entry Data, and Sum based on selected year/month
