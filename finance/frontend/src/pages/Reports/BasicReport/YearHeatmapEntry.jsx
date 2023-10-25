@@ -84,7 +84,7 @@ const YearHeatmapEntry = (props) => {
 					new Date(props.selectedYear, 1, 1).getFullYear() % 4 == 0 ? 366 : 365;
 
 				for (let day = 1; day <= daysinYear; day++) {
-					let iterDate = new Date(props.selectedYear, 0, 0);
+					let iterDate = new Date(props.selectedYear, 1, 0);
 					iterDate.setDate(day);
 					iterDate =
 						iterDate.getFullYear() +
@@ -97,7 +97,6 @@ const YearHeatmapEntry = (props) => {
 						maxVal = entriesByDay.get(iterDate);
 
 					if (entriesByDay.get(iterDate) !== undefined) {
-						console.log('Executing for' + day);
 						entryArray.push([
 							iterDate,
 							Number(entriesByDay.get(iterDate).toFixed(2)),
@@ -119,6 +118,17 @@ const YearHeatmapEntry = (props) => {
 	const option = {
 		tooltip: {
 			position: 'top',
+			formatter: (param) => {
+				console.log(param);
+				const makeCircle = (color) => {
+					return (
+						'<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' +
+						color +
+						'"></span>'
+					);
+				};
+				return makeCircle(param.color) + '$' + param.value[1].toFixed(2);
+			},
 		},
 		visualMap: {
 			// slider
