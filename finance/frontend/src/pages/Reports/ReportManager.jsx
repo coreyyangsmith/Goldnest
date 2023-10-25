@@ -18,19 +18,18 @@
 // Updated: October 11th, 2023
 //-------------------------------------------------------//
 
-
-//  IMPORTS 
+//  IMPORTS
 //-------------------------------------------------------//
 
 // React Imports
-import React from 'react'
+import React from 'react';
 
 // MUI Imports
 import { Box, Grid } from '@mui/material/';
 
 // My Components
 //// Sunburst
-import YearSunburstBudget from './BasicReport/YearSunburstBudget'
+import YearSunburstBudget from './BasicReport/YearSunburstBudget';
 import YearSunburstEntry from './BasicReport/YearSunburstEntry';
 import MonthSunburstBudget from './BasicReport/MonthSunburstBudget';
 import MonthSunburstEntry from './BasicReport/MonthSunburstEntry';
@@ -44,179 +43,263 @@ import MonthTreeBudget from './BasicReport/MonthTreeBudget';
 import YearTreeBudget from './BasicReport/YearTreeBudget';
 import YearTreeEntry from './BasicReport/YearTreeEntry';
 import MonthTreeEntry from './BasicReport/MonthTreeEntry';
+import YearHeatmapEntry from './BasicReport/YearHeatmapEntry';
 
-//  MAIN FUNCTION 
+//  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const ReportManager = (props) => {
-  // My Custom Hooks
+	// My Custom Hooks
 
-  function GenerateReport(props) {
-    // BASIC MONTHLY - TODO
-    if (props.selectedReport === "basicMonthly" && (props.selectedYear !== "" && props.selectedMonth !== ""))
-    {
-      console.log("generate basic monthly")
-      return <>
-      <Grid item xs={6}>
-        <MonthSunburstBudget  budget={props.budget}
-                              selectedYear={props.selectedYear}
-                              selectedMonth={props.selectedMonth}
-                              mainCategories={props.mainCategories}
-                              subCategories={props.subCategories}/>           
-      </Grid>      
+	function GenerateReport(props) {
+		// BASIC MONTHLY - TODO
+		if (
+			props.selectedReport === 'basicMonthly' &&
+			props.selectedYear !== '' &&
+			props.selectedMonth !== ''
+		) {
+			console.log('generate basic monthly');
+			return (
+				<>
+					<Grid
+						item
+						xs={6}
+					>
+						<MonthSunburstBudget
+							budget={props.budget}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={6}>
-      <MonthSunburstEntry   entries={props.entries}
-                            selectedYear={props.selectedYear}
-                            selectedMonth={props.selectedMonth}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid> 
+					<Grid
+						item
+						xs={6}
+					>
+						<MonthSunburstEntry
+							entries={props.entries}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={12}>
-      <MonthSankeyBudget      budget={props.budget}
-                              selectedYear={props.selectedYear}
-                              selectedMonth={props.selectedMonth}
-                              mainCategories={props.mainCategories}
-                              subCategories={props.subCategories}/>    
-        
-      </Grid>                  
+					<Grid
+						item
+						xs={12}
+					>
+						<MonthSankeyBudget
+							budget={props.budget}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={12}>
-      <MonthSankeyEntry     entries={props.entries}
-                            selectedYear={props.selectedYear}
-                            selectedMonth={props.selectedMonth}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid>         
+					<Grid
+						item
+						xs={12}
+					>
+						<MonthSankeyEntry
+							entries={props.entries}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={12}>
-      <MonthHeatmapEntry    entries={props.entries}
-                            selectedYear={props.selectedYear}
-                            selectedMonth={props.selectedMonth}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid>        
+					<Grid
+						item
+						xs={12}
+					>
+						<MonthHeatmapEntry
+							entries={props.entries}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={6}>
-      <MonthTreeBudget      budget={props.budget}
-                            selectedYear={props.selectedYear}
-                            selectedMonth={props.selectedMonth}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid>          
+					<Grid
+						item
+						xs={6}
+					>
+						<MonthTreeBudget
+							budget={props.budget}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={6}>
-      <MonthTreeEntry       entries={props.entries}
-                            selectedYear={props.selectedYear}
-                            selectedMonth={props.selectedMonth}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid>                   
+					<Grid
+						item
+						xs={6}
+					>
+						<MonthTreeEntry
+							entries={props.entries}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
+				</>
+			);
+		}
 
-      </>
-    }
+		// BASIC YEARLY - WIP
+		if (props.selectedReport === 'basicYearly' && props.selectedYear !== '') {
+			console.log('generating Report');
+			return (
+				<>
+					<Grid
+						item
+						xs={6}
+					>
+						<YearSunburstBudget
+							budget={props.budget}
+							selectedYear={props.selectedYear}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-    // BASIC YEARLY - WIP
-    if (props.selectedReport === "basicYearly" && (props.selectedYear !== ""))
-    {
-      console.log("generating Report");
-      return <>
-      <Grid item xs={6}>
-        <YearSunburstBudget budget={props.budget}
-                            selectedYear={props.selectedYear}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>
-      </Grid>
-    
-      <Grid item xs={6}>
-      <YearSunburstEntry    entries={props.entries}
-                            selectedYear={props.selectedYear}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid>
+					<Grid
+						item
+						xs={6}
+					>
+						<YearSunburstEntry
+							entries={props.entries}
+							selectedYear={props.selectedYear}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={12}>
-      <YearSankeyBudget     budget={props.budget}
-                            selectedYear={props.selectedYear}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid>      
+					<Grid
+						item
+						xs={12}
+					>
+						<YearSankeyBudget
+							budget={props.budget}
+							selectedYear={props.selectedYear}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={12}>
-      <YearSankeyEntry      entries={props.entries}
-                            selectedYear={props.selectedYear}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid>      
+					<Grid
+						item
+						xs={12}
+					>
+						<YearSankeyEntry
+							entries={props.entries}
+							selectedYear={props.selectedYear}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={6}>
-      <YearTreeBudget       budget={props.budget}
-                            selectedYear={props.selectedYear}
-                            selectedMonth={props.selectedMonth}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid>    
+					<Grid
+						item
+						xs={6}
+					>
+						<YearTreeBudget
+							budget={props.budget}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-      <Grid item xs={6}>
-      <YearTreeEntry        entries={props.entries}
-                            selectedYear={props.selectedYear}
-                            selectedMonth={props.selectedMonth}
-                            mainCategories={props.mainCategories}
-                            subCategories={props.subCategories}/>    
-        
-      </Grid>                      
-      </>      
-    }
+					<Grid
+						item
+						xs={6}
+					>
+						<YearTreeEntry
+							entries={props.entries}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
 
-    // PRO MONTHLY - TODO
-    if (props.selectedReport === "proMonthly" && (props.selectedYear !== undefined && props.selectedMonth !== undefined))
-    {
-      console.log("generate pro monthly")
-    }
+					<Grid
+						item
+						xs={12}
+					>
+						<YearHeatmapEntry
+							entries={props.entries}
+							selectedYear={props.selectedYear}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
+				</>
+			);
+		}
 
-    // PRO YEARLY - TODO
-    if (props.selectedReport === "proYearly" && (props.selectedYear !== undefined))
-    {
-      console.log("generate pro yearly")      
-    }    
+		// PRO MONTHLY - TODO
+		if (
+			props.selectedReport === 'proMonthly' &&
+			props.selectedYear !== undefined &&
+			props.selectedMonth !== undefined
+		) {
+			console.log('generate pro monthly');
+		}
 
-    // POWER MONTHLY - TODO
-    if (props.selectedReport === "powerMonthly" && (props.selectedYear !== undefined && props.selectedMonth !== undefined))
-    {
-      console.log("generate power monthly")
-    }
+		// PRO YEARLY - TODO
+		if (
+			props.selectedReport === 'proYearly' &&
+			props.selectedYear !== undefined
+		) {
+			console.log('generate pro yearly');
+		}
 
-    // POWER YEARLY - TODO
-    if (props.selectedReport === "powerYearly" && (props.selectedYear !== undefined))
-    {
-      console.log("generate power yearly")
-    }
+		// POWER MONTHLY - TODO
+		if (
+			props.selectedReport === 'powerMonthly' &&
+			props.selectedYear !== undefined &&
+			props.selectedMonth !== undefined
+		) {
+			console.log('generate power monthly');
+		}
 
-    // CUSTOM - TODO
-    // TODO ADVANCED CUSTOM PANEL
-  }
-  
-  return (
-<>
-<Grid container spacing={2}>
-    {GenerateReport(props)}
-</Grid>
-</>
-  )
-}
+		// POWER YEARLY - TODO
+		if (
+			props.selectedReport === 'powerYearly' &&
+			props.selectedYear !== undefined
+		) {
+			console.log('generate power yearly');
+		}
 
+		// CUSTOM - TODO
+		// TODO ADVANCED CUSTOM PANEL
+	}
+
+	return (
+		<>
+			<Grid
+				container
+				spacing={2}
+			>
+				{GenerateReport(props)}
+			</Grid>
+		</>
+	);
+};
 
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default ReportManager
+export default ReportManager;
