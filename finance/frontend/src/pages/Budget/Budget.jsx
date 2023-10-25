@@ -12,12 +12,11 @@
 // Date: September 23rd, 2023
 //-------------------------------------------------------//
 
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Imports
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 // MUI Imports
 import { Box, Stack } from "@mui/material";
@@ -28,75 +27,82 @@ import MainCategoriesList from "./MainCategoriesList";
 import MainCategoryForm from "./MainCategoryForm";
 import SubCategoriesList from "./SubCategoriesList";
 import SubCategoryForm from "./SubCategoryForm";
-import BudgetList from './BudgetList';
+import BudgetList from "./BudgetList";
 
-// Custom Hooks 
-import { useMainCategory } from '../../hooks/useMainCategory';
-import { useSubCategory } from '../../hooks/useSubCategory';
+// Custom Hooks
+import { useMainCategory } from "../../hooks/useMainCategory";
+import { useSubCategory } from "../../hooks/useSubCategory";
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const Budget = () => {
-    const [budget, setBudget] = useState([])
-    const [selectedMain, setSelectedMain] = useState("") //used for button press and dynamic gen
-    
-    const [formSubmitted, setFormSubmitted] = useState(1);
-    const [selectedSub, setSelectedSub] = useState("")      
+  const [budget, setBudget] = useState([]);
+  const [selectedMain, setSelectedMain] = useState(""); //used for button press and dynamic gen
 
-    const { mainCategories, setMainCategories } = useMainCategory();
-    const { subCategories, setSubCategories } = useSubCategory(selectedMain);
+  const [formSubmitted, setFormSubmitted] = useState(1);
+  const [selectedSub, setSelectedSub] = useState("");
 
-    return (
+  const { mainCategories, setMainCategories } = useMainCategory();
+  const { subCategories, setSubCategories } = useSubCategory(selectedMain);
+
+  return (
     <>
-        <h1>Welcome to My Budget</h1>
-        <Stack>
-            <Grid container spacing={2}>
-                <Grid item xs={4}>
-                    <h2>Main Categories</h2>
-                    <Box>
-                        <MainCategoriesList setSelectedMain={setSelectedMain}
-                                            selectedMain={selectedMain}
-                                            formSubmitted={formSubmitted}
-                                            mainCategories={mainCategories}
-                                            setMainCategories={setMainCategories}
-                                            setSelectedSub={setSelectedSub}/>
+      <h1>Welcome to My Budget</h1>
+      <Stack>
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <h2>Main Categories</h2>
+            <Box>
+              <MainCategoriesList
+                setSelectedMain={setSelectedMain}
+                selectedMain={selectedMain}
+                formSubmitted={formSubmitted}
+                mainCategories={mainCategories}
+                setMainCategories={setMainCategories}
+                setSelectedSub={setSelectedSub}
+              />
 
-                        <MainCategoryForm   formSubmitted={formSubmitted}
-                                            setFormSubmitted={setFormSubmitted}
-                                            setMainCategories={setMainCategories}/>
-                    </Box>
-                </Grid>
+              <MainCategoryForm
+                formSubmitted={formSubmitted}
+                setFormSubmitted={setFormSubmitted}
+                setMainCategories={setMainCategories}
+              />
+            </Box>
+          </Grid>
 
-                <Grid item xs={4}>
-                    <h2>Sub Categories</h2>
-                    <Box>
-                        <SubCategoriesList  selectedMain={selectedMain}
-                                            selectedSub={selectedSub} 
-                                            setSelectedSub={setSelectedSub}
-                                            subCategories={subCategories}
-                                            setSubCategories={setSubCategories}/>
+          <Grid item xs={4}>
+            <h2>Sub Categories</h2>
+            <Box>
+              <SubCategoriesList
+                selectedMain={selectedMain}
+                selectedSub={selectedSub}
+                setSelectedSub={setSelectedSub}
+                subCategories={subCategories}
+                setSubCategories={setSubCategories}
+              />
 
-                        <SubCategoryForm    setSubCategories={setSubCategories}
-                                            selectedMain={selectedMain} //used
-                                            setSelectedSub={setSelectedSub}
-                                            setBudget={setBudget}
-                                            mainCategories={mainCategories}/>
-                    </Box>
-                </Grid>
+              <SubCategoryForm
+                setSubCategories={setSubCategories}
+                selectedMain={selectedMain} //used
+                setSelectedSub={setSelectedSub}
+                setBudget={setBudget}
+                mainCategories={mainCategories}
+              />
+            </Box>
+          </Grid>
 
-                <Grid item xs={4}>
-                    <h2>Monthly Budget</h2>
-                    <Box>
-                        <BudgetList selectedSub={selectedSub}/>
-                    </Box>
-                </Grid>              
-            </Grid>
-        </Stack>
+          <Grid item xs={4}>
+            <h2>Monthly Budget</h2>
+            <Box>
+              <BudgetList selectedSub={selectedSub} />
+            </Box>
+          </Grid>
+        </Grid>
+      </Stack>
     </>
-
-)}
-
+  );
+};
 
 //  EXPORTS
 //-------------------------------------------------------//

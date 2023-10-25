@@ -12,53 +12,50 @@
 // Date: September 24rd, 2023
 //-------------------------------------------------------//
 
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Import
-import React from 'react'
+import React from "react";
 
 // MUI Imports
-import { Container, Stack } from '@mui/material';
+import { Container, Stack } from "@mui/material";
 
 // Routing
 import { Route, Routes } from "react-router-dom";
 
 // My Page Imports
-import LandingNav from './LandingNav';
-import LandingFooter from './LandingFooter';
+import LandingNav from "./LandingNav";
+import LandingFooter from "./LandingFooter";
 
-import Contact from './Contact';
-import Register from '../Register/Register'
-import Login from '../Login/Login.jsx'
-import Home from './Home';
+import Contact from "./Contact";
+import Register from "../Register/Register";
+import Login from "../Login/Login.jsx";
+import Home from "./Home";
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const Landing = () => {
-    return <>
-    <LandingNav/>
+  return (
+    <>
+      <LandingNav />
 
-    <Container disableGutters>
-        <Stack direction="column" spacing={2}>
-                                
-        </Stack>
-        <Routes>      
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />         
-        </Routes>  
+      <Container disableGutters>
+        <Stack direction="column" spacing={2}></Stack>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </Container>
 
-    </Container>
-
-    <LandingFooter/>
-
+      <LandingFooter />
     </>
-}
+  );
+};
 
-//  EXPORTS 
+//  EXPORTS
 //-------------------------------------------------------//
 
 export default Landing;

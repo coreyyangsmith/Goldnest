@@ -13,84 +13,74 @@
 // Updated: October 4th, 2023
 //-------------------------------------------------------//
 
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Import
-import React from 'react'
+import React from "react";
 
 // Routing
-import StyledLink from '../../components/StyledLink'
-import StyledHashLink from '../../components/StyledHashLink';
-import StyledHomeLink from '../../components/StyledHomeHashLink';
-
+import StyledLink from "../../components/StyledLink";
+import StyledHashLink from "../../components/StyledHashLink";
+import StyledHomeLink from "../../components/StyledHomeHashLink";
 
 // React Router Import
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 // MUI Import
-import { AppBar, Toolbar, Typography } from '@mui/material'
-import { Grid } from '@mui/material/'
+import { AppBar, Toolbar, Typography } from "@mui/material";
+import { Grid } from "@mui/material/";
 
 // My Components
-import LandingNavDrawer from './LandingNavDrawer';
+import LandingNavDrawer from "./LandingNavDrawer";
 
 //  STYLES
 //-------------------------------------------------------//
 
 const toolbarSX = {
-    display: 'flex',
-    justifyContent: 'center',
-    border: '1px solid #bbb'
+  display: "flex",
+  justifyContent: "center",
+  border: "1px solid #bbb",
 };
-
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const LandingNavTablet = () => {
   return (
-
-    <AppBar color="background" position='sticky' elevation={0}>
-        <Toolbar variant="regular" sx={toolbarSX} >
-
-        <Grid container 
-              justifyContent="space-evenly"
-              alignItems="stretch">
-
-          <Grid container 
-                item 
-                xs={6}
-                direction="row"   
-                justifyContent="flex-start"         
-                alignItems="center">   
-            <StyledHomeLink to="/">    
-            <Typography variant='landing_title'>GOLDNEST</Typography>  
+    <AppBar color="background" position="sticky" elevation={0}>
+      <Toolbar variant="regular" sx={toolbarSX}>
+        <Grid container justifyContent="space-evenly" alignItems="stretch">
+          <Grid
+            container
+            item
+            xs={6}
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="center"
+          >
+            <StyledHomeLink to="/">
+              <Typography variant="landing_title">GOLDNEST</Typography>
             </StyledHomeLink>
           </Grid>
 
-          <Grid container 
-                item 
-                xs={6}
-                direction="row"   
-                justifyContent="flex-end"            
-                alignItems="center">          
-            <LandingNavDrawer/>
-          </Grid>          
-
-
+          <Grid
+            container
+            item
+            xs={6}
+            direction="row"
+            justifyContent="flex-end"
+            alignItems="center"
+          >
+            <LandingNavDrawer />
+          </Grid>
         </Grid>
-
-
-        </Toolbar>
+      </Toolbar>
     </AppBar>
-  )
-}
-
+  );
+};
 
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default LandingNavTablet
+export default LandingNavTablet;

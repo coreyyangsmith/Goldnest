@@ -12,41 +12,49 @@
 // Date: October 6th, 2023
 //-------------------------------------------------------//
 
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Import
-import React from 'react';
+import React from "react";
 
 // MUI Imports
 import { Divider, Paper, Stack, Typography } from "@mui/material";
 
 // My Componens
-import DashboardBudgetExpensesLineChart from '../SpendingOverview/DashboardBudgetExpensesLineChart'
+import DashboardBudgetExpensesLineChart from "../SpendingOverview/DashboardBudgetExpensesLineChart";
 
 // My Custom Components
-import CustomSlider from "../../../../components/CustomSlider"
-
+import CustomSlider from "../../../../components/CustomSlider";
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const DashboardSpendingOverview = (props) => {
-    return (
+  return (
     <>
-    {/* Main Panel */}
-    <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
+      {/* Main Panel */}
+      <Paper
+        sx={{
+          paddingLeft: "32px",
+          paddingRight: "32px",
+          paddingTop: "16px",
+          paddingBottom: "16px",
+        }}
+        elevation={4}
+      >
         <Typography variant="dashboard_heading">Spending Overview</Typography>
-        <Divider/>    
-        <DashboardBudgetExpensesLineChart   selectedYear={props.selectedYear}
-                                            selectedMonth={props.selectedMonth}
-                                            entries={props.entries}
-                                            budgets={props.budgets}/>
-    </Paper>    
-    </>)
-}
-
+        <Divider />
+        <DashboardBudgetExpensesLineChart
+          selectedYear={props.selectedYear}
+          selectedMonth={props.selectedMonth}
+          entries={props.entries}
+          budgets={props.budgets}
+        />
+      </Paper>
+    </>
+  );
+};
 
 //  EXPORTS
 //-------------------------------------------------------//

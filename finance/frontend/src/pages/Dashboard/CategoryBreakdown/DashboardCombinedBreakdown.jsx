@@ -13,42 +13,50 @@
 // Date: October 6th, 2023
 //-------------------------------------------------------//
 
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Import
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // MUI Imports
 import { Divider, Paper, Stack, Typography } from "@mui/material";
 
 // My Imports
-import DashboardCategoryStackedBar from './ss/DashboardCategoryStackedBar'
-import DashboardCombinedStackedBar from './DashboardCombinedStackedBar';
+import DashboardCategoryStackedBar from "./ss/DashboardCategoryStackedBar";
+import DashboardCombinedStackedBar from "./DashboardCombinedStackedBar";
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const DashboardCombinedBreakdown = (props) => {
-
-    return (
+  return (
     <>
-    {/* Main Panel */}
-    <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
+      {/* Main Panel */}
+      <Paper
+        sx={{
+          paddingLeft: "32px",
+          paddingRight: "32px",
+          paddingTop: "16px",
+          paddingBottom: "16px",
+        }}
+        elevation={4}
+      >
         <Typography variant="dashboard_heading">Category Breakdown</Typography>
-        <Divider/>
-        <DashboardCombinedStackedBar    selectedYear={props.selectedYear}
-                                        selectedMonth={props.selectedMonth}
-                                        entries={props.entries}
-                                        budgets={props.budgets}
-                                        mainCategories={props.mainCategories}
-                                        subCategories={props.subCategories}
-                                        selectedMain={props.selectedMain}/>
-    </Paper>    
-    </>)
-}
-
+        <Divider />
+        <DashboardCombinedStackedBar
+          selectedYear={props.selectedYear}
+          selectedMonth={props.selectedMonth}
+          entries={props.entries}
+          budgets={props.budgets}
+          mainCategories={props.mainCategories}
+          subCategories={props.subCategories}
+          selectedMain={props.selectedMain}
+        />
+      </Paper>
+    </>
+  );
+};
 
 //  EXPORTS
 //-------------------------------------------------------//

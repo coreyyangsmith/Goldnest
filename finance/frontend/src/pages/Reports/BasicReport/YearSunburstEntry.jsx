@@ -15,15 +15,14 @@
 // Date: October 11th, 2023
 //-------------------------------------------------------//
 
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Import
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 // MUI Import
-import { Divider, Paper, Typography } from '@mui/material'
+import { Divider, Paper, Typography } from "@mui/material";
 
 // ECharts
 import ReactEcharts from "echarts-for-react";
@@ -32,23 +31,21 @@ import ReactEcharts from "echarts-for-react";
 //-------------------------------------------------------//
 
 const YearSunburstEntry = (props) => {
-
-
   // My Hooks
   const [data, setData] = useState([]);
 
   // Load Budget Data and Partiton into Yearly Sunburst Format
   useEffect(() => {
     if (props.selectedYear !== "") {
-
       /**
        * Returns an Array of the Main Category Names (String)
        * @returns mainCategoriesArray: Array of MainCategory Names (String)
        */
       function getMainCategoriesList() {
-        
         const mainCategoriesArray = [];
-        props.mainCategories.forEach((mainCat) => mainCategoriesArray.push(mainCat.name))
+        props.mainCategories.forEach((mainCat) =>
+          mainCategoriesArray.push(mainCat.name)
+        );
         return mainCategoriesArray;
       }
       const mainCatData = getMainCategoriesList();
@@ -59,10 +56,12 @@ const YearSunburstEntry = (props) => {
        */
       function getSubCategoriesList() {
         const subCategoriesArray = [];
-        props.subCategories.forEach((subCat) => subCategoriesArray.push(subCat.pk))
+        props.subCategories.forEach((subCat) =>
+          subCategoriesArray.push(subCat.pk)
+        );
         return subCategoriesArray;
       }
-      const subCatData = getSubCategoriesList();    
+      const subCatData = getSubCategoriesList();
 
       /**
        * Takes in a user's entries, selectedYear, mainCategories and subCategories, and returns an enriched entries array
@@ -71,20 +70,24 @@ const YearSunburstEntry = (props) => {
        * @returns mappedEntriesSub: Array of Entries (Object) enriched with "matchingMainCategoryName" and "matchingMainCategoryID"
        */
       function getFilteredEntries(mainCategories, subCategories) {
-        const entryForYear = props.entries.filter(function(row) {
+        const entryForYear = props.entries.filter(function (row) {
           return row.year == props.selectedYear;
-        })
+        });
 
-        const mappedEntriesMain = entryForYear.map(entry => {
-          const matchingMainCategoryName = mainCategories.find(str => str === entry.main_category.name);
+        const mappedEntriesMain = entryForYear.map((entry) => {
+          const matchingMainCategoryName = mainCategories.find(
+            (str) => str === entry.main_category.name
+          );
           return { ...entry, matchingMainCategoryName };
-        });    
+        });
 
-        const mappedEntriesSub = mappedEntriesMain.map(entry => {
-          const matchingSubCategoryID = subCategories.find(id => id === entry.sub_category.pk);
+        const mappedEntriesSub = mappedEntriesMain.map((entry) => {
+          const matchingSubCategoryID = subCategories.find(
+            (id) => id === entry.sub_category.pk
+          );
           return { ...entry, matchingSubCategoryID };
-        });     
-        
+        });
+
         return mappedEntriesSub;
       }
       const mappedEntriesSub = getFilteredEntries(mainCatData, subCatData);
@@ -106,13 +109,19 @@ const YearSunburstEntry = (props) => {
           result[key].name = item.sub_category.name;
 
           return result;
-        }, {})}   
-      const mySummedSubCategories = groupAndSumByAttribute(mappedEntriesSub, 'matchingSubCategoryID');
+        }, {});
+      }
+      const mySummedSubCategories = groupAndSumByAttribute(
+        mappedEntriesSub,
+        "matchingSubCategoryID"
+      );
       // Convert from one large object to array of objects
-      const mySummedSubCategoriesFinal = Object.keys(mySummedSubCategories).map(key => ({ key, value: mySummedSubCategories[key]}));
+      const mySummedSubCategoriesFinal = Object.keys(mySummedSubCategories).map(
+        (key) => ({ key, value: mySummedSubCategories[key] })
+      );
 
       // Generate Intermediate Object to help mapping
-      // myCategoryLabels --> {name: str (mainCat), fk: [pks associate with subCats]}    
+      // myCategoryLabels --> {name: str (mainCat), fk: [pks associate with subCats]}
       function groupByAttribute(list) {
         return list.reduce((result, object) => {
           const groupName = object.main_category.name;
@@ -127,88 +136,104 @@ const YearSunburstEntry = (props) => {
           result[groupName].children.push(object.pk);
 
           return result;
-        }, {})}
+        }, {});
+      }
       const myCategoryLabels = groupByAttribute(props.subCategories);
       // Convert from one large object to array of objects
-      const myCategoryLabelsFinal = Object.keys(myCategoryLabels).map(key => ({ key, value: myCategoryLabels[key]}));
+      const myCategoryLabelsFinal = Object.keys(myCategoryLabels).map(
+        (key) => ({ key, value: myCategoryLabels[key] })
+      );
 
       function combineLists(list1, list2) {
-
         // Create a map to quickly look up list2 objects by FK
         const list2Map = new Map();
 
         list2.forEach((obj) => {
-          list2Map.set(obj.value.matchingSubCategoryID, { name: obj.value.name, value: obj.value.sum });
-        }); 
-      
+          list2Map.set(obj.value.matchingSubCategoryID, {
+            name: obj.value.name,
+            value: obj.value.sum,
+          });
+        });
+
         // Use map to combine the two lists
-        const combinedList = list1.map(obj1 => {
-          const children = obj1.value.children.map(fk => {
-            const obj2 = list2Map.get(fk);
-            if (obj2) {
-              return { name: obj2.name, value: obj2.value };
-            }
-            return null;
-          }).filter(child => child !== null);
-        
+        const combinedList = list1.map((obj1) => {
+          const children = obj1.value.children
+            .map((fk) => {
+              const obj2 = list2Map.get(fk);
+              if (obj2) {
+                return { name: obj2.name, value: obj2.value };
+              }
+              return null;
+            })
+            .filter((child) => child !== null);
+
           return {
             name: obj1.value.name,
             children,
           };
         });
-    
+
         return combinedList;
       }
 
-
-      if (mySummedSubCategoriesFinal.length > 0)
-      {      
-        if (mySummedSubCategoriesFinal[0].key !== "undefined")
-        {
-          const finalData = combineLists(myCategoryLabelsFinal, mySummedSubCategoriesFinal)
+      if (mySummedSubCategoriesFinal.length > 0) {
+        if (mySummedSubCategoriesFinal[0].key !== "undefined") {
+          const finalData = combineLists(
+            myCategoryLabelsFinal,
+            mySummedSubCategoriesFinal
+          );
           setData(finalData);
         }
       }
-        
     }
-  }, [props])
+  }, [props]);
 
   const option = {
     tooltip: {
-      trigger: 'item',
-      triggerOn: 'mousemove'
-    },       
-    
+      trigger: "item",
+      triggerOn: "mousemove",
+    },
+
     series: {
-      type: 'sunburst',
+      type: "sunburst",
       data: data,
-      radius: ['0%', "97%"],
+      radius: ["0%", "97%"],
       itemStyle: {
         borderRadius: 0,
-        borderWidth: 1
+        borderWidth: 1,
       },
       label: {
-        color: '#000',
-        textBorderColor: '#fff',
+        color: "#000",
+        textBorderColor: "#fff",
         textBorderWidth: 4,
         fontSize: 14,
-        formatter: function(d) {
+        formatter: function (d) {
           return d.name + " (" + Number(d.value).toFixed(0) + ")";
-        }        
+        },
       },
-    }
-  };  
+    },
+  };
 
   return (
-  <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
-    <Typography variant="dashboard_heading">Yearly Entry Categories</Typography>
-    <Divider/>
-    <ReactEcharts option={option} style={{height:"750px"}}/>  
-  </Paper>)
-}
+    <Paper
+      sx={{
+        paddingLeft: "32px",
+        paddingRight: "32px",
+        paddingTop: "16px",
+        paddingBottom: "16px",
+      }}
+      elevation={4}
+    >
+      <Typography variant="dashboard_heading">
+        Yearly Entry Categories
+      </Typography>
+      <Divider />
+      <ReactEcharts option={option} style={{ height: "750px" }} />
+    </Paper>
+  );
+};
 
-
-//  EXPORTS 
+//  EXPORTS
 //-------------------------------------------------------//
 
-export default YearSunburstEntry
+export default YearSunburstEntry;

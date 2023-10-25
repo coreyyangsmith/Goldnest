@@ -18,29 +18,27 @@
 //-------------------------------------------------------//
 
 // React Imports
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 // CSS Import
 import "../../components/css/UIStyles.css";
 
 // MUI Imports
-import { Button, Stack, Tooltip } from '@mui/material/'
+import { Button, Stack, Tooltip } from "@mui/material/";
 
 // My Imports
-import ConfirmationDialog from '../../components/ConfirmationDialog';
+import ConfirmationDialog from "../../components/ConfirmationDialog";
 
 // API Imports
-import { deleteRequest } from '../../api/authenticated'
+import { deleteRequest } from "../../api/authenticated";
 
 // My Hooks
-import useToken from '../../hooks/useToken';
-
+import useToken from "../../hooks/useToken";
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const MainCategoriesList = (props) => {
-
   // My Hooks
   const { token } = useToken();
   const [open, setOpen] = useState(false);
@@ -54,87 +52,96 @@ const MainCategoriesList = (props) => {
 
   const handleClose = () => {
     setOpen(false);
-  };  
+  };
 
   const handleConfirmation = (mainCat, open) => {
-    if (open){
+    if (open) {
       handleDelete(mainCat);
       setOpen(false);
     }
-  }
+  };
 
   // Handles Main Click - Sets Selected Main
   const handleClick = (mainCat) => {
-    props.setSelectedMain(mainCat)
-  }
+    props.setSelectedMain(mainCat);
+  };
 
   // Handles Delete Button - Delete Selected Main Category (and Children)
   const handleDelete = (mainCat) => {
     // Handle Delete
-    const deleteMainCategory = async(mainCat) => {
+    const deleteMainCategory = async (mainCat) => {
       // Deletes Main Category (associated SubCat & Budgets get deleted by CASCADE)
       try {
-        await deleteRequest('maincategories/' + mainCat.id, token); 
+        await deleteRequest("maincategories/" + mainCat.id, token);
       } catch (err) {
-          if (err.response) {
-              // Not in 200 response range
-              console.log(err.response.data);
-              console.log(err.response.status);
-              console.log(err.response.headers);   
-          }
-          else {
-              console.log(`Error: ${err.message}`);
-          }                             
+        if (err.response) {
+          // Not in 200 response range
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
       }
 
       // Need to reset selected main category
 
       if (mainCat.id == props.selectedMain.id) {
-        props.setSelectedMain("")
-        props.setSelectedSub("")
+        props.setSelectedMain("");
+        props.setSelectedSub("");
       }
-    }
+    };
 
     deleteMainCategory(mainCat);
 
     // Handle Live Update
     const myNewMainCategories = props.mainCategories.filter((myItems) => {
-      return myItems !== mainCat
-    })
+      return myItems !== mainCat;
+    });
     props.setMainCategories(myNewMainCategories);
+  };
+
+  if (props.mainCategories !== undefined && props.mainCategories.length > 0) {
+    const myMainCategories = props.mainCategories.map((mainCat) => {
+      return (
+        <React.Fragment key={mainCat.id}>
+          <Stack direction="row" spacing={0.5}>
+            <Tooltip title={mainCat.description}>
+              <Button
+                color="secondary"
+                variant="outlined"
+                fullWidth={true}
+                className={`Category-Button ${
+                  props.selectedMain.id === mainCat.id && "active"
+                }`}
+                onClick={() => {
+                  handleClick(mainCat);
+                }}
+              >
+                {mainCat.name}
+              </Button>
+            </Tooltip>
+            <Button
+              color="error"
+              variant="outlined"
+              onClick={() => handleClickOpen(mainCat)}
+            >
+              X
+            </Button>
+          </Stack>
+          <ConfirmationDialog
+            open={open}
+            setOpen={setOpen}
+            handleClose={handleClose}
+            handleConfirmation={handleConfirmation}
+            category={selectedToDelete}
+          />
+        </React.Fragment>
+      );
+    });
+
+    return <Stack spacing={2}>{myMainCategories}</Stack>;
   }
+};
 
-  if (props.mainCategories !== undefined && props.mainCategories.length > 0){
-    const myMainCategories = props.mainCategories.map(mainCat => {
-      return  <React.Fragment key={mainCat.id}>
-      <Stack direction="row" spacing={0.5}>
-      <Tooltip title={mainCat.description}>
-        <Button color="secondary"
-                        variant="outlined" 
-                        fullWidth={true}
-                        className={`Category-Button ${props.selectedMain.id === mainCat.id && "active"}`} 
-                        onClick={() => {handleClick(mainCat)}}>
-          {mainCat.name}
-        </Button>
-      </Tooltip>
-      <Button color="error"
-            variant='outlined'
-            onClick={() => handleClickOpen(mainCat)}>X</Button>
-      </Stack>
-      <ConfirmationDialog open={open}
-                          setOpen={setOpen}
-                          handleClose={handleClose}
-                          handleConfirmation={handleConfirmation}
-                          category={selectedToDelete}/>
-      </React.Fragment>
-    })
-  
-    return (
-      <Stack spacing={2}>
-          {myMainCategories}
-      </Stack> 
-    )
-  }    
-}
-
-export default MainCategoriesList
+export default MainCategoriesList;

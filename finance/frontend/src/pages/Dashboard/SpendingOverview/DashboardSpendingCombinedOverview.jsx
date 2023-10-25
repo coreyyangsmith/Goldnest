@@ -12,43 +12,51 @@
 // Date: October 24th, 2023
 //-------------------------------------------------------//
 
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Import
-import React from 'react';
+import React from "react";
 
 // MUI Imports
 import { Divider, Paper, Stack, Typography } from "@mui/material";
 
 // My Componens
-import DashboardBudgetExpensesLineChart from './ss/DashboardBudgetExpensesLineChart'
+import DashboardBudgetExpensesLineChart from "./ss/DashboardBudgetExpensesLineChart";
 
 // My Custom Components
-import CustomSlider from "../../../components/CustomSlider"
-import DashboardBudgetExpensesCombinedLineChart from './DashboardBudgetExpensesCombinedLineChart';
-
+import CustomSlider from "../../../components/CustomSlider";
+import DashboardBudgetExpensesCombinedLineChart from "./DashboardBudgetExpensesCombinedLineChart";
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const DashboardSpendingCombinedOverview = (props) => {
-    return (
+  return (
     <>
-    {/* Main Panel */}
-    <Paper sx={{paddingLeft:"32px", paddingRight:"32px", paddingTop:"16px", paddingBottom:"16px"}} elevation={4}>
+      {/* Main Panel */}
+      <Paper
+        sx={{
+          paddingLeft: "32px",
+          paddingRight: "32px",
+          paddingTop: "16px",
+          paddingBottom: "16px",
+        }}
+        elevation={4}
+      >
         <Typography variant="dashboard_heading">Spending Overview</Typography>
-        <Divider/>    
-        <DashboardBudgetExpensesCombinedLineChart   selectedYear={props.selectedYear}
-                                                    selectedMonth={props.selectedMonth}
-                                                    entries={props.entries}
-                                                    budgets={props.budgets}
-                                                    selectedMain={props.selectedMain}/>
-    </Paper>    
-    </>)
-}
-
+        <Divider />
+        <DashboardBudgetExpensesCombinedLineChart
+          selectedYear={props.selectedYear}
+          selectedMonth={props.selectedMonth}
+          entries={props.entries}
+          budgets={props.budgets}
+          selectedMain={props.selectedMain}
+        />
+      </Paper>
+    </>
+  );
+};
 
 //  EXPORTS
 //-------------------------------------------------------//

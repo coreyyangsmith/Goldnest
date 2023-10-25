@@ -13,37 +13,35 @@
 // Updated: October 4th, 2023
 //-------------------------------------------------------//
 
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Import
-import React from 'react'
+import React from "react";
 
 // Routing
-import StyledLink from '../../components/StyledLink'
+import StyledLink from "../../components/StyledLink";
 
 // React Router Import
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // MUI Import
-import { AppBar, Toolbar, Typography, Button } from '@mui/material'
-import { Grid } from '@mui/material/'
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { Grid } from "@mui/material/";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 // My Components
-import LandingNavDesktop from './LandingNavDesktop';
-import LandingNavTablet from './LandingNavTablet';
+import LandingNavDesktop from "./LandingNavDesktop";
+import LandingNavTablet from "./LandingNavTablet";
 
 //  STYLES
 //-------------------------------------------------------//
 
 const toolbarSX = {
-    display: 'flex',
-    justifyContent: 'center',
-    border: '1px solid #bbb'
+  display: "flex",
+  justifyContent: "center",
+  border: "1px solid #bbb",
 };
-
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -51,16 +49,16 @@ const toolbarSX = {
 const LandingNav = () => {
   // Hooks
 
-  const isDesktop = useMediaQuery('(min-width:785px)');
+  const isDesktop = useMediaQuery("(min-width:785px)");
 
   if (isDesktop) {
-      return <LandingNavDesktop/>
+    return <LandingNavDesktop />;
   } else {
-    return <LandingNavTablet/> //TODO add mobile
+    return <LandingNavTablet />; //TODO add mobile
   }
-}
+};
 
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default LandingNav
+export default LandingNav;

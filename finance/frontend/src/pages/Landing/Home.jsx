@@ -12,21 +12,20 @@
 // Date: September 24rd, 2023
 //-------------------------------------------------------//
 
-
 //  IMPORTS
 //-------------------------------------------------------//
 
 // React Import
-import React from 'react'
+import React from "react";
 
 // MUI Import
-import { Grid } from '@mui/material';
+import { Grid } from "@mui/material";
 
 // My Page Imports
-import LandingHeroContent from './LandingHeroContent';
-import LandingFeatureContent from './LandingFeatureContent';
-import LandingPriceContent from './LandingPriceContent';
-import LandingExampleContent from './LandingExampleContent';
+import LandingHeroContent from "./LandingHeroContent";
+import LandingFeatureContent from "./LandingFeatureContent";
+import LandingPriceContent from "./LandingPriceContent";
+import LandingExampleContent from "./LandingExampleContent";
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -34,36 +33,28 @@ import LandingExampleContent from './LandingExampleContent';
 const Home = () => {
   return (
     <>
-            {/* HERO CONTENT */}
-            <Grid   container
-                    justify-content="center"
-                    alignContent="center">
-                        
-                <Grid item xs={3}/>
-                <Grid container 
-                        item 
-                        xs={6} 
-                        justifyContent="center"
-                        alignItems="center">                
-                    <LandingHeroContent/>
-                </Grid>
-                <Grid item xs={3}/>
-            </Grid>
+      {/* HERO CONTENT */}
+      <Grid container justify-content="center" alignContent="center">
+        <Grid item xs={3} />
+        <Grid container item xs={6} justifyContent="center" alignItems="center">
+          <LandingHeroContent />
+        </Grid>
+        <Grid item xs={3} />
+      </Grid>
 
-            {/* EXAMPLE CONTENT */}    
-            <LandingExampleContent/>          
+      {/* EXAMPLE CONTENT */}
+      <LandingExampleContent />
 
-            {/* FEATURE CONTENT */}       
-            <LandingFeatureContent/>  
+      {/* FEATURE CONTENT */}
+      <LandingFeatureContent />
 
-            {/* PRICE CONTENT */}       
-            <LandingPriceContent/>           
+      {/* PRICE CONTENT */}
+      <LandingPriceContent />
     </>
-  )
-}
-
+  );
+};
 
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default Home
+export default Home;
