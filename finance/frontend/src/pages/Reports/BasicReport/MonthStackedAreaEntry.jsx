@@ -1,10 +1,10 @@
 //-------------------------------------------------------//
-//  File Name: MonthSankeyEntry.jsx
+//  File Name: MonthStackedAreaEntry.jsx
 //  Description: Sankey Diagram for all Budget Items for SelectedYear
 //
 //  Requirements:
 //      - Report Manager
-//      - Entry (all)
+//      - Budget (all)
 //      - Main Categories (all)
 //      - Sub Categories (all)
 //
@@ -12,7 +12,7 @@
 //      - Sankey Diagram
 //
 // Created By: Corey Yang-Smith
-// Date: October 20th, 2023
+// Date: October 26th, 2023
 //-------------------------------------------------------//
 
 //  IMPORTS
@@ -30,7 +30,27 @@ import ReactEcharts from 'echarts-for-react';
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-const MonthSankeyEntry = (props) => {
+// TODO
+{
+	/* 
+Desired Data Format
+Data = List of Objects
+Each Object
+{ 
+  Name: "Main Category",
+  Type: 'line',
+  stack: 'total',
+  areaStyle: {},
+  emphasis: {
+    focus: 'series'
+  },
+  data: [values]
+},
+
+*/
+}
+
+const MonthStackedAreaEntry = (props) => {
 	// My Hooks
 	const [data, setData] = useState([]);
 
@@ -39,7 +59,7 @@ const MonthSankeyEntry = (props) => {
 		if (props.selectedYear !== '' && props.selectedMonth !== '') {
 			/**
 			 * Returns an Array of Objects containing enriched Budget Data
-			 * @returns enrichedBudget: Array of Entry Objects, enriched with matchingMainCategory (obj) and matchingSubCategory (obj)
+			 * @returns enrichedBudget: Array of Budge Objects, enriched with matchingMainCategory (obj) and matchingSubCategory (obj)
 			 */
 			function enrichEntryData() {
 				// Filters all budget objects for selected year
@@ -73,25 +93,25 @@ const MonthSankeyEntry = (props) => {
 			const enrichedEntryData = enrichEntryData();
 
 			/**
-			 * Compares MainCategories and our enrichedEntryData, and returns a new object containing our Main Category Name (String), and its total sum value (Int)
-			 * @param {*} enrichedEntryData Enriched Budget Data containing matchingMainCategory
+			 * Compares MainCategories and our enrichedBudgetData, and returns a new object containing our Main Category Name (String), and its total sum value (Int)
+			 * @param {*} enrichedBudgetData Enriched Budget Data containing matchingMainCategory
 			 * @returns resultsArray: Array of Objects containing Main Category Name (String) and its respective summed value (Int)
 			 */
-			function enrichMainCategoryData(enrichedEntryData) {
+			function enrichMainCategoryData(enrichedData) {
 				const resultsArray = [];
 				for (const obj of props.mainCategories) {
 					// Get Matching Name
 					const matchingId = obj.id;
 
 					// Find all matching objects in the other array
-					const matchingObjects = enrichedEntryData.filter(
+					const matchingObjects = enrichedData.filter(
 						(obj) => obj.matchingMainCategory.id === matchingId
 					);
 
 					if (matchingObjects.length > 0) {
 						// If matching objects are found, accumulate the additional values
 						const sum = matchingObjects.reduce(
-							(acc, obj) => acc + obj.expense,
+							(acc, obj) => acc + obj.amount,
 							0
 						);
 						// Create a new object with the accumulated sum and the name
@@ -107,25 +127,25 @@ const MonthSankeyEntry = (props) => {
 			const mainCatData = enrichMainCategoryData(enrichedEntryData);
 
 			/**
-			 * Compares SubCategories and our enrichedEntryData, and returns a new object containing our Sub Category Name (String), and its total sum value (Int)
-			 * @param {*} enrichedEntryData Enriched Budget Data containing matchingSubcategory
+			 * Compares SubCategories and our enrichedBudgetData, and returns a new object containing our Sub Category Name (String), and its total sum value (Int)
+			 * @param {*} enrichedBudgetData Enriched Budget Data containing matchingSubcategory
 			 * @returns resultsArray: Array of Objects containing Sub Category Name (String), its Parent (Main Category) Name (String), and its respective summed value (Int)
 			 */
-			function enrichSubCategoryData(enrichedEntryData) {
+			function enrichSubCategoryData(enrichedData) {
 				const resultsArray = [];
 				for (const obj of props.subCategories) {
 					// Get Matching Name
 					const matchingId = obj.pk;
 
 					// Find all matching objects in the other array
-					const matchingObjects = enrichedEntryData.filter(
+					const matchingObjects = enrichedData.filter(
 						(obj) => obj.matchingSubCategory.pk === matchingId
 					);
 
 					if (matchingObjects.length > 0) {
 						// If matching objects are found, accumulate the additional values
 						const sum = matchingObjects.reduce(
-							(acc, obj) => acc + obj.expense,
+							(acc, obj) => acc + obj.amount,
 							0
 						);
 						// Create a new object with the accumulated sum and the name
@@ -152,7 +172,7 @@ const MonthSankeyEntry = (props) => {
 			 * @param {*} subCategoryData
 			 * @returns
 			 */
-			function generateNodes(mainCategoryData, subCategoryData) {
+			function generateData(mainCategoryData, subCategoryData) {
 				const myNodes = [];
 
 				// DUMMY DATA
@@ -171,32 +191,7 @@ const MonthSankeyEntry = (props) => {
 				return myNodes;
 			}
 
-			/**
-			 * TODO
-			 * @param {*} mainCategoryData
-			 * @param {*} subCategoryData
-			 * @returns
-			 */
-			function generateLinks(mainCategoryData, subCategoryData) {
-				const myLinks = [];
-
-				// Push all Main Category Links
-				mainCategoryData.forEach((obj) => {
-					myLinks.push(obj);
-				});
-
-				// Push all Sub Category Links
-				subCategoryData.forEach((obj) => {
-					myLinks.push(obj);
-				});
-
-				const links = myLinks.filter((item) => item.value !== 0);
-				const filteredLinks = links.filter((item) => item.source === 'DUMMY');
-				return links;
-			}
-
-			myData.push({ nodes: generateNodes(mainCatData, subCatData) });
-			myData.push({ links: generateLinks(mainCatData, subCatData) });
+			myData.push({ nodes: generateData(mainCatData, subCatData) });
 
 			setData(myData);
 		}
@@ -211,6 +206,7 @@ const MonthSankeyEntry = (props) => {
 				trigger: 'item',
 				triggerOn: 'mousemove',
 			},
+
 			series: {
 				type: 'sankey',
 				data: data[0].nodes,
@@ -221,7 +217,7 @@ const MonthSankeyEntry = (props) => {
 				nodeAlign: 'left',
 				lineStyle: {
 					color: 'gradient',
-					curveness: 0.5,
+					curveness: 0.25,
 				},
 			},
 		};
@@ -238,7 +234,7 @@ const MonthSankeyEntry = (props) => {
 			elevation={4}
 		>
 			<Typography variant="dashboard_heading">
-				Monthly Entries - Sankey Diagram
+				Monthly Spending - Stacked Area Chart
 			</Typography>
 			<Divider />
 			<ReactEcharts
@@ -252,4 +248,4 @@ const MonthSankeyEntry = (props) => {
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default MonthSankeyEntry;
+export default MonthStackedAreaEntry;

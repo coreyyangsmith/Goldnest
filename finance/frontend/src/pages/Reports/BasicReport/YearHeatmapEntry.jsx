@@ -64,7 +64,7 @@ const YearHeatmapEntry = (props) => {
 						'-' +
 						(date.getMonth() + 1).toString().padStart(2, '0') +
 						'-' +
-						date.getDate();
+						date.getDate().toString().padStart(2, '0');
 
 					// Initialize amount if day doesnt exist
 					if (!entriesByDay.has(date)) {
@@ -91,7 +91,7 @@ const YearHeatmapEntry = (props) => {
 						'-' +
 						(iterDate.getMonth() + 1).toString().padStart(2, '0') +
 						'-' +
-						iterDate.getDate();
+						iterDate.getDate().toString().padStart(2, '0');
 
 					if (maxVal < entriesByDay.get(iterDate))
 						maxVal = entriesByDay.get(iterDate);
@@ -196,7 +196,7 @@ const YearHeatmapEntry = (props) => {
 			style={{ alignItems: 'stretch' }}
 		>
 			<Typography variant="dashboard_heading">
-				Monthly Spending Heatmap
+				Yearly Spending Heatmap
 			</Typography>
 			<Divider />
 			<ReactEcharts

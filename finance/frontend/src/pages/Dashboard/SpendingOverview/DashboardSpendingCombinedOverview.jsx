@@ -16,46 +16,42 @@
 //-------------------------------------------------------//
 
 // React Import
-import React from "react";
+import React from 'react';
 
 // MUI Imports
-import { Divider, Paper, Stack, Typography } from "@mui/material";
+import { Divider, Paper, Typography } from '@mui/material';
 
-// My Componens
-import DashboardBudgetExpensesLineChart from "./ss/DashboardBudgetExpensesLineChart";
-
-// My Custom Components
-import CustomSlider from "../../../components/CustomSlider";
-import DashboardBudgetExpensesCombinedLineChart from "./DashboardBudgetExpensesCombinedLineChart";
+// My Components
+import DashboardBudgetExpensesCombinedLineChart from './DashboardBudgetExpensesCombinedLineChart';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const DashboardSpendingCombinedOverview = (props) => {
-  return (
-    <>
-      {/* Main Panel */}
-      <Paper
-        sx={{
-          paddingLeft: "32px",
-          paddingRight: "32px",
-          paddingTop: "16px",
-          paddingBottom: "16px",
-        }}
-        elevation={4}
-      >
-        <Typography variant="dashboard_heading">Spending Overview</Typography>
-        <Divider />
-        <DashboardBudgetExpensesCombinedLineChart
-          selectedYear={props.selectedYear}
-          selectedMonth={props.selectedMonth}
-          entries={props.entries}
-          budgets={props.budgets}
-          selectedMain={props.selectedMain}
-        />
-      </Paper>
-    </>
-  );
+	return (
+		<>
+			{/* Main Panel */}
+			<Paper
+				sx={{
+					paddingLeft: '32px',
+					paddingRight: '32px',
+					paddingTop: '16px',
+					paddingBottom: '16px',
+				}}
+				elevation={4}
+			>
+				<Typography variant="dashboard_heading">Spending Overview</Typography>
+				<Divider />
+				<DashboardBudgetExpensesCombinedLineChart
+					selectedYear={props.selectedYear}
+					selectedMonth={props.selectedMonth}
+					entries={props.entries}
+					budgets={props.budgets}
+					selectedMain={props.selectedMain}
+				/>
+			</Paper>
+		</>
+	);
 };
 
 //  EXPORTS

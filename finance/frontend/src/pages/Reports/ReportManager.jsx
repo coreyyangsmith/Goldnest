@@ -44,6 +44,7 @@ import YearTreeBudget from './BasicReport/YearTreeBudget';
 import YearTreeEntry from './BasicReport/YearTreeEntry';
 import MonthTreeEntry from './BasicReport/MonthTreeEntry';
 import YearHeatmapEntry from './BasicReport/YearHeatmapEntry';
+import MonthStackedAreaEntry from './BasicReport/MonthStackedAreaEntry';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -61,6 +62,19 @@ const ReportManager = (props) => {
 			console.log('generate basic monthly');
 			return (
 				<>
+					<Grid
+						item
+						xs={12}
+					>
+						<MonthStackedAreaEntry
+							entries={props.entires}
+							selectedYear={props.selectedYear}
+							selectedMonth={props.selectedMonth}
+							mainCategories={props.mainCategories}
+							subCategories={props.subCategories}
+						/>
+					</Grid>
+
 					<Grid
 						item
 						xs={6}
