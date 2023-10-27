@@ -53,15 +53,31 @@ Each Object
 const MonthStackedAreaEntry = (props) => {
 	// My Hooks
 	const [data, setData] = useState([]);
+	const [legend, setLegend] = useState([]);
 
 	// Load Budget Data and Partiton into Yearly Sunburst Format
 	useEffect(() => {
 		if (props.selectedYear !== '' && props.selectedMonth !== '') {
 			/**
-			 * Returns an Array of Objects containing enriched Budget Data
-			 * @returns enrichedBudget: Array of Budge Objects, enriched with matchingMainCategory (obj) and matchingSubCategory (obj)
+			 * getMainCategoryList: parses user's MainCategories and returns a list of names.
 			 */
-			function enrichEntryData() {
+			function getMainCategoryList() {
+				const mainCatList = [];
+
+				props.mainCategories.forEach((mainCat) => {
+					mainCatList.push(mainCat.name);
+				});
+
+				return mainCatList;
+			}
+			const mainCategoryList = getMainCategoryList();
+			setLegend(mainCategoryList);
+
+			/**
+			 * Returns an Array of Array of Objects containing Entry Data split by Main Cateogory
+			 * @returns entrichedEntry: Array of Array of Entry Objects, split by Main Category
+			 */
+			function splitEntriesByCategory() {
 				// Filters all budget objects for selected year
 				const entryForYear = props.entries.filter(function (row) {
 					return row.year == props.selectedYear;
@@ -71,129 +87,139 @@ const MonthStackedAreaEntry = (props) => {
 					return row.month == props.selectedMonth;
 				});
 
-				// Finds matching Main Category and appends to Budget Object
-				const mappedEntriesMain = entryForMonth.map((entry) => {
-					const matchingMainCategory = props.mainCategories.find(
-						(obj) => obj.name === entry.sub_category.main_category.name
-					);
-					return { ...entry, matchingMainCategory };
-				});
-
-				// Finds matching Sub Category and appends to Budget Object
-				const mappedEntriesSub = mappedEntriesMain.map((entry) => {
-					const matchingSubCategory = props.subCategories.find(
-						(obj) => obj.pk === entry.sub_category.pk
-					);
-					return { ...entry, matchingSubCategory };
-				});
-
-				const enrichedEntries = mappedEntriesSub;
-				return enrichedEntries;
-			}
-			const enrichedEntryData = enrichEntryData();
-
-			/**
-			 * Compares MainCategories and our enrichedBudgetData, and returns a new object containing our Main Category Name (String), and its total sum value (Int)
-			 * @param {*} enrichedBudgetData Enriched Budget Data containing matchingMainCategory
-			 * @returns resultsArray: Array of Objects containing Main Category Name (String) and its respective summed value (Int)
-			 */
-			function enrichMainCategoryData(enrichedData) {
+				// Divide each entry into a sub_array organized by category
 				const resultsArray = [];
 				for (const obj of props.mainCategories) {
 					// Get Matching Name
 					const matchingId = obj.id;
 
 					// Find all matching objects in the other array
-					const matchingObjects = enrichedData.filter(
-						(obj) => obj.matchingMainCategory.id === matchingId
+					const matchingObjects = entryForMonth.filter(
+						(obj) => obj.main_category.id === matchingId
 					);
 
-					if (matchingObjects.length > 0) {
-						// If matching objects are found, accumulate the additional values
-						const sum = matchingObjects.reduce(
-							(acc, obj) => acc + obj.amount,
-							0
-						);
-						// Create a new object with the accumulated sum and the name
-						resultsArray.push({
-							source: 'DUMMY',
-							target: obj.name,
-							value: sum,
-						});
-					}
+					// Create a new object with the accumulated sum and the name
+					resultsArray.push([matchingObjects]);
 				}
 				return resultsArray;
 			}
-			const mainCatData = enrichMainCategoryData(enrichedEntryData);
+			const splitEntryData = splitEntriesByCategory();
+			console.log('Split Entry Data');
+			console.log(splitEntryData);
 
-			/**
-			 * Compares SubCategories and our enrichedBudgetData, and returns a new object containing our Sub Category Name (String), and its total sum value (Int)
-			 * @param {*} enrichedBudgetData Enriched Budget Data containing matchingSubcategory
-			 * @returns resultsArray: Array of Objects containing Sub Category Name (String), its Parent (Main Category) Name (String), and its respective summed value (Int)
-			 */
-			function enrichSubCategoryData(enrichedData) {
-				const resultsArray = [];
-				for (const obj of props.subCategories) {
-					// Get Matching Name
-					const matchingId = obj.pk;
-
-					// Find all matching objects in the other array
-					const matchingObjects = enrichedData.filter(
-						(obj) => obj.matchingSubCategory.pk === matchingId
-					);
-
-					if (matchingObjects.length > 0) {
-						// If matching objects are found, accumulate the additional values
-						const sum = matchingObjects.reduce(
-							(acc, obj) => acc + obj.amount,
-							0
-						);
-						// Create a new object with the accumulated sum and the name
-						resultsArray.push({
-							source: obj.main_category.name,
-							target: obj.main_category.name + '-' + obj.name,
-							value: sum,
-						});
-					}
-				}
-				return resultsArray;
-			}
-			const subCatData = enrichSubCategoryData(enrichedEntryData);
+			const entriesToUse = splitEntryData;
 
 			// ------------------- REFACTOR LATER ------------------- //
 			// Below, since we do not yet have INCOME set up, we will create some dummy info to populate our Sankey
 			// Once our BUDGET/EXPENSE categories are adjusted, we will have to refactor this part of the code.
 
-			const myData = [];
+			/**
+			 * Takes in an Array of Arrays of Objects (Entries), that are split by category. Processes these and maps them to days
+			 * @param {*} entriesToUse
+			 * @returns Array of Mapped Entries by Cateogyr
+			 */
+			function mapEntriesToCategoriesByDay(entriesToUse) {
+				// Create new map to store cumulative amounts
+				const cumulativeEntriesByDayByCategory = [];
+
+				// For Each Sub-Array, create a new map and map the entries in the sub-array
+				entriesToUse.forEach((mainCategoryArray) => {
+					mainCategoryArray.forEach((mainCategory) => {
+						const cumulativeEntriesByDay = new Map();
+						mainCategory.forEach((entry) => {
+							const date = new Date(entry.date);
+							const day = date.getDate();
+
+							// Initialize cumulative amount if day doesnt exist
+							if (!cumulativeEntriesByDay.has(day)) {
+								cumulativeEntriesByDay.set(day, 0);
+							}
+
+							// Accumulative the amount for the day
+							cumulativeEntriesByDay.set(
+								day,
+								cumulativeEntriesByDay.get(day) + entry.expense
+							);
+						});
+						cumulativeEntriesByDayByCategory.push(cumulativeEntriesByDay);
+					});
+				});
+
+				return cumulativeEntriesByDayByCategory;
+			}
+			const mappedEntries = mapEntriesToCategoriesByDay(entriesToUse);
 
 			/**
-			 * TODO
-			 * @param {*} mainCategoryData
-			 * @param {*} subCategoryData
-			 * @returns
+			 * populateMissingDays: takes in an array of mapped entries fills in the missing days with the cumulative sum.
+			 * @param {*} mappedEntries
+			 * @returns Array of Array, where each element is the cumulative sub for the respective main category
 			 */
-			function generateData(mainCategoryData, subCategoryData) {
-				const myNodes = [];
+			function populateMissingDays(mappedEntries) {
+				const populatedArray = [];
 
-				// DUMMY DATA
-				myNodes.push({ name: 'DUMMY' });
+				mappedEntries.forEach((category) => {
+					const categoryArray = [];
 
-				// Push all Main Category Names as Nodes
-				mainCategoryData.forEach((obj) => {
-					if (obj.value != 0) myNodes.push({ name: obj.target });
+					let cumulativeSum = 0;
+
+					for (let day = 1; day <= 31; day++) {
+						if (category.has(day)) {
+							cumulativeSum += category.get(day);
+						}
+
+						const value = Number(
+							Math.round(parseFloat(cumulativeSum + 'e' + 2)) + 'e-' + 2
+						).toFixed(2);
+						categoryArray.push(value);
+					}
+					populatedArray.push(categoryArray);
 				});
 
-				// Push all Sub Category Names as Nodes
-				subCategoryData.forEach((obj) => {
-					if (obj.value != 0) myNodes.push({ name: obj.target });
+				return populatedArray;
+			}
+			const populatedArrayMap = populateMissingDays(mappedEntries);
+
+			/**
+			 * Takes in the array of array data and formats to the expected output for the Stacked Area ECharts chart.
+			 * @param {*} populatedArray
+			 * @param {*} mainCategoriesList
+			 */
+			function createStackedAreaData(populatedArray, mainCategoriesList) {
+				const data = [];
+				let count = 0;
+
+				mainCategoriesList.forEach((mainCategory) => {
+					const data_elements = [];
+
+					populatedArray[count].forEach((element) => {
+						data_elements.push(Number(element));
+					});
+
+					const item = {};
+
+					const emphasis = {};
+					emphasis['focus'] = 'series';
+
+					item['name'] = mainCategory;
+					item['type'] = 'line';
+					item['stack'] = 'total';
+					item['areaStyle'] = {};
+					item['emphasis'] = emphasis;
+					item['data'] = data_elements;
+					count++;
+					data.push(item);
 				});
 
-				return myNodes;
+				return data;
 			}
 
-			myData.push({ nodes: generateData(mainCatData, subCatData) });
-
-			setData(myData);
+			const final_data = createStackedAreaData(
+				populatedArrayMap,
+				mainCategoryList
+			);
+			console.log('final data');
+			console.log(final_data);
+			setData(final_data);
 		}
 	}, [props]);
 
@@ -202,24 +228,67 @@ const MonthStackedAreaEntry = (props) => {
 
 	if (data.length > 0) {
 		option = {
+			title: {
+				text: 'Gradient Stacked Area Chart - Monthly',
+			},
 			tooltip: {
-				trigger: 'item',
-				triggerOn: 'mousemove',
+				trigger: 'axis',
+				axisPointer: {
+					type: 'cross',
+					label: {
+						backgroundColor: '#6a7985',
+					},
+				},
 			},
+			legend: {
+				data: legend,
+			},
+			xAxis: [
+				{
+					type: 'category',
+					boundaryGap: false,
+					data: [
+						'1',
+						'2',
+						'3',
+						'4',
+						'5',
+						'6',
+						'7',
+						'8',
+						'9',
+						'10',
+						'11',
+						'12',
+						'13',
+						'14',
+						'15',
+						'16',
+						'17',
+						'18',
+						'19',
+						'20',
+						'21',
+						'22',
+						'23',
+						'24',
+						'25',
+						'26',
+						'27',
+						'28',
+						'29',
+						'30',
+						'31',
+					],
+				},
+			],
+			yAxis: [
+				{
+					type: 'value',
+				},
+			],
 
-			series: {
-				type: 'sankey',
-				data: data[0].nodes,
-				links: data[1].links,
-				emphasis: {
-					focus: 'adjacency',
-				},
-				nodeAlign: 'left',
-				lineStyle: {
-					color: 'gradient',
-					curveness: 0.25,
-				},
-			},
+			series: data,
 		};
 	}
 

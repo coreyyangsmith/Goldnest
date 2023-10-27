@@ -67,7 +67,7 @@ const ReportManager = (props) => {
 						xs={12}
 					>
 						<MonthStackedAreaEntry
-							entries={props.entires}
+							entries={props.entries}
 							selectedYear={props.selectedYear}
 							selectedMonth={props.selectedMonth}
 							mainCategories={props.mainCategories}
