@@ -26,7 +26,7 @@ import { Divider, Paper, Typography } from '@mui/material';
 
 // ECharts
 import ReactEcharts from 'echarts-for-react';
-
+import * as echarts from 'echarts/core';
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
@@ -54,6 +54,138 @@ const MonthStackedAreaEntry = (props) => {
 	// My Hooks
 	const [data, setData] = useState([]);
 	const [legend, setLegend] = useState([]);
+
+	/**
+	 * Given a year and month, return the number of days (int) in that month.
+	 * @param {*} year props.selectedYear
+	 * @param {*} month props.selectedMonth
+	 * @returns
+	 */
+	function getNumDays(year, month) {
+		const date = new Date(year, month, 0);
+		const numDays = date.getDate();
+		return numDays;
+	}
+	const numDays = getNumDays(props.selectedYear, props.selectedMonth);
+
+	/**
+	 * Given num of days, will map each day to an array []
+	 * @param {*} numDays (int) num of days in month
+	 * @returns return an array with each day
+	 */
+	function mapDaysToArray(numDays) {
+		const arr = [];
+		for (let i = 1; i <= numDays; i++) arr.push(i);
+		return arr;
+	}
+
+	/**
+	 * Generated 2 random color string rgb(r,g,b) from pre-defined colors and pushes them to an array
+	 * @returns returns arr of two strings wth random colors
+	 */
+	function generateTwoColorGradient() {
+		const colors = [];
+
+		const colorsOne = [];
+		const o1 = 'rgb(' + 128 + ',' + 255 + ', ' + 165 + ')'; //blue
+		const o2 = 'rgb(' + 0 + ',' + 221 + ', ' + 255 + ')'; //blue
+		const o3 = 'rgb(' + 55 + ',' + 162 + ', ' + 255 + ')'; //French Violet
+		const o4 = 'rgb(' + 255 + ',' + 0 + ', ' + 135 + ')'; //pink
+		const o5 = 'rgb(' + 255 + ',' + 191 + ', ' + 0 + ')'; //orange
+		const o6 = 'rgb(' + 34 + ',' + 193 + ', ' + 195 + ')';
+		const o7 = 'rgb(' + 131 + ',' + 58 + ', ' + 180 + ')';
+		const o8 = 'rgb(' + 254 + ',' + 141 + ', ' + 198 + ')'; //Persian Pink #FE8DC6
+		const o9 = 'rgb(' + 127 + ',' + 0 + ', ' + 255 + ')'; //Violet #7F00FF
+		const o10 = 'rgb(' + 251 + ',' + 176 + ', ' + 64 + ')'; //Hunyadi Yellow #FBB040
+		const o11 = 'rgb(' + 0 + ', ' + 161 + ', ' + 255 + ')'; //Celestial Blue #00A1FF
+		const o12 = 'rgb(' + 238 + ', ' + 42 + ', ' + 123 + ')'; //Rose #EE2A7B
+		const o13 = 'rgb(' + 255 + ', ' + 0 + ', ' + 212 + ')'; //Hot Magenta #FF00D4
+		const o14 = 'rgb(' + 239 + ', ' + 65 + ', ' + 54 + ')'; //Vermillion #EF4136
+		const o15 = 'rgb(' + 45 + ', ' + 56 + ', ' + 138 + ')'; //Marian Blue #2D388A
+		colorsOne.push(o1);
+		colorsOne.push(o2);
+		colorsOne.push(o3);
+		colorsOne.push(o4);
+		colorsOne.push(o5);
+		colorsOne.push(o6);
+		colorsOne.push(o7);
+		colorsOne.push(o8);
+		colorsOne.push(o9);
+		colorsOne.push(o10);
+		colorsOne.push(o11);
+		colorsOne.push(o12);
+		colorsOne.push(o13);
+		colorsOne.push(o14);
+		colorsOne.push(o15);
+
+		const colorsTwo = [];
+		const t1 = 'rgb(' + 1 + ', ' + 191 + ', ' + 255 + ')';
+		const t2 = 'rgb(' + 77 + ', ' + 119 + ', ' + 255 + ')';
+		const t3 = 'rgb(' + 116 + ', ' + 21 + ', ' + 219 + ')'; //Celestial Blue
+		const t4 = 'rgb(' + 135 + ', ' + 0 + ', ' + 157 + ')';
+		const t5 = 'rgb(' + 224 + ', ' + 62 + ', ' + 76 + ')';
+		const t6 = 'rgb(' + 253 + ', ' + 187 + ', ' + 45 + ')';
+		const t7 = 'rgb(' + 252 + ', ' + 69 + ', ' + 69 + ')'; //red
+		const t8 = 'rgb(' + 254 + ', ' + 209 + ', ' + 199 + ')'; //Pale Dogwood #FED1C7
+		const t9 = 'rgb(' + 225 + ', ' + 0 + ', ' + 255 + ')'; //Phlox #E100FF #F9ED32
+		const t10 = 'rgb(' + 249 + ', ' + 237 + ', ' + 50 + ')'; //Aureolin #F9ED32
+		const t11 = 'rgb(' + 0 + ', ' + 255 + ', ' + 143 + ')'; //Spring Green #00FF8F
+		const t12 = 'rgb(' + 255 + ', ' + 125 + ', ' + 184 + ')'; //Persian Pink #FF7DB8
+		const t13 = 'rgb(' + 0 + ', ' + 221 + ', ' + 255 + ')'; //Vivid Sky Blue #00DDFF
+		const t14 = 'rgb(' + 251 + ', ' + 176 + ', ' + 64 + ')'; //Hunyadi Yellow #FBB040
+		const t15 = 'rgb(' + 0 + ', ' + 174 + ', ' + 239 + ')'; //Picton Blue #00AEEF
+		colorsTwo.push(t1);
+		colorsTwo.push(t2);
+		colorsTwo.push(t3);
+		colorsTwo.push(t4);
+		colorsTwo.push(t5);
+		colorsTwo.push(t6);
+		colorsTwo.push(t7);
+		colorsTwo.push(t8);
+		colorsTwo.push(t9);
+		colorsTwo.push(t10);
+		colorsTwo.push(t11);
+		colorsTwo.push(t12);
+		colorsTwo.push(t13);
+		colorsTwo.push(t14);
+		colorsTwo.push(t15);
+
+		const length = colorsOne.length;
+		const randomNum = Math.floor(Math.random() * length);
+
+		colors.push(colorsOne[randomNum]);
+		colors.push(colorsTwo[randomNum]);
+
+		return colors;
+	}
+
+	/**
+	 * Generates 2 completely random color string rgb(r,g,b) and pushes them to an array
+	 * @returns returns arr of two strings with random colors
+	 */
+	function generateTwoRandomColorGradient() {
+		const colors = [];
+
+		var c1 = {
+			r: Math.floor(Math.random() * 255),
+			g: Math.floor(Math.random() * 255),
+			b: Math.floor(Math.random() * 255),
+		};
+
+		var c2 = {
+			r: Math.floor(Math.random() * 255),
+			g: Math.floor(Math.random() * 255),
+			b: Math.floor(Math.random() * 255),
+		};
+
+		const colorOne = 'rgb(' + c1.r + ', ' + c1.g + ', ' + c1.b + ')';
+		const colorTwo = 'rgb(' + c2.r + ', ' + c2.g + ', ' + c2.b + ')';
+
+		colors.push(colorOne);
+		colors.push(colorTwo);
+
+		return colors;
+	}
 
 	// Load Budget Data and Partiton into Yearly Sunburst Format
 	useEffect(() => {
@@ -104,9 +236,6 @@ const MonthStackedAreaEntry = (props) => {
 				return resultsArray;
 			}
 			const splitEntryData = splitEntriesByCategory();
-			console.log('Split Entry Data');
-			console.log(splitEntryData);
-
 			const entriesToUse = splitEntryData;
 
 			// ------------------- REFACTOR LATER ------------------- //
@@ -162,7 +291,7 @@ const MonthStackedAreaEntry = (props) => {
 
 					let cumulativeSum = 0;
 
-					for (let day = 1; day <= 31; day++) {
+					for (let day = 1; day <= numDays; day++) {
 						if (category.has(day)) {
 							cumulativeSum += category.get(day);
 						}
@@ -195,10 +324,28 @@ const MonthStackedAreaEntry = (props) => {
 						data_elements.push(Number(element));
 					});
 
+					const myColors = generateTwoColorGradient();
+
 					const item = {};
 
 					const emphasis = {};
 					emphasis['focus'] = 'series';
+
+					const lineStyle = {};
+					lineStyle['width'] = 0;
+
+					const areaStyle = {};
+					areaStyle['opacity'] = 0.9;
+					areaStyle['color'] = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+						{
+							offset: 0,
+							color: myColors[0],
+						},
+						{
+							offset: 1,
+							color: myColors[1],
+						},
+					]);
 
 					item['name'] = mainCategory;
 					item['type'] = 'line';
@@ -206,6 +353,11 @@ const MonthStackedAreaEntry = (props) => {
 					item['areaStyle'] = {};
 					item['emphasis'] = emphasis;
 					item['data'] = data_elements;
+					item['lineStyle'] = lineStyle;
+					item['areaStyle'] = areaStyle;
+					item['smooth'] = true;
+					item['showSymbol'] = false;
+
 					count++;
 					data.push(item);
 				});
@@ -217,8 +369,6 @@ const MonthStackedAreaEntry = (props) => {
 				populatedArrayMap,
 				mainCategoryList
 			);
-			console.log('final data');
-			console.log(final_data);
 			setData(final_data);
 		}
 	}, [props]);
@@ -226,11 +376,23 @@ const MonthStackedAreaEntry = (props) => {
 	// WIP, Sankey generates but for some reason the data is not valid - perhaps because of duplicates?
 	let option = {};
 
+	/**
+	 * Pulls colors from data series and maps them to an array to be set in the legend
+	 * @param {*} data finalData array to be ploted
+	 * @returns Array of data length which has color codes rgb(r,g,b) that correspond to each series
+	 */
+	function getIconColors(data) {
+		const colorArr = [];
+		for (let i = 0; i < data.length; i++) {
+			colorArr.push(data[i].areaStyle.color.colorStops[0].color);
+		}
+		return colorArr;
+	}
+	const myLegendColors = getIconColors(data);
+
 	if (data.length > 0) {
 		option = {
-			title: {
-				text: 'Gradient Stacked Area Chart - Monthly',
-			},
+			color: myLegendColors,
 			tooltip: {
 				trigger: 'axis',
 				axisPointer: {
@@ -241,45 +403,14 @@ const MonthStackedAreaEntry = (props) => {
 				},
 			},
 			legend: {
+				top: '2%',
 				data: legend,
 			},
 			xAxis: [
 				{
 					type: 'category',
 					boundaryGap: false,
-					data: [
-						'1',
-						'2',
-						'3',
-						'4',
-						'5',
-						'6',
-						'7',
-						'8',
-						'9',
-						'10',
-						'11',
-						'12',
-						'13',
-						'14',
-						'15',
-						'16',
-						'17',
-						'18',
-						'19',
-						'20',
-						'21',
-						'22',
-						'23',
-						'24',
-						'25',
-						'26',
-						'27',
-						'28',
-						'29',
-						'30',
-						'31',
-					],
+					data: mapDaysToArray(numDays),
 				},
 			],
 			yAxis: [

@@ -126,7 +126,6 @@ const DashboardHeatmap = (props) => {
 		tooltip: {
 			position: 'top',
 			formatter: (param) => {
-				console.log(param);
 				const makeCircle = (color) => {
 					return (
 						'<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' +
