@@ -30,26 +30,6 @@ import * as echarts from 'echarts/core';
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
-// TODO
-{
-	/* 
-Desired Data Format
-Data = List of Objects
-Each Object
-{ 
-  Name: "Main Category",
-  Type: 'line',
-  stack: 'total',
-  areaStyle: {},
-  emphasis: {
-    focus: 'series'
-  },
-  data: [values]
-},
-
-*/
-}
-
 const MonthStackedAreaEntry = (props) => {
 	// My Hooks
 	const [data, setData] = useState([]);
