@@ -1,6 +1,8 @@
 import csv
 from main.models import Entry, MainCategory, SubCategory, Entity, User
 from django.utils import timezone
+from django_cryptography.fields import get_encrypted_field
+
 '''
 load_entries.py
 Python script that receives a .csv file and loads the data into the appropriate django model.
@@ -20,7 +22,7 @@ def run():
         for row in reader:
             _, created = Entry.objects.get_or_create(
                 user=User.objects.get(username=row[0]),
-                name=row[1],
+                name = get_encrypted_field(Entry),
                 income=row[2],
                 expense=row[3],
                 notes=row[4],
