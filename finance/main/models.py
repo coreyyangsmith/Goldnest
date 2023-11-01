@@ -32,6 +32,7 @@ class MainCategory(models.Model):
     name = models.CharField(max_length=50, blank=False, null=False)
     description = models.CharField(max_length=500, null=True)
 
+    # Add Type - Income, Investment, Expense (for now...)
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -39,6 +40,10 @@ class MainCategory(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        self.description = encrypt_field(self.description)
+        super().save(*args, **kwargs)    
 
 class SubCategory(models.Model):
     name = models.CharField(max_length=50)
@@ -51,7 +56,11 @@ class SubCategory(models.Model):
     updated_at = models.DateTimeField(auto_now=True)    
 
     def __str__(self):
-        return self.main_category.name + "-" + self.name    
+        return self.main_category.name + "-" + self.name   
+
+    def save(self, *args, **kwargs):
+        self.description = encrypt_field(self.description)
+        super().save(*args, **kwargs)        
     
 class SubSubCategory(models.Model):
     name = models.CharField(max_length=50)
@@ -97,6 +106,7 @@ class Entry(models.Model):
     
     def save(self, *args, **kwargs):
         self.name = encrypt_field(self.name)
+        self.notes = encrypt_field(self.notes)        
         super().save(*args, **kwargs)
     
 # ################################################################# #
@@ -113,13 +123,14 @@ ACCOUNT_TYPE_CHOICES = [
 class Account(models.Model):
     name = models.CharField(max_length=50)
     account_type = models.CharField(max_length=3, choices=ACCOUNT_TYPE_CHOICES)
-    current_balance = models.FloatField()
-    rate = models.FloatField(null=True)
-    start_term = models.DateField(null=True, blank=True)
-    end_term = models.DateField(null=True, blank=True)    
+    balance = models.FloatField()
+    date = models.DateField()
 
-    entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)    
+    #rate = models.FloatField(null=True)
+    #start_term = models.DateField(null=True, blank=True)
+    #end_term = models.DateField(null=True, blank=True)    
+
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)    
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

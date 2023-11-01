@@ -246,6 +246,8 @@ def maincategories_list(request):
             token = request.META['HTTP_AUTHORIZATION'][6::]
             user = Token.objects.get(key=token).user       
             data = MainCategory.objects.all().filter(user=user)
+            for item in data:
+                item.description = decrypt_field(item.description)
         else:
             data = MainCategory.objects.all().none();
         serializer = MainCategorySerializer(data, context={'request': request}, many=True)
@@ -299,6 +301,8 @@ def subcategories_list(request):
             token = request.META['HTTP_AUTHORIZATION'][6::]
             user = Token.objects.get(key=token).user       
             data = SubCategory.objects.all().filter(user=user)
+            for item in data:
+                item.description = decrypt_field(item.description)
         else:
             data = SubCategory.objects.all()
         serializer = SubCategorySerializer(data, context={'request': request}, many=True)
