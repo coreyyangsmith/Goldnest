@@ -2,7 +2,8 @@ from django.db import models
 import datetime
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
-from django_cryptography.fields import encrypt
+
+from security.encryption import encrypt_field
 
 from django.contrib.auth.models import User
 
@@ -77,9 +78,9 @@ class Entity(models.Model):
         return self.name
     
 class Entry(models.Model):
-    name = encrypt(models.CharField(max_length=50))
+    name = models.CharField(max_length=50)
     income = models.FloatField()
-    expense = encrypt(models.FloatField())
+    expense = models.FloatField()
     notes = models.CharField(max_length=200, null=True, blank=False)
 
     date = models.DateField()
@@ -93,6 +94,10 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        self.name = encrypt_field(self.name)
+        super().save(*args, **kwargs)
     
 # ################################################################# #
 # ------------------------- MACRO FINANCE ------------------------- #

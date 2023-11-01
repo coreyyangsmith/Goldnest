@@ -1,7 +1,6 @@
 import csv
 from main.models import Entry, MainCategory, SubCategory, Entity, User
 from django.utils import timezone
-from django_cryptography.fields import get_encrypted_field
 
 '''
 load_entries.py
@@ -22,7 +21,7 @@ def run():
         for row in reader:
             _, created = Entry.objects.get_or_create(
                 user=User.objects.get(username=row[0]),
-                name = get_encrypted_field(Entry),
+                name = row[1],
                 income=row[2],
                 expense=row[3],
                 notes=row[4],

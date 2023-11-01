@@ -37,6 +37,9 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework import viewsets
 
+# Encryption
+from security.encryption import decrypt_field
+
 ###############
 #### ADMIN ####
 ###############
@@ -157,6 +160,8 @@ def entrys_list(request):
             token = request.META['HTTP_AUTHORIZATION'][6::]
             user = Token.objects.get(key=token).user       
             data = Entry.objects.all().filter(user=user)
+            for entry in data:
+                entry.name = decrypt_field(entry.name)
         else:
             data = Entry.objects.all().none();
         serializer = EntrySerializer(data, context={'request': request}, many=True)

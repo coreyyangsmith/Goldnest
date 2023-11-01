@@ -9,7 +9,7 @@ from decimal import Decimal
 
 SELECTED_USERNAME = "coreyyangsmith"
 
-DATA_PATH = "scripts/seeding/data/personalData.csv"
+DATA_PATH = "/Users/corey/Desktop/personalData.csv"
 
 SELECTED_YEAR = 2023
 
@@ -31,10 +31,10 @@ def run():
     user = User.objects.get(username=SELECTED_USERNAME)
 
     # Delete All Data for Selected User
-    Entry.objects.filter(user=user).delete() #TODO
+    Entry.objects.filter(user=user).delete() #Done
     Account.objects.filter(user=user).delete() # Not Doing
     Entity.objects.filter(user=user).delete() #Done
-    Budget.objects.filter(user=user).delete() #TODO
+    Budget.objects.filter(user=user).delete() #Done
     SubSubCategory.objects.filter(user=user).delete() # Not Doing
     SubCategory.objects.filter(user=user).delete() # Done
     MainCategory.objects.filter(user=user).delete() # Done
@@ -74,6 +74,7 @@ def run():
             updated_at = timezone.now()
         )
         _.save()
+    print("Main Category Added")
 
     # ADD SUB CATEGORY TO DB
     for i in range(0, len(main_categories)):
@@ -87,6 +88,7 @@ def run():
                 updated_at=timezone.now()
             )
             _.save()
+    print("Sub Category Added")            
 
     # ADD ENTITY TO DB
     entities = list(entities)        
@@ -97,6 +99,7 @@ def run():
             created_at=timezone.now(),
             updated_at=timezone.now()
         )
+    print("Entity Added")        
 
     # POPULATE BUDGETS
     for i in range(0, len(main_categories)):
@@ -113,6 +116,7 @@ def run():
                     month=month,
                 )
                 _.save()
+    print("Budget Added")
 
     # IMPORT ENTRIES
     with open(DATA_PATH) as f:
@@ -123,11 +127,9 @@ def run():
             if (row[5] == ''):
                 processed_income = 0
             else:
-                print(row[5])
                 new_string = row[5].replace(",", "")    
                 new_string = row[5].replace("\t", "")     
                 new_string = row[5].replace(" ", "")                                                          
-                print(new_string)
                 processed_income = Decimal(sub(r'[^\d.]', '', new_string))
 
             if (row[6] == ''):
@@ -135,8 +137,7 @@ def run():
             else:
                 new_string = row[6].replace(",", "")    
                 new_string = row[5].replace(" ", "")                     
-                new_string = row[6].replace("\t", "")   
-                print(new_string)                                           
+                new_string = row[6].replace("\t", "")                                     
                 processed_expense = Decimal(sub(r'[^\d.]', '', new_string))        
 
 
@@ -154,7 +155,8 @@ def run():
                 updated_at=timezone.now(),
             )
             _.save()
-
+    print("Entry Added")            
+    print("Import Complete!") 
     
 if __name__ == "__main__": 
     run()
