@@ -109,7 +109,6 @@ class EntrySerializer(serializers.ModelSerializer):
         sub_category_name = list(sub_category_data.values())[1]
         sub_category, created = SubCategory.objects.get_or_create(name=sub_category_name, main_category=main_category)
         
-        print(sub_category_data)
         entity_data = validated_data.pop('routing')
         entity_name = list(entity_data.values())[1]
         entity, created = Entity.objects.get_or_create(name=entity_name)

@@ -16,31 +16,42 @@
 //-------------------------------------------------------//
 
 // MUI Imports
-import { Container, Grid } from "@mui/material";
-import MyDataGrid from "./MyDataGrid";
-import AddNewForm from "./AddNewForm";
+import { Container, Grid } from '@mui/material';
+import MyDataGrid from './MyDataGrid';
+import AddNewForm from './AddNewForm';
 
 // Custom Hooks
-import { useEntries } from "../../hooks/useEntries.js";
+import { useEntries } from '../../hooks/useEntries.js';
+
+import ReactTableTest from './ReactTableTest.jsx';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const Database = () => {
-  const { entries, setEntries, processData } = useEntries();
+	const { entries, setEntries, processData } = useEntries();
 
-  return (
-    <>
-      <h2>Welcome to My Database</h2>
-      <MyDataGrid entries={entries} />
-      <Container>
-        <AddNewForm setEntries={setEntries} processData={processData} />
-      </Container>
-    </>
-  );
+	return (
+		<>
+			<h2>Welcome to My Database</h2>
+			<ReactTableTest />
+			<Container>
+				<AddNewForm
+					setEntries={setEntries}
+					processData={processData}
+				/>
+			</Container>
+		</>
+	);
 };
 
 //  EXPORTS
 //-------------------------------------------------------//
 
 export default Database;
+
+{
+	/* 
+<MyDataGrid entries={entries} />
+*/
+}
