@@ -23,7 +23,12 @@ import AddNewForm from './AddNewForm';
 // Custom Hooks
 import { useEntries } from '../../hooks/useEntries.js';
 
-import ReactTableTest from './ReactTableTest.jsx';
+import SortingTable from './SortingTable.jsx';
+import GlobalFilteringTable from './GlobalFilteringTable.jsx';
+import ColumnFilteringTable from './ColumnFilteringTable.jsx';
+import PaginationTable from './PaginationTable.jsx';
+import SelectingRowTable from './SelectingRowTable.jsx';
+import MyTable from './MyTable.jsx';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -34,7 +39,7 @@ const Database = () => {
 	return (
 		<>
 			<h2>Welcome to My Database</h2>
-			<ReactTableTest />
+			<MyTable />
 			<Container>
 				<AddNewForm
 					setEntries={setEntries}

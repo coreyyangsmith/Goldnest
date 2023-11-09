@@ -13,18 +13,24 @@ import {
 	flexRender,
 	getCoreRowModel,
 } from '@tanstack/react-table';
+import { useState } from 'react';
 
-export default function ReactTableTest() {
+export default function SelectingRowTable() {
 	const finalData = useMemo(() => dataJSON, []);
 	const finalColumnDef = useMemo(() => columnDef, []);
+
+	const [rowSelection, setRowSelection] = useState({});
 
 	const tableInstance = useReactTable({
 		columns: finalColumnDef,
 		data: finalData,
 		getCoreRowModel: getCoreRowModel(),
+		state: {
+			rowSelection: rowSelection,
+		},
+		onRowSelectionChange: setRowSelection,
+		enableRowSelection: true,
 	});
-
-	console.log('test', tableInstance.getHeaderGroups());
 
 	return (
 		<table>
