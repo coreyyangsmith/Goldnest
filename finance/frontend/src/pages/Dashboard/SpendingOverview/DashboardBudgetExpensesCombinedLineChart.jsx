@@ -93,7 +93,6 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 				const value = Number(
 					Math.round(parseFloat(cumulativeSum + 'e' + 2)) + 'e-' + 2
 				).toFixed(2);
-				console.log(value);
 				cumulativeEntryArray.push(value);
 			}
 

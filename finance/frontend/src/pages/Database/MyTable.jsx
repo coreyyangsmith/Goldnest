@@ -27,14 +27,15 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 export default function MyTable() {
-	const finalData = useMemo(() => dataJSON, []);
+	const [data, setData] = useState(dataJSON);
+	//const finalData = useMemo(() => dataJSON, []);
 	const finalColumnDef = useMemo(() => columnDef, []);
 
 	const [columnFilters, setColumnFilters] = useState([]);
 
 	const tableInstance = useReactTable({
 		columns: finalColumnDef,
-		data: finalData,
+		data: data,
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
 		state: {
@@ -42,6 +43,19 @@ export default function MyTable() {
 		},
 		onColumnFiltersChange: setColumnFilters,
 		getPaginationRowModel: getPaginationRowModel(),
+		meta: {
+			updateData: (rowIndex, columnId, value) =>
+				setData((prev) =>
+					prev.map((row, index) =>
+						index === rowIndex
+							? {
+									...prev[rowIndex],
+									[columnId]: value,
+							  }
+							: row
+					)
+				),
+		},
 	});
 
 	return (

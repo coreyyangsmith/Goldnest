@@ -62,7 +62,7 @@ const MonthSankeyEntry = (props) => {
 				// Finds matching Sub Category and appends to Budget Object
 				const mappedEntriesSub = mappedEntriesMain.map((entry) => {
 					const matchingSubCategory = props.subCategories.find(
-						(obj) => obj.pk === entry.sub_category.pk
+						(obj) => obj.id === entry.sub_category.id
 					);
 					return { ...entry, matchingSubCategory };
 				});

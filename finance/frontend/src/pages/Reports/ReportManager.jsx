@@ -25,7 +25,7 @@
 import React from 'react';
 
 // MUI Imports
-import { Box, Grid } from '@mui/material/';
+import { Grid } from '@mui/material/';
 
 // My Components
 //// Sunburst
