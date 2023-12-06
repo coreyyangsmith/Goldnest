@@ -15,4 +15,5 @@ admin.site.register(Entry)
 
 # Macro
 admin.site.register(Account)
+admin.site.register(AccountEntry)
 admin.site.register(Budget)

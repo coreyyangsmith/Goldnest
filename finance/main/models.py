@@ -88,8 +88,8 @@ class Entity(models.Model):
     
 class Entry(models.Model):
     name = models.CharField(max_length=50)
-    income = models.FloatField()
-    expense = models.FloatField()
+    income = models.DecimalField(max_digits=11, decimal_places=2)
+    expense = models.DecimalField(max_digits=11, decimal_places=2)
     notes = models.CharField(max_length=200, null=True, blank=False)
 
     date = models.DateField()
@@ -112,6 +112,7 @@ class Entry(models.Model):
 # ################################################################# #
 # ------------------------- MACRO FINANCE ------------------------- #
 # ################################################################# #
+
 ACCOUNT_TYPE_CHOICES = [
     ("CEQ", "Chequings"),
     ("SAV", "Savings"),
@@ -122,14 +123,7 @@ ACCOUNT_TYPE_CHOICES = [
 
 class Account(models.Model):
     name = models.CharField(max_length=50)
-    account_type = models.CharField(max_length=3, choices=ACCOUNT_TYPE_CHOICES)
-    balance = models.FloatField()
-    date = models.DateField()
-
-    #rate = models.FloatField(null=True)
-    #start_term = models.DateField(null=True, blank=True)
-    #end_term = models.DateField(null=True, blank=True)    
-
+    account_type = models.CharField(max_length=3, choices=ACCOUNT_TYPE_CHOICES) 
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)    
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -138,6 +132,17 @@ class Account(models.Model):
     def __str__(self):
         return self.name
     
+class AccountEntry(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    balance = models.DecimalField(max_digits=11, decimal_places=2, default=0)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)      
+
+    date = models.DateField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)    
+
+    
 class Budget(models.Model):
     def current_year():
         return datetime.date.today().year
@@ -145,7 +150,7 @@ class Budget(models.Model):
     def current_month():
         return datetime.date.today().month    
 
-    amount = models.FloatField(default=0)
+    amount = models.DecimalField(max_digits=11, decimal_places=2, default=0)
     year = models.PositiveIntegerField(default=current_year(), 
                                        validators=[MinValueValidator(1984), MaxValueValidator(current_year())])
     month = models.PositiveSmallIntegerField(default=current_month(),
