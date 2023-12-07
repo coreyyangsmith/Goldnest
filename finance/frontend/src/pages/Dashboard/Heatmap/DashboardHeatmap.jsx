@@ -9,7 +9,7 @@
 //      - Sub Categories (?)
 //
 //  Returns:
-//      - Sunburst Chart
+//      - Heatmap Chart on Dashboard
 //
 // Created By: Corey Yang-Smith
 // Date: October 23rd, 2023
@@ -45,7 +45,7 @@ const DashboardHeatmap = (props) => {
 			props.selectedYear + '-' + props.selectedMonth.toString().padStart(2, '0')
 		);
 
-		if (props.selectedYear !== '' && props.selectedMonth !== '') {
+		if (props.selectedYear !== '' && parseInt(props.selectedMonth) !== '') {
 			/**
 			 * Gets the sum of entries by each day in a month, and formats for heatmap echarts
 			 * @returns Array of Objects with {Date (String) and Entry Summed Value (Float)}
@@ -53,20 +53,20 @@ const DashboardHeatmap = (props) => {
 			function getEntriesByDay() {
 				// Filter Initial Entries Data
 				const entriesForYear = props.entries.filter(function (row) {
-					return row.year == props.selectedYear;
+					return row.year === props.selectedYear;
 				});
 
 				const entiresByMonth = entriesForYear.filter(function (row) {
-					return row.month == props.selectedMonth;
+					return row.month === parseInt(props.selectedMonth);
 				});
 
 				const entriesByMainCategory = entiresByMonth.filter(function (row) {
-					return row.main_category.name == props.selectedMain.name;
+					return row.main_category.name === props.selectedMain.name;
 				});
 
 				var entriesToUse;
 
-				if (props.selectedMain == '') {
+				if (props.selectedMain === '') {
 					entriesToUse = entiresByMonth;
 				} else {
 					entriesToUse = entriesByMainCategory;
@@ -80,7 +80,7 @@ const DashboardHeatmap = (props) => {
 				entriesToUse.forEach((entry) => {
 					const date = new Date(entry.date);
 					const day = date.getDate();
-					const month = date.getMonth();
+					//const month = date.getMonth();
 
 					// Initialize amount if day doesnt exist
 					if (!entriesByDay.has(day)) {
@@ -88,7 +88,10 @@ const DashboardHeatmap = (props) => {
 					}
 
 					// Accumulate the amount for the day
-					entriesByDay.set(day, entriesByDay.get(day) + entry.expense);
+					entriesByDay.set(
+						day,
+						entriesByDay.get(day) + parseFloat(entry.expense)
+					);
 				});
 
 				// Create Array to Output
@@ -111,7 +114,7 @@ const DashboardHeatmap = (props) => {
 					if (maxVal < entriesByDay.get(day)) maxVal = entriesByDay.get(day);
 
 					if (entriesByDay.get(day) !== undefined)
-						entryArray.push([date, Number(entriesByDay.get(day).toFixed(2))]);
+						entryArray.push([date, Number(entriesByDay.get(day)).toFixed(2)]);
 					else entryArray.push({ Date: date, value: 0 });
 				}
 				setMaxValue(maxVal);
@@ -133,7 +136,9 @@ const DashboardHeatmap = (props) => {
 						'"></span>'
 					);
 				};
-				return makeCircle(param.color) + '$' + param.value[1].toFixed(2);
+				return (
+					makeCircle(param.color) + '$' + Number(param.value[1]).toFixed(2)
+				);
 			},
 		},
 		visualMap: {
@@ -184,7 +189,7 @@ const DashboardHeatmap = (props) => {
 		title: {
 			show: true,
 			text:
-				props.selectedMain.name == undefined
+				props.selectedMain.name === undefined
 					? 'All Categories'
 					: props.selectedMain.name,
 			textStyle: {

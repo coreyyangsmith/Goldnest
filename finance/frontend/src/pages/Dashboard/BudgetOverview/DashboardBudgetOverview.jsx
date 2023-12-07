@@ -20,7 +20,7 @@
 import React, { useState, useEffect } from 'react';
 
 // MUI Imports
-import { Divider, Paper, Stack, Typography, Box } from '@mui/material';
+import { Divider, Paper, Stack, Typography } from '@mui/material';
 
 // My Componens
 import DashboardMainCategorySmallPanel from './DashboardMainCategorySmallPanel';
@@ -61,7 +61,7 @@ const DashboardBudgetOverview = (props) => {
 	// Generates Micro Panels in Main Category Paper
 	const myMainCategories = props.mainCategories.map((value, index) => {
 		return (
-			<React.Fragment>
+			<React.Fragment key={value.id}>
 				<DashboardMainCategorySmallPanel
 					mainCategory={value}
 					entries={props.entries}
@@ -101,10 +101,13 @@ const DashboardBudgetOverview = (props) => {
 		// If Current Month, calculate daysPassed/daysRemaining
 		const daysInMonth = new Date(
 			props.selectedYear,
-			props.selectedMonth + 1,
+			parseInt(props.selectedMonth) + 1,
 			0
 		).getDate();
-		if (month == props.selectedMonth && year == props.selectedYear) {
+		if (
+			month === parseInt(props.selectedMonth) &&
+			year === props.selectedYear
+		) {
 			const timeLeft = daysInMonth - today;
 			setDaysPassed(today);
 			setDaysRemaining(timeLeft);
@@ -115,7 +118,7 @@ const DashboardBudgetOverview = (props) => {
 		else if (year > props.selectedYear)
 			// Past Year
 			setPast(daysInMonth);
-		else if (month < props.selectedMonth)
+		else if (month < parseInt(props.selectedMonth))
 			// Future Month
 			setFuture(daysInMonth);
 		// Past Month
@@ -127,15 +130,15 @@ const DashboardBudgetOverview = (props) => {
 		//  - Slider Percentage
 
 		const budgetForYear = props.budgets.filter(function (row) {
-			return row.year == props.selectedYear;
+			return row.year === props.selectedYear;
 		});
 
 		const budgetByMonth = budgetForYear.filter(function (row) {
-			return row.month == props.selectedMonth;
+			return row.month === parseInt(props.selectedMonth);
 		});
 
 		const mySummedBudget = budgetByMonth.reduce(
-			(total, budget) => total + budget.amount,
+			(total, budget) => total + parseFloat(budget.amount),
 			0
 		);
 		const myMaxBudget = Math.round(mySummedBudget);
@@ -163,18 +166,18 @@ const DashboardBudgetOverview = (props) => {
 		//  - Slider Percentage
 
 		const entriesForYear = props.entries.filter(function (row) {
-			return row.year == props.selectedYear;
+			return row.year === props.selectedYear;
 		});
 
 		const entiresByMonth = entriesForYear.filter(function (row) {
-			return row.month == props.selectedMonth;
+			return row.month === parseInt(props.selectedMonth);
 		});
 
 		// "Max" (ie Target) should be equal to Budget Max
 		setEntrySliderMax(myMaxBudget);
 
 		const mySummedEntries = entiresByMonth.reduce(
-			(total, entry) => total + entry.expense,
+			(total, entry) => total + parseFloat(entry.expense),
 			0
 		);
 		const myCurrEntry = Math.round(mySummedEntries);
@@ -218,7 +221,7 @@ const DashboardBudgetOverview = (props) => {
 				parseFloat(remainingEntries / daysRemaining).toFixed(2)
 			);
 		}
-	}, [props, daysPassed, daysRemaining]);
+	}, [props, daysPassed, daysRemaining, timeframe]);
 
 	// Information Required for Custom Slides
 	const budgetMarks = [

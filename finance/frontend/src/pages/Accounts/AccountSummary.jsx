@@ -50,3 +50,9 @@ const AccountSummary = (props) => {
 //-------------------------------------------------------//
 
 export default AccountSummary;
+
+// Essentially will be blocked into two sections (3)
+// 1 -> Main Info
+// Contains Info Summary, Dynamically loads info from db and sorts categories. (vertical scroll)
+// from this, horizontal scroll your entire timeline
+// 2 -> New Entry

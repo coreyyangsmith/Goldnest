@@ -40,11 +40,11 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 		function getCumulativeEntriesByDay() {
 			// Filter Initial Entries Data
 			const entriesForYear = props.entries.filter(function (row) {
-				return row.year == props.selectedYear;
+				return row.year === props.selectedYear;
 			});
 
 			const entiresByMonth = entriesForYear.filter(function (row) {
-				return row.month == props.selectedMonth;
+				return row.month === parseInt(props.selectedMonth);
 			});
 
 			const entiresByMainCategory = entiresByMonth.filter(function (row) {
@@ -53,7 +53,7 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 
 			var entriesToUse;
 
-			if (props.selectedMain == '') {
+			if (props.selectedMain === '') {
 				entriesToUse = entiresByMonth;
 			} else {
 				entriesToUse = entiresByMainCategory;
@@ -66,7 +66,7 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 			entriesToUse.forEach((entry) => {
 				const date = new Date(entry.date);
 				const day = date.getDate();
-				const month = date.getMonth();
+				//const month = date.getMonth();
 
 				// Initialize cumulative amount if day doesnt exist
 				if (!cumulativeEntriesByDay.has(day)) {
@@ -76,7 +76,7 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 				// Accumulative th amount for the day
 				cumulativeEntriesByDay.set(
 					day,
-					cumulativeEntriesByDay.get(day) + entry.expense
+					cumulativeEntriesByDay.get(day) + parseFloat(entry.expense)
 				);
 			});
 
@@ -104,11 +104,11 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 		function getCumulativeBudgetByDay() {
 			// Filter Initial Entries Data
 			const budgetForYear = props.budgets.filter(function (row) {
-				return row.year == props.selectedYear;
+				return row.year === props.selectedYear;
 			});
 
 			const budgetByMonth = budgetForYear.filter(function (row) {
-				return row.month == props.selectedMonth;
+				return row.month === parseInt(props.selectedMonth);
 			});
 
 			const budgetByMainCategory = budgetByMonth.filter(function (row) {
@@ -124,7 +124,7 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 			}
 
 			const mySummedBudget = budgetToUse.reduce(
-				(total, budget) => total + budget.amount,
+				(total, budget) => total + parseFloat(budget.amount),
 				0
 			);
 
