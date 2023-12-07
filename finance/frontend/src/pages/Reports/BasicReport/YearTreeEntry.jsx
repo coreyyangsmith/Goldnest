@@ -72,7 +72,7 @@ const YearTreeEntry = (props) => {
 			 */
 			function getFilteredEntries(mainCategories, subCategories) {
 				const entryForYear = props.entries.filter(function (row) {
-					return row.year == props.selectedYear;
+					return row.year === props.selectedYear;
 				});
 
 				const mappedEntriesMain = entryForYear.map((entry) => {
@@ -106,7 +106,7 @@ const YearTreeEntry = (props) => {
 							sum: 0,
 						};
 					}
-					result[key].sum += item.expense; // Assuming each object has a 'sum' property
+					result[key].sum += parseFloat(item.expense); // Assuming each object has a 'sum' property
 					result[key].name = item.sub_category.name;
 
 					return result;

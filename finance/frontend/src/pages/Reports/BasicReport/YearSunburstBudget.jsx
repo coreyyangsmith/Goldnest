@@ -19,203 +19,206 @@
 //-------------------------------------------------------//
 
 // React Import
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from 'react';
 
 // MUI Import
-import { Divider, Paper, Typography } from "@mui/material";
+import { Divider, Paper, Typography } from '@mui/material';
 
 // ECharts
-import ReactEcharts from "echarts-for-react";
+import ReactEcharts from 'echarts-for-react';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
 const YearSunburstBudget = (props) => {
-  // My Hooks
-  const [budgetData, setBudgetData] = useState([]);
+	// My Hooks
+	const [budgetData, setBudgetData] = useState([]);
 
-  // Load Budget Data and Partiton into Yearly Sunburst Format
-  useEffect(() => {
-    if (props.selectedYear !== undefined) {
-      // Map Categories (get mainCategories Array)
-      function getMainCategoriesList() {
-        const mainCategoriesArray = [];
-        props.mainCategories.forEach((mainCat) =>
-          mainCategoriesArray.push(mainCat.name)
-        );
-        return mainCategoriesArray;
-      }
-      const mainCatData = getMainCategoriesList();
+	// Load Budget Data and Partiton into Yearly Sunburst Format
+	useEffect(() => {
+		if (props.selectedYear !== undefined) {
+			// Map Categories (get mainCategories Array)
+			function getMainCategoriesList() {
+				const mainCategoriesArray = [];
+				props.mainCategories.forEach((mainCat) =>
+					mainCategoriesArray.push(mainCat.name)
+				);
+				return mainCategoriesArray;
+			}
+			const mainCatData = getMainCategoriesList();
 
-      // Map Categories (get SubCategories Array)
-      function getSubCategoriesList() {
-        const subCategoriesArray = [];
-        props.subCategories.forEach((subCat) =>
-          subCategoriesArray.push(subCat.pk)
-        );
-        return subCategoriesArray;
-      }
-      const subCatData = getSubCategoriesList();
+			// Map Categories (get SubCategories Array)
+			function getSubCategoriesList() {
+				const subCategoriesArray = [];
+				props.subCategories.forEach((subCat) =>
+					subCategoriesArray.push(subCat.pk)
+				);
+				return subCategoriesArray;
+			}
+			const subCatData = getSubCategoriesList();
 
-      // Preprocess Budget Data
-      const budgetForYear = props.budget.filter(function (row) {
-        return row.year == props.selectedYear;
-      });
+			// Preprocess Budget Data
+			const budgetForYear = props.budget.filter(function (row) {
+				return row.year === props.selectedYear;
+			});
 
-      const mappedBudgetsMain = budgetForYear.map((budget) => {
-        const matchingMainCategoryName = mainCatData.find(
-          (str) => str === budget.sub_category.main_category.name
-        );
-        return { ...budget, matchingMainCategoryName };
-      });
+			const mappedBudgetsMain = budgetForYear.map((budget) => {
+				const matchingMainCategoryName = mainCatData.find(
+					(str) => str === budget.sub_category.main_category.name
+				);
+				return { ...budget, matchingMainCategoryName };
+			});
 
-      const mappedBudgetsSub = mappedBudgetsMain.map((budget) => {
-        const matchingSubCategoryID = subCatData.find(
-          (id) => id === budget.sub_category.pk
-        );
-        return { ...budget, matchingSubCategoryID };
-      });
+			const mappedBudgetsSub = mappedBudgetsMain.map((budget) => {
+				const matchingSubCategoryID = subCatData.find(
+					(id) => id === budget.sub_category.pk
+				);
+				return { ...budget, matchingSubCategoryID };
+			});
 
-      // Filter Budget Data into appropriate format
-      // Sum based on category IDs
-      // mySummedSubCategories --> {id: pk (subcat), sum: int}
-      function groupAndSumByAttribute(list, attribute) {
-        return list.reduce((result, item) => {
-          const key = item[attribute];
+			// Filter Budget Data into appropriate format
+			// Sum based on category IDs
+			// mySummedSubCategories --> {id: pk (subcat), sum: int}
+			function groupAndSumByAttribute(list, attribute) {
+				return list.reduce((result, item) => {
+					const key = item[attribute];
 
-          if (!result[key]) {
-            result[key] = {
-              [attribute]: key,
-              sum: 0,
-            };
-          }
-          result[key].sum += item.amount; // Assuming each object has a 'sum' property
-          result[key].name = item.sub_category.name;
+					if (!result[key]) {
+						result[key] = {
+							[attribute]: key,
+							sum: 0,
+						};
+					}
+					result[key].sum += parseFloat(item.amount); // Assuming each object has a 'sum' property
+					result[key].name = item.sub_category.name;
 
-          return result;
-        }, {});
-      }
-      const mySummedSubCategories = groupAndSumByAttribute(
-        mappedBudgetsSub,
-        "matchingSubCategoryID"
-      );
-      // Convert from one large object to array of objects
-      const mySummedSubCategoriesFinal = Object.keys(mySummedSubCategories).map(
-        (key) => ({ key, value: mySummedSubCategories[key] })
-      );
+					return result;
+				}, {});
+			}
+			const mySummedSubCategories = groupAndSumByAttribute(
+				mappedBudgetsSub,
+				'matchingSubCategoryID'
+			);
+			// Convert from one large object to array of objects
+			const mySummedSubCategoriesFinal = Object.keys(mySummedSubCategories).map(
+				(key) => ({ key, value: mySummedSubCategories[key] })
+			);
 
-      // Generate Intermediate Object to help mapping
-      // myCategoryLabels --> {name: str (mainCat), fk: [pks associate with subCats]}
-      function groupByAttribute(list) {
-        return list.reduce((result, object) => {
-          const groupName = object.main_category.name;
+			// Generate Intermediate Object to help mapping
+			// myCategoryLabels --> {name: str (mainCat), fk: [pks associate with subCats]}
+			function groupByAttribute(list) {
+				return list.reduce((result, object) => {
+					const groupName = object.main_category.name;
 
-          if (!result[groupName]) {
-            result[groupName] = {
-              name: groupName,
-              children: [],
-            };
-          }
+					if (!result[groupName]) {
+						result[groupName] = {
+							name: groupName,
+							children: [],
+						};
+					}
 
-          result[groupName].children.push(object.pk);
+					result[groupName].children.push(object.pk);
 
-          return result;
-        }, {});
-      }
-      const myCategoryLabels = groupByAttribute(props.subCategories);
-      // Convert from one large object to array of objects
-      const myCategoryLabelsFinal = Object.keys(myCategoryLabels).map(
-        (key) => ({ key, value: myCategoryLabels[key] })
-      );
+					return result;
+				}, {});
+			}
+			const myCategoryLabels = groupByAttribute(props.subCategories);
+			// Convert from one large object to array of objects
+			const myCategoryLabelsFinal = Object.keys(myCategoryLabels).map(
+				(key) => ({ key, value: myCategoryLabels[key] })
+			);
 
-      function combineLists(list1, list2) {
-        // Create a map to quickly look up list2 objects by FK
-        const list2Map = new Map();
+			function combineLists(list1, list2) {
+				// Create a map to quickly look up list2 objects by FK
+				const list2Map = new Map();
 
-        list2.forEach((obj) => {
-          list2Map.set(obj.value.matchingSubCategoryID, {
-            name: obj.value.name,
-            value: obj.value.sum,
-          });
-        });
+				list2.forEach((obj) => {
+					list2Map.set(obj.value.matchingSubCategoryID, {
+						name: obj.value.name,
+						value: obj.value.sum,
+					});
+				});
 
-        // Use map to combine the two lists
-        const combinedList = list1.map((obj1) => {
-          const children = obj1.value.children
-            .map((fk) => {
-              const obj2 = list2Map.get(fk);
-              if (obj2) {
-                return { name: obj2.name, value: obj2.value };
-              }
-              return null;
-            })
-            .filter((child) => child !== null);
+				// Use map to combine the two lists
+				const combinedList = list1.map((obj1) => {
+					const children = obj1.value.children
+						.map((fk) => {
+							const obj2 = list2Map.get(fk);
+							if (obj2) {
+								return { name: obj2.name, value: obj2.value };
+							}
+							return null;
+						})
+						.filter((child) => child !== null);
 
-          return {
-            name: obj1.value.name,
-            children,
-          };
-        });
+					return {
+						name: obj1.value.name,
+						children,
+					};
+				});
 
-        return combinedList;
-      }
+				return combinedList;
+			}
 
-      if (mySummedSubCategoriesFinal.length > 0) {
-        if (mySummedSubCategoriesFinal[0].key !== "undefined") {
-          const finalData = combineLists(
-            myCategoryLabelsFinal,
-            mySummedSubCategoriesFinal
-          );
-          setBudgetData(finalData);
-        }
-      }
-    }
-  }, [props]);
+			if (mySummedSubCategoriesFinal.length > 0) {
+				if (mySummedSubCategoriesFinal[0].key !== 'undefined') {
+					const finalData = combineLists(
+						myCategoryLabelsFinal,
+						mySummedSubCategoriesFinal
+					);
+					setBudgetData(finalData);
+				}
+			}
+		}
+	}, [props]);
 
-  const option = {
-    tooltip: {
-      trigger: "item",
-      triggerOn: "mousemove",
-    },
+	const option = {
+		tooltip: {
+			trigger: 'item',
+			triggerOn: 'mousemove',
+		},
 
-    series: {
-      type: "sunburst",
-      data: budgetData,
-      radius: ["0%", "97%"],
-      itemStyle: {
-        borderRadius: 0,
-        borderWidth: 1,
-      },
-      label: {
-        rotate: "radial",
-        color: "#000",
-        textBorderColor: "#fff",
-        textBorderWidth: 4,
-        fontSize: 14,
-        formatter: function (d) {
-          return d.name + " (" + Number(d.value).toFixed(0) + ")";
-        },
-      },
-    },
-  };
+		series: {
+			type: 'sunburst',
+			data: budgetData,
+			radius: ['0%', '97%'],
+			itemStyle: {
+				borderRadius: 0,
+				borderWidth: 1,
+			},
+			label: {
+				rotate: 'radial',
+				color: '#000',
+				textBorderColor: '#fff',
+				textBorderWidth: 4,
+				fontSize: 14,
+				formatter: function (d) {
+					return d.name + ' (' + Number(d.value).toFixed(0) + ')';
+				},
+			},
+		},
+	};
 
-  return (
-    <Paper
-      sx={{
-        paddingLeft: "32px",
-        paddingRight: "32px",
-        paddingTop: "16px",
-        paddingBottom: "16px",
-      }}
-      elevation={4}
-    >
-      <Typography variant="dashboard_heading">
-        Yearly Budget Categories
-      </Typography>
-      <Divider />
-      <ReactEcharts option={option} style={{ height: "750px" }} />
-    </Paper>
-  );
+	return (
+		<Paper
+			sx={{
+				paddingLeft: '32px',
+				paddingRight: '32px',
+				paddingTop: '16px',
+				paddingBottom: '16px',
+			}}
+			elevation={4}
+		>
+			<Typography variant="dashboard_heading">
+				Yearly Budget Categories
+			</Typography>
+			<Divider />
+			<ReactEcharts
+				option={option}
+				style={{ height: '750px' }}
+			/>
+		</Paper>
+	);
 };
 
 //  EXPORTS

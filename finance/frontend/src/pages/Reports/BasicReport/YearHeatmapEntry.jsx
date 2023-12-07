@@ -49,7 +49,7 @@ const YearHeatmapEntry = (props) => {
 			function getEntriesByDay() {
 				// Filter Initial Entries Data
 				const entriesForYear = props.entries.filter(function (row) {
-					return row.year == props.selectedYear;
+					return row.year === props.selectedYear;
 				});
 
 				// Create new map to store cumulative amounts
@@ -72,7 +72,10 @@ const YearHeatmapEntry = (props) => {
 					}
 
 					// Accumulate the amount for the day
-					entriesByDay.set(date, entriesByDay.get(date) + entry.expense);
+					entriesByDay.set(
+						date,
+						entriesByDay.get(date) + parseFloat(entry.expense)
+					);
 				});
 				console.log('Entries By Day');
 				console.log(entriesByDay);
@@ -81,7 +84,9 @@ const YearHeatmapEntry = (props) => {
 				const entryArray = [];
 
 				const daysinYear =
-					new Date(props.selectedYear, 1, 1).getFullYear() % 4 == 0 ? 366 : 365;
+					new Date(props.selectedYear, 1, 1).getFullYear() % 4 === 0
+						? 366
+						: 365;
 
 				for (let day = 1; day <= daysinYear; day++) {
 					let iterDate = new Date(props.selectedYear, 1, 0);
@@ -127,7 +132,9 @@ const YearHeatmapEntry = (props) => {
 						'"></span>'
 					);
 				};
-				return makeCircle(param.color) + '$' + param.value[1].toFixed(2);
+				return (
+					makeCircle(param.color) + '$' + Number(param.value[1]).toFixed(2)
+				);
 			},
 		},
 		visualMap: {

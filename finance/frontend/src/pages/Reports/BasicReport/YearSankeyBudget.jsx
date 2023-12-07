@@ -44,7 +44,7 @@ const YearSankeyBudget = (props) => {
 			function enrichBudgetData() {
 				// Filters all budget objects for selected year
 				const budgetForYear = props.budget.filter(function (row) {
-					return row.year == props.selectedYear;
+					return row.year === props.selectedYear;
 				});
 
 				// Finds matching Main Category and appends to Budget Object
@@ -87,7 +87,7 @@ const YearSankeyBudget = (props) => {
 					if (matchingObjects.length > 0) {
 						// If matching objects are found, accumulate the additional values
 						const sum = matchingObjects.reduce(
-							(acc, obj) => acc + obj.amount,
+							(acc, obj) => acc + parseFloat(obj.amount),
 							0
 						);
 						// Create a new object with the accumulated sum and the name
@@ -121,7 +121,7 @@ const YearSankeyBudget = (props) => {
 					if (matchingObjects.length > 0) {
 						// If matching objects are found, accumulate the additional values
 						const sum = matchingObjects.reduce(
-							(acc, obj) => acc + obj.amount,
+							(acc, obj) => acc + parseFloat(obj.amount),
 							0
 						);
 						// Create a new object with the accumulated sum and the name
@@ -186,7 +186,7 @@ const YearSankeyBudget = (props) => {
 				});
 
 				const links = myLinks.filter((item) => item.value !== 0);
-				const filteredLinks = links.filter((item) => item.source === 'DUMMY');
+				//const filteredLinks = links.filter((item) => item.source === 'DUMMY');
 				return links;
 			}
 
