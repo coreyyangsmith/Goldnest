@@ -44,11 +44,11 @@ const MonthSankeyEntry = (props) => {
 			function enrichEntryData() {
 				// Filters all budget objects for selected year
 				const entryForYear = props.entries.filter(function (row) {
-					return row.year == props.selectedYear;
+					return row.year === props.selectedYear;
 				});
 
 				const entryForMonth = entryForYear.filter(function (row) {
-					return row.month == props.selectedMonth;
+					return row.month === parseInt(props.selectedMonth);
 				});
 
 				// Finds matching Main Category and appends to Budget Object
@@ -91,7 +91,7 @@ const MonthSankeyEntry = (props) => {
 					if (matchingObjects.length > 0) {
 						// If matching objects are found, accumulate the additional values
 						const sum = matchingObjects.reduce(
-							(acc, obj) => acc + obj.expense,
+							(acc, obj) => acc + parseFloat(obj.expense),
 							0
 						);
 						// Create a new object with the accumulated sum and the name
@@ -125,7 +125,7 @@ const MonthSankeyEntry = (props) => {
 					if (matchingObjects.length > 0) {
 						// If matching objects are found, accumulate the additional values
 						const sum = matchingObjects.reduce(
-							(acc, obj) => acc + obj.expense,
+							(acc, obj) => acc + parseFloat(obj.expense),
 							0
 						);
 						// Create a new object with the accumulated sum and the name
@@ -160,12 +160,12 @@ const MonthSankeyEntry = (props) => {
 
 				// Push all Main Category Names as Nodes
 				mainCategoryData.forEach((obj) => {
-					if (obj.value != 0) myNodes.push({ name: obj.target });
+					if (obj.value !== 0) myNodes.push({ name: obj.target });
 				});
 
 				// Push all Sub Category Names as Nodes
 				subCategoryData.forEach((obj) => {
-					if (obj.value != 0) myNodes.push({ name: obj.target });
+					if (obj.value !== 0) myNodes.push({ name: obj.target });
 				});
 
 				return myNodes;
@@ -191,7 +191,7 @@ const MonthSankeyEntry = (props) => {
 				});
 
 				const links = myLinks.filter((item) => item.value !== 0);
-				const filteredLinks = links.filter((item) => item.source === 'DUMMY');
+				//const filteredLinks = links.filter((item) => item.source === 'DUMMY');
 				return links;
 			}
 

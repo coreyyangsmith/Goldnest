@@ -192,11 +192,11 @@ const MonthStackedAreaEntry = (props) => {
 			function splitEntriesByCategory() {
 				// Filters all budget objects for selected year
 				const entryForYear = props.entries.filter(function (row) {
-					return row.year == props.selectedYear;
+					return row.year === props.selectedYear;
 				});
 
 				const entryForMonth = entryForYear.filter(function (row) {
-					return row.month == props.selectedMonth;
+					return row.month === parseInt(props.selectedMonth);
 				});
 
 				// Divide each entry into a sub_array organized by category
@@ -247,7 +247,7 @@ const MonthStackedAreaEntry = (props) => {
 							// Accumulative the amount for the day
 							cumulativeEntriesByDay.set(
 								day,
-								cumulativeEntriesByDay.get(day) + entry.expense
+								cumulativeEntriesByDay.get(day) + parseFloat(entry.expense)
 							);
 						});
 						cumulativeEntriesByDayByCategory.push(cumulativeEntriesByDay);

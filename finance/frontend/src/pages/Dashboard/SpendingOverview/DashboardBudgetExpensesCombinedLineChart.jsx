@@ -48,7 +48,7 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 			});
 
 			const entiresByMainCategory = entiresByMonth.filter(function (row) {
-				return row.main_category.name == props.selectedMain.name;
+				return row.main_category.name === props.selectedMain.name;
 			});
 
 			var entriesToUse;
@@ -112,12 +112,12 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 			});
 
 			const budgetByMainCategory = budgetByMonth.filter(function (row) {
-				return row.sub_category.main_category.name == props.selectedMain.name;
+				return row.sub_category.main_category.name === props.selectedMain.name;
 			});
 
 			var budgetToUse;
 
-			if (props.selectedMain == '') {
+			if (props.selectedMain === '') {
 				budgetToUse = budgetByMonth;
 			} else {
 				budgetToUse = budgetByMainCategory;
@@ -162,7 +162,7 @@ const DashboardBudgetExpensesCombinedLineChart = (props) => {
 	const option = {
 		title: {
 			text:
-				props.selectedMain == '' ? 'All Categories' : props.selectedMain.name,
+				props.selectedMain === '' ? 'All Categories' : props.selectedMain.name,
 			top: '1%',
 			textStyle: {
 				fontSize: 12,

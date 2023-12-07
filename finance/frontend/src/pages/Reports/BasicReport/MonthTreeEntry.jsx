@@ -73,11 +73,11 @@ const MonthTreeEntry = (props) => {
 			 */
 			function getFilteredEntries(mainCategories, subCategories) {
 				const entryForYear = props.entries.filter(function (row) {
-					return row.year == props.selectedYear;
+					return row.year === props.selectedYear;
 				});
 
 				const entryForMonth = entryForYear.filter(function (row) {
-					return row.month == props.selectedMonth;
+					return row.month === parseInt(props.selectedMonth);
 				});
 
 				const mappedEntriesMain = entryForMonth.map((entry) => {

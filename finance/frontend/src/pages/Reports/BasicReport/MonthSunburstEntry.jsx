@@ -71,11 +71,11 @@ const MonthSunburstEntry = (props) => {
 			 */
 			function getFilteredEntries(mainCategories, subCategories) {
 				const entryForYear = props.entries.filter(function (row) {
-					return row.year == props.selectedYear;
+					return row.year === props.selectedYear;
 				});
 
 				const entryForMonth = entryForYear.filter(function (row) {
-					return row.month == props.selectedMonth;
+					return row.month === parseInt(props.selectedMonth);
 				});
 
 				const mappedEntriesMain = entryForMonth.map((entry) => {
@@ -108,7 +108,7 @@ const MonthSunburstEntry = (props) => {
 							sum: 0,
 						};
 					}
-					result[key].sum += item.expense; // Assuming each object has a 'sum' property
+					result[key].sum += parseFloat(item.expense); // Assuming each object has a 'sum' property
 					result[key].name = item.sub_category.name;
 
 					return result;
