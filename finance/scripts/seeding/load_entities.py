@@ -15,6 +15,7 @@ Return:
 DATA_PATH = "scripts/seeding/data/entities.csv"
 
 def run():
+    count = 0
     with open(DATA_PATH) as f:
         reader = csv.reader(f)
         for row in reader:
@@ -24,5 +25,6 @@ def run():
                 created_at=timezone.now(),
                 updated_at=timezone.now(),
             )
-            _.save()   
-    print("'Entity' loaded successfully.")
+            _.save()  
+            count += 1 
+    print(f"'Entity' loaded successfully. ({count})")

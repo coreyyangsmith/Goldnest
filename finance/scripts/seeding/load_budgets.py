@@ -16,6 +16,7 @@ Return:
 DATA_PATH = "scripts/seeding/data/budgets.csv"
 
 def run():
+    count = 0
     with open(DATA_PATH) as f:
         reader = csv.reader(f)
         for row in reader:
@@ -29,4 +30,5 @@ def run():
                 updated_at=timezone.now(),                
             )
             _.save()
-    print("'Budget' loaded successfully.")
+            count += 1
+    print(f"'Budget' loaded successfully. ({count})")

@@ -13,12 +13,14 @@ import scripts.seeding.load_subsubcategories as subsub_category
 
 # Macro
 import scripts.seeding.load_accounts as account
+import scripts.seeding.load_accountentries as accountentry
 import scripts.seeding.load_budgets as budget
 
 def run():
 
     # Step 1: Wipe DB
     Entry.objects.all().delete()
+    AccountEntry.objects.all().delete()
     Account.objects.all().delete()
     Entity.objects.all().delete()   
     Budget.objects.all().delete()         
@@ -36,3 +38,4 @@ def run():
     entity.run()
     entry.run()
     account.run()
+    accountentry.run()

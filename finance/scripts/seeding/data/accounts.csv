@@ -1,9 +1,10 @@
-admin,RBC Chequings,CHEQUING,1234.45,2023-01-01
-admin,RBC Savings,SAVING,6543.12,2023-01-01
-admin,TD Chequings,CHEQUING,905.50,2023-01-01
-admin,Questrade TFSA,INVESTMENT,20500.69,2023-01-01
-admin,Questrade FHSA,INVESTMENT,8000.00,2023-01-01
-admin,Questrade Margin,INVESTMENT,62364.12,2023-01-01
-admin,Car,ASSET,10500.00,2023-01-01
-admin,House,ASSET,325000.00,2023-01-01
-admin,Mortage,DEBT,-300000.00,2023-01-01
+CIBC Chequings,CEQ,admin
+TD Chequings,CEQ,admin
+TD Margin,INV,admin
+Questrade TFSA,INV,admin
+Questrade FHSA,INV,admin
+Bitcoin,INV,admin
+Ethereum,INV,admin
+CIBC Savings,SAV,admin
+EQ Bank,SAV,admin
+CIBC Credit Card,DBT,admin

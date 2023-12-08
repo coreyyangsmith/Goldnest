@@ -20,7 +20,7 @@ Return:
 NUMBER_TO_GENERATE = 5
 
 def run():
-
+    count = 0
     # Generate Default Admin User
     admin_user = "admin"
     admin_password = "pass"
@@ -30,6 +30,7 @@ def run():
                                 is_superuser=True)[0]
     admin_user.set_password(admin_password)
     admin_user.save()
+    count += 1
 
     # Generate Known (non-admin) User
     test_user = "coreyyangsmith"
@@ -42,6 +43,7 @@ def run():
                                             is_superuser=True)[0]
     test_user.set_password(test_password);
     test_user.save()
+    count += 1
 
     # Generate Random (blank) Users
     faker = Faker()
@@ -56,4 +58,5 @@ def run():
                                           first_name = fake_first_name,
                                             last_name = fake_last_name,
                                             email = fake_email)[0]
-    print("'User' loaded successfully.")
+        count += 1
+    print(f"'User' loaded successfully. ({count})")

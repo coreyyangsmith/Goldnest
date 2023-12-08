@@ -1,5 +1,5 @@
 import csv
-from main.models import Entity, Account, User
+from main.models import Account, User
 from django.utils import timezone
 '''
 load_accounts.py
@@ -15,17 +15,17 @@ Return:
 DATA_PATH = "scripts/seeding/data/accounts.csv"
 
 def run():
+    count = 0
     with open(DATA_PATH) as f:
         reader = csv.reader(f)
         for row in reader:
             _, created = Account.objects.get_or_create(
-                user=User.objects.get(username=row[0]), 
-                name=row[1],
-                account_type=row[2],
-                balance=row[3],
-                date=row[4],
+                user=User.objects.get(username=row[2]), 
+                name=row[0],
+                account_type=row[1],
                 created_at=timezone.now(),
                 updated_at=timezone.now(),
             )
             _.save()   
-    print("'Account' loaded successfully.")
+            count += 1
+    print(f"'Account' loaded successfully. ({count})")
