@@ -379,6 +379,22 @@ def accounts_detail(request, pk):
         account.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)    
     
+#-- Account Entries --#
+@api_view(['GET', 'POST'])
+def accountentries_list(request):
+    if request.method == 'GET':
+        data = AccountEntry.objects.all()
+        serializer = AccountEntrySerializer(data, context={'request': request}, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = AccountEntrySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 #-- Budget --#
 @api_view(['GET', 'POST'])
 def budgets_list(request):

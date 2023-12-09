@@ -37,7 +37,9 @@ urlpatterns = [
     re_path(r'^api/entities/([0-9]+)$', views.entities_detail),        
     
     re_path(r'^api/accounts/$', views.accounts_list),  
-    re_path(r'^api/accounts/([0-9]+)$', views.accounts_detail),          
+    re_path(r'^api/accounts/([0-9]+)$', views.accounts_detail),        
+
+    re_path(r'^api/accountentries/$', views.accountentries_list),  
 
     re_path(r'^api/maincategories/$', views.maincategories_list),  
     re_path(r'^api/maincategories/([0-9]+)$', views.maincategories_detail),   

@@ -126,6 +126,12 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = '__all__'
+
+class AccountEntrySerializer(serializers.ModelSerializer):
+    account = AccountSerializer()
+    class Meta:
+        model = AccountEntry
+        fields = '__all__'        
         
 class BudgetSerializer(serializers.ModelSerializer):
     sub_category = SubCategorySerializer()          
