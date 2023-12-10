@@ -27,6 +27,7 @@ import { useAccounts } from '../../hooks/useAccounts';
 // My Page Import
 import AccountSummary from './AccountSummary';
 import AccountNetWorth from './AccountNetWorth';
+import { useAccountEntries } from '../../hooks/useAccountEntries';
 
 {
 	/* [ACCOUNTS] will be the place where you can track your net worth and update new accounts.
@@ -47,6 +48,8 @@ import AccountNetWorth from './AccountNetWorth';
 
 const Accounts = () => {
 	const { accounts, setAccounts } = useAccounts();
+	const { accountEntries, setAccountEntries } = useAccountEntries();
+
 	return (
 		<>
 			<Grid
@@ -67,7 +70,10 @@ const Accounts = () => {
 					item
 					xs={12}
 				>
-					<AccountNetWorth accounts={accounts} />
+					<AccountNetWorth
+						accounts={accounts}
+						accountEntries={accountEntries}
+					/>
 				</Grid>
 			</Grid>
 		</>

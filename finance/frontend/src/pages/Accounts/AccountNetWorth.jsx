@@ -20,6 +20,7 @@ import React from 'react';
 
 // MUI Import
 import { Typography, Grid, Divider, Paper } from '@mui/material';
+import AccountNetWorthLineChart from './AccountNetWorthLineChart';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -41,6 +42,7 @@ const AccountNetWorth = (props) => {
 			>
 				<Typography variant="dashboard_heading">Net Worth</Typography>
 				<Divider />
+				<AccountNetWorthLineChart accountEntries={props.accountEntries} />
 			</Grid>
 		</Paper>
 	);
