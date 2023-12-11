@@ -39,8 +39,6 @@ const AccountNetWorthLineChart = (props) => {
 			var minDate = new Date();
 			for (let i = 0; i < accountEntries.length; i++) {
 				var selectedDate = new Date(accountEntries[i].date);
-				console.log(selectedDate);
-				console.log(minDate);
 				if (minDate > selectedDate) {
 					minDate = selectedDate;
 				}
@@ -52,8 +50,6 @@ const AccountNetWorthLineChart = (props) => {
 			var maxDate = startDate;
 			for (let i = 0; i < accountEntries.length; i++) {
 				var selectedDate = new Date(accountEntries[i].date);
-				console.log(selectedDate);
-				console.log(maxDate);
 				if (maxDate < selectedDate) {
 					maxDate = selectedDate;
 				}
@@ -62,17 +58,39 @@ const AccountNetWorthLineChart = (props) => {
 		}
 
 		function getAssetData(accountEntries) {
-			// TODO
+			var assets = [];
+
+			accountEntries.forEach((element) => {
+				if (element.account.account_type !== 'DBT') {
+					assets.push(element);
+				}
+			});
+			console.log('Assets');
+			console.log(assets);
+
+			// get list of unique DATES from above
+			// Map sums of each date to above k:v pairs
+			return assets;
 		}
 
 		function getDebtData(accountEntries) {
-			// TODO
+			var debts = [];
+
+			accountEntries.forEach((element) => {
+				if (element.account.account_type === 'DBT') {
+					debts.push(element);
+				}
+			});
+			console.log('Debts');
+			console.log(debts);
 		}
 
 		function getNwData(accountEntries) {}
 
 		setStartDate(getMinDate(props.accountEntries));
 		setEndDate(getMaxDate(props.accountEntries));
+		setAssetData(getAssetData(props.accountEntries));
+		setDebtData(getDebtData(props.accountEntries));
 	}, [props]);
 
 	const option = {
