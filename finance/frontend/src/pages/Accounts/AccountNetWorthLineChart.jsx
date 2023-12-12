@@ -57,40 +57,86 @@ const AccountNetWorthLineChart = (props) => {
 			return maxDate;
 		}
 
+		function removeDuplicateDates(arr) {
+			let unique = [];
+			arr.forEach((element) => {
+				if (!unique.includes(element.date)) {
+					unique.push(element.date);
+				}
+			});
+			return unique;
+		}
+
+		function aggregateValuesByDate(datesArr, valsArr) {
+			const sumByDate = {};
+
+			valsArr.forEach((obj) => {
+				const { date, balance } = obj;
+
+				if (datesArr.includes(date)) {
+					if (!sumByDate[date])
+						sumByDate[date] = Number(parseFloat(balance).toFixed(2));
+					else sumByDate[date] += Number(parseFloat(balance).toFixed(2));
+				}
+			});
+			return sumByDate;
+		}
+
 		function getAssetData(accountEntries) {
 			var assets = [];
+			var uniqueDates = [];
 
+			// Get All Non-Debt Entries
 			accountEntries.forEach((element) => {
-				if (element.account.account_type !== 'DBT') {
+				if (
+					element.account.account_type === 'CHQ' ||
+					element.account.account_type === 'SAV'
+				) {
 					assets.push(element);
 				}
 			});
-			console.log('Assets');
-			console.log(assets);
 
-			// get list of unique DATES from above
-			// Map sums of each date to above k:v pairs
-			return assets;
+			// Get List of Unique Dates
+			uniqueDates = removeDuplicateDates(assets);
+
+			// Get Summed Values
+			let vals = aggregateValuesByDate(uniqueDates, assets);
+
+			return vals;
 		}
 
 		function getDebtData(accountEntries) {
 			var debts = [];
+			var uniqueDates = [];
 
 			accountEntries.forEach((element) => {
 				if (element.account.account_type === 'DBT') {
 					debts.push(element);
 				}
 			});
-			console.log('Debts');
-			console.log(debts);
+
+			// Get List of Unique Dates
+			uniqueDates = removeDuplicateDates(debts);
+
+			// Get Summed Values
+			let vals = aggregateValuesByDate(uniqueDates, debts);
+
+			return vals;
 		}
 
 		function getNwData(accountEntries) {}
 
 		setStartDate(getMinDate(props.accountEntries));
 		setEndDate(getMaxDate(props.accountEntries));
+
 		setAssetData(getAssetData(props.accountEntries));
 		setDebtData(getDebtData(props.accountEntries));
+
+		console.log('Assets');
+		console.log(assetData);
+
+		console.log('Debts');
+		console.log(debtData);
 	}, [props]);
 
 	const option = {
