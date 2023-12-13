@@ -33,6 +33,8 @@ const AccountNetWorthLineChart = (props) => {
 	const [debtData, setDebtData] = useState([]);
 	const [nwData, setNwData] = useState([]);
 
+	const [dateData, setDateData] = useState([]);
+
 	// Process budget and entries into appropriate datasets based on selected year and month
 	useEffect(() => {
 		function getMinDate(accountEntries) {
@@ -100,7 +102,9 @@ const AccountNetWorthLineChart = (props) => {
 			uniqueDates = removeDuplicateDates(assets);
 
 			// Get Summed Values
-			let vals = aggregateValuesByDate(uniqueDates, assets);
+			let keyvals = aggregateValuesByDate(uniqueDates, assets);
+
+			let vals = Object.values(keyvals);
 
 			return vals;
 		}
@@ -126,60 +130,43 @@ const AccountNetWorthLineChart = (props) => {
 
 		function getNwData(accountEntries) {}
 
+		function getDates(accountEntries) {
+			// Get List of Unique Dates
+			var uniqueDates;
+			uniqueDates = removeDuplicateDates(accountEntries);
+			return uniqueDates;
+		}
+
 		setStartDate(getMinDate(props.accountEntries));
 		setEndDate(getMaxDate(props.accountEntries));
 
 		setAssetData(getAssetData(props.accountEntries));
 		setDebtData(getDebtData(props.accountEntries));
 
+		setDateData(getDates(props.accountEntries));
+
 		console.log('Assets');
 		console.log(assetData);
 
 		console.log('Debts');
 		console.log(debtData);
+
+		console.log('Dates');
+		console.log(dateData);
 	}, [props]);
 
 	const option = {
-		title: {
-			text: 'All Categories',
-			top: '1%',
-			textStyle: {
-				fontSize: 12,
-			},
-		},
-		tooltip: {
-			trigger: 'axis',
-			valueFormatter: (value) => value,
-		},
-		legend: {
-			data: ['Budget', 'Expenses'],
-			top: '9%',
-		},
-		grid: {
-			top: '20%',
-			left: '3%',
-			right: '4%',
-			bottom: '3%',
-			containLabel: true,
-		},
 		xAxis: {
-			data: 0,
+			type: 'category',
+			data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
 		},
 		yAxis: {
 			type: 'value',
 		},
 		series: [
 			{
-				name: 'Budget',
 				type: 'line',
-				stack: 'x',
-				data: 0,
-			},
-			{
-				name: 'Expenses',
-				type: 'line',
-				stack: 'y',
-				data: 0,
+				data: [150, 230, 224, 218, 135, 147, 260],
 			},
 		],
 	};
