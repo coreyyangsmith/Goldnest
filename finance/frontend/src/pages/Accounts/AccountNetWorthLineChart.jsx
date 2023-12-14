@@ -20,6 +20,7 @@ import React, { useEffect, useState } from 'react';
 
 // ECharts
 import ReactEcharts from 'echarts-for-react';
+import { Box, Paper } from '@mui/material';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -31,6 +32,7 @@ const AccountNetWorthLineChart = (props) => {
 
 	const [assetData, setAssetData] = useState([]);
 	const [debtData, setDebtData] = useState([]);
+	const [investmentData, setInvestmentData] = useState([]);
 	const [nwData, setNwData] = useState([]);
 
 	const [dateData, setDateData] = useState([]);
@@ -156,25 +158,61 @@ const AccountNetWorthLineChart = (props) => {
 	}, [props]);
 
 	const option = {
+		tooltip: {
+			trigger: 'axis',
+			valueFormatter: (value) => value,
+		},
+		legend: {
+			data: ['Assets', 'Investments', 'Debts', 'Net Worth'],
+			top: '9%',
+		},
+		grid: {
+			top: '20%',
+			left: '3%',
+			right: '4%',
+			bottom: '3%',
+			containLabel: true,
+		},
+
 		xAxis: {
 			type: 'category',
-			data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+			data: dateData,
 		},
 		yAxis: {
 			type: 'value',
 		},
 		series: [
 			{
+				name: 'Assets',
+				data: assetData,
 				type: 'line',
-				data: [150, 230, 224, 218, 135, 147, 260],
+				smooth: true,
+			},
+			{
+				name: 'Investments',
+				data: assetData,
+				type: 'line',
+				smooth: true,
+			},
+			{
+				name: 'Debts',
+				data: assetData,
+				type: 'line',
+				smooth: true,
+			},
+			{
+				name: 'Net Worth',
+				data: assetData,
+				type: 'line',
+				smooth: true,
 			},
 		],
 	};
 
 	return (
-		<>
+		<Box sx={{ width: '100%', height: '100%' }}>
 			<ReactEcharts option={option} />
-		</>
+		</Box>
 	);
 };
 

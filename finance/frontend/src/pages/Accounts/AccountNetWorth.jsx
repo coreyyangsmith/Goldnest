@@ -38,7 +38,7 @@ const AccountNetWorth = (props) => {
 		>
 			<Grid
 				container
-				sx={{ height: '30vh' }}
+				sx={{ height: '35vh' }}
 			>
 				<Typography variant="dashboard_heading">Net Worth</Typography>
 				<Divider />
