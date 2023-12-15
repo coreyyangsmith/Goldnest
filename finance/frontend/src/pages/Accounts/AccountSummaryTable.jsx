@@ -1,6 +1,6 @@
 //-------------------------------------------------------//
-//  File Name: AccountSummary.jsx
-//  Description: Account Summary Panel
+//  File Name: AccountSummaryTable.jsx
+//  Description: Account Summary Display Table
 //
 //  Requirements:
 //      - Accounts.jsx
@@ -9,7 +9,7 @@
 //		- TODO
 //
 // Created By: Corey Yang-Smith
-// Date: November 2nd, 2023
+// Date: December 15th, 2023
 //-------------------------------------------------------//
 
 //  IMPORTS
@@ -20,35 +20,37 @@ import React from 'react';
 
 // MUI Import
 import { Typography, Grid, Divider, Paper } from '@mui/material';
-import AccountSummaryTable from './AccountSummaryTable';
 
 //  MAIN FUNCITON
 //-------------------------------------------------------//
 
-const AccountSummary = (props) => {
+const AccountSummaryTable = (props) => {
 	return (
-		<Paper
-			sx={{
-				paddingLeft: '32px',
-				paddingRight: '32px',
-				paddingTop: '16px',
-				paddingBottom: '16px',
-			}}
-			elevation={4}
+		<Grid
+			container
+			direction="row"
+			sx={{ background: 'gray', height: '90%', width: '100%' }}
 		>
 			<Grid
 				container
-				sx={{ height: '50vh', background: 'blue' }}
+				item
+				xs={10}
+				sx={{ background: 'orange' }}
 			>
 				<Typography variant="dashboard_heading">Account Summary</Typography>
-				<Divider />
-				<AccountSummaryTable />
 			</Grid>
-		</Paper>
+			<Grid
+				container
+				item
+				xs={2}
+			>
+				<Typography variant="dashboard_heading">Account Summary</Typography>
+			</Grid>
+		</Grid>
 	);
 };
 
 //  EXPORTS
 //-------------------------------------------------------//
 
-export default AccountSummary;
+export default AccountSummaryTable;

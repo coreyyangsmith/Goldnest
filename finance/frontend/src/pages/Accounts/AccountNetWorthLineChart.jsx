@@ -20,7 +20,7 @@ import React, { useEffect, useState } from 'react';
 
 // ECharts
 import ReactEcharts from 'echarts-for-react';
-import { Box, Paper } from '@mui/material';
+import { Box } from '@mui/material';
 
 //  MAIN FUNCTION
 //-------------------------------------------------------//
@@ -30,9 +30,11 @@ const AccountNetWorthLineChart = (props) => {
 	const [startDate, setStartDate] = useState('');
 	const [endDate, setEndDate] = useState('');
 
+	const [chequingsData, setChequingsData] = useState([]);
+	const [savingsData, setSavingsData] = useState([]);
+	const [investmentData, setInvestmentData] = useState([]);
 	const [assetData, setAssetData] = useState([]);
 	const [debtData, setDebtData] = useState([]);
-	const [investmentData, setInvestmentData] = useState([]);
 	const [nwData, setNwData] = useState([]);
 
 	const [dateData, setDateData] = useState([]);
@@ -86,51 +88,47 @@ const AccountNetWorthLineChart = (props) => {
 			return sumByDate;
 		}
 
-		function getAssetData(accountEntries) {
-			var assets = [];
+		function getAccountData(accountEntries, accountType) {
+			var data = [];
 			var uniqueDates = [];
 
 			// Get All Non-Debt Entries
 			accountEntries.forEach((element) => {
-				if (
-					element.account.account_type === 'CHQ' ||
-					element.account.account_type === 'SAV'
-				) {
-					assets.push(element);
+				if (element.account.account_type === accountType) {
+					data.push(element);
 				}
 			});
 
 			// Get List of Unique Dates
-			uniqueDates = removeDuplicateDates(assets);
+			uniqueDates = removeDuplicateDates(data);
 
 			// Get Summed Values
-			let keyvals = aggregateValuesByDate(uniqueDates, assets);
+			let keyvals = aggregateValuesByDate(uniqueDates, data);
 
 			let vals = Object.values(keyvals);
 
 			return vals;
 		}
 
-		function getDebtData(accountEntries) {
-			var debts = [];
+		function getNWData(accountEntries) {
+			var data = [];
 			var uniqueDates = [];
 
+			// Get All Non-Debt Entries
 			accountEntries.forEach((element) => {
-				if (element.account.account_type === 'DBT') {
-					debts.push(element);
-				}
+				data.push(element);
 			});
 
 			// Get List of Unique Dates
-			uniqueDates = removeDuplicateDates(debts);
+			uniqueDates = removeDuplicateDates(data);
 
 			// Get Summed Values
-			let vals = aggregateValuesByDate(uniqueDates, debts);
+			let keyvals = aggregateValuesByDate(uniqueDates, data);
+
+			let vals = Object.values(keyvals);
 
 			return vals;
 		}
-
-		function getNwData(accountEntries) {}
 
 		function getDates(accountEntries) {
 			// Get List of Unique Dates
@@ -142,19 +140,33 @@ const AccountNetWorthLineChart = (props) => {
 		setStartDate(getMinDate(props.accountEntries));
 		setEndDate(getMaxDate(props.accountEntries));
 
-		setAssetData(getAssetData(props.accountEntries));
-		setDebtData(getDebtData(props.accountEntries));
+		setChequingsData(getAccountData(props.accountEntries, 'CHQ'));
+		setSavingsData(getAccountData(props.accountEntries, 'SAV'));
+		setInvestmentData(getAccountData(props.accountEntries, 'INV'));
+		setAssetData(getAccountData(props.accountEntries, 'AST'));
+		setDebtData(getAccountData(props.accountEntries, 'DBT'));
+
+		setNwData(getNWData(props.accountEntries));
 
 		setDateData(getDates(props.accountEntries));
 
-		console.log('Assets');
-		console.log(assetData);
+		// console.log('Chequings');
+		// console.log(chequingsData);
 
-		console.log('Debts');
-		console.log(debtData);
+		// console.log('Savings');
+		// console.log(savingsData);
 
-		console.log('Dates');
-		console.log(dateData);
+		// console.log('Investments');
+		// console.log(investmentData);
+
+		// console.log('Assets');
+		// console.log(assetData);
+
+		// console.log('Debts');
+		// console.log(debtData);
+
+		// console.log('Dates');
+		// console.log(dateData);
 	}, [props]);
 
 	const option = {
@@ -163,14 +175,21 @@ const AccountNetWorthLineChart = (props) => {
 			valueFormatter: (value) => value,
 		},
 		legend: {
-			data: ['Assets', 'Investments', 'Debts', 'Net Worth'],
-			top: '9%',
+			data: [
+				'Chequings',
+				'Savings',
+				'Investments',
+				'Assets',
+				'Debts',
+				'Net Worth',
+			],
+			top: '-1%',
 		},
 		grid: {
-			top: '20%',
-			left: '3%',
-			right: '4%',
-			bottom: '3%',
+			top: '10%',
+			left: '0%',
+			right: '0%',
+			bottom: '0%',
 			containLabel: true,
 		},
 
@@ -183,26 +202,38 @@ const AccountNetWorthLineChart = (props) => {
 		},
 		series: [
 			{
+				name: 'Chequings',
+				data: chequingsData,
+				type: 'line',
+				smooth: true,
+			},
+			{
+				name: 'Savings',
+				data: savingsData,
+				type: 'line',
+				smooth: true,
+			},
+			{
+				name: 'Investments',
+				data: investmentData,
+				type: 'line',
+				smooth: true,
+			},
+			{
 				name: 'Assets',
 				data: assetData,
 				type: 'line',
 				smooth: true,
 			},
 			{
-				name: 'Investments',
-				data: assetData,
-				type: 'line',
-				smooth: true,
-			},
-			{
 				name: 'Debts',
-				data: assetData,
+				data: debtData,
 				type: 'line',
 				smooth: true,
 			},
 			{
 				name: 'Net Worth',
-				data: assetData,
+				data: nwData,
 				type: 'line',
 				smooth: true,
 			},
@@ -210,7 +241,13 @@ const AccountNetWorthLineChart = (props) => {
 	};
 
 	return (
-		<Box sx={{ width: '100%', height: '100%' }}>
+		<Box
+			sx={{
+				width: '100%',
+				height: '100%',
+				background: 'transparent',
+			}}
+		>
 			<ReactEcharts option={option} />
 		</Box>
 	);
