@@ -22,6 +22,12 @@ import React, { useEffect, useState } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { Box } from '@mui/material';
 
+// Utilities
+import {
+	getDates,
+	removeDuplicateDates,
+} from '../../utils/accountUtilities.js';
+
 //  MAIN FUNCTION
 //-------------------------------------------------------//
 
@@ -61,16 +67,6 @@ const AccountNetWorthLineChart = (props) => {
 				}
 			}
 			return maxDate;
-		}
-
-		function removeDuplicateDates(arr) {
-			let unique = [];
-			arr.forEach((element) => {
-				if (!unique.includes(element.date)) {
-					unique.push(element.date);
-				}
-			});
-			return unique;
 		}
 
 		function aggregateValuesByDate(datesArr, valsArr) {
@@ -128,13 +124,6 @@ const AccountNetWorthLineChart = (props) => {
 			let vals = Object.values(keyvals);
 
 			return vals;
-		}
-
-		function getDates(accountEntries) {
-			// Get List of Unique Dates
-			var uniqueDates;
-			uniqueDates = removeDuplicateDates(accountEntries);
-			return uniqueDates;
 		}
 
 		setStartDate(getMinDate(props.accountEntries));

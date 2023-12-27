@@ -63,6 +63,8 @@ const Accounts = () => {
 					<AccountSummary
 						accounts={accounts}
 						setAccounts={setAccounts}
+						accountEntries={accountEntries}
+						setAccountEntries={setAccountEntries}
 					/>
 				</Grid>
 

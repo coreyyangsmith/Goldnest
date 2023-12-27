@@ -38,11 +38,16 @@ const AccountSummary = (props) => {
 		>
 			<Grid
 				container
-				sx={{ height: '50vh', background: 'blue' }}
+				sx={{ height: '50vh' }}
 			>
 				<Typography variant="dashboard_heading">Account Summary</Typography>
 				<Divider />
-				<AccountSummaryTable />
+				<AccountSummaryTable
+					accounts={props.accounts}
+					setAccounts={props.setAccounts}
+					accountEntries={props.accountEntries}
+					setAccountEntries={props.setAccountEntries}
+				/>
 			</Grid>
 		</Paper>
 	);
