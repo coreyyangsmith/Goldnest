@@ -1,1 +1,9 @@
 .env
+.venv/
+
+# Django
+__pycache__/
+db.sqlite3
+
+# Mac Only
+.DS_Store
