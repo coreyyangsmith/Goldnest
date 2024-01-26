@@ -74,7 +74,7 @@ const AccountSummaryData = (props) => {
 			<Stack
 				direction="row"
 				spacing={1}
-				sx={{ background: 'red' }}
+			// sx={{ background: 'red' }}
 			>
 				{myDates}
 			</Stack>

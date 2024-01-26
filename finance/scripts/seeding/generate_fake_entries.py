@@ -20,7 +20,7 @@ import calendar
 import datetime
 
 GENERATE_NUM = 500
-GENERATE_YEARS = [2023]
+GENERATE_YEARS = [2024]
 GENERATE_MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 MIN_INCOME = 0

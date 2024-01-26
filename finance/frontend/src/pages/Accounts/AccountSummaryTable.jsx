@@ -41,7 +41,7 @@ const AccountSummaryTable = (props) => {
 				container
 				item
 				xs={3}
-				sx={{ background: 'blue' }}
+			// sx={{ background: 'blue' }}
 			>
 				<AccountSummaryList accounts={props.accounts} />
 			</Grid>
@@ -50,7 +50,7 @@ const AccountSummaryTable = (props) => {
 				container
 				item
 				xs={7}
-				sx={{ overflow: 'hidden visible', background: 'gray', maxWidth: '10%' }}
+			// sx={{ overflow: 'hidden visible', background: 'gray', maxWidth: '10%' }}
 			>
 				<AccountSummaryData
 					accounts={props.accounts}
@@ -62,7 +62,7 @@ const AccountSummaryTable = (props) => {
 				container
 				item
 				xs={2}
-				sx={{ background: 'red' }}
+			// sx={{ background: 'red' }}
 			>
 				<Typography variant="dashboard_heading">Account Entry</Typography>
 			</Grid>
