@@ -2,43 +2,33 @@
 
 # Project Description
 
-# Table of Contents
- * [Project Description](#project-description)
- * [Technologies Used](#technologies-used)
- * [Requirements & Dependencies](#requirements-and-dependencies)
- * [Installation Instructions](#installation-instructions)
- * [Usage Instructions](#usage-instructions)
- * [Documentation](#documentation)
- * [Visuals](#visuals)
- * [Project Roadmap](#project-roadmap)
- * [Project Status](#project-status)
- * [Contribution Guidelines](#contribution-guidelines)
- * [Acknowledgements](#acknowledgements)
- * [License Information](#license-information)
+This project is a full-stack Django+React application designed and developed by me. Goldnest is a personal finance application that allows for dynamic category creation, a stunning visual dashboard, and detailed reports and analytics available to dive deep into your spending habits.
 
+# Tech Stack
 
-# Technologies Used
+Backend:
 
-# Requirements and Dependencies
-* Python (Version = X)
-* Django (Version = X)
-* React (Verison = X)
-* MaterialsUI (Version = X)
+- Django 4.2.2 (Python web framework)
+- Django REST Framework (API development)
+- Fernet encryption for secure data storage
+- SQLite database (local development)
+
+Frontend:
+
+- React 18.2.0
+- Material-UI (MUI) v5.14.7
+- React Router v6.15.0
+- Chart.js & D3.js for data visualization
+- Three.js/Framer Motion for animations
 
 # Installation Instructions
 
-# Usage Instructions
+This project has been containerized with Docker (although not uploaded to DockerHub), and is available to run on your local machine after doing the following.
 
-# Documentation
+`docker compose -f docker-compose.dev.yml up --build`
 
 # Visuals
 
-# Project Roadmap
-
-# Project Status
-
-# Contribution Guidelines
-
-# Acknowledgements
-
-# License Information
+![Landing Page 1](docs/landing-1.png)
+![Landing Page 2](docs/landing-2.png)
+[![Goldnest Demo](https://img.youtube.com/vi/Lis2se-W8F8/0.jpg)](https://www.youtube.com/watch?v=Lis2se-W8F8&feature=youtu.be)

@@ -1,9 +1,10 @@
 .env
 .venv/
 
-# Django
+backend/scripts/seeding/data
+*.csv
+
 __pycache__/
 db.sqlite3
 
-# Mac Only
 .DS_Store
