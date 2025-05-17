@@ -1,4 +1,5 @@
 import csv
+import os
 from main.models import Account, User
 from django.utils import timezone
 '''
@@ -15,17 +16,24 @@ Return:
 DATA_PATH = "scripts/seeding/data/accounts.csv"
 
 def run():
+    if not os.path.exists(DATA_PATH):
+        print(f"Error: Data file not found at {DATA_PATH}")
+        return
+        
     count = 0
-    with open(DATA_PATH) as f:
-        reader = csv.reader(f)
-        for row in reader:
-            _, created = Account.objects.get_or_create(
-                user=User.objects.get(username=row[2]), 
-                name=row[0],
-                account_type=row[1],
-                created_at=timezone.now(),
-                updated_at=timezone.now(),
-            )
-            _.save()   
-            count += 1
-    print(f"'Account' loaded successfully. ({count})")
+    try:
+        with open(DATA_PATH) as f:
+            reader = csv.reader(f)
+            for row in reader:
+                _, created = Account.objects.get_or_create(
+                    user=User.objects.get(username=row[2]), 
+                    name=row[0],
+                    account_type=row[1],
+                    created_at=timezone.now(),
+                    updated_at=timezone.now(),
+                )
+                _.save()   
+                count += 1
+        print(f"'Account' loaded successfully. ({count})")
+    except Exception as e:
+        print(f"Error loading Account data: {str(e)}")
